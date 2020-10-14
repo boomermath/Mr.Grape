@@ -1,0 +1,1 @@
+node: worker app.js
