@@ -1,5 +1,6 @@
 
 const Discord = require('discord.js');
+const target = message.mentions.members.first();
 module.exports = {
 	name: 'userinfo',
 	description: 'return basic info about the user',
