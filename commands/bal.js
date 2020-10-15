@@ -1,9 +1,5 @@
 
-const Discord = require('discord.js');
-const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
+const depend = require('../app.js')
 module.exports = {
 	name: 'bal',
 	description: 'check ur balance',
