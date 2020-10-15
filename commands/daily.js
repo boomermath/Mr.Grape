@@ -4,6 +4,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const add = require('./functions/addMoni.js');
 module.exports = {
 	name: 'daily',
 	description: 'get ur daily amount of stars',
@@ -21,6 +22,6 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Bank Inc.');
         message.channel.send(dailystarEmbed);
-        addMoni(message.author.id, random);
+        add.addMoni(message.author.id, random);
 	}
 };
