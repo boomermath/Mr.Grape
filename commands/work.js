@@ -4,6 +4,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const add = require('./functions/addMoni.js');
 module.exports = {
 	name: 'work',
 	description: 'do honest work to get stars',
