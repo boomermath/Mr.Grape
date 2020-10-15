@@ -1,5 +1,4 @@
 
-const Discord = require('discord.js');
 const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
@@ -13,7 +12,4 @@ async function addMoni(who, howmuch) {
     await users.set(who, moremoni)
 }
 
-let target = message.mentions.members.first();
-
 module.exports.addMoni = addMoni;
-module.exports.target = target;
