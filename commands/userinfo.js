@@ -6,7 +6,8 @@ module.exports = {
 	cooldown: 2,
 	execute(message, args) {
 	let user;
-let id;
+	let id;
+	let target = message.mentions.members.first();
 if (args[0] === undefined) {user = message.author.username; id = message.author.id}
 else if (args[0].startsWith("<@") && args[0].endsWith(">")) {user = target.displayName; id = target.id}
 else {message.channel.send('Use a valid mention!');}
