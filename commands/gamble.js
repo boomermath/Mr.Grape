@@ -1,3 +1,9 @@
+
+const Discord = require('discord.js');
+const Keyv = require('keyv');
+const users = new Keyv(process.env.DATABASE_URL, {
+    namespace: 'users'
+});
 module.exports = {
 	name: 'gamble',
 	description: 'gamble your stars 50/50 chance of losing or gaining your stars',
