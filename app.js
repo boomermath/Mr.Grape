@@ -7,8 +7,6 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
-const {Sequelize, DataTypes} = require('sequelize');
-const sequelize = new Sequelize(process.env.DATABASE_URL);
 client.login(process.env.BOT_TOKEN);
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
