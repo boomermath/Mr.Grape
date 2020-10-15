@@ -17,6 +17,6 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Bank Inc.');
         message.channel.send(dailystarEmbed);
-        add.addMoni(message.author.id, random);
+        addMoni(message.author.id, random);
 	}
 };

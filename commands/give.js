@@ -18,8 +18,8 @@ module.exports = {
                 message.channel.send("bruh you cant give golden stars to a bot smh")
             } else {
 		if (await users.get(target.id) === undefined) {await users.set(target.id, 0)}
-                add.addMoni(message.author.id, -ask);
-                add.addMoni(target.id, ask);
+                addMoni(message.author.id, -ask);
+                addMoni(target.id, ask);
                 const give = new Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + ` donation to ` + target.displayName)

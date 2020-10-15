@@ -60,7 +60,7 @@ module.exports = {
 
                             message.channel.send(gambleEmbed);
 
-                            add.addMoni(message.author.id, param);
+                            addMoni(message.author.id, param);
                         } else {
 
                             message.edit(gambleEmbed.addFields({
@@ -68,7 +68,7 @@ module.exports = {
                                 value: 'You lost...'
                             }, ))
                             message.channel.send(gambleEmbed);
-                            add.addMoni(message.author.id, -param);
+                            addMoni(message.author.id, -param);
 
                         }
                     }, 1100)

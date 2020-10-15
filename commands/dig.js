@@ -17,6 +17,6 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Enterprises');
         message.channel.send(mine);
-        add.addMoni(message.author.id, earn);
+        addMoni(message.author.id, earn);
 	}
 };
