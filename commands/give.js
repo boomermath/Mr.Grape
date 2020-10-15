@@ -9,12 +9,12 @@ async function addMoni(who, howmuch) {
     		let moremoni = rightnow + howmuch;
     		await users.set(who, moremoni)
 		}
-let target = message.mentions.member.first();
 module.exports = {
 	name: 'give',
 	description: 'give stars to people',
 	cooldown: 5,
 	execute(message, args) {
+	let target = message.mentions.member.first();
         async function donate() {
             let ask = parseInt(args[1]);
             let check = await users.get(message.author.id)
