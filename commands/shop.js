@@ -37,4 +37,5 @@
 
             message.channel.send(balsolooEmbed);
 		}
+	     }
 	};
