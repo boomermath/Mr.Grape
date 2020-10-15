@@ -4,6 +4,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const add = require('./functions/addMoni.js');
 module.exports = {
 	name: 'steal',
 	description: "steal stars from the bot's infinite stash",
@@ -20,12 +21,12 @@ module.exports = {
         if (caught >= 70) {
 			output = stealArr[0][0]
 			val = stealArr[0][1]
-            addMoni(message.author.id, randSteal);
+            add.addMoni(message.author.id, randSteal);
 
         } else if (caught <= 30) { 
 		    output = stealArr[1][0]
 			val = stealArr[1][1]
-			addMoni(message.author.id, -randSteal);
+			add.addMoni(message.author.id, -randSteal);
 		}
 
             const stealEmbed = new Discord.MessageEmbed()
