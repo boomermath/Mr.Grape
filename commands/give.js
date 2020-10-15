@@ -5,6 +5,7 @@ const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
 const add = require('./functions/addMoni.js');
+const target = message.mentions.members.first();
 module.exports = {
 	name: 'give',
 	description: 'give stars to people',
@@ -24,7 +25,7 @@ module.exports = {
             } else {
 		if (await users.get(target.id) === undefined) {await users.set(target.id, 0)}
                 add.addMoni(message.author.id, -ask);
-                add.addMoni(add.target.id, ask);
+                add.addMoni(target.id, ask);
                 const give = new Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + ` donation to ` + target.displayName)
