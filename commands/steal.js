@@ -7,7 +7,7 @@ module.exports = {
 	 let val;
 	 let caught = Math.floor(Math.random() * 99) + 1;
      let randSteal = Math.floor(Math.random() * 19) + 1;
-	 const stealArr - [
+	 const stealArr = [
 	 ["Theft", "you stole" + randSteal + " :star:s"]
 	 ["You got caught!", "you ended up paying" + randSteal + " :star:s\nThat's karma for ya."]
 	 ];
