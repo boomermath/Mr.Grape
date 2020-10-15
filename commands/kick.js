@@ -1,10 +1,10 @@
-let target = message.mentions.members.first;
 const Discord = require('discord.js');
 module.exports = {
 	name: 'kick noobs from your server',
 	description: 'fortune telling is cool',
 	cooldown: 0,
 	execute(message, args) {
+	let target = message.mentions.members.first;
 	let boolean = message.member.hasPermission("KICK_MEMBERS");
 if (boolean) {
     if (target) {
