@@ -1,3 +1,9 @@
+
+const Discord = require('discord.js');
+const Keyv = require('keyv');
+const users = new Keyv(process.env.DATABASE_URL, {
+    namespace: 'users'
+});
 module.exports = {
 	name: 'work',
 	description: 'do honest work to get stars',
