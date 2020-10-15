@@ -1,9 +1,5 @@
 
 const Discord = require('discord.js');
-const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
 module.exports = {
 	name: 'invite',
 	description: 'get invite link for the bot',
