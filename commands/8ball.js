@@ -6,7 +6,7 @@ module.exports = {
 	execute(message, args) {
 let output;
 let val;
-const wordsOfWisdom = ['Better not tell you now.', 'Don’t count on it.','It is certain.''It is decidedly so.','Most likely.','My reply is no.','My sources say no.','Outlook not so good.','Outlook good.','Signs point to yes.','Very doubtful.','Without a doubt.','Yes.','Yes – definitely.','You may rely on it.'];
+const wordsOfWisdom = ['Better not tell you now.', "Don’t count on it.",'It is certain.','It is decidedly so.','Most likely.','My reply is no.','My sources say no.','Outlook not so good.','Outlook good.','Signs point to yes.','Very doubtful.','Without a doubt.','Yes.','Yes – definitely.','You may rely on it.'];
 const reject = ['Ask again later', 'Cannot predict now.', 'Concentrate and ask again', 'Reply hazy, try again.'];
 let randomReject = Math.floor(Math.random() * reject.length);
 let randomWise = Math.floor(Math.random() * wordsOfWisdom.length);
