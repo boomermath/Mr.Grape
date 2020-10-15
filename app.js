@@ -48,7 +48,7 @@ client.on('message', message => {
 	
 	async function addMoni(who, howmuch) {
     		let rightnow = await users.get(who);
-			if (rightnow === undefined) {await users.set(who, 0)}
+		if (rightnow === undefined) {await users.set(who, 0)}
     		let moremoni = rightnow + howmuch;
     		await users.set(who, moremoni)
 		}
