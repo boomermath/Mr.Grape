@@ -1,4 +1,4 @@
-[
+{
 	"prefix": "`"
 	"version": "1.0.0",
 	"todo":
@@ -7,4 +7,4 @@
 			"Random events for more stars",
 			"A shop and items/powerups to buy"
 		]
-]
+}
