@@ -1,41 +1,26 @@
- module.exports = {
+ 
+const Discord = require('discord.js');
+module.exports = {
 	name: 'shop',
 	description: 'display the shop',
 	cooldown: 2,
 	execute(message, args) {
- let caught = Math.floor(Math.random() * 99) + 1;
-        let randSteal = Math.floor(Math.random() * 19) + 1;
-        if (caught >= 70) {
-            addMoni(message.author.id, randSteal);
+		const shop = new Discord.MessageEmbed()
+					.setColor('#dd2de0')
+					.setTitle('The Shop')
+					.addFields(
+						{ name: 'fan:', value:'reduces cooldowns of some commands\ncost: 100:star:'},
+						{ name: 'orangedetector', value: 'increases the chance you find an orange in the orange job\ncost: 100:star:'},	
+						{ name: 'mangodetector', value: 'increases the chance you find a mango in the mango job\ncost: 50:star:'},
+						{ name: 'carrotdetector', value: 'increases the chance you find a carrot in the carrot job\ncost: 50:star:'},
+						{ name: 'starmagnet', value: 'increases the chance you find :star:s\ncost: 100:star:'},
+						{ name: 'starmill', value: 'generates you :star:s passively at a rate of 1:star: per 10m\ncost: 400:star:'},
+					)
+			                .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
+					.setTimestamp()
+					.setFooter('Grape Marketplaces');
 
-            const balsoloEmbed = new Discord.MessageEmbed()
-                .setColor('#dd2de0')
-                .setTitle(message.author.username + "'s robbery")
-                .addFields({
-                    name: 'Theft',
-                    value: 'you stole ' + randSteal + ' :star:s'
-                }, )
-                .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
-                .setTimestamp()
-                .setFooter('Shady Grape Org');
-
-            message.channel.send(balsoloEmbed);
-        } else if (caught <= 30) {
-
-            let loss = -1 * randSteal;
-            addMoni(message.author.id, loss);
-            const balsolooEmbed = new Discord.MessageEmbed()
-                .setColor('#dd2de0')
-                .setTitle(message.author.username + "'s robbery")
-                .addFields({
-                    name: 'You got caught!',
-                    value: 'You ended up paying ' + randSteal + " :star:s\nThat's karma for ya."
-                }, )
-                .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
-                .setTimestamp()
-                .setFooter('Shady Grape Org');
-
-            message.channel.send(balsolooEmbed);
-		}
+				message.channel.send(shop); 
+		
 	     }
 	};
