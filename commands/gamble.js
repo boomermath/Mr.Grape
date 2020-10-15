@@ -75,7 +75,7 @@ module.exports = {
                 }, 3100)
             }, 2100)
         }
-        function gamble() {
+        async function gamble() {
             let ask;
             let check = await users.get(message.author.id);
             if (args[0] === 'all') {
