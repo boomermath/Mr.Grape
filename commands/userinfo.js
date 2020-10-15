@@ -1,5 +1,5 @@
 
-const Discord = require('discord.js');
+const depend = require('../app.js')
 const target = message.mentions.members.first();
 module.exports = {
 	name: 'userinfo',

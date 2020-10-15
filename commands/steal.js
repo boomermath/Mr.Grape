@@ -1,5 +1,5 @@
 
-const Discord = require('discord.js');
+const depend = require('../app.js')
 const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
