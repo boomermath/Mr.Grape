@@ -1,5 +1,5 @@
-
-const depend = require('../app.js')
+let target = message.mentions.members.first;
+const Discord = require('discord.js');
 module.exports = {
 	name: 'kick noobs from your server',
 	description: 'fortune telling is cool',
@@ -9,7 +9,7 @@ module.exports = {
 if (boolean) {
     if (target) {
         try {
-             targets.kick();
+             target.kick();
             message.channel.send(":wave: " + target.displayName + " has been kicked, what a noob lol ");
         } catch {
             message.reply("I don't got permissions to kick people, how about you give me it? ");
@@ -19,7 +19,7 @@ if (boolean) {
     else if (!boolean) {
         message.reply("bruh you dont even have permission to kick people, stop trying smh ");
 }
-    else {message.channel.send("Cannot kick "+targets.displayName);}
+    else {message.channel.send("Cannot kick "+target.displayName);}
 	
 	}
 };

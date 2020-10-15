@@ -1,5 +1,5 @@
 
-const depend = require('../app.js')
+const Discord = require('discord.js');
 module.exports = {
 	name: '8ball',
 	description: 'fortune telling is cool',

@@ -1,5 +1,5 @@
 
-const depend = require('../app.js')
+const Discord = require('discord.js');
 module.exports = {
 	name: 'userinfo',
 	description: 'return basic info about the user',
