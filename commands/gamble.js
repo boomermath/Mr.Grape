@@ -4,6 +4,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const add = require('./functions/addMoni.js');
 module.exports = {
 	name: 'gamble',
 	description: 'gamble your stars 50/50 chance of losing or gaining your stars',
@@ -64,7 +65,7 @@ module.exports = {
 
                             message.channel.send(gambleEmbed);
 
-                            addMoni(message.author.id, param);
+                            add.addMoni(message.author.id, param);
                         } else {
 
                             message.edit(gambleEmbed.addFields({
@@ -72,14 +73,14 @@ module.exports = {
                                 value: 'You lost...'
                             }, ))
                             message.channel.send(gambleEmbed);
-                            addMoni(message.author.id, -param);
+                            add.addMoni(message.author.id, -param);
 
                         }
                     }, 1100)
                 }, 3100)
             }, 2100)
         }
-        async function gamble() {
+        function gamble() {
             let ask;
             let check = await users.get(message.author.id);
             if (args[0] === 'all') {
