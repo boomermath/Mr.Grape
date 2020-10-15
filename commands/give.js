@@ -4,6 +4,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const add = require('./functions/addMoni.js');
 module.exports = {
 	name: 'give',
 	description: 'give stars to people',
@@ -22,9 +23,9 @@ module.exports = {
                 message.channel.send("bruh you cant give golden stars to a bot smh")
             } else {
 		if (await users.get(target.id) === undefined) {await users.set(target.id, 0)}
-                addMoni(message.author.id, -ask);
-                addMoni(targets.id, ask);
-                const balsoloEmbed = new Discord.MessageEmbed()
+                add.addMoni(message.author.id, -ask);
+                add.addMoni(add.target.id, ask);
+                const give = new Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + ` donation to ` + target.displayName)
                     .addFields({
@@ -35,7 +36,7 @@ module.exports = {
                     .setTimestamp()
                     .setFooter('Grape Charity Org.');
 
-                message.channel.send(balsoloEmbed);
+                message.channel.send(give);
             }
         }
 
