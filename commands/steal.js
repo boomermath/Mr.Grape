@@ -11,6 +11,7 @@ async function addMoni(who, howmuch) {
 		}
 module.exports = {
 	name: 'steal',
+	aliases: ['rob'],
 	description: "steal stars from the bot's infinite stash",
 	cooldown: 5,
 	execute(message, args) {
