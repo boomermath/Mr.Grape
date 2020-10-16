@@ -8,6 +8,7 @@ module.exports = {
 	aliases: ['balance', 'wallet'],
 	description: 'check ur balance',
 	execute(message, args) {
+let target = message.mentions.members.first();
 let person;
 let personName;
 let argu = args[0];
@@ -16,8 +17,8 @@ if (argu === undefined) {
     personName = message.author.username;
 }
 else if (argu.includes("<@")) {
-    person = targets;
-    personName = targets.displayName;
+    person = target;
+    personName = target.displayName;
 }
 else {message.channel.send('Use a valid mention!');}
 
