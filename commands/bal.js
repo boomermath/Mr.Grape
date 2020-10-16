@@ -5,6 +5,7 @@ const users = new Keyv(process.env.DATABASE_URL, {
 });
 module.exports = {
 	name: 'bal',
+	aliases: ['balance', 'wallet'],
 	description: 'check ur balance',
 	execute(message, args) {
 let person;
