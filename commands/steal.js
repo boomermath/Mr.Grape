@@ -38,8 +38,8 @@ module.exports = {
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + "'s robbery")
                 .addFields({
-                    name: 'You got caught!',
-                    value: 'You ended up paying ' + randSteal + " :star:s\nThat's karma for ya."
+                    name: output,
+                    value: val
                 }, )
                 .setTimestamp()
                 .setFooter('Shady Grape Org');
