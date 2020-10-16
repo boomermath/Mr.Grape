@@ -15,9 +15,8 @@ module.exports = {
 	description: 'give stars to people',
 	cooldown: 5,
 	execute(message, args) {
-	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	let target = message.mentions.members.first();
-	let donation = args.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
+	let donation = args.find(arg => !/<@!?\d+>/g.test(arg));
         async function donate() {
             let check = await users.get(message.author.id)
 	    if (donation === 'all') {donation = await users.get(message.author.id)}
