@@ -16,12 +16,12 @@ module.exports = {
 	cooldown: 5,
 	execute(message, args) {
 	let target = message.mentions.members.first();
+	let donation = args.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
         async function donate() {
-            let ask = parseInt(args[1]);
             let check = await users.get(message.author.id)
             if (!target) {
                 message.channel.send("who u givin golden stars to");
-            } else if (!ask || ask < 1 || ask > check) {
+            } else if (!donation || donation < 1 || donation > check || isNaN(donation)) {
                 message.channel.send("thats not a valid number of golden stars to give")
             } else if (target.id === message.author.id) {
                 message.channel.send("bruh you cant give golden stars to yourself smh")
@@ -29,8 +29,8 @@ module.exports = {
                 message.channel.send("bruh you cant give golden stars to a bot smh")
             } else {
 		if (await users.get(target.id) === undefined) {await users.set(target.id, 0)}
-                addMoni(message.author.id, -ask);
-                addMoni(target.id, ask);
+                addMoni(message.author.id, -donation);
+                addMoni(target.id, donation);
                 const give = new Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + ` donation to ` + target.displayName)
