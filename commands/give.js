@@ -16,7 +16,7 @@ module.exports = {
 	cooldown: 5,
 	execute(message, args) {
 	let target = message.mentions.members.first();
-	let donation = args.find(arg => !/<@!?\d+>/g.test(arg));
+	let donation = parseInt(args.find(arg => !/<@!?\d+>/g.test(arg)));
         async function donate() {
             let check = await users.get(message.author.id)
 	    if (donation === 'all') {donation = await users.get(message.author.id)}
