@@ -36,7 +36,7 @@ module.exports = {
                     .setTitle(message.author.username + ` donation to ` + target.displayName)
                     .addFields({
                         name: 'Donation',
-                        value: 'you gave ' + `${target.displayName} ` + `${parseInt(args[1])} ` + ':star:s'
+                        value: 'you gave ' + `${target.displayName} ` + donation  + ' :star:s'
                     }, )
                     .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                     .setTimestamp()
