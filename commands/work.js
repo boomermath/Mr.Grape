@@ -28,7 +28,7 @@ module.exports = {
         background = situation[chooseWork][1];
         if (ifEarn === 1) {
             outcome = situation[chooseWork][2];
-            addMoni(message.author.id, earn);
+            addMoni(message.author.id, parseInt(earn));
         } else {
             outcome = situation[chooseWork][3];
         }
