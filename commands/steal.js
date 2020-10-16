@@ -18,10 +18,10 @@ module.exports = {
 	 let output;
 	 let val;
 	 let caught = Math.floor(Math.random() * 99) + 1;
-     	 let randSteal = Math.floor(Math.random() * 19) + 1;
+     	 let randSteal = Math.floor(Math.random() * 19) + 2;
 	 const stealArr = [
-	 ["Theft", "you stole" + randSteal + " :star:s"],
-	 ["You got caught!", "you ended up paying" + randSteal + " :star:s\nThat's karma for ya."]
+	 ["Theft", "you stole " + randSteal + " :star:s"],
+	 ["You got caught!", "you ended up paying " + randSteal + " :star:s\nThat's karma for ya."]
 	 ];
         if (caught >= 70) {
 			output = stealArr[0][0]
