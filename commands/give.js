@@ -19,6 +19,7 @@ module.exports = {
 	let donation = args.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
         async function donate() {
             let check = await users.get(message.author.id)
+	    if (donation === 'all') {donation = await users.get(message.author.id)}
             if (!target) {
                 message.channel.send("who u givin golden stars to");
             } else if (!donation || donation < 1 || donation > check || isNaN(donation)) {
