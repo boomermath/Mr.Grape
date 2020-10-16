@@ -18,9 +18,9 @@ module.exports = {
 	 let output;
 	 let val;
 	 let caught = Math.floor(Math.random() * 99) + 1;
-     let randSteal = Math.floor(Math.random() * 19) + 1;
+     	 let randSteal = Math.floor(Math.random() * 19) + 1;
 	 const stealArr = [
-	 ["Theft", "you stole" + randSteal + " :star:s"]
+	 ["Theft", "you stole" + randSteal + " :star:s"],
 	 ["You got caught!", "you ended up paying" + randSteal + " :star:s\nThat's karma for ya."]
 	 ];
         if (caught >= 70) {
@@ -28,7 +28,7 @@ module.exports = {
 			val = stealArr[0][1]
             addMoni(message.author.id, randSteal);
 
-        } else if (caught <= 30) { 
+        } else  { 
 		    output = stealArr[1][0]
 			val = stealArr[1][1]
 			addMoni(message.author.id, -randSteal);
