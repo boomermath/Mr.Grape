@@ -11,6 +11,7 @@ async function addMoni(who, howmuch) {
 		}
 module.exports = {
 	name: 'work',
+	aliases: ['job'],
 	description: 'do honest work to get stars',
 	cooldown: 20,
 	execute(message, args) {
