@@ -9,6 +9,7 @@ async function addMoni(who, howmuch) {
     		let moremoni = rightnow + howmuch;
     		await users.set(who, moremoni)
 		}
+const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 module.exports = {
 	name: 'give',
 	aliases: ['donate'],
