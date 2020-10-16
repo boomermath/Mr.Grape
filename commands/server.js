@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 module.exports = {
 	name: 'server',
+	aliases: ['serverinfo'],
 	description: 'get some basic info about your server',
 	cooldown: 2,
 	execute(message, args) {
