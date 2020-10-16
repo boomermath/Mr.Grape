@@ -15,7 +15,7 @@ module.exports = {
 	description: 'give stars to people',
 	cooldown: 5,
 	execute(message, args) {
-	let target = message.mentions.member.first();
+	let target = message.mentions.members.first();
         async function donate() {
             let ask = parseInt(args[1]);
             let check = await users.get(message.author.id)
