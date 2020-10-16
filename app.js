@@ -66,6 +66,12 @@ client.on('message', message => {
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 	try {
+		const Discord = require('discord.js');
+		const config  = require('./config.json');
+		const Keyv = require('keyv');
+		const users = new Keyv(process.env.DATABASE_URL, {
+   		namespace: 'users'
+		});
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
