@@ -9,13 +9,13 @@ async function addMoni(who, howmuch) {
     		let moremoni = rightnow + howmuch;
     		await users.set(who, moremoni)
 		}
-const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 module.exports = {
 	name: 'give',
 	aliases: ['donate'],
 	description: 'give stars to people',
 	cooldown: 5,
 	execute(message, args) {
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	let target = message.mentions.members.first();
 	let donation = args.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
         async function donate() {
