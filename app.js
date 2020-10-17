@@ -7,6 +7,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const distube = new DisTube(client, { searchSongs: true, emitNewSongOnly: true, highWaterMark: 1 << 25 });
 client.config = config;
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
