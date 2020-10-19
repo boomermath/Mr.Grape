@@ -36,7 +36,7 @@ module.exports = {
                 value: `${config.todo.join("\n")}`
             }, {
                 name: '# of Servers Mr.Grape is in:',
-                value: `${bot.guilds.cache.size}`
+                value: `${client.guilds.cache.size}`
             }, )
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
