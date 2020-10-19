@@ -1,6 +1,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const config = require('../config.json')
 module.exports = {
 	name: 'info',
 	description: 'basic info about the bot',
