@@ -1,11 +1,12 @@
 
 const Discord = require('discord.js');
+
 module.exports = {
 	name: 'info',
 	description: 'basic info about the bot',
 	cooldown: 5,
 	execute(message, args) {
-	        let uptime = bot.uptime / 1000;
+	let uptime = client.uptime / 1000;
         let unit = "second(s)";
         if (uptime > 59 && unit === "second(s)") {
             uptime /= 60;
