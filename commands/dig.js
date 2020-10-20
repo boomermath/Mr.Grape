@@ -5,7 +5,7 @@ module.exports = {
 	cooldown: 30,
 	execute(message, args, d) {
 	 let earn = Math.round(Math.random() * 6) + 1;
-        const mine = new Discord.MessageEmbed()
+        const mine = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s mine`)
             .addFields({
