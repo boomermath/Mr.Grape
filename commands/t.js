@@ -8,9 +8,11 @@ module.exports = {
     await d.items.set(message.author.id, arr);
     }
     async function test2() {
-    let gu = await d.items.get(message.author.id);
+    let gui = await d.items.get(message.author.id);
+    let ui = Array.from(gui);
+	   let gu = ui[0]
     message.channel.send(gu);
-             
+             message.channel.send(ui[3])
     }
     test();
     test2();
