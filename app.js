@@ -35,7 +35,7 @@ const cooldowns = new Discord.Collection();
 
 
 users.on('error', err => console.error('Keyv connection error:', err));
-
+d.distube.on("error", (message, err) => message.channel.send(`An error encountered: ${err}`));
 
 client.once('ready', () => {
 	console.log('Ready!');
