@@ -15,7 +15,7 @@ const itemCost = {
 async function buy() {
         let have = await d.items.get(message.author.id);
         if (have === undefined || have === null) {
-            await d.item.set(message.author.id, blankObj)
+            await d.items.set(message.author.id, blankObj)
         }
         let regex = /\d+/g;
         let numberOfItems = args.join(' ').match(regex);
