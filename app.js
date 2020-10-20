@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const config  = require('../config.json');
+const config  = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const Keyv = require('keyv');
@@ -17,7 +17,7 @@ const addMoni = async function (who, howmuch) {
 }
 const d = {
 	"Discord":Discord, 
-	"config":config,
+	"config":require('../config.json'),
 	"client":client,
 	"Keyv":Keyv,
 	"users":users,
