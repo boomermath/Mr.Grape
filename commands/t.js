@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'dig',
+	name: 't',
 	description: 'dig to earn stars',
 	cooldown: 0,
 	execute(message, args, d) {
