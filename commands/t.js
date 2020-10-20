@@ -13,7 +13,7 @@ module.exports = {
 	    
     }	    
 		async function reu () {
-		let somethin = await items.get(message.author.id);
+		let somethin = await d.items.get(message.author.id);
 		message.channel.send(somethin.apple);
 		}
 		
