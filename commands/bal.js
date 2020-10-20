@@ -18,8 +18,8 @@ else if (argu.includes("<@")) {
 else {message.channel.send('Use a valid mention!');}
 
   async function bal() {    
-        if (await users.get(person.id) === null) {
-            users.set(person.id, 0);
+        if (await d.users.get(person.id) === null) {
+            d.users.set(person.id, 0);
             const balsolooEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(personName + `'s balance`)
