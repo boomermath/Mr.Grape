@@ -17,7 +17,7 @@ const addMoni = async function (who, howmuch) {
 }
 const d = {
 	"Discord":Discord, 
-	"config":require('../config.json'),
+	"config":config,
 	"client":client,
 	"Keyv":Keyv,
 	"users":users,
