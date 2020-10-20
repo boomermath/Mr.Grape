@@ -7,7 +7,6 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
-client.config = config;
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
