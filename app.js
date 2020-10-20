@@ -1,4 +1,5 @@
 const fs = require('fs');
+const DisTube = require("distube")
 const Discord = require('discord.js');
 const config  = require('./config.json');
 const client = new Discord.Client();
@@ -19,9 +20,10 @@ const d = {
 	"Discord":Discord, 
 	"config":config,
 	"client":client,
-	"Keyv":Keyv,
+	"distube": new DisTube(client, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true }),
 	"users":users,
-	"addMoni":addMoni
+	"addMoni":addMoni,
+	
 }
 
 for (const file of commandFiles) {
