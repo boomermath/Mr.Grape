@@ -22,13 +22,7 @@ async function buy() {
 	if (numberOfItems === undefined) {numberofItems = 1;}
 	if (numberOfItems === 0) {message.channel.send('ok karen'); return;}
         let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
-        for (var key in itemCost) {
-            if (key !== item) {
-                message.channel.send("dude that's not an item in the shop")
-                break;
-		return;
-            }
-        }
+        if (!Object.keys(itemCost).includes(item)) {message.channel.send("dude that's not an item in the shop"); return;}
 	let total = itemCost.item * numberOfItems;
        if (total > await d.users.get(message.author.id)) {message.channel.send('you donut have enough money, rip'); return;}
        d.addMoni(message.author.id, -total)
