@@ -33,7 +33,7 @@ module.exports = {
                 .setTitle('Help')
                 .addFields({
                     name: 'Bal',
-                    value: 'Check your $$$. To check the balance of another user, do ' + `${d.d.config.prefix}` + 'bal <usermention>.'
+                    value: 'Check your $$$. To check the balance of another user, do ' + `${d.config.prefix}` + 'bal <usermention>.'
                 }, {
                     name: 'Daily',
                     value: 'Get a daily amount of stars.'
@@ -45,7 +45,7 @@ module.exports = {
                     value: 'Gamble the stars you have to get double (or nothing). 50/50 chance.'
                 }, {
                     name: 'Give',
-                    value: 'Feeling Charitable? Give money to another user! ' + `${d.d.config.prefix}` + 'give <user> <amount>.'
+                    value: 'Feeling Charitable? Give money to another user! ' + `${d.config.prefix}` + 'give <user> <amount>.'
                 }, {
                     name: 'Shop',
                     value: 'Display the shop!'
@@ -96,7 +96,7 @@ module.exports = {
                 .setTitle('Help')
                 .addFields({
                     name: '8ball',
-                    value: 'Ask Mr. Grape what the future holds in store for you! Use like this: ' + `${d.d.config.prefix}` + '8ball <question>'
+                    value: 'Ask Mr. Grape what the future holds in store for you! Use like this: ' + `${d.config.prefix}` + '8ball <question>'
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
