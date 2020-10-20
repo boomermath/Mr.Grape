@@ -75,9 +75,9 @@ module.exports = {
         }
         async function gamble() {
             let ask;
-            let check = await users.get(message.author.id);
+            let check = await d.users.get(message.author.id);
             if (args[0] === 'all') {
-                ask = await users.get(message.author.id);
+                ask = await d.users.get(message.author.id);
                 actualGamble(ask);
             } else if (!parseInt(args[0]) || parseInt(args[0]) < 1 || parseInt(args[0]) > check) {
                 message.channel.send("thats not a valid number of stars to gamble");
