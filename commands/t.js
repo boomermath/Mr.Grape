@@ -9,10 +9,7 @@ module.exports = {
     }
     async function test2() {
     let gu = await d.items.get(message.author.id);
-    message.channel.send(gu[0])
-       message.channel.send(gu[1])
-          message.channel.send(gu[2])
-             message.channel.send(gu[3])
+    message.channel.send(gu);
              
     }
     test();
