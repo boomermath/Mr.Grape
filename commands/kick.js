@@ -3,7 +3,7 @@ module.exports = {
 	name: 'kick noobs from your server',
 	description: 'fortune telling is cool',
 	cooldown: 0,
-	execute(message, args) {
+	execute(message, args, d) {
 	let target = message.mentions.members.first;
 	let boolean = message.member.hasPermission("KICK_MEMBERS");
 if (boolean) {

@@ -1,20 +1,9 @@
-const Discord = require('discord.js');
-const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
-async function addMoni(who, howmuch) {
-    		let rightnow = await users.get(who);
-		if (rightnow === undefined) {await users.set(who, 0)}
-    		let moremoni = rightnow + howmuch;
-    		await users.set(who, moremoni)
-		}
 module.exports = {
 	name: 'work',
 	aliases: ['job'],
 	description: 'do honest work to get stars',
 	cooldown: 20,
-	execute(message, args) {
+	execute(message, args, d) {
 	let earn = Math.round(Math.random() * 7) + 1;
         let chooseWork = Math.round(Math.random() * 2);
         let ifEarn = Math.round(Math.random() * 1) + 1
@@ -28,12 +17,12 @@ module.exports = {
         background = situation[chooseWork][1];
         if (ifEarn === 1) {
             outcome = situation[chooseWork][2];
-            addMoni(message.author.id, parseInt(earn));
+            d.addMoni(message.author.id, parseInt(earn));
         } else {
             outcome = situation[chooseWork][3];
         }
 
-        const job = new Discord.MessageEmbed()
+        const job = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s job`)
             .addFields({

@@ -1,13 +1,8 @@
-const Discord = require('discord.js');
-const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
 module.exports = {
 	name: 'bal',
 	aliases: ['balance', 'wallet'],
 	description: 'check ur balance',
-	execute(message, args) {
+	execute(message, args, d) {
 let target = message.mentions.members.first();
 let person;
 let personName;
@@ -25,7 +20,7 @@ else {message.channel.send('Use a valid mention!');}
   async function bal() {    
         if (await users.get(person.id) === null) {
             users.set(person.id, 0);
-            const balsolooEmbed = new Discord.MessageEmbed()
+            const balsolooEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(personName + `'s balance`)
                 .addFields({
@@ -37,12 +32,12 @@ else {message.channel.send('Use a valid mention!');}
                 .setFooter('Grape Bank Inc.');
             message.channel.send(balsolooEmbed);
         } else {
-            const balsoloEmbed = new Discord.MessageEmbed()
+            const balsoloEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(personName + `'s balance`)
                 .addFields({
                     name: 'Balance',
-                    value:  `${await users.get(person.id)}` + ' :star:s'
+                    value:  `${await d.users.get(person.id)}` + ' :star:s'
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()

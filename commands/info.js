@@ -1,13 +1,10 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const config = require('../config.json')
 module.exports = {
 	name: 'info',
 	description: 'basic info about the bot',
 	cooldown: 5,
-	execute(message, args) {
-	let uptime = client.uptime / 1000;
+	execute(message, args, d) {
+	let uptime = d.client.uptime / 1000;
         let unit = "second(s)";
         if (uptime > 59 && unit === "second(s)") {
             uptime /= 60;
@@ -22,21 +19,21 @@ module.exports = {
             unit = "day(s)";
         }
         //message.channel.send(`Version: \`${config.version}\`\nUptime: \`${Math.floor(uptime)}\` ${unit}\nTodo list:\n${config.todo.join("\n")}`);
-        const info = new Discord.MessageEmbed()
+        const info = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Info')
             .addFields({
                 name: 'Version:',
-                value: `${config.version}`
+                value: `${d.config.version}`
             }, {
                 name: 'Uptime:',
                 value: `${Math.floor(uptime)}` + ` ${unit}`
             }, {
                 name: 'To-do list:',
-                value: `${config.todo.join("\n")}`
+                value: `${d.config.todo.join("\n")}`
             }, {
                 name: '# of Servers Mr.Grape is in:',
-                value: `${client.guilds.cache.size}`
+                value: `${d.client.guilds.cache.size}`
             }, )
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()

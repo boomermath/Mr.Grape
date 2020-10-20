@@ -1,12 +1,11 @@
 
-const Discord = require('discord.js');
 module.exports = {
 	name: 'server',
 	aliases: ['serverinfo'],
 	description: 'get some basic info about your server',
 	cooldown: 2,
-	execute(message, args) {
-	const serversoloEmbed = new Discord.MessageEmbed()
+	execute(message, args, d) {
+	const serversoloEmbed = new d.Discord.MessageEmbed()
 					.setColor('#dd2de0')
 					.setTitle('Server Info')
 					.addFields(

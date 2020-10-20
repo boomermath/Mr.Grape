@@ -1,24 +1,13 @@
-const Discord = require('discord.js');
-const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
-async function addMoni(who, howmuch) {
-    		let rightnow = await users.get(who);
-		if (rightnow === undefined) {await users.set(who, 0)}
-    		let moremoni = rightnow + howmuch;
-    		await users.set(who, moremoni)
-		}
 module.exports = {
 	name: 'give',
 	aliases: ['donate'],
 	description: 'give stars to people',
 	cooldown: 5,
-	execute(message, args) {
+	execute(message, args, d) {
 	let target = message.mentions.members.first();
 	let donation = parseInt(args.find(arg => !/<@!?\d+>/g.test(arg)));
         async function donate() {
-            let check = await users.get(message.author.id)
+            let check = await d.users.get(message.author.id)
             if (!target) {
                 message.channel.send("who u givin golden stars to");
             } else if (!donation || donation < 1 || donation > check || isNaN(donation)) {
@@ -28,10 +17,10 @@ module.exports = {
             } else if (target.user.bot) {
                 message.channel.send("bruh you cant give golden stars to a bot smh")
             } else {
-		if (await users.get(target.id) === undefined) {await users.set(target.id, 0)}
-                addMoni(message.author.id, -donation);
-                addMoni(target.id, donation);
-                const give = new Discord.MessageEmbed()
+		if (await d.users.get(target.id) === undefined) {await d.users.set(target.id, 0)}
+                d.addMoni(message.author.id, -donation);
+                d.addMoni(target.id, donation);
+                const give = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + ` donation to ` + target.displayName)
                     .addFields({

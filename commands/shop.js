@@ -1,11 +1,10 @@
  
-const Discord = require('discord.js');
 module.exports = {
 	name: 'shop',
 	description: 'display the shop',
 	cooldown: 2,
-	execute(message, args) {
-		const shop = new Discord.MessageEmbed()
+	execute(message, args, d) {
+		const shop = new d.Discord.MessageEmbed()
 					.setColor('#dd2de0')
 					.setTitle('The Shop')
 					.addFields(
