@@ -18,16 +18,17 @@ async function buy() {
             await d.items.set(message.author.id, blankObj)
         }
         let regex = /\d+/g;
-        let numberOfItems = args.join(' ').match(regex);
+        let numberOfItemsRaw = args.join(' ').match(regex);
+	let numberOfItems = parseInt(numberOfItemsRaw);
 	if (numberOfItems === undefined) {numberofItems = 1;}
 	if (numberOfItems === 0) {message.channel.send('ok karen'); return;}
         let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
         if (!Object.keys(itemCost).includes(item)) {message.channel.send("dude that's not an item in the shop"); return;}
-	let total = itemCost.item * numberOfItems;
+	let total = itemCost.item * parseInt(numberOfItems);
        if (total > await d.users.get(message.author.id)) {message.channel.send('you donut have enough money, rip'); return;}
        d.addMoni(message.author.id, -total)
-       if (have.item === undefined) {have.item = 0}
-	have.item += numberOfItems
+       if (have.`${item}` === undefined) {have.item = 0}
+	have.`${item}` += numberOfItems
 	d.items.set(message.author.id, have)
     }	    
   buy();
