@@ -1,8 +1,4 @@
-const Discord = require('discord.js');
-const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
+
 async function addMoni(who, howmuch) {
     		let rightnow = await users.get(who);
 		if (rightnow === undefined) {await users.set(who, 0)}
@@ -14,7 +10,7 @@ module.exports = {
 	aliases: ['rob'],
 	description: "steal stars from the bot's infinite stash",
 	cooldown: 5,
-	execute(message, args) {
+	execute(message, args, d) {
 	 let output;
 	 let val;
 	 let caught = Math.floor(Math.random() * 99) + 1;
@@ -26,15 +22,15 @@ module.exports = {
         if (caught >= 70) {
 			output = stealArr[0][0]
 			val = stealArr[0][1]
-            addMoni(message.author.id, randSteal);
+            d.addMoni(message.author.id, randSteal);
 
         } else  { 
 		    output = stealArr[1][0]
 			val = stealArr[1][1]
-			addMoni(message.author.id, -randSteal);
+			d.addMoni(message.author.id, -randSteal);
 		}
 
-            const stealEmbed = new Discord.MessageEmbed()
+            const stealEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + "'s robbery")
                 .addFields({

@@ -8,6 +8,21 @@ const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const addMoni = async function (who, howmuch) {
+    let rightnow = await users.get(who);
+    if (rightnow === undefined) {
+        await users.set(who, 0)
+    }
+    await users.set(who, (rightnow + howmuch))
+}
+const d = {
+	"Discord":Discord, 
+	"config":config,
+	"client":client,
+	"Keyv":Keyv,
+	"users":users,
+	"addMoni":addMoni
+}
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -42,13 +57,7 @@ client.on('message', message => {
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
 	const cooldownAmount = command.cooldown  * 1000;
-	
-	async function addMoni(who, howmuch) {
-    		let rightnow = await users.get(who);
-		if (rightnow === undefined) {await users.set(who, 0)}
-    		let moremoni = rightnow + howmuch;
-    		await users.set(who, moremoni)
-		}
+
 	
 	let target = message.mentions.members.first();
 
@@ -65,13 +74,7 @@ client.on('message', message => {
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 	try {
-		const Discord = require('discord.js');
-		const config  = require('./config.json');
-		const Keyv = require('keyv');
-		const users = new Keyv(process.env.DATABASE_URL, {
-   		namespace: 'users'
-		});
-		command.execute(message, args);
+		command.execute(message, args, d);
 	} catch (error) {
 		console.error(error);
 		message.channel.send('made an oopsie tryna do that command');
