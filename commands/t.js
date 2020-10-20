@@ -30,7 +30,7 @@ async function buy() {
             }
         }
 	let total = itemCost.item * numberOfItems;
-       if (total > await users.get(message.author.id)) {message.channel.send('you donut have enough money, rip'); return;}
+       if (total > await d.users.get(message.author.id)) {message.channel.send('you donut have enough money, rip'); return;}
        d.addMoni(message.author.id, -total)
        if (have.item === undefined) {have.item = 0}
 	have.item += numberOfItems
