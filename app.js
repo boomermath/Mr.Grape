@@ -8,6 +8,9 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
+const items = new Keyv(process.env.DATABASE_URL, {
+    namespace: 'items'
+});
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const addMoni = async function (who, howmuch) {
     let rightnow = await users.get(who);
@@ -23,7 +26,7 @@ const d = {
 	"distube": new DisTube(client, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true }),
 	"users":users,
 	"addMoni":addMoni,
-	
+	"items":items
 }
 
 for (const file of commandFiles) {
