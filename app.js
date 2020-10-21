@@ -75,8 +75,8 @@ client.on('message', message => {
             			.setColor('#dd2de0')
             			.setTitle('Bro Chilllll')
             			.addFields({
-				 name: `${command.name}`,
-                		 value: `${timeLeft.toFixed(1)}` + "second(s) left"
+				 name: `${command.name.charAt(0).toUpperCase() + command.name.slice(1)}`,
+                		 value: `${timeLeft.toFixed(1)}` + " second(s) left"
             			  }, )
 		                .setTimestamp()
             			.setFooter('Grape Bank Inc.');
