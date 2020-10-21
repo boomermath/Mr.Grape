@@ -73,7 +73,7 @@ client.on('message', message => {
 			const timeLeft = (expirationTime - now) / 1000;
 			const cool = new Discord.MessageEmbed()
             			.setColor('#dd2de0')
-            			.setTitle('Bro Chilllll')
+            			.setTitle('ayo chill man')
             			.addFields({
 				 name: `${command.name.charAt(0).toUpperCase() + command.name.slice(1)}`,
                 		 value: `${timeLeft.toFixed(1)}` + " second(s) left"
