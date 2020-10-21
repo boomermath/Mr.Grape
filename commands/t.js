@@ -19,7 +19,6 @@ if (have === undefined || have === null) {
     }
 }
 async function buy() {
-    check();
     let have = await d.items.get(message.author.id);
     let regex = /\d+/g;
     let numberOfItemsRaw = args.join(' ').match(regex);
@@ -50,6 +49,7 @@ async function buy() {
     message.channel.send(item);
     message.channel.send(numberOfItems);
 }
+check();
 buy();
 	}
 };
