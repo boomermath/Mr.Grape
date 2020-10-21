@@ -23,11 +23,11 @@ async function buy() {
 	if (numberOfItems === undefined) {numberofItems = 1;}
 	if (numberOfItems === 0) {message.channel.send('ok karen'); return;}
         if (!Object.keys(itemCost).includes(item)) {message.channel.send("dude that's not an item in the shop"); return;}
-	let total = itemCost. * numberOfItems;
+	let total = itemCost.[item] * numberOfItems;
        if (total > await d.users.get(message.author.id)) {message.channel.send('you donut have enough money, rip'); return;}
        d.addMoni(message.author.id, -total)
-       if (have. === undefined) {have.item = 0}
-	have. += numberOfItems
+       if (have.[item] === undefined) {have.[item] = 0}
+	have.[item] += numberOfItems
 	d.items.set(message.author.id, have)
     }	    
   buy();
