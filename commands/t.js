@@ -13,6 +13,9 @@ module.exports = {
 		async function a() {
 		let gugu = await d.items.get(message.author.id)
 		message.channel.send(gugu.apple);
+			message.channel.send(gugu.orange);
 		}
+		e();
+		a();
 	}
 };
