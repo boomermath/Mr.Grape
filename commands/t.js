@@ -21,7 +21,7 @@ async function buy() {
     let regex = /\d+/g;
     let numberOfItems = parseInt(args.join(' ').match(regex));
     let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
-      if (!numberOfItems.isInteger) {
+      if (numberOfItems === NaN || numberOfItems === null || numberOfItems === undefined) {
         numberOfItems = 1;
     }
     if (numberOfItems === 0) {
