@@ -50,6 +50,7 @@ async function buy() {
     message.channel.send(item);
     message.channel.send(numberOfItems);
 }
+check();
 buy();
 	}
 };
