@@ -21,6 +21,28 @@ async function buy() {
     let regex = /\d+/g;
     let numberOfItems = parseInt(args.join(' ').match(regex));
     let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
+      if (numberOfItems === undefined || numberOfItems === null) {
+        numberofItems = 1;
+    }
+    if (numberOfItems === 0) {
+        message.channel.send('ok karen');
+        return;
+    }
+    if (!Object.keys(itemCost).includes(item)) {
+        message.channel.send("dude that's not an item in the shop");
+        return;
+    }
+    let total = itemCost[item] * numberOfItems;
+    if (total > await d.users.get(message.author.id)) {
+        message.channel.send('you donut have enough money, rip');
+        return;
+    }
+    d.addMoni(message.author.id, -total)
+    if (have[item] === undefined) {
+        have[item] = 0
+    }
+    have[item] += numberOfItems
+    d.items.set(message.author.id, have)
     message.channel.send(item);
     message.channel.send(numberOfItems);
 }
