@@ -26,3 +26,4 @@ const usersoloEmbed = new d.Discord.MessageEmbed()
 				message.channel.send(usersoloEmbed); 
 	}
 };
+//userinfo
