@@ -43,6 +43,7 @@ async function buy() {
     d.addMoni(message.author.id, -total)
     if (have[item] === undefined) {
         have[item] = 0
+	await items.set(message.author.id, have);
     }
     have[item] += numberOfItems
     d.items.set(message.author.id, have)
