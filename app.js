@@ -71,7 +71,16 @@ client.on('message', message => {
 
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.channel.send(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+			const cool = new Discord.MessageEmbed()
+            			.setColor('#dd2de0')
+            			.setTitle('Bro Chilllll')
+            			.addFields({
+				 name: `${command.name}`,
+                		 value: `${timeLeft.toFixed(1)}` + "second(s) left"
+            			  }, )
+		                .setTimestamp()
+            			.setFooter('Grape Bank Inc.');
+			return message.channel.send(cool);
 		}
 	}
 
