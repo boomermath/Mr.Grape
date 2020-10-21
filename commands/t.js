@@ -41,7 +41,7 @@ async function buy() {
         return;
     }
     d.addMoni(message.author.id, -total)
-    if (typeof have[item] === undefined) {
+    if (typeof have[item] === undefined || typeof have[item] === null) {
 	have[item] = numberOfItems;
     }
     else {
