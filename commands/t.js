@@ -42,11 +42,9 @@ async function buy() {
     }
     d.addMoni(message.author.id, -total)
     if (typeof have[item] === undefined || have[item] === null) {
-	have[item] = numberOfItems;
+	have[item] = 0;
     }
-    else {
     have[item] += numberOfItems
-    }
     d.items.set(message.author.id, have)
     message.channel.send(item);
     message.channel.send(numberOfItems);
