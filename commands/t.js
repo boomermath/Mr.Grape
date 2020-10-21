@@ -3,7 +3,14 @@ module.exports = {
 	description: 'dig to earn stars',
 	cooldown: 0,
 	execute(message, args, d) {
-		const blankObj = {};
+const blankObj = {
+     fan: 0,
+    orangedetector: 0,
+    mangodetector: 0,
+    carrotdetector: 0,
+    starmagnet: 0,
+    starmill: 0
+};
 const itemCost = {
     fan: 100,
     orangedetector: 100,
