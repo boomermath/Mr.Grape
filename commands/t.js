@@ -40,17 +40,16 @@ async function buy() {
         message.channel.send('you donut have enough money, rip');
         return;
     }
-    d.addMoni(message.author.id, -total)
-    if (await d.items.get(message.author.id, have[item]) === undefined) {
+   if (have[item] === undefined) {
         have[item] = 0
 	await d.items.set(message.author.id, have);
     }
+    d.addMoni(message.author.id, -total)
     have[item] += numberOfItems
     d.items.set(message.author.id, have)
     message.channel.send(item);
     message.channel.send(numberOfItems);
 }
-check();
 buy();
 	}
 };
