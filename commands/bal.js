@@ -18,7 +18,8 @@ else if (argu.includes("<@")) {
 else {message.channel.send('Use a valid mention!');}
 
   async function bal() {    
-        if (await d.users.get(person.id) === null) {
+	  let bal = await d.users.get(person.id)
+        if ( bal === null || bal === undefined) {
             d.users.set(person.id, 0);
             const balsolooEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
@@ -37,7 +38,7 @@ else {message.channel.send('Use a valid mention!');}
                 .setTitle(personName + `'s balance`)
                 .addFields({
                     name: 'Balance',
-                    value:  `${await d.users.get(person.id)}` + ' :star:s'
+                    value:  `${bal}` + ' :star:s'
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
