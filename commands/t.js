@@ -19,9 +19,10 @@ async function buy() {
         await d.items.set(message.author.id, blankObj)
     }
     let regex = /\d+/g;
-    let numberOfItems = parseInt(args.join(' ').match(regex));
+    let numberOfItemsRaw = args.join(' ').match(regex);
+    let numberOfItems = parseInt(numberOfItemsRaw);
     let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
-      if (numberOfItems === NaN || numberOfItems === null || numberOfItems === undefined) {
+      if (numberOfItemsRaw === NaN || numberOfItemsRaw === null || numberOfItemsRaw === undefined) {
         numberOfItems = 1;
     }
     if (numberOfItems === 0) {
