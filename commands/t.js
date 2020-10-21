@@ -6,18 +6,21 @@ module.exports = {
 		const blankObj = {};
 const itemCost = {
     fan: 100,
-    orangeDetector: 100,
-    mangoDetector: 50,
-    carrotDetector: 50,
-    starMagnet: 100,
-    starMill: 400
+    orangedetector: 100,
+    mangodetector: 50,
+    carrotdetector: 50,
+    starmagnet: 100,
+    starmill: 400
 }
-
-async function buy() {
-    let have = await d.items.get(message.author.id);
-    if (have === undefined || have === null) {
-        await d.items.set(message.author.id, blankObj)
+async function check() {
+let have = await d.items.get(message.author.id);
+if (have === undefined || have === null) {
+ await d.items.set(message.author.id, blankObj)
     }
+}
+async function buy() {
+    check();
+    let have = await d.items.get(message.author.id);
     let regex = /\d+/g;
     let numberOfItemsRaw = args.join(' ').match(regex);
     let numberOfItems = parseInt(numberOfItemsRaw);
