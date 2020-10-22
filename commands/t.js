@@ -12,14 +12,11 @@ const itemCost = {
     starmagnet: 100,
     starmill: 400
 }
-async function check() {
-let have = await d.items.get(message.author.id);
-if (have === undefined || have === null) {
- await d.items.set(message.author.id, blankObj)
-    }
-}
 async function buy() {
     let have = await d.items.get(message.author.id);
+    if (have === undefined || have === null) {
+ 	await d.items.set(message.author.id, blankObj)
+    }
     let regex = /\d+/g;
     let numberOfItemsRaw = args.join(' ').match(regex);
     let numberOfItems = parseInt(numberOfItemsRaw);
@@ -49,7 +46,6 @@ async function buy() {
     message.channel.send(item);
     message.channel.send(numberOfItems);
 }
-check();
 buy();
 	}
 };
