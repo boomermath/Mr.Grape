@@ -8,9 +8,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {
     namespace: 'users'
 });
-const items = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'items'
-});
+const items = new Keyv();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const addMoni = async function (who, howmuch) {
     let rightnow = await users.get(who);
