@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'buy',
 	aliases: ['purchase'],
-	description: 'dig to earn stars',
+	description: 'buy stuff from the shop',
 	cooldown: 2,
 	execute(message, args, d) {
 const blankObj = {}
