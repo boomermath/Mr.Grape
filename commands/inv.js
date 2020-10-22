@@ -12,7 +12,7 @@ module.exports = {
                     .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                     .setTimestamp()
                     .setFooter('Grape Storage Org.');
-		for (const key in inv) {invEmbed.addFields({name: `${key}`, value: `${inv[key]}`});}
+		for (const key in inv) {invEmbed.addFields({name: key.charAt(0).toUpperCase() + key.slice(1) +"(s)", value: `${inv[key]}`});}
 		message.edit(invEmbed);
                 message.channel.send(invEmbed);
 	      }
