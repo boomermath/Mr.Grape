@@ -11,7 +11,7 @@ module.exports = {
                     .setFooter('Grape Labs Inc.');
 		
 		for (let i = 0; i < 9; i++) {
-		balEmbed.addField({name: 'Test', value: i});
+		balEmbed.addFields({name: 'Test', value: i});
 		}
 		message.edit(balEmbed);
 		
