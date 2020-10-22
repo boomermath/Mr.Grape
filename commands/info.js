@@ -32,6 +32,9 @@ module.exports = {
                 name: 'To-do list:',
                 value: `${d.config.todo.join("\n")}`
             }, {
+                name: 'Credits:',
+                value: 'Originally by Horsey4, Remade by Kinglalu and DAONE'
+            }, {
                 name: '# of Servers Mr.Grape is in:',
                 value: `${d.client.guilds.cache.size}`
             }, )
