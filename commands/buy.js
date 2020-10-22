@@ -30,13 +30,24 @@ async function buy() {
         message.channel.send('ok karen');
         return;
     }
+      const fail1 = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle(message.author.username + "'s purchase")
+                .addFields({
+                    name: 'Purchase Failed',
+                    value: 'you donut have enough money rip'
+                }, )
+                .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
+                .setTimestamp()
+                .setFooter('Grape Marketplaces');
+}   
     if (!Object.keys(itemCost).includes(item)) {
         message.channel.send("dude that's not an item in the shop");
         return;
     }
     let total = itemCost[item] * numberOfItems;
     if (total > await d.users.get(message.author.id)) {
-        message.channel.send('you donut have enough money, rip');
+        message.channel.send(fail1);
         return;
     }
     d.addMoni(message.author.id, -total)
