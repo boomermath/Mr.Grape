@@ -46,8 +46,8 @@ async function buy() {
     have[item] += numberOfItems
     d.items.set(message.author.id, have);
     let receipt;
-    if (numberOfItems === 1) {receipt = "You successfully purchased a " + item;}
-    else {receipt = "You successfully purchased "+ numberOfItems + " " + item + "s";}
+    if (numberOfItems === 1) {receipt = "You successfully purchased a " + item + "!";}
+    else {receipt = "You successfully purchased "+ numberOfItems + " " + item + "s!";}
 	    const buy = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + "'s purchase")
