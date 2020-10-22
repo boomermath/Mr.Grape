@@ -19,7 +19,7 @@ else {message.channel.send('Use a valid mention!');}
 
   async function bal() {    
 	  let bal = await d.users.get(person.id)
-	if (!argu === undefined && target.user.bot) {message.channel.send('No bot in da economy (except me!)'); return;}
+	if (argu !== undefined && target.user.bot) {message.channel.send('No bot in da economy (except me!)'); return;}
         if ( bal === null || bal === undefined) {
             d.users.set(person.id, 0);
             const balsolooEmbed = new d.Discord.MessageEmbed()
