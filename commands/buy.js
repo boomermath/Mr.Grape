@@ -1,5 +1,5 @@
 module.exports = {
-	name: 't',
+	name: 'buy',
 	aliases: ['purchase'],
 	description: 'dig to earn stars',
 	cooldown: 2,
