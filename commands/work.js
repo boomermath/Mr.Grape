@@ -42,5 +42,6 @@ module.exports = {
 
         message.channel.send(job);
 	}
+work();
     }
 };
