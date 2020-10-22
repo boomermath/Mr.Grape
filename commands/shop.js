@@ -7,6 +7,7 @@ module.exports = {
 		const shop = new d.Discord.MessageEmbed()
 					.setColor('#dd2de0')
 					.setTitle('The Shop')
+		                        .setDescription('To buy an item, do ' +`${d.config.prefix}`+"buy <itemname>")
 					.addFields(
 						{ name: 'fan:', value:'reduces cooldowns of some commands\ncost: 100:star:'},
 						{ name: 'orangedetector', value: 'increases the chance you find an orange in the orange job\ncost: 100:star:'},	
