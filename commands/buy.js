@@ -57,7 +57,7 @@ async function buy() {
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
-                .setFooter('Grape Bank Inc.');
+                .setFooter('Grape Marketplaces');
             message.channel.send(buy);
 }
 buy();
