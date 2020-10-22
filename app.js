@@ -13,7 +13,11 @@ const addMoni = async function (who, howmuch) {
     if (rightnow === undefined) {
         await users.set(who, 0)
     }
-    await users.set(who, (rightnow + howmuch))
+    let starmag = await items.get(who);
+    let finaldolla;
+    if (starmag.hasOwnProperty('starmagnet')) {finaldolla = Math.pow(1.05, Math.floor(starmag.starmagnet));}
+    else {finaldolla = howmuch}
+    await users.set(who, (rightnow + finaldolla))
 }
 const d = {
 	"Discord":Discord, 
