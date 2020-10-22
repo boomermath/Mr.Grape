@@ -11,7 +11,8 @@ const itemCost = {
     mangodetector: 50,
     carrotdetector: 50,
     starmagnet: 100,
-    starmill: 400
+    starmill: 400,
+    shovel: 100
 }
 async function buy() {
     let have = await d.items.get(message.author.id);
