@@ -5,10 +5,10 @@ module.exports = {
 	execute(message, args, d) {
 	    const balEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
-                    .setTitle(personName + `'s balance`)
+                    .setTitle('Testing Embed Looping')
                     .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                     .setTimestamp()
-                    .setFooter('Grape Bank Inc.');
+                    .setFooter('Grape Labs Inc.');
 		
 		for (let i = 0; i < 9; i++) {
 		balEmbed.addField({name: Test, value: i})
