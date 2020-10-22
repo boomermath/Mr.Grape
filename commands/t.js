@@ -16,6 +16,7 @@ async function buy() {
     let have = await d.items.get(message.author.id);
     if (have === undefined || have === null) {
  	await d.items.set(message.author.id, blankObj)
+	have = blankObj;
     }
     let regex = /\d+/g;
     let numberOfItemsRaw = args.join(' ').match(regex);
@@ -49,3 +50,4 @@ async function buy() {
 buy();
 	}
 };
+	
