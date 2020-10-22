@@ -19,7 +19,7 @@ module.exports = {
 		return;
             }
             let bal = await d.users.get(person.id)
-	    let displayBal()
+	    let displayBal;
             if (bal === null || bal === undefined) {
                 d.users.set(person.id, 0);
 		displayBal = 0
