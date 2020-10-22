@@ -29,7 +29,7 @@ module.exports = {
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
                 .setFooter('Grape Storages Org.');
-            if (Object.entries(inv) === '') {invEmbed.addFields({name: 'There is nothing!', value: '_'});}
+            if (inv === undefined || Object.entries(inv) === '') {invEmbed.addFields({name: 'There is nothing!', value: '_'});}
 	    else {
             for (const key in inv) {
                 invEmbed.addFields({
