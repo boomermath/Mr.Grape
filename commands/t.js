@@ -1,20 +1,21 @@
 module.exports = {
-	name: 't',
+	name: 'inv',
 	description: 'dig to earn stars',
-	cooldown: 0,
+	aliases: ['inventory'],
+	cooldown: 3,
 	execute(message, args, d) {
-	    const balEmbed = new d.Discord.MessageEmbed()
+	    async function inv() {	
+            let inv = await d.items.get(message.author.id);
+	    const invEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
-                    .setTitle('Testing Embed Looping')
+                    .setTitle(message.author.id + "'s inventory")
                     .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                     .setTimestamp()
-                    .setFooter('Grape Labs Inc.');
-		
-		for (let i = 0; i < 9; i++) {
-		balEmbed.addFields({name: 'Test', value: i});
-		}
+                    .setFooter('Grape Storage Org.');
+		for (const key in inv) {invEmbed.addFields({name: `${key}`, value: `${inv[key]}`});}
 		message.edit(balEmbed);
-		
                 message.channel.send(balEmbed);
+	      }
+	  inv();
 	}
 };
