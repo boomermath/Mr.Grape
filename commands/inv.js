@@ -8,7 +8,7 @@ module.exports = {
             let inv = await d.items.get(message.author.id);
 	    const invEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
-                    .setTitle(message.author.id + "'s inventory")
+                    .setTitle(message.author.username + "'s inventory")
                     .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                     .setTimestamp()
                     .setFooter('Grape Storage Org.');
