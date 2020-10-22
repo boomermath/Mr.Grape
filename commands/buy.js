@@ -45,7 +45,7 @@ async function buy() {
                 .setTitle(message.author.username + "'s purchase")
                 .addFields({
                     name: 'Purchase Failed',
-                    value: 'dude thats not even an item in thr shop smh'
+                    value: 'dude thats not even an item in the shop smh'
                }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
