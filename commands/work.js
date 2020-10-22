@@ -11,7 +11,7 @@ module.exports = {
         const ifEarn = [1,2];
 	if (chooseWork === 0 && inv.hasOwnProperty('orangedetector')) {for (let i = 0; i < inv.orangedetector; i++) {ifEarn.push(1);}}
 	else if (chooseWork === 1 && inv.hasOwnProperty('mangodetector')) {for (let i = 0; i < inv.mangodetector; i++) {ifEarn.push(1);}}
-	else if (chooseWork === 2 && inv.hasOwnProperty('carrotdetector')) {for (let i = 0; i < inv.mangodetector; i++) {ifEarn.push(1);}}
+	else if (chooseWork === 2 && inv.hasOwnProperty('carrotdetector')) {for (let i = 0; i < inv.carrotdetector; i++) {ifEarn.push(1);}}
         const situation = [
             ['Help Mr.Grape find his orange!', 'will you help me find my orange?\nit fell in a bush full of bananas over there, but i could not find it.\nPlease go there and find my orange.', 'Yay, you found my orange! Here, take ' + earn + ' :star:s!', "That's not my orange, that's a banana! Try again later."],
             ['Help Mr.Grape catch his mango!', 'I am trying to catch a flying mango, but it keeps disappearing.\nSo will you catch it and bring it to me?', 'Yay, you found my mango! Here, take ' + earn + ' :star:s!', "You didn't catch my mango? Too bad, try again next time"],
