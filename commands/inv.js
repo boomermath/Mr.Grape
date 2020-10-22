@@ -38,7 +38,6 @@ module.exports = {
                 });
             }
 	}
-            message.edit(invEmbed);
             message.channel.send(invEmbed);
         }
         inv();
