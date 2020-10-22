@@ -5,10 +5,8 @@ const config  = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, {
-    namespace: 'users'
-});
-const items = new Keyv();
+const users = new Keyv(process.env.DATABASE_URL);
+const items = new Keyv(process.env.DATABASE_URL);
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const addMoni = async function (who, howmuch) {
     let rightnow = await users.get(who);
