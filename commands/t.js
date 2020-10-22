@@ -3,10 +3,17 @@ module.exports = {
 	description: 'dig to earn stars',
 	cooldown: 0,
 	execute(message, args, d) {
-	async function test() {
-  let inv = await d.items.get(message.author.id);
-  message.channel.send(Object.entries(inv));
-  }
-  test();
+	    const balEmbed = new d.Discord.MessageEmbed()
+                    .setColor('#dd2de0')
+                    .setTitle(personName + `'s balance`)
+                    .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
+                    .setTimestamp()
+                    .setFooter('Grape Bank Inc.');
+		
+		for (let i = 0; i < 9; i++) {
+		balEmbed.addField({name: Test, value: i})
+		}
+		
+                message.channel.send(balEmbed);
 	}
 };
