@@ -8,7 +8,7 @@ module.exports = {
 	let inv = await d.items.get(message.author.id);
 	let earn = Math.round(Math.random() * 7) + 1;
         let chooseWork = 2
-        const ifEarn = [1,2];
+        const ifEarn = [1,2,2,2];
 	if (chooseWork === 0 && inv.hasOwnProperty('orangedetector')) {for (let i = 0; i < inv.orangedetector; i++) {ifEarn.push(1);}}
 	else if (chooseWork === 1 && inv.hasOwnProperty('mangodetector')) {for (let i = 0; i < inv.mangodetector; i++) {ifEarn.push(1);}}
 	else if (chooseWork === 2 && inv.hasOwnProperty('carrotdetector')) {for (let i = 0; i < inv.carrotdetector; i++) {ifEarn.push(1);}}
