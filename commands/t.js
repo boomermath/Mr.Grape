@@ -12,8 +12,8 @@ module.exports = {
 		
 		for (let i = 0; i < 9; i++) {
 		balEmbed.addField({name: 'Test', value: i});
-		message.edit(balEmbed);
 		}
+		message.edit(balEmbed);
 		
                 message.channel.send(balEmbed);
 	}
