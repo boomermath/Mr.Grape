@@ -40,9 +40,19 @@ async function buy() {
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
                 .setFooter('Grape Marketplaces');
+	const notitem = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle(message.author.username + "'s purchase")
+                .addFields({
+                    name: 'Purchase Failed',
+                    value: 'dude thats not even an item in thr shop smh'
+               }, )
+                .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
+                .setTimestamp()
+                .setFooter('Grape Marketplaces');
       
     if (!Object.keys(itemCost).includes(item)) {
-        message.channel.send("dude that's not an item in the shop");
+        message.channel.send(notitem);
         return;
     }
     let total = itemCost[item] * numberOfItems;
