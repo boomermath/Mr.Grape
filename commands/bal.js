@@ -11,7 +11,7 @@ if (argu === undefined) {
     person = message.author;
     personName = message.author.username;
 }
-else if (argu.includes("<@")) {
+else if (argu.startsWith("<@") && argu.endsWith(">")) {
     person = target;
     personName = target.displayName;
 }
@@ -19,7 +19,7 @@ else {message.channel.send('Use a valid mention!');}
 
   async function bal() {    
 	  let bal = await d.users.get(person.id)
-	if (target.user.bot) {message.channel.send('No bot in da economy (except me!)'); return;}
+	if (argu.startsWith("<@") && argu.endsWith(">") && target.user.bot) {message.channel.send('No bot in da economy (except me!)'); return;}
         if ( bal === null || bal === undefined) {
             d.users.set(person.id, 0);
             const balsolooEmbed = new d.Discord.MessageEmbed()
