@@ -13,8 +13,8 @@ module.exports = {
                     .setTimestamp()
                     .setFooter('Grape Storage Org.');
 		for (const key in inv) {invEmbed.addFields({name: `${key}`, value: `${inv[key]}`});}
-		message.edit(balEmbed);
-                message.channel.send(balEmbed);
+		message.edit(invEmbed);
+                message.channel.send(invEmbed);
 	      }
 	  inv();
 	}
