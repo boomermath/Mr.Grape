@@ -64,7 +64,7 @@ client.on('message', message => {
 	return cooldownAmountinFunc;
 	}
 	let cooldownAmount = cooldown();
-
+	message.channel.send(cooldownAmount)
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
