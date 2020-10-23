@@ -59,7 +59,7 @@ client.on('message', message => {
 	const timestamps = cooldowns.get(command.name);
 	async function cooldown() {
 	let inv = await items.get(message.author.id);
-	if (inv['fan'] === undefined || inv['fan'] === null) {inv['fan'] = 0; await items.set(message.author.id, inv);}
+	if (inv['fan'] === undefined || inv['fan'] === null) {inv['fan'] = 0;}
 	const cooldownAmountinFunc = parseInt((1 - (0.03 * inv.fan)) * (command.cooldown  * 1000));
 	return cooldownAmountinFunc;
 	}
@@ -77,7 +77,7 @@ client.on('message', message => {
                 		 value: `${timeLeft.toFixed(1)}` + " second(s) left"
             			  }, )
 		                .setTimestamp()
-            			.setFooter('Grape Bank Inc.');
+            			.setFooter('Grape Enterprises');
 			return message.channel.send(cool);
 		}
 	}
