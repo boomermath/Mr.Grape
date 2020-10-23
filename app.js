@@ -41,6 +41,7 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+	async function onMessage() {
 	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
@@ -57,7 +58,7 @@ client.on('message', message => {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	async function cooldown() {
+	
 	let inv = await items.get(message.author.id);
 	if (inv['fan'] === undefined || inv['fan'] === null) {inv['fan'] = 0;}
 	const cooldownAmount = parseInt((1 - (0.03 * inv.fan)) * (command.cooldown  * 1000));
@@ -77,10 +78,10 @@ client.on('message', message => {
 			return message.channel.send(cool);
 		}
 	}
+	
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-}
-cooldown();
+
 
 	try {
 		command.execute(message, args, d);
@@ -88,7 +89,8 @@ cooldown();
 		console.error(error);
 		message.channel.send('made an oopsie tryna do that command');
 	}
-	
+}
+onMessage();	
 });
 
 client.login(process.env.BOT_TOKEN);
