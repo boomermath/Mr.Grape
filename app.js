@@ -65,7 +65,7 @@ client.on('message', message => {
 	if (inv === undefined || inv === null) {await items.set(message.author.id, blankObj); inv = blankObj}
 	if (inv.fan === undefined || inv.fan === null) {haveFan = 0}
 	else {haveFan = inv.fan}
-	const cooldownAmount;
+	let cooldownAmount;
 	if (commandFanException.includes(command.name)) {cooldownAmount = command.cooldown * 1000}
 	else {const cooldownAmount = (1 - (0.03 * haveFan)) * (command.cooldown  * 1000)};
 	if (timestamps.has(message.author.id)) {
