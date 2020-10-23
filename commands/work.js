@@ -2,7 +2,7 @@ module.exports = {
 	name: 'work',
 	aliases: ['job'],
 	description: 'do honest work to get stars',
-	cooldown: 0,
+	cooldown: 30,
 	execute(message, args, d) {
 	async function work() {
 	let inv = await d.items.get(message.author.id);
