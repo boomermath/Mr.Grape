@@ -57,14 +57,14 @@ client.on('message', message => {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	const cooldownAmount = command.cooldown  * 1000;
+	let inv = await items.get(message.author.id);
+	if (inv.fan === undefined || inv.fan === null) {inv.fan = 0; await items.set(message.author.id, inv);}
+	const cooldownAmount = (1 - (0.03 * inv.fan)) * (command.cooldown  * 1000);
 
 	
-	let target = message.mentions.members.first();
 
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
 			const cool = new Discord.MessageEmbed()
