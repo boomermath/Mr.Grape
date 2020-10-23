@@ -60,9 +60,7 @@ client.on('message', message => {
 	async function cooldown() {
 	let inv = await items.get(message.author.id);
 	if (inv['fan'] === undefined || inv['fan'] === null) {inv['fan'] = 0;}
-	const cooldownAmountinFunc = parseInt((1 - (0.03 * inv.fan)) * (command.cooldown  * 1000));
-	return cooldownAmountinFunc;
-	}
+	const cooldownAmount = parseInt((1 - (0.03 * inv.fan)) * (command.cooldown  * 1000));
 	let cooldownAmount = cooldown();
 	message.channel.send(cooldownAmount)
 	if (timestamps.has(message.author.id)) {
@@ -81,7 +79,7 @@ client.on('message', message => {
 			return message.channel.send(cool);
 		}
 	}
-
+}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
