@@ -60,7 +60,7 @@ client.on('message', message => {
 	async function cooldown() {
 	let inv = await items.get(message.author.id);
 	if (inv['fan'] === undefined || inv['fan'] === null) {inv['fan'] = 0; await items.set(message.author.id, inv);}
-	const cooldownAmountinFunc = (1 - (0.03 * inv.fan)) * (command.cooldown  * 1000);
+	const cooldownAmountinFunc = parseInt((1 - (0.03 * inv.fan)) * (command.cooldown  * 1000));
 	return cooldownAmountinFunc;
 	}
 	let cooldownAmount = cooldown();
