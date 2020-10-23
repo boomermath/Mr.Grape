@@ -61,6 +61,8 @@ client.on('message', message => {
 	
 	let inv = await items.get(message.author.id);
 	let haveFan;
+	const blankObj = {};
+	if (inv === undefined || inv === null) {await items.set(message.author.id, blankObj); inv = blankObj}
 	if (inv.fan === undefined || inv.fan === null) {haveFan = 0}
 	else {haveFan = inv.fan}
 	const cooldownAmount = (1 - (0.03 * haveFan)) * (command.cooldown  * 1000);
