@@ -26,5 +26,6 @@ module.exports = {
         message.channel.send(mine);
         d.addMoni(message.author.id, earn);
 	}
+		mine();
     }
 };
