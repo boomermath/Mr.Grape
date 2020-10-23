@@ -58,14 +58,16 @@ client.on('message', message => {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	
+	const commandFanException = ['daily']
 	let inv = await items.get(message.author.id);
 	let haveFan;
 	const blankObj = {};
 	if (inv === undefined || inv === null) {await items.set(message.author.id, blankObj); inv = blankObj}
 	if (inv.fan === undefined || inv.fan === null) {haveFan = 0}
 	else {haveFan = inv.fan}
-	const cooldownAmount = (1 - (0.03 * haveFan)) * (command.cooldown  * 1000);
+	const cooldownAmount;
+	if (commandFanException.includes(command.name)) {cooldownAmount = command.cooldown * 1000}
+	else {const cooldownAmount = (1 - (0.03 * haveFan)) * (command.cooldown  * 1000)};
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
