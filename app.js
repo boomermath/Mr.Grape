@@ -77,9 +77,10 @@ client.on('message', message => {
 			return message.channel.send(cool);
 		}
 	}
-}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+}
+cooldown();
 
 	try {
 		command.execute(message, args, d);
