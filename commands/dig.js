@@ -22,7 +22,7 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Enterprises');
 	
-	if (shovelBreak === 1) {mine.addFields({name: 'Uh oh!', value: 'Your shovel broke! Go buy a new one from the shop!'}); inv.shovel += -1;}
+	if (inv.shovel !== undefined && inv.shovel > 0 && shovelBreak === 1) {mine.addFields({name: 'Uh oh!', value: 'Your shovel broke! Go buy a new one from the shop!'}); inv.shovel += -1;}
         message.channel.send(mine);
         d.addMoni(message.author.id, earn);
 	}
