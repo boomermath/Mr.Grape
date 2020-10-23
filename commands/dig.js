@@ -23,7 +23,7 @@ module.exports = {
             .setFooter('Grape Enterprises');
 	
 	if (inv.shovel !== undefined && inv.shovel > 0 && shovelBreak === 1) {
-		mine.addFields({name: 'Uh oh!', value: 'Your shovel broke! Go buy a new one from the shop!'}); 
+		mine.addFields({name: 'Uh oh!', value: 'Your shovel broke! If you want a new one, buy it from the shop!'}); 
 		inv.shovel += -1;
 		await d.items.set(message.author.id, inv);
 	}
