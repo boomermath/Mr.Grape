@@ -29,7 +29,7 @@ module.exports = {
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
                 .setFooter('Grape Storages Org.');
-            if (inv === undefined || Object.entries(inv) === '' || inv === '') {invEmbed.addFields({name: 'nothing but cobwebs and dust m8', value: '_'});}
+            if (Object.keys(inv).length === 0) {invEmbed.addFields({name: 'nothing but cobwebs and dust m8', value: '_'});}
 	    else {
             for (const key in inv) {
                 invEmbed.addFields({
