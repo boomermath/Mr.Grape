@@ -4,7 +4,6 @@ module.exports = {
 	description: 'buy stuff from the shop',
 	cooldown: 2,
 	execute(message, args, d) {
-const blankObj = {}
 const itemCost = {
     fan: 100,
     orangedetector: 100,
@@ -16,10 +15,6 @@ const itemCost = {
 }
 async function buy() {
     let have = await d.items.get(message.author.id);
-    if (have === undefined || have === null) {
- 	await d.items.set(message.author.id, blankObj)
-	have = blankObj;
-    }
     let regex = /\d+/g;
     let numberOfItemsRaw = args.join(' ').match(regex);
     let numberOfItems = parseInt(numberOfItemsRaw);
