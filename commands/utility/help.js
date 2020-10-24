@@ -103,6 +103,12 @@ module.exports = {
                 .addFields({
                     name: '8ball',
                     value: 'Ask Mr. Grape what the future holds in store for you! Use like this: ' + `${d.config.prefix}` + '8ball <question>'
+                },{
+                    name: 'coinflip',
+                    value: 'Flip a coin!'
+                },{
+                    name: 'dice',
+                    value: 'Roll a six-sided die!'
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
