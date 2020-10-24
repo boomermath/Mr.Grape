@@ -22,6 +22,7 @@ const d = {
 	"client":client,
 	"users":users,
 	"addMoni":addMoni,
+	"Keyv": Keyv,
 	"items":items
 }
 
