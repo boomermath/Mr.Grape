@@ -1,7 +1,7 @@
 
 module.exports = {
-	name: '8ball',
-	description: 'fortune telling is cool',
+	name: 'coinflip',
+	description: 'flip a coin',
 	cooldown: 5,
 	execute(message, args, d) {
       let flip = Math.floor(Math.random() * 2) + 1;
