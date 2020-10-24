@@ -3,7 +3,7 @@ module.exports = {
 	description: 'test',
 	cooldown: 0,
 	execute(message, args, d) {
-      const users = d.Keyv.opts.store.query('SELECT * FROM keyv')
+      const users = d.keyv.opts.store.query('SELECT * FROM keyv')
       message.channel.send(users);
    }
 };
