@@ -33,7 +33,7 @@ module.exports = {
 	    else {
             for (const key in inv) {
 		if (inv.key === 0) {
-			delete inv.key; 
+			delete inv[key]; 
 			await d.items.set(message.author.id, inv); 
 			continue;
 		}
