@@ -32,7 +32,7 @@ module.exports = {
             if (Object.keys(inv).length === 0) {invEmbed.addFields({name: 'nothing but cobwebs and dust m8', value: '_'});}
 	    else {
             for (const key in inv) {
-		if (inv.key === 0) {
+		if (inv[key] === 0) {
 			delete inv[key]; 
 			await d.items.set(message.author.id, inv); 
 			continue;
