@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'daily',
+	aliases: ['dail'],
 	description: 'get ur daily amount of stars',
 	cooldown: 86400,
 	execute(message, args, d) {
