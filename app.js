@@ -1,5 +1,4 @@
 const fs = require('fs');
-const DisTube = require("distube")
 const Discord = require('discord.js');
 const config  = require('./config.json');
 const client = new Discord.Client();
@@ -19,7 +18,6 @@ const d = {
 	"Discord":Discord, 
 	"config":config,
 	"client":client,
-	"distube": new DisTube(client, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true }),
 	"users":users,
 	"addMoni":addMoni,
 	"items":items
@@ -34,7 +32,6 @@ const cooldowns = new Discord.Collection();
 
 
 users.on('error', err => console.error('Keyv connection error:', err));
-d.distube.on("error", (message, err) => message.channel.send(`An error encountered: ${err}`));
 
 client.once('ready', () => {
 	console.log('Ready!');
