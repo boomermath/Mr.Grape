@@ -87,7 +87,7 @@ module.exports = {
                     value: 'Get some basic info about your server.'
                 }, {
                     name: 'Userinfo',
-                    value: 'Get some basic info about your user id.'
+                    value: 'Get some basic info about users.'
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
