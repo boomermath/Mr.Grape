@@ -7,8 +7,8 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, {namespace: 'users'});
 const items = new Keyv(process.env.DATABASE_URL, {namespace: 'items'});
 const commandFilesEconomy = fs.readdirSync('./commands/economy').filter(file => file.endsWith('.js'));
-const commandFilesFun = fs.readdirSync('./commands/economy').filter(file => file.endsWith('.js'));
-const commandFilesUtility = fs.readdirSync('./commands/economy').filter(file => file.endsWith('.js'));
+const commandFilesFun = fs.readdirSync('./commands/fun').filter(file => file.endsWith('.js'));
+const commandFilesUtility = fs.readdirSync('./commands/utility').filter(file => file.endsWith('.js'));
 const addMoni = async function (who, howmuch) {
     let rightnow = await users.get(who);
     if (rightnow === undefined) {
