@@ -10,14 +10,11 @@ module.exports = {
 	let earn;
 	if (inv.shovel !== undefined && inv.shovel > 0) {earn = Math.round(Math.random() * 15) + 1;}
 	else {earn = Math.round(Math.random() * 6) + 1;}
-	let finalEarn;
- 	if (inv.starmagnet !== undefined && inv.starmagnet > 0) {finalEarn = Math.round(earn * (1 + (0.02 * inv.starmagnet)));}
-	else {finalEarn = earn}
         const mine = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s mine`)
             .addFields({
-                name: 'You dug up ' + finalEarn + ' :star:s',
+                name: 'You dug up ' + earn + ' :star:s',
                 value: '_'
             }, )
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
@@ -30,7 +27,7 @@ module.exports = {
 		await d.items.set(message.author.id, inv);
 	}
         message.channel.send(mine);
-        d.addMoni(message.author.id, finalEarn);
+        d.addMoni(message.author.id, earn);
 	
     }
 };
