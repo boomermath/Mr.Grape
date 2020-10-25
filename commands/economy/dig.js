@@ -17,7 +17,7 @@ module.exports = {
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s mine`)
             .addFields({
-                name: 'You dug up ' + earn + ' :star:s',
+                name: 'You dug up ' + finalEarn + ' :star:s',
                 value: '_'
             }, )
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
