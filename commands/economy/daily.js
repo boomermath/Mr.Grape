@@ -3,11 +3,7 @@ module.exports = {
 	description: 'get ur daily amount of stars',
 	cooldown: 86400,
 	async execute(message, args, d) {
-	 let og = Math.floor(Math.random() * 25) + 25;
-	 let random;
-	let inv = await d.items.get(message.author.id)
-	if (inv.starmagnet !== undefined && inv.starmagnet > 0) {random = Math.round(og * (1 + (0.02 * inv.starmagnet)));}
-	else {random = og;}
+	 let random = Math.floor(Math.random() * 25) + 25;
         const dailystarEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s daily reward`)
