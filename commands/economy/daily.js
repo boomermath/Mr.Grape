@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'daily',
 	description: 'get ur daily amount of stars',
-	cooldown: 86400,
+	cooldown: 0,
 	execute(message, args, d) {async () => {
 	 let og = Math.floor(Math.random() * 25) + 25;
 	 let random;
