@@ -2,7 +2,7 @@ module.exports = {
 	name: 'daily',
 	description: 'get ur daily amount of stars',
 	cooldown: 0,
-	execute(message, args, d) {async () => {
+	async execute(message, args, d) {
 	 let og = Math.floor(Math.random() * 25) + 25;
 	 let random;
 	let inv = await d.items.get(message.author.id)
@@ -21,5 +21,5 @@ module.exports = {
         message.channel.send(dailystarEmbed);
         d.addMoni(message.author.id, random);
 		}
-	}
+	
 };
