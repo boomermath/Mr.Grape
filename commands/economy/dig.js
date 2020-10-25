@@ -30,7 +30,7 @@ module.exports = {
 		await d.items.set(message.author.id, inv);
 	}
         message.channel.send(mine);
-        d.addMoni(message.author.id, earn);
+        d.addMoni(message.author.id, finalEarn);
 	
     }
 };
