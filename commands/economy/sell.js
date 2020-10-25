@@ -17,6 +17,7 @@ module.exports = {
           if (numberOfItems > inv[item]) {message.channel.send("You don't have that many " + item + '(s)'); return;}
           d.addMoni(message.author.id, (d.itemShop[item] / 2))
           inv[item] -= numberOfItems;
+	  await d.items.set(message.author.id, inv);
           let sale;
           if (numberOfItems === 1) {sale = "a " + d.itemShop[item]}
           else {sale = numberOfItems + " " + d.itemShop[item] + "s"}
