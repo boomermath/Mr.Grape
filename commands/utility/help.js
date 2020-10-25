@@ -1,9 +1,9 @@
 module.exports = {
-	name: 'help',
-	description: 'get help for commands',
-	cooldown: 2,
-	execute(message, args, d) {
-	let helpArg = args[0];
+    name: 'help',
+    description: 'get help for commands',
+    cooldown: 2,
+    execute(message, args, d) {
+        let helpArg = args[0];
         if (helpArg === undefined) {
             const balnoEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
@@ -36,7 +36,7 @@ module.exports = {
                     value: 'Check your $$$. To check the balance of another user, do ' + `${d.config.prefix}` + 'bal <usermention>.'
                 }, {
                     name: 'Buy',
-                    value: "Do " +`${d.config.prefix}`+ "buy, and then the item's name to buy that item!"
+                    value: "Do " + `${d.config.prefix}` + "buy, and then the item's name to buy that item!"
                 }, {
                     name: 'Daily',
                     value: 'Get a daily amount of stars.'
@@ -52,7 +52,7 @@ module.exports = {
                 }, {
                     name: 'Inventory',
                     value: 'Check yours or others inventory!\n' + `${d.config.prefix}` + 'inv <user> (user is an optional field)'
-                },{
+                }, {
                     name: 'Shop',
                     value: 'Display the shop!'
                 }, {
@@ -103,10 +103,10 @@ module.exports = {
                 .addFields({
                     name: '8ball',
                     value: 'Ask Mr. Grape what the future holds in store for you! Use like this: ' + `${d.config.prefix}` + '8ball <question>'
-                },{
+                }, {
                     name: 'coinflip',
                     value: 'Flip a coin!'
-                },{
+                }, {
                     name: 'dice',
                     value: 'Roll a six-sided die!'
                 }, )
@@ -119,7 +119,7 @@ module.exports = {
         } else {
             message.channel.send('Invalid help argument dummy')
         }
-	
-	
-	}
+
+
+    }
 };

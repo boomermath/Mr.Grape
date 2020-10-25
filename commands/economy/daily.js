@@ -1,9 +1,9 @@
 module.exports = {
-	name: 'daily',
-	description: 'get ur daily amount of stars',
-	cooldown: 86400,
-	async execute(message, args, d) {
-	 let random = Math.floor(Math.random() * 25) + 25;
+    name: 'daily',
+    description: 'get ur daily amount of stars',
+    cooldown: 86400,
+    async execute(message, args, d) {
+        let random = Math.floor(Math.random() * 25) + 25;
         const dailystarEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s daily reward`)
@@ -16,6 +16,6 @@ module.exports = {
             .setFooter('Grape Bank Inc.');
         message.channel.send(dailystarEmbed);
         d.addMoni(message.author.id, random);
-		}
-	
+    }
+
 };

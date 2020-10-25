@@ -1,10 +1,9 @@
-
 module.exports = {
-	name: 'info',
-	description: 'basic info about the bot',
-	cooldown: 5,
-	execute(message, args, d) {
-	let uptime = d.client.uptime / 1000;
+    name: 'info',
+    description: 'basic info about the bot',
+    cooldown: 5,
+    execute(message, args, d) {
+        let uptime = d.client.uptime / 1000;
         let unit = "second(s)";
         if (uptime > 59 && unit === "second(s)") {
             uptime /= 60;
@@ -18,7 +17,6 @@ module.exports = {
             uptime /= 24;
             unit = "day(s)";
         }
-        //message.channel.send(`Version: \`${config.version}\`\nUptime: \`${Math.floor(uptime)}\` ${unit}\nTodo list:\n${config.todo.join("\n")}`);
         const info = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Info')
@@ -44,7 +42,7 @@ module.exports = {
 
         message.channel.send(info);
 
-	
-	
-	}
+
+
+    }
 };
