@@ -4,15 +4,6 @@ module.exports = {
 	description: 'buy stuff from the shop',
 	cooldown: 2,
 	execute(message, args, d) {
-const itemCost = {
-    fan: 100,
-    orangedetector: 100,
-    mangodetector: 50,
-    carrotdetector: 50,
-    starmagnet: 100,
-    starmill: 400,
-    shovel: 100
-}
 async function buy() {
     let have = await d.items.get(message.author.id);
     let regex = /\d+/g;
@@ -47,11 +38,11 @@ async function buy() {
                 .setTimestamp()
                 .setFooter('Grape Marketplaces');
       
-    if (!Object.keys(itemCost).includes(item)) {
+    if (!Object.keys(d.itemShop).includes(item)) {
         message.channel.send(notitem);
         return;
     }
-    let total = itemCost[item] * numberOfItems;
+    let total = d.itemShop[item] * numberOfItems;
     if (total > await d.users.get(message.author.id)) {
         message.channel.send(broke);
         return;
