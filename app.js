@@ -16,6 +16,15 @@ const addMoni = async function (who, howmuch) {
     }
     await users.set(who, (rightnow + howmuch))
 }
+const itemShop = {
+    fan: 100,
+    orangedetector: 100,
+    mangodetector: 50,
+    carrotdetector: 50,
+    starmagnet: 100,
+    starmill: 400,
+    shovel: 100
+}
 const d = {
 	"Discord":Discord, 
 	"config":config,
@@ -23,7 +32,8 @@ const d = {
 	"users":users,
 	"addMoni":addMoni,
 	"Keyv": Keyv,
-	"items":items
+	"items":items,
+	"itemShop":itemShop
 }
 
 for (const file of commandFilesEconomy) {
