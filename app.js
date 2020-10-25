@@ -59,6 +59,7 @@ items.on('error', err => console.error('Keyv connection error:', err));
 
 client.once('ready', () => {
 	console.log('Ready!');
+	client.user.setPresence({ activity: { name: `for ${config.prefix}help` }, status: 'idle' })
 });
 
 client.on('message', message => {
