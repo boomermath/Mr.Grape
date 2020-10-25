@@ -2,8 +2,12 @@ module.exports = {
 	name: 'daily',
 	description: 'get ur daily amount of stars',
 	cooldown: 86400,
-	execute(message, args, d) {
-	 let random = Math.floor(Math.random() * 25) + 25;
+	execute(message, args, d) {async () => {
+	 let og = Math.floor(Math.random() * 25) + 25;
+	 let random;
+	let inv = await d.items.get(message.author.id)
+	if (inv.starmagnet !== undefined && inv.starmagnet > 0) {random = og * (1 + (0.02 * inv.starmagnet));}
+	else {random = og;}
         const dailystarEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s daily reward`)
@@ -16,5 +20,6 @@ module.exports = {
             .setFooter('Grape Bank Inc.');
         message.channel.send(dailystarEmbed);
         d.addMoni(message.author.id, random);
+		}
 	}
 };
