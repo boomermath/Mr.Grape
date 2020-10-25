@@ -25,12 +25,12 @@ module.exports = {
                 .setTitle(message.author.username + "'s sale")
                 .addFields({
                     name: 'Transaction',
-                    value:'You successfully sold ' + sale
+                    value:'You successfully sold ' + sale + " for" + (d.itemShop[item] / 2) + " :star:s"
                 }, )
                 .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
                 .setFooter('Grape Marketplaces');
-            message.channel.send(buy);
+            message.channel.send(sell);
         }
 
         sell();
