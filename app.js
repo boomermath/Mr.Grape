@@ -50,7 +50,7 @@ client.once('ready', () => {
 	client.user.setPresence({ activity: { name: `with ${config.prefix}help` }, status: 'idle' })
 });
 
-async client.on('message', message => {
+client.on('message', async message => {
 	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
