@@ -16,6 +16,7 @@ module.exports = {
             message.channel.send('ok karen');
             return;
         }
+        if (!item) {message.channel.send('Whatcha gonna buy?'); return;}
         const broke = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + "'s purchase")
