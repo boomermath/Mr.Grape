@@ -50,8 +50,7 @@ client.once('ready', () => {
 	client.user.setPresence({ activity: { name: `with ${config.prefix}help` }, status: 'idle' })
 });
 
-client.on('message', message => {
-	async function onMessage() {
+async client.on('message', message => {
 	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
@@ -104,9 +103,7 @@ client.on('message', message => {
 	} catch (error) {
 		console.error(error);
 		message.channel.send('made an oopsie tryna do that command');
-	}
-}
-onMessage();	
+	}	
 });
 
 client.login(process.env.BOT_TOKEN);
