@@ -22,7 +22,6 @@ const itemShop = {
     mangodetector: 50,
     carrotdetector: 50,
     starmagnet: 100,
-    starmill: 400,
     shovel: 100
 }
 const d = {
