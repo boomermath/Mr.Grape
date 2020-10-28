@@ -5,16 +5,16 @@ module.exports = {
 		const data = [];
 		const { commands } = message.client;
 		if (!args.length) {
-		data.push(commands.map(command => command.name).join('\n'));
+		data.push(commands.map(command => command.name).join(', '));
 		const helpEmbed = new d.Discord.MessageEmbed()
-                .setColor('#02dee6')
+                .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
 				{name: 'Commands', value: data}, 
 				{name: 'Command Help', value: `For help on a specific command, do ${d.config.prefix}help [command]`}, 
 				)
                 .setTimestamp()
-                .setFooter('Math 3');
+                .setFooter('Grape Databases');
             message.channel.send(helpEmbed);
 		return;
 		}
@@ -29,15 +29,14 @@ module.exports = {
 		if (!command.aliases) {alias = 'None.'}
 		else {alias = command.aliases.join(', ')}
 		const helpCommandEmbed = new d.Discord.MessageEmbed()
-                .setColor('#02dee6')
+                .setColor('#dd2de0')
                 .setTitle(command.name.charAt(0).toUpperCase() + command.name.slice(1))
                 .addFields(
 				{name: 'Description', value: command.description}, 
-				{name: 'Usage', value: command.usage}, 
 				{name: 'Aliases', value: alias}, 
 				)
                 .setTimestamp()
-                .setFooter('Math 3');
+                .setFooter('Grape Databases');
             message.channel.send(helpCommandEmbed);
 		
     }
