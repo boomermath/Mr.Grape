@@ -23,9 +23,6 @@ module.exports = {
                 name: 'starmagnet',
                 value: 'increases the amount of :star:s gained per job\ncost: 100:star:'
             }, {
-                name: 'starmill',
-                value: 'generates you :star:s passively at a rate of 1:star: per 10m\ncost: 400:star:'
-            }, {
                 name: 'shovel',
                 value: 'gives you more stars for digging job\ncost: 100:star:'
             }, )
