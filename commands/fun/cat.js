@@ -13,6 +13,6 @@ module.exports = {
         let urlQuery = d.querystring.stringify(params);
         let submitURL = catapi + `/v1/images/search?${urlQuery}`;
         let pic = await d.r2.get(submitURL , {key} ).json;
-        message.channel.send({files : pic[0].url}); 
+        message.channel.send({files : [ pic[0].url ]}); 
     }
 };
