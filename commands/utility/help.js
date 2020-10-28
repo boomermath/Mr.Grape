@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
-	    	fs.readdirSync(`./commands/${folder}`).forEach(folder => {
+	    	fs.readdirSync(`../commands/${folder}`).forEach(folder => {
     			data.push(folder);
  		 });
 		if (!args.length) {
