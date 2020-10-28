@@ -6,7 +6,7 @@ module.exports = {
 		const data = [];
 		const { commands } = message.client;
 	    	fs.readdirSync(`../commands/${folder}`).forEach(folder => {
-    			data.push(folder);
+    			data.push();
  		 });
 		if (!args.length) {
 		const helpEmbed = new d.Discord.MessageEmbed()
