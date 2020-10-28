@@ -1,5 +1,6 @@
 module.exports = {
     name: 'help',
+    description: 'help command bro',
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
