@@ -3,7 +3,7 @@ module.exports = {
     description: 'get a cat pic',
     cooldown: 3,
     async execute(message, args, d) {
-        let catapi = "https://thecatapi.com"
+        let catapi = "https://api.thecatapi.com"
         let key = process.env.CATAPI;
         let params = {
          'mime_types':'jpg,png', 
