@@ -1,11 +1,14 @@
+const fs = require('fs')
 module.exports = {
     name: 'help',
     description: 'help command bro',
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
+	    	fs.readdirSync(`./commands/${folder}`).forEach(file => {
+    			data.push(folder);
+ 		 });
 		if (!args.length) {
-		data.push(commands.map(command => command.name).join(', '));
 		const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Help')
