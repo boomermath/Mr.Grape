@@ -7,16 +7,22 @@ module.exports = {
 		const { commands } = message.client;
 		if (!args.length) {
 		const subdirectories = fileh.create()
-  		.path("./commands/")
+  		.path("./commands")
   		.directory()
   		.findSync();
-		data.push('Here\'s a list of my commands:');
-		data.push(commands.map(command => command.name).join(', '));
+		const sub = subdirectories.replace('commands/','');
+		const toTitleCase = (sub) => {
+  		return sub
+    		.toLowerCase()
+    		.split('\n')
+    		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    		.join('\n');
+		};
 		const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
-				{name: 'Commands', value: subdirectories}, 
+				{name: 'Command Categories', value: sub}, 
 				{name: 'Command Help', value: `For help on a specific command, do ${d.config.prefix}help [command]`}, 
 				)
                 .setTimestamp()
