@@ -40,14 +40,14 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (sub.includes(name)) {
-            const files = fileh.create()
+            const file = fileh.create()
                 .paths(`./commands/${name}`)
                 .ext('js')
                 .findSync();
             let string = `commands/${name}`
             const map = {string:"",".js":""}
             let re = new RegExp(Object.keys(map).join("|"),"gi");
-            files.replace(re, function(matched){return map[matched]});
+            let files = file.replace(re, function(matched){return map[matched]});
             const helpCommandEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(toTitleCase(name))
