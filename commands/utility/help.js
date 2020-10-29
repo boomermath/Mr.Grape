@@ -47,7 +47,7 @@ module.exports = {
             let string = `commands/${name}`
             const map = {string:"",".js":""}
             let re = new RegExp(Object.keys(map).join("|"),"gi");
-            files.replace(re, function(matched){return map[matched]};)
+            files.replace(re, function(matched){return map[matched]});)
             const helpCommandEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(toTitleCase(name))
