@@ -44,8 +44,7 @@ module.exports = {
                 .paths(`./commands/${name}`)
                 .ext('js')
                 .findSync();
-            let string = `commands/${name}`
-            const map = {'commands':"",".js":"","/":'',name:''}
+            const map = {'commands':"",".js":"","/":'', [name]:''}
             let re = new RegExp(Object.keys(map).join("|"),"g");
             let files = file.toString().replace(re, function(matched){return map[matched]});
             const helpCommandEmbed = new d.Discord.MessageEmbed()
