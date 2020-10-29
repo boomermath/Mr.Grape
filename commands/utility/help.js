@@ -38,10 +38,6 @@ module.exports = {
         const name = args[0].toLowerCase();
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-        if (!command || !sub.includes(name)) {
-            return message.channel.send("That category/command doesn't exist!");
-        }
-
         if (sub.includes(name)) {
             fileh.create()
             const files = FileHound.create()
@@ -78,6 +74,6 @@ module.exports = {
                 .setFooter('Grape Databases');
             message.channel.send(helpCommandEmbed);
         }
-
+        else {message.channel.send('That category or command aint here')}
     }
 };
