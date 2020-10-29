@@ -15,7 +15,7 @@ module.exports = {
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
-				{name: 'Commands', value: getDirectories('../commands')}, 
+				{name: 'Commands', value: getDirectories('../commands/')}, 
 				{name: 'Command Help', value: `For help on a specific category/command, do ${d.config.prefix}help [category/command]`}, 
 				)
                 .setTimestamp()
