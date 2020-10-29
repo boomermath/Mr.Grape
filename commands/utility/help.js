@@ -6,7 +6,7 @@ module.exports = {
 		const data = [];
 		const { commands } = message.client;
 	    	const source = '../commands';
-	    	const getDirectories = source =>
+	    	const dirs = source =>
  		 fs.readdirSync(source, { withFileTypes: true })
     		.filter(dirent => dirent.isDirectory())
     		.map(dirent => dirent.name)
