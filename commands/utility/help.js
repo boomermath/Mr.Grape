@@ -39,8 +39,7 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (sub.includes(name)) {
-            fileh.create()
-            const files = FileHound.create()
+            const files = fileh.create()
                 .paths(`./commands/${name}`)
                 .ext('js')
                 .find();
