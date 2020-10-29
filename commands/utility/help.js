@@ -23,7 +23,7 @@ module.exports = {
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
-				{name: 'Command Categories', value: toTitleCase(sub)}, 
+				{name: 'Command Categories', value: sub}, 
 				{name: 'Command Help', value: `For help on a specific command, do ${d.config.prefix}help [command]`}, 
 				)
                 .setTimestamp()
