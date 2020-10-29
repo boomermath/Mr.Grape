@@ -42,13 +42,13 @@ module.exports = {
             const files = fileh.create()
                 .paths(`./commands/${name}`)
                 .ext('js')
-                .find();
+                .findSync();
             const helpCommandEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(toTitleCase(name))
                 .addFields({
                     name: 'Commands',
-                    value: `${files.toString()}`
+                    value: files
                 }, )
                 .setTimestamp()
                 .setFooter('Grape Databases');
