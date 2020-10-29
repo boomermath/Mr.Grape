@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fileh = require('filehound')
 module.exports = {
     name: 'help',
     description: 'help command bro',
@@ -6,13 +6,17 @@ module.exports = {
 		const data = [];
 		const { commands } = message.client;
 		if (!args.length) {
+		const subdirectories = fileh.create()
+  		.path("../commands")
+  		.directory()
+  		.findSync();
 		data.push('Here\'s a list of my commands:');
 		data.push(commands.map(command => command.name).join(', '));
 		const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
-				{name: 'Commands', value: data}, 
+				{name: 'Commands', value: subdirectories}, 
 				{name: 'Command Help', value: `For help on a specific command, do ${d.config.prefix}help [command]`}, 
 				)
                 .setTimestamp()
