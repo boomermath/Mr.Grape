@@ -3,6 +3,7 @@ module.exports = {
     name: 'help',
     description: 'help command bro',
     execute(message, args, d) {
+        let alias;
         const toTitleCase = (thingy) => {
             return thingy
                 .toLowerCase()
@@ -43,13 +44,20 @@ module.exports = {
                 .paths(`./commands/${name}`)
                 .ext('js')
                 .findSync();
+            let string = `commands/${name}`
+            const map = {string:"",".js":""}
+            let re = new RegExp(Object.keys(map).join("|"),"gi");
+            files.replace(re, function(matched){return map[matched]};)
             const helpCommandEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(toTitleCase(name))
                 .addFields({
                     name: 'Commands',
                     value: files
-                }, )
+                }, {
+                    name: 'Help',
+                    value: `For more help on a specific command, do ${d.config.prefix} help [command]`
+                },)
                 .setTimestamp()
                 .setFooter('Grape Databases');
             message.channel.send(helpCommandEmbed);
