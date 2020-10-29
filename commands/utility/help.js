@@ -48,7 +48,7 @@ module.exports = {
                 .setTitle(toTitleCase(name))
                 .addFields({
                     name: 'Commands',
-                    value: files
+                    value: `${files.toString()}`
                 }, )
                 .setTimestamp()
                 .setFooter('Grape Databases');
