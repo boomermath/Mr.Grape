@@ -5,8 +5,11 @@ module.exports = {
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
-	    	const join = '../commands'
-	    	const dirs = p => fs.readdirSync(p).filter(f => fs.statSync(join(p, f)).isDirectory())
+	    	const source = '../commands';
+	    	const getDirectories = source =>
+ 		 fs.readdirSync(source, { withFileTypes: true })
+    		.filter(dirent => dirent.isDirectory())
+    		.map(dirent => dirent.name)
 		if (!args.length) {
 		const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
