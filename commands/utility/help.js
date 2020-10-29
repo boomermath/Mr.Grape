@@ -13,12 +13,12 @@ module.exports = {
         const {
             commands
         } = message.client;
-        if (!args.length) {
-            const subdirectories = fileh.create()
+        const subdirectories = fileh.create()
                 .path("./commands")
                 .directory()
                 .findSync();
-            const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
+        const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
+        if (!args.length) {
             const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Help')
