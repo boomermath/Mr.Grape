@@ -1,6 +1,6 @@
 module.exports = {
     name: 'sell',
-    description: 'sell ur items',
+    description: 'give items for a price to people',
     cooldown: 5,
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);

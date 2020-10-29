@@ -1,6 +1,6 @@
 module.exports = {
     name: 'inv',
-    description: 'check ur inventory',
+    description: 'check your inventory',
     aliases: ['inventory'],
     cooldown: 3,
     async execute(message, args, d) {

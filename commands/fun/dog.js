@@ -1,7 +1,6 @@
 module.exports = {
     name: 'dog',
-    aliases: ['doge'],
-    description: 'uses the dog api to give you a random dog pic!',
+    description: 'get a dog pic',
     cooldown: 3,
     async execute(message, args, d) {
         let catapi = "https://api.thedogapi.com"
