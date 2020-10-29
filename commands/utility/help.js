@@ -5,18 +5,15 @@ module.exports = {
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
-	    	const source = '../commands';
-	    	const dirs = source =>
- 		 fs.readdirSync(source, { withFileTypes: true })
-    		.filter(dirent => dirent.isDirectory())
-    		.map(dirent => dirent.name)
 		if (!args.length) {
+		data.push('Here\'s a list of my commands:');
+		data.push(commands.map(command => command.name).join(', '));
 		const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
 				{name: 'Commands', value: dirs}, 
-				{name: 'Command Help', value: `For help on a specific category/command, do ${d.config.prefix}help [category/command]`}, 
+				{name: 'Command Help', value: `For help on a specific command, do ${d.config.prefix}help [command]`}, 
 				)
                 .setTimestamp()
                 .setFooter('Grape Databases');
