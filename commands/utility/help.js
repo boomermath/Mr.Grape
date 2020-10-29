@@ -5,16 +5,17 @@ module.exports = {
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
-	    	const getDirectories = '../commands' =>
-  		readdirSync('../commands', { withFileTypes: true })
-    		.filter(dirent => dirent.isDirectory())
-    		.map(dirent => dirent.name)
+	    	function getDirectories(path) {
+  		return fs.readdirSync(path).filter(function (file) {
+    		return fs.statSync(path+'/'+file).isDirectory();
+  		});
+		}
 		if (!args.length) {
 		const helpEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
-				{name: 'Commands', value: data}, 
+				{name: 'Commands', value: getDirectories('../commands')}, 
 				{name: 'Command Help', value: `For help on a specific category/command, do ${d.config.prefix}help [category/command]`}, 
 				)
                 .setTimestamp()
