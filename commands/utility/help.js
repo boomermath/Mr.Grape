@@ -7,7 +7,7 @@ module.exports = {
 		const { commands } = message.client;
 		if (!args.length) {
 		const subdirectories = fileh.create()
-  		.path("../commands")
+  		.path("./commands")
   		.directory()
   		.findSync();
 		data.push('Here\'s a list of my commands:');
