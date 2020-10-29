@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args, d) {
 		const data = [];
 		const { commands } = message.client;
-	    	const join = require('../commands')
+	    	const join = '../commands'
 	    	const dirs = p => fs.readdirSync(p).filter(f => fs.statSync(join(p, f)).isDirectory())
 		if (!args.length) {
 		const helpEmbed = new d.Discord.MessageEmbed()
