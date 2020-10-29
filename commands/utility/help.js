@@ -10,10 +10,10 @@ module.exports = {
   		.path("./commands")
   		.directory()
   		.findSync();
-		const subb = subdirectories.toString();
-		const sub = subb.replaceAll(',','\n').replaceAll('commands/','');
-		const toTitleCase = (sub) => {
-  		return sub
+		const thing = 'commands/'
+		const sub = subdirectories.toString().replace(/,/g,'\n').replaceAll(/thing/g,'');
+		const toTitleCase = (thingy) => {
+  		return thingy
     		.toLowerCase()
     		.split('\n')
     		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -23,7 +23,7 @@ module.exports = {
                 .setColor('#dd2de0')
                 .setTitle('Help')
                 .addFields(
-				{name: 'Command Categories', value: sub}, 
+				{name: 'Command Categories', value: toTitleCase(sub)}, 
 				{name: 'Command Help', value: `For help on a specific command, do ${d.config.prefix}help [command]`}, 
 				)
                 .setTimestamp()
