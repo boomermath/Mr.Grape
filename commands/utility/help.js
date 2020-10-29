@@ -10,7 +10,8 @@ module.exports = {
   		.path("./commands")
   		.directory()
   		.findSync();
-		const sub = subdirectories.toString();
+		const subb = subdirectories.toString();
+		const sub = subb.replaceAll(',','\n').replaceAll('commands/','');
 		const toTitleCase = (sub) => {
   		return sub
     		.toLowerCase()
