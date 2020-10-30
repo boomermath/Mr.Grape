@@ -8,7 +8,11 @@ module.exports = {
         let key = process.env.WOLFRAM;
         let wolfapi = `https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
         let answer = await d.r2(wolfapi).text;
-        if (answer === 'No short answer available') {return message.channel.send('This shows that I can parse if it says no avail');}
+        if (answer === 'No short answer available') {
+        let simpleWolf = `https://api.wolframalpha.com/v1/simple?i=${encodeURIComponent(args.join(' '))}&background=black&foreground=white&layout=labelbar&appid=${key}`
+        let newAnswer = await d.r2(wolfapi).image;
+        return message.channel.send({files : [ newAnswer ]})
+        }
         message.channel.send(answer);
     }
 };
