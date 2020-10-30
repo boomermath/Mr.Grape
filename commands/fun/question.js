@@ -9,8 +9,8 @@ module.exports = {
         let wolfapi = `https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
         let answer = await d.r2(wolfapi).text;
         if (answer === 'No short answer available') {
-        let simpleWolf = `https://api.wolframalpha.com/v1/simple?i=${encodeURIComponent(args.join(' '))}&background=black&foreground=white&layout=labelbar&appid=${key}`
-        let ans = await d.r2(simpleWolf).blob;
+        let simpleWolf = `https://api.wolframalpha.com/v2/query?input=${encodeURIComponent(args.join(' '))}&format=plaintext&output=JSON&appid=${key}&podindex=2`
+        let ans = await d.r2(simpleWolf).json;
         return message.channel.send(ans);
         }
         message.channel.send(answer);
