@@ -1,6 +1,6 @@
 module.exports = {
     name: 'wolfram',
-    description: 'get info from wolfram alpha',
+    description: 'get many questions answered using wolfram alpha',
     aliases: ['wolf'],
     cooldown: 3,
     async execute(message, args, d) {
