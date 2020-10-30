@@ -10,8 +10,9 @@ module.exports = {
         let answer = await d.r2(wolfapi).text;
         if (answer === 'No short answer available') {
         let simpleWolf = `https://api.wolframalpha.com/v1/simple?i=${encodeURIComponent(args.join(' '))}&background=black&foreground=white&layout=labelbar&appid=${key}`
-        let newAnswer = await d.r2(wolfapi).image;
-        return message.channel.send(simpleWolf);
+        const wolfEmbed = new d.Discord.MessageEmbed()
+        .setImage(simpleWolf)
+        return message.channel.send(wolfEmbed);
         }
         message.channel.send(answer);
     }
