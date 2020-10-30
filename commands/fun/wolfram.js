@@ -7,6 +7,6 @@ module.exports = {
         if (!args[0]) {return message.channel.send('whaddya want me to look up?');}
         let key = process.env.WOLFRAM;
         let wolfapi = `https://api.wolframalpha.com/v1/simple?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
-        message.channel.send({files : [ wolfapi ]}); 
+        message.channel.send(wolfapi); 
     }
 };
