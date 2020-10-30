@@ -8,6 +8,6 @@ module.exports = {
         let key = process.env.WOLFRAM;
         let wolfapi = `https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
         let answer = await d.r2(wolfapi);
-        message.channel.send();
+        message.channel.send(answer);
     }
 };
