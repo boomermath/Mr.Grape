@@ -11,7 +11,7 @@ module.exports = {
         if (answer === 'No short answer available') {
         let simpleWolf = `https://api.wolframalpha.com/v1/simple?i=${encodeURIComponent(args.join(' '))}&background=black&foreground=white&layout=labelbar&appid=${key}`
         let newAnswer = await d.r2(wolfapi).image;
-        return message.channel.send({files : [ newAnswer ]})
+        return message.channel.send({files : [ simpleWolf ]})
         }
         message.channel.send(answer);
     }
