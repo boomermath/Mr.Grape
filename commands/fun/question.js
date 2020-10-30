@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'wolfram',
+    name: 'question',
     description: 'get many questions answered using wolfram alpha',
-    aliases: ['wolf'],
+    aliases: ['q'],
     cooldown: 3,
     async execute(message, args, d) {
         if (!args[0]) {return message.channel.send('whaddya want me to look up?');}
