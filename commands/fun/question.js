@@ -7,7 +7,8 @@ module.exports = {
         if (!args[0]) {return message.channel.send('whaddya want me to look up?');}
         let key = process.env.WOLFRAM;
         let wolfapi = `https://api.wolframalpha.com/v2/query?input=${encodeURIComponent(args.join(' '))}&format=plaintext&output=JSON&appid=${key}`;
-        let answer = await d.r2(wolfapi).response;
+        let answer = await d.r2(wolfapi).text;
+        if (answer === 'No short answer available') {return message.channel.send('This shows that I can parse if it says no avail');}
         message.channel.send(answer);
     }
 };
