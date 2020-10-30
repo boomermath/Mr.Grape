@@ -6,7 +6,8 @@ module.exports = {
     async execute(message, args, d) {
         if (!args[0]) {return message.channel.send('whaddya want me to look up?');}
         let key = process.env.WOLFRAM;
-        let wolfapi = `https://api.wolframalpha.com/v1/simple?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
-        message.channel.send(wolfapi);
+        let wolfapi = `https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
+        let answer = d.r2(wolfapi).text;
+        message.channel.send(answer);
     }
 };
