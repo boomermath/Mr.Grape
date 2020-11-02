@@ -3,7 +3,7 @@ module.exports = {
     description: 'get donald trump quote',
     cooldown: 3,
     async execute(message, args, d) {
-        let trump = "https://api.tronalddump.io/random/quote"
+        let trump = "https://api.tronalddump.io/random/quote";
         let quote = await d.r2.get(trump).json;
          const t = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
@@ -13,7 +13,7 @@ module.exports = {
                 value: quote
             })
             .setTimestamp()
-            .setFooter('Grape Dice Club');
+            .setFooter('Official Donald Trump League');
         message.channel.send(t);
     }
 };
