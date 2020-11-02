@@ -8,15 +8,15 @@ module.exports = {
         let initialEarn = Math.round(Math.random() * 7) + 1;
         let chooseWork = Math.round(Math.random() * 2);
         const ifEarn = [1, 2, 2, 2];
-        if (chooseWork === 0 && inv.hasOwnProperty('orangedetector')) {
+        if (chooseWork === 0 && inv !== undefined && inv.hasOwnProperty('orangedetector')) {
             for (let i = 0; i < inv.orangedetector; i++) {
                 ifEarn.push(1);
             }
-        } else if (chooseWork === 1 && inv.hasOwnProperty('mangodetector')) {
+        } else if (chooseWork === 1 && inv !== undefined && inv.hasOwnProperty('mangodetector')) {
             for (let i = 0; i < inv.mangodetector; i++) {
                 ifEarn.push(1);
             }
-        } else if (chooseWork === 2 && inv.hasOwnProperty('carrotdetector')) {
+        } else if (chooseWork === 2 && inv !== undefined && inv.hasOwnProperty('carrotdetector')) {
             for (let i = 0; i < inv.carrotdetector; i++) {
                 ifEarn.push(1);
             }
