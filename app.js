@@ -11,7 +11,7 @@ const items = new Keyv(process.env.DATABASE_URL, {namespace: 'items'});
 const addMoni = async function (who, howmuch) {
     let rightnow = await users.get(who);
     if (rightnow === undefined) {
-        await users.set(who, 0)
+        await users.set(who, howmuch)
     }
     await users.set(who, (rightnow + howmuch))
 }
