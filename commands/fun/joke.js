@@ -1,4 +1,3 @@
-const {client, Discord} = require('discord.js')  
 module.exports = {
     name: 'joke',
     description: 'get a joke',
@@ -7,10 +6,10 @@ module.exports = {
     async execute(message, args, d) {
      let jokeURL = "https://sv443.net/jokeapi/v2/joke/Pun?blacklistFlags=nsfw,religious,political,racist,sexist&format=txt"
      let joke = await d.r2.get(jokeURL).text;
-     const kek = client.emojis.find(emoji => emoji.name === "kek");
+     let client = d.client;
       const jk = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setTitle(`Joke ${kek}`)
+            .setTitle(`Joke`)
             .addFields({
                 name: joke,
                 value: '_'
