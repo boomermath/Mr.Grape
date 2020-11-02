@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args, d) {
         const ore = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setTitle('The Shop')
+            .setTitle('The Ores')
             .setDescription('A list of ores you can buy.")
             .addFields({
                 name: 'Tier 1',
