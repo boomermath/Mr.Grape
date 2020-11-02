@@ -17,7 +17,7 @@ module.exports = {
             }, {
                 name: 'Tier 3',
                 value: 'Starium, Lumionite, Hellinite, Grapium'
-            }, 
+            }, )
             .setTimestamp()
             .setFooter('Grape Mining Corp');
 
