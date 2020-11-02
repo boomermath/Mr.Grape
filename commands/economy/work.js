@@ -23,7 +23,7 @@ module.exports = {
         }
         let earnJob = Math.floor(Math.random() * ifEarn.length);
         let earn;
-        if (inv.hasOwnProperty('starmagnet') && inv.starmagnet > 0) {
+        if (inv !== undefined && inv.hasOwnProperty('starmagnet') && inv.starmagnet > 0) {
             earn = Math.round(initialEarn * (1 + (0.02 * inv.starmagnet)));
         } else {
             earn = initialEarn;
