@@ -10,7 +10,7 @@ module.exports = {
             .setTitle('Donald Trump')
             .addFields({
                 name: 'Trump says',
-                value: quote
+                value: quote.value
             })
             .setTimestamp()
             .setFooter('Official Donald Trump League');
