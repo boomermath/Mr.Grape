@@ -7,7 +7,7 @@ module.exports = {
         let shovelBreak = Math.floor(Math.random() * 15) + 1;
         let inv = await d.items.get(message.author.id);
         let earn;
-        if (inv !== undefined || inv.shovel === undefined || inv.shovel === 0) {
+        if (inv === undefined || inv.shovel === undefined || inv.shovel === 0) {
             earn = Math.round(Math.random() * 6) + 1;
         } else {
             earn = Math.round(Math.random() * 15) + 1;
