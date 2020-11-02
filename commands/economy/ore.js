@@ -10,7 +10,7 @@ module.exports = {
             .setDescription("A list of ores you can buy.")
             .addFields({
                 name: 'Tier 1',
-                value: 'Copper, Tin , Iron, Lead, Silver, and Bronze'
+                value: 'Copper, Tin , Iron, Lead, Silver, Bronze'
             }, {
                 name: 'Tier 2',
                 value: 'Gold, Platinum, Titanium, Obsidian, Cobalt'
