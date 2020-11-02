@@ -5,7 +5,7 @@ module.exports = {
     cooldown: 3,
     async execute(message, args, d) {
      let jokeURL = "https://sv443.net/jokeapi/v2/joke/Pun?blacklistFlags=nsfw,religious,political,racist,sexist&format=txt"
-     let joke = d.r2.get(jokeURL).txt;
+     let joke = d.r2.get(jokeURL).text;
       const jk = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Joke')
