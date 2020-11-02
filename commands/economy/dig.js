@@ -23,7 +23,7 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Enterprises');
 
-        if (inv.shovel !== undefined && inv.shovel > 0 && shovelBreak === 1) {
+        if (inv !== undefined || inv.shovel !== undefined && inv.shovel > 0 && shovelBreak === 1) {
             mine.addFields({
                 name: 'Uh oh!',
                 value: 'Your shovel broke! If you want a new one, buy it from the shop!'
