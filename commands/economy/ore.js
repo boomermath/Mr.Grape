@@ -7,7 +7,7 @@ module.exports = {
         const ore = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('The Ores')
-            .setDescription("A list of ores you can buy.")
+            .setDescription("A list of ores you can obtain by buying/mining.")
             .addFields({
                 name: 'Tier 1',
                 value: 'Copper, Tin , Iron, Lead, Silver, Bronze'
