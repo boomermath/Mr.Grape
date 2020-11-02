@@ -7,10 +7,10 @@ module.exports = {
         let shovelBreak = Math.floor(Math.random() * 15) + 1;
         let inv = await d.items.get(message.author.id);
         let earn;
-        if (inv.shovel !== undefined && inv.shovel > 0) {
-            earn = Math.round(Math.random() * 15) + 1;
-        } else {
+        if (inv.shovel === undefined || inv.shovel === 0) {
             earn = Math.round(Math.random() * 6) + 1;
+        } else {
+            earn = Math.round(Math.random() * 15) + 1;
         }
         const mine = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
