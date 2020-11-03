@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'queue',
 	description: 'play music from youtube',
-  aliases: ['q'],
+  	aliases: ['q'],
 	cooldown: 2,
 	async execute(message, args, d) {
     const channel= message.member.voice;
