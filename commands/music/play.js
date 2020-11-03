@@ -11,8 +11,8 @@ module.exports = {
     		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 		const permissions = channel.permissionsFor(message.client.user);
-		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
-		if (!permissions.has('SPEAK')) return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
+		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I cant connect to voice channel, no perms');
+		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I cant play music without speak perms');
 		
 	    	const tubeRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
 		const serverQueue = message.client.queue.get(message.guild.id);
@@ -31,7 +31,7 @@ module.exports = {
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			return message.channel.send(`✅ **${song.title}** has been added to the queue!`);
+			return message.channel.send(`Added ***${song.title}*** to da queue!`);
 		}
 
 		const queueConstruct = {
@@ -60,7 +60,7 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`🎶 Start playing: **${song.title}**`);
+			queue.textChannel.send(`Groovin to ${song.title}`);
 		};
 
 		try {
@@ -71,7 +71,7 @@ module.exports = {
 			console.error(`I could not join the voice channel: ${error}`);
 			message.client.queue.delete(message.guild.id);
 			await channel.leave();
-			return message.channel.send(`I could not join the voice channel: ${error}`);
+			return message.channel.send(`Couldn't join voice channel: ${error} big oof.`);
 		}
 	}
 };
