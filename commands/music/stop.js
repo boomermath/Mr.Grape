@@ -2,7 +2,7 @@ module.exports = {
 	name: 'stop',
 	description: 'stop playing music',
 	cooldown: 2,
-  aliases: ['leave','disconnect','dc'],
+  	aliases: ['leave','disconnect','dc'],
 	execute(message) {
 		const channel = message.member.voice;
 		if (!channel) return message.channel.send("Go to a voice channel to do stuff");
