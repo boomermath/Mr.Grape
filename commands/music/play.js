@@ -60,7 +60,7 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`Groovin to: ***${song.title}***`);
+			queue.textChannel.send(`Groovin to: **${song.title}**`);
 		};
 
 		try {
