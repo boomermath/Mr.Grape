@@ -15,5 +15,6 @@ module.exports = {
             .setFooter('DJ Grape');
       for (var key in q) {queue.addFields({name: q[key], value: '_' })}
       message.channel.send(queue);
+      message.channel.send(q);
 	}
 };
