@@ -10,4 +10,5 @@ module.exports = {
 			return message.channel.send('Resumin music');
 		}
 		return message.channel.send('There is nothing playin');
+	}
 };
