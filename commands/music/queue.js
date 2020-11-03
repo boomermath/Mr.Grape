@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'queue',
-	description: 'Queue command.',
+	description: 'get your server\'s music queue',
 	cooldown: 2,
   aliases: ['q'],
 	execute(message) {
