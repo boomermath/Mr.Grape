@@ -1,10 +1,10 @@
 module.exports = {
 	name: 'play',
 	description: 'play music from youtube',
-  aliases: ['p'],
+  	aliases: ['p'],
 	cooldown: 2,
-	execute(message, args, d) {
-    const { channel } = message.member.voice;
+	async execute(message, args, d) {
+    		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
