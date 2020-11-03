@@ -3,7 +3,7 @@ module.exports = {
 	description: 'get your server\'s music queue',
 	cooldown: 2,
   	aliases: ['q'],
-	execute(message) {
+	execute(message, args, d) {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("There isn't a song playin");
     const q = Array.from(serverQueue.songs.map(song => `${song.title}`).join(',') + ',0');
