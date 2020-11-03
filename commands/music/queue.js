@@ -13,7 +13,7 @@ module.exports = {
             .setTitle('Song Queue')
             .setTimestamp()
             .setFooter('DJ Grape');
-      for (var key in q) {queue.addFields({name: q[key], value: '\u200b' })}
+      for (var key in q) {queue.addFields({name: '\u200b' + q[key], value: '\u200b' })}
       message.channel.send(queue);
 	}
 };
