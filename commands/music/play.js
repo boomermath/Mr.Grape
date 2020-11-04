@@ -2,6 +2,18 @@ const Util = require("discord.js");
 const ytdl = require('ytdl-core');
 const Youtube = require('simple-youtube-api');
 const getVid = new Youtube(process.env.YOUTUBE);
+function formatDuration(durationObj) {
+	const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${
+	durationObj.minutes ? durationObj.minutes : '00'
+	}:${
+	durationObj.seconds < 10
+	? '0' + durationObj.seconds
+	: durationObj.seconds
+	? durationObj.seconds
+	: '00'
+	}`;
+	return duration;
+	}
 module.exports = {
 	name: 'play',
 	description: 'play music from youtube',
