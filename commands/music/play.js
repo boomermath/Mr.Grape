@@ -52,7 +52,16 @@ module.exports = {
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			return message.channel.send(`Added **${Object.entries(song)}** to da queue!`);
+			const added = new Discord.MessageEmbed()
+			.setColor('#dd2de0')
+			.setTitle(song.title)
+			.setURL(song.url)
+			.setDescription(`Duration: ${song.duration}`)
+			.setThumbnail(song.thumbnail)
+			.addField('Added to the queue!', '_')
+			.setTimestamp()
+			.setFooter('DJ Grape');
+			return message.channel.send(added);
 		}
 
 		const queueConstruct = {
@@ -81,7 +90,16 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`me and the boys are groovin to: **${Object.entries(song)}**`);
+		 	const started = new Discord.MessageEmbed()
+			.setColor('#dd2de0')
+			.setTitle(song.title)
+			.setURL(song.url)
+			.setDescription(`Duration: ${song.duration}`)
+			.setThumbnail(song.thumbnail)
+			.addField('Groovin to the tunes!', '_')
+			.setTimestamp()
+			.setFooter('DJ Grape');
+			queue.textChannel.send(started);
 		};
 
 		try {
