@@ -52,7 +52,7 @@ module.exports = {
 			queue.voiceChannel.leave();
         		message.client.queue.delete(message.guild.id);
         		return;
-			}, 3000);
+			}, 120000);
         	}
 
 			const dispatcher = queue.connection.play(ytdl(song.url))
