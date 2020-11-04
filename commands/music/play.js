@@ -8,18 +8,6 @@ module.exports = {
   	aliases: ['p'],
 	cooldown: 2,
 	async execute(message, args, d) {
-		 function formatDuration(durationObj) {
-		    const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${
-		      durationObj.minutes ? durationObj.minutes : '00'
-		    }:${
-		      durationObj.seconds < 10
-			? '0' + durationObj.seconds
-			: durationObj.seconds
-			? durationObj.seconds
-			: '00'
-		    }`;
-		    return duration;
-		  }
     		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('bruh your not even in a voice channel how about you join one?');
 		const permissions = channel.permissionsFor(message.client.user);
