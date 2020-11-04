@@ -12,7 +12,7 @@ module.exports = {
             .setTitle('Song Queue\n_')
             .setTimestamp()
             .setFooter('DJ Grape');
-      for (var key in q) {queue.addFields({name: '\u200b' + `${parseInt(key)+1}` + '. ' + q[key].title, value: '_' })}
+      for (var key in q) {queue.addFields({name: '\u200b' + `${key}` + '. ' + q[key].title, value: '_' })}
       message.channel.send(queue);
 	}
 };
