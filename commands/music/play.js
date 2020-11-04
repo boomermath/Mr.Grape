@@ -52,7 +52,7 @@ module.exports = {
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			const added = new Discord.MessageEmbed()
+			const added = newd. Discord.MessageEmbed()
 			.setColor('#dd2de0')
 			.setTitle(song.title)
 			.setURL(song.url)
@@ -90,7 +90,7 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-		 	const started = new Discord.MessageEmbed()
+		 	const started = new d.Discord.MessageEmbed()
 			.setColor('#dd2de0')
 			.setTitle(song.title)
 			.setURL(song.url)
