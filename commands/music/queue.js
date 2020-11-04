@@ -13,7 +13,7 @@ module.exports = {
             .setTimestamp()
             .setFooter('DJ Grape');
       for (var key in q) {
-	queue.addFields({name: '\u200b' + key + '. ' + q[key].title, value: '_' })
+	queue.addFields({name: '\u200b' + ${key+1} + '. ' + q[key].title, value: '_' })
       	if (!q[key]) {
 		message.channel.send('There isn\'t a song playin!');
 		serverQueue.songs.shift();
