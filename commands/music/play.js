@@ -1,64 +1,30 @@
-const Util = require("discord.js");
+const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
-const Youtube = require('simple-youtube-api');
-const getVid = new Youtube(process.env.YOUTUBE);
-function formatDuration(durationObj) {
-	const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${
-	durationObj.minutes ? durationObj.minutes : '00'
-	}:${
-	durationObj.seconds < 10
-	? '0' + durationObj.seconds
-	: durationObj.seconds
-	? durationObj.seconds
-	: '00'
-	}`;
-	return duration;
-	}
+
 module.exports = {
 	name: 'play',
-	description: 'play music from youtube',
-  	aliases: ['p'],
-	cooldown: 2,
+	description: 'Play command.',
+	usage: '[command name]',
+	cooldown: 0,
 	async execute(message, args, d) {
-    		const { channel } = message.member.voice;
-		if (!channel) return message.channel.send('bruh your not even in a voice channel how about you join one?');
+		const { channel } = message.member.voice;
+		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 		const permissions = channel.permissionsFor(message.client.user);
-		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I cant connect to voice channel, no perms');
-		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I cant play music without speak perms');
-		if (!args[0]) return message.channel.send('Whaddya want me to play?');
-	    	const tubeRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
+		if (!permissions.has('SPEAK')) return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
+
 		const serverQueue = message.client.queue.get(message.guild.id);
-	    	const argument = args.join(' ');
-	    	let songInfo;
-	    	if (tubeRegex.test(argument)) {
-			songInfo = await getVid.getVideo(argument);
-			songInfo.url = argument;
-		}
-		else {
-		let theTube = await getVid.searchVideos(argument, 1)
-	    	let url = theTube[0].url;
-		songInfo = await getVid.getVideo(url);
-		songInfo.url = url
-		}
+		const songInfo = await ytdl.getInfo(args[0].replace(/<(.+)>/g, '$1'));
 		const song = {
-			title: songInfo.title,
-			url: songInfo.url,
-			duration: songInfo.duration,
-			thumbnail: songInfo.thumbnails.high.url
+			id: songInfo.videoDetails.video_id,
+			title: Util.escapeMarkdown(songInfo.videoDetails.title),
+			url: songInfo.videoDetails.video_url
 		};
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			const added = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(song.title)
-			.setURL(song.url)
-			.setDescription(`Duration: ${song.duration}`)
-			.setThumbnail(song.thumbnail)
-			.addField('Added to the queue!', '_')
-			.setTimestamp()
-			.setFooter('DJ Grape');
-			return message.channel.send(added);
+			console.log(serverQueue.songs);
+			return message.channel.send(`✅ **${song.title}** has been added to the queue!`);
 		}
 
 		const queueConstruct = {
@@ -75,28 +41,19 @@ module.exports = {
 		const play = async song => {
 			const queue = message.client.queue.get(message.guild.id);
 			if (!song) {
-			queue.voiceChannel.leave();
-        		message.client.queue.delete(message.guild.id);
-        		return;
-        	}
+				queue.voiceChannel.leave();
+				message.client.queue.delete(message.guild.id);
+				return;
+			}
 
-			const dispatcher = queue.connection.play(ytdl(song.url, { filter: "audioonly" }))
+			const dispatcher = queue.connection.play(ytdl(song.url))
 				.on('finish', () => {
 					queue.songs.shift();
 					play(queue.songs[0]);
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-		 	const started = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(song.title)
-			.setURL(song.url)
-			.setDescription(`Duration: ${song.duration}`)
-			.setThumbnail(song.thumbnail)
-			.addField('Groovin to the tunes!', '_')
-			.setTimestamp()
-			.setFooter('DJ Grape');
-			queue.textChannel.send(started);
+			queue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 		};
 
 		try {
@@ -107,7 +64,7 @@ module.exports = {
 			console.error(`I could not join the voice channel: ${error}`);
 			message.client.queue.delete(message.guild.id);
 			await channel.leave();
-			return message.channel.send(`Couldn't join voice channel: ${error} big oof.`);
+			return message.channel.send(`I could not join the voice channel: ${error}`);
 		}
 	}
 };
