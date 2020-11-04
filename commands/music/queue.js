@@ -6,7 +6,7 @@ module.exports = {
 	execute(message, args, d) {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("There isn't a song playin");
-    const q = serverQueue.songs;
+    const q = Array.from(serverQueue.songs);
     const queue = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Song Queue\n_')
