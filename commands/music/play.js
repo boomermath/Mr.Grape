@@ -9,7 +9,7 @@ module.exports = {
 	cooldown: 2,
 	async execute(message, args, d) {
     		const { channel } = message.member.voice;
-		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!channel) return message.channel.send('bruh your not even in a voice channel how about you join one?');
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I cant connect to voice channel, no perms');
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I cant play music without speak perms');
