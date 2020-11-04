@@ -1,8 +1,8 @@
 module.exports = {
-	name: 'nowplaying',
+	name: 'remove',
 	description: 'get see what song is currently playin',
 	cooldown: 2,
-  	aliases: ['np'],
+  	aliases: ['rm'],
 	execute(message, args, d) {
     const serverQueue = message.client.queue.get(message.guild.id);
    if (isNaN(parseInt(args[0])) || !args[0]) return message.channel.send('Give me a valid number so I can remove that song!');
