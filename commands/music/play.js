@@ -13,7 +13,7 @@ module.exports = {
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I cant connect to voice channel, no perms');
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I cant play music without speak perms');
-		if (!args[0]) {message.channel.send('Whaddya want me to play?');}
+		if (!args[0]) return message.channel.send('Whaddya want me to play?');
 	    	const tubeRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
 		const serverQueue = message.client.queue.get(message.guild.id);
 	    	const argument = args.join(' ');
