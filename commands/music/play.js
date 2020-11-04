@@ -52,7 +52,7 @@ module.exports = {
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			const added = newd. Discord.MessageEmbed()
+			const added = new d.Discord.MessageEmbed()
 			.setColor('#dd2de0')
 			.setTitle(song.title)
 			.setURL(song.url)
