@@ -48,11 +48,9 @@ module.exports = {
 		const play = async song => {
 			const queue = message.client.queue.get(message.guild.id);
 			if (!song) {
-			setTimeout(function(){
 			queue.voiceChannel.leave();
         		message.client.queue.delete(message.guild.id);
         		return;
-			}, 120000);
         	}
 
 			const dispatcher = queue.connection.play(ytdl(song.url))
