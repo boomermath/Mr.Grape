@@ -15,23 +15,32 @@ module.exports = {
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I cant play music without speak perms');
 		if (!args[0]) return message.channel.send('Whaddya want me to play?');
 	    	const tubeRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+		const PlayTubeRegex = /^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/;
 		const serverQueue = message.client.queue.get(message.guild.id);
 	    	const argument = args.join(' ');
 	    	let songInfo;
-	    	if (tubeRegex.test(argument)) {songInfo = await ytdl.getInfo(argument.replace(/<(.+)>/g, '$1'))}
+	    	if (tubeRegex.test(argument)) {
+			songInfo = await getVid.getVideo(argument);
+			songInfo.duration = this.formatDuration(songInfo.duration);
+			songInfo.url = argument;
+		}
 		else {
 		let theTube = await getVid.searchVideos(argument, 1)
-	    	songInfo = await ytdl.getInfo(theTube[0].url);
+	    	let url = theTube[0].url;
+		songInfo = await getVid.getVideo(url);
+		songInfo.url = url
+		songInfo.duration = this.formatDuration(songInfo.duration);
 		}
 		const song = {
-			id: songInfo.videoDetails.video_id,
-			title: Util.escapeMarkdown(songInfo.videoDetails.title),
-			url: songInfo.videoDetails.video_url
+			title: songInfo.title,
+			url: songInfo.url,
+			duration: songInfo.duration,
+			thumbnail: songInfo.thumbnails.high.url
 		};
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			return message.channel.send(`Added **${song.title}** to da queue!`);
+			return message.channel.send(`Added **${Object.entries(song)}** to da queue!`);
 		}
 
 		const queueConstruct = {
@@ -60,7 +69,7 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`me and the boys are groovin to: **${song.title}**`);
+			queue.textChannel.send(`me and the boys are groovin to: **${Object.entries(song)}**`);
 		};
 
 		try {
