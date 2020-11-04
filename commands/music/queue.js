@@ -10,7 +10,7 @@ module.exports = {
     const q = qRaw.split(',');
     const queue = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setTitle('Song Queue')
+            .setTitle('Song Queue\n_')
             .setTimestamp()
             .setFooter('DJ Grape');
       for (var key in q) {queue.addFields({name: '\u200b' + q[key], value: '_' })}
