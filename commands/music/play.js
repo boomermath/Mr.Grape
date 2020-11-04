@@ -27,13 +27,11 @@ module.exports = {
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I cant play music without speak perms');
 		if (!args[0]) return message.channel.send('Whaddya want me to play?');
 	    	const tubeRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
-		const PlayTubeRegex = /^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/;
 		const serverQueue = message.client.queue.get(message.guild.id);
 	    	const argument = args.join(' ');
 	    	let songInfo;
 	    	if (tubeRegex.test(argument)) {
 			songInfo = await getVid.getVideo(argument);
-			songInfo.duration = formatDuration(songInfo.duration);
 			songInfo.url = argument;
 		}
 		else {
@@ -41,7 +39,6 @@ module.exports = {
 	    	let url = theTube[0].url;
 		songInfo = await getVid.getVideo(url);
 		songInfo.url = url
-		songInfo.duration = formatDuration(songInfo.duration);
 		}
 		const song = {
 			title: songInfo.title,
