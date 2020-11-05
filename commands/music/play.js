@@ -44,7 +44,7 @@ module.exports = {
 					title: video.raw.snippet.title,
 					url: null,
 					duration: duration, 
-					thumbnail: songInfo.thumbnails.high.url
+					thumbnail: thumbnail
 				};
 			    serverQueue.songs.push(song);
 			}
