@@ -29,8 +29,38 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		let duration;
-		if (ytRegex.test(argument)) {
+		if (query.match(/^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/)) {
+		const playlist = await youtube.getPlaylist(argument);
+		const vids = await playlist.getVideos()
+		        for (let i = 0; i < vids.length; i++) { 
+			  const video = await vids[i].fetch();
+			  const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
+			  const title = video.raw.snippet.title;
+			  let duration = this.formatDuration(video.duration);
+			  const thumbnail = video.thumbnails.high.url;
+			  if (duration == '00:00') duration = 'Live Stream';
+				const song = {
+					title: video.raw.snippet.title,
+					url: url,
+					duration: duration, 
+					thumbnail: songInfo.thumbnails.high.url
+				};
+			    serverQueue.songs.push(song);
+			}
+			
+			const added = new d.Discord.MessageEmbed()
+			.setColor('#dd2de0')
+			.setTitle(playlist.title)
+			.setURL(argument)
+			.setDescription(`Playlist Length: ${playlist.length}`)
+			.setThumbnail(playlist.thumbnail)
+			.addField('Playlist added to the queue!', '_')
+			.setTimestamp()
+			.setFooter('DJ Grape');
+			return message.channel.send(added);
+
+		}
+		else if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument, 1);
 		songInfo.url = argument;
 		songInfo.duration = formatDuration(songInfo.duration);
@@ -41,6 +71,8 @@ module.exports = {
 		songInfo.url = video[0].url;
 		songInfo.duration = formatDuration(songInfo.duration);
 		}
+		if (songInfo.duration == '00:00') songInfo.duration = 'Live Stream';
+		
 		const song = {
 			title: songInfo.title,
 			url: songInfo.url,
