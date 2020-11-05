@@ -23,25 +23,22 @@ module.exports = {
 		let thumbnail;
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
+		songInfo.url = argument
 		url = argument;
 		title = songInfo.title;
 		duration = songInfo.duration;
 		thumbnail = songInfo.thumbnails.high.url;
 		}
 		else {
-		let video = await youtube.searchVideos(argument, 1);
+		let video = await youtube.searchVideos(argument);
 		songInfo = await youtube.getVideo(video[0].url);
 		return message.channel.send(Object.entries(songInfo))
-		url = video[0].url;
-		title = songInfo.title;
-		duration = songInfo.duration;
-		thumbnail = songInfo.thumbnails.high.url;
 		}
 		const song = {
-			title: title,
-			url: url,
-			duration: duration, 
-			thumbnail: thumbnail
+			title: songInfo.title,
+			url: songInfo.url,
+			duration: songInfo.duration, 
+			thumbnail: songInfo.thumbnail
 		};
 
 		if (serverQueue) {
