@@ -17,22 +17,14 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		let title;
-		let url;
-		let duration;
-		let thumbnail;
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
 		songInfo.url = argument
-		url = argument;
-		title = songInfo.title;
-		duration = songInfo.duration;
-		thumbnail = songInfo.thumbnails.high.url;
 		}
 		else {
 		let video = await youtube.searchVideos(argument);
 		songInfo = await youtube.getVideo(video[0].url);
-		return message.channel.send(Object.entries(songInfo))
+		return message.channel.send(songInfo)
 		}
 		const song = {
 			title: songInfo.title,
