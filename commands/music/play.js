@@ -29,7 +29,7 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		if (query.match(/^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/)) {
+		if (argument.match(/^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/)) {
 		const playlist = await youtube.getPlaylist(argument);
 		const vids = await playlist.getVideos()
 		        for (let i = 0; i < vids.length; i++) { 
