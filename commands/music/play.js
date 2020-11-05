@@ -25,14 +25,24 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
 		if (!permissions.has('SPEAK')) return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
 		
+		const serverQueue = message.client.queue.get(message.guild.id);
 		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
 		const ytPlaylistRegex = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;;
-		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
+		let listArray;
 		if (ytPlaylistRegex.test(argument)) {
 		const playlist = await youtube.getPlaylist(argument);
-		const vids = await playlist.getVideos()
+		const vids = await playlist.getVideos();
+		const queueConstruct = {
+			textChannel: message.channel,
+			voiceChannel: channel,
+			connection: null,
+			songs: [],
+			volume: 2,
+			playing: true
+		};
+		if (!serverQueue) {message.client.queue.set(message.guild.id, queueConstruct);}
 		        for (let i = 0; i < vids.length; i++) { 
 			  const video = await vids[i].fetch();
 			  const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
@@ -46,9 +56,8 @@ module.exports = {
 					duration: duration, 
 					thumbnail: thumbnail
 				};
-			    serverQueue.songs.push(song);
-			}
 			
+			}
 			const added = new d.Discord.MessageEmbed()
 			.setColor('#dd2de0')
 			.setTitle(playlist.title)
