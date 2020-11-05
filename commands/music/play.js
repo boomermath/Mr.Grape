@@ -23,8 +23,8 @@ module.exports = {
 		}
 		else {
 		let video = await youtube.searchVideos(argument, 1);
+		songInfo = await youtube.getVideo(video[0].url);
 		songInfo.url = video[0].url;
-		songInfo = await youtube.getVideo(songInfo.url);
 		}
 		const song = {
 			title: songInfo.title,
