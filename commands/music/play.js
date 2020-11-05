@@ -29,6 +29,7 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
+		let duration;
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
 		songInfo.url = argument;
@@ -43,7 +44,7 @@ module.exports = {
 		const song = {
 			title: songInfo.title,
 			url: songInfo.url,
-			duration: songInfo, 
+			duration: songInfo.duration, 
 			thumbnail: songInfo.thumbnails.high.url
 		};
 
