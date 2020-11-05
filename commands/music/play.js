@@ -35,7 +35,7 @@ module.exports = {
 		songInfo.duration = formatDuration(songInfo.duration);
 		}
 		else {
-		let video = await youtube.searchVideos(argument);
+		let video = await youtube.searchVideos(argument, 1);
 		songInfo = await youtube.getVideo(video[0].url);
 		songInfo.url = video[0].url;
 		songInfo.duration = formatDuration(songInfo.duration);
