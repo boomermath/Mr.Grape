@@ -31,6 +31,7 @@ module.exports = {
 		else {
 		let video = await youtube.searchVideos(argument, 1);
 		songInfo = await youtube.getVideo(video[0].url);
+		return message.channel.send(Object.entries(songInfo))
 		url = video[0].url;
 		title = songInfo.title;
 		duration = songInfo.duration;
