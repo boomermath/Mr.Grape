@@ -56,7 +56,7 @@ module.exports = {
 					duration: duration, 
 					thumbnail: thumbnail
 				};
-			  serverQueue.songs.push(song);
+			  message.client.queue.get(message.guild.id).songs.push(song);
 			}
 			const added = new d.Discord.MessageEmbed()
 			.setColor('#dd2de0')
