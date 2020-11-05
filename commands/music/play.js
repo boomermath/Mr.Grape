@@ -31,7 +31,7 @@ module.exports = {
 		let songInfo;
 		let duration;
 		if (ytRegex.test(argument)) {
-		songInfo = await youtube.getVideo(argument);
+		songInfo = await youtube.getVideo(argument, 1);
 		songInfo.url = argument;
 		songInfo.duration = formatDuration(songInfo.duration);
 		}
@@ -59,7 +59,7 @@ module.exports = {
 			.addField('Added to the queue!', '_')
 			.setTimestamp()
 			.setFooter('DJ Grape');
-			message.channel.send(added);
+			return message.channel.send(added);
 		}
 
 		const queueConstruct = {
