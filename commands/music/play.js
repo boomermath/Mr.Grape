@@ -32,13 +32,13 @@ module.exports = {
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
 		songInfo.url = argument;
-		songInfo.duration = this.formatDuration(songInfo.duration)
+		songInfo.duration = formatDuration(songInfo.duration);
 		}
 		else {
 		let video = await youtube.searchVideos(argument);
 		songInfo = await youtube.getVideo(video[0].url);
 		songInfo.url = video[0].url;
-		songInfo.duration = this.formatDuration(songInfo.duration)
+		songInfo.duration = formatDuration(songInfo.duration);
 		}
 		const song = {
 			title: songInfo.title,
