@@ -2,6 +2,18 @@ const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const YoutubeAPI = require('simple-youtube-api');
 const youtube = new YoutubeAPI(process.env.YOUTUBE);
+function formatDuration(durationObj) {
+    const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${
+      durationObj.minutes ? durationObj.minutes : '00'
+    }:${
+      durationObj.seconds < 10
+        ? '0' + durationObj.seconds
+        : durationObj.seconds
+        ? durationObj.seconds
+        : '00'
+    }`;
+    return duration;
+  }
 module.exports = {
 	name: 'play',
 	description: 'play music',
@@ -20,16 +32,18 @@ module.exports = {
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
 		songInfo.url = argument;
+		songInfo.duration = formatDuration(songInfo.duration)
 		}
 		else {
 		let video = await youtube.searchVideos(argument);
 		songInfo = await youtube.getVideo(video[0].url);
 		songInfo.url = video[0].url;
+		songInfo.duration = formatDuration(songInfo.duration)
 		}
 		const song = {
 			title: songInfo.title,
 			url: songInfo.url,
-			duration: 0, 
+			duration: songInfo, 
 			thumbnail: songInfo.thumbnails.high.url
 		};
 
@@ -67,7 +81,10 @@ module.exports = {
 				return;
 			}
 
-			const dispatcher = queue.connection.play(ytdl(song.url, {filter: 'audioonly'}))
+			const dispatcher = queue.connection.play(ytdl(song.url,  {
+								    filter: "audioonly",
+								    quality: "highestaudio"
+								}))
 				.on('finish', () => {
 					queue.songs.shift();
 					play(queue.songs[0]);
