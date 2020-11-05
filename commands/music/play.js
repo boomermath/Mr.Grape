@@ -26,11 +26,15 @@ module.exports = {
 		songInfo = await youtube.getVideo(video[0].url);
 		return message.channel.send(songInfo)
 		}
+		let title = songInfo.title;
+		let url = songInfo.url;
+		let duration = songInfo.duration;
+		let thumbnail = songInfo.thumbnail.duration	
 		const song = {
-			title: songInfo.title,
-			url: songInfo.url,
-			duration: songInfo.duration, 
-			thumbnail: songInfo.thumbnail
+			title: title,
+			url: url,
+			duration: duration, 
+			thumbnail: thumbnail
 		};
 
 		if (serverQueue) {
