@@ -29,7 +29,7 @@ module.exports = {
 		let title = songInfo.title;
 		let url = songInfo.url;
 		let duration = songInfo.duration;
-		let thumbnail = songInfo.thumbnail.high.url;	
+		let thumbnail = songInfo.thumbnails.high.url;	
 		const song = {
 			title: title,
 			url: url,
