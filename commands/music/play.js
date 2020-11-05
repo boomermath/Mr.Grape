@@ -62,12 +62,11 @@ module.exports = {
 			.setColor('#dd2de0')
 			.setTitle(playlist.title)
 			.setURL(argument)
-			.setDescription(`Playlist Length: ${playlist.length}`)
-			.setThumbnail(playlist.thumbnail)
+			.setDescription(`Playlist`)
 			.addField('Playlist added to the queue!', '_')
 			.setTimestamp()
 			.setFooter('DJ Grape');
-			return message.channel.send(added);
+			message.channel.send(added);
 
 		}
 		else if (ytRegex.test(argument)) {
