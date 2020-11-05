@@ -57,7 +57,7 @@ module.exports = {
 				return;
 			}
 
-			const dispatcher = queue.connection.play(ytdl(song.url, {filter: audioonly}))
+			const dispatcher = queue.connection.play(ytdl(song.url, {filter: 'audioonly'}))
 				.on('finish', () => {
 					queue.songs.shift();
 					play(queue.songs[0]);
