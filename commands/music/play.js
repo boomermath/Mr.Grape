@@ -42,7 +42,7 @@ module.exports = {
 			volume: 2,
 			playing: true
 		};
-		if (!serverQueue) {message.client.queue.set(message.guild.id, queueConstruct);}
+		if (serverQueue === undefined) {message.client.queue.set(message.guild.id, queueConstruct);}
 		        for (let i = 0; i < vids.length; i++) { 
 			  const video = await vids[i].fetch();
 			  const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
