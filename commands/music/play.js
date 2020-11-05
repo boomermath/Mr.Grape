@@ -25,51 +25,12 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
 		if (!permissions.has('SPEAK')) return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
 		
-		const serverQueue = message.client.queue.get(message.guild.id);
 		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
-		const ytPlaylistRegex = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;;
+		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		let listArray;
-		if (ytPlaylistRegex.test(argument)) {
-		const playlist = await youtube.getPlaylist(argument);
-		const vids = await playlist.getVideos();
-		const queueConstruct = {
-			textChannel: message.channel,
-			voiceChannel: channel,
-			connection: null,
-			songs: [],
-			volume: 2,
-			playing: true
-		};
-		if (serverQueue === undefined) {message.client.queue.set(message.guild.id, queueConstruct);}
-		        for (let i = 0; i < vids.length; i++) { 
-			  const video = await vids[i].fetch();
-			  const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
-			  const title = video.raw.snippet.title;
-			  let duration = formatDuration(video.duration);
-			  const thumbnail = video.thumbnails.high.url;
-			  if (duration == '00:00') duration = 'Live Stream';
-				const song = {
-					title: video.raw.snippet.title,
-					url: null,
-					duration: duration, 
-					thumbnail: thumbnail
-				};
-			  message.client.queue.get(message.guild.id).songs.push(song);
-			}
-			const added = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(playlist.title)
-			.setURL(argument)
-			.setDescription(`Playlist`)
-			.addField('Playlist added to the queue!', '_')
-			.setTimestamp()
-			.setFooter('DJ Grape');
-			message.channel.send(added);
-
-		}
-		else if (ytRegex.test(argument)) {
+		let duration;
+		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument, 1);
 		songInfo.url = argument;
 		songInfo.duration = formatDuration(songInfo.duration);
@@ -80,8 +41,6 @@ module.exports = {
 		songInfo.url = video[0].url;
 		songInfo.duration = formatDuration(songInfo.duration);
 		}
-		if (songInfo.duration == '00:00') songInfo.duration = 'Live Stream';
-		
 		const song = {
 			title: songInfo.title,
 			url: songInfo.url,
