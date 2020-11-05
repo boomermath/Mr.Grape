@@ -17,20 +17,30 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
+		let title;
+		let url;
+		let duration;
+		let thumbnail;
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
-		songInfo.url = argument;
+		url = argument;
+		title = songInfo.title;
+		duration = songInfo.duration;
+		thumbnail = songInfo.thumbnails.high.url;
 		}
 		else {
 		let video = await youtube.searchVideos(argument, 1);
 		songInfo = await youtube.getVideo(video[0].url);
-		songInfo.url = video[0].url;
+		url = video[0].url;
+		title = songInfo.title;
+		duration = songInfo.duration;
+		thumbnail = songInfo.thumbnails.high.url;
 		}
 		const song = {
-			title: songInfo.title,
-			url: songInfo.url,
-			duration: songInfo.duration, 
-			thumbnail: songInfo.thumbnails.high.url
+			title: title,
+			url: url,
+			duration: duration, 
+			thumbnail: thumbnail
 		};
 
 		if (serverQueue) {
