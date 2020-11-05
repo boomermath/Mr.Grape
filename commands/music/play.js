@@ -19,27 +19,32 @@ module.exports = {
 		let songInfo;
 		if (ytRegex.test(argument)) {
 		songInfo = await youtube.getVideo(argument);
-		songInfo.url = argument
+		songInfo.url = argument;
 		}
 		else {
 		let video = await youtube.searchVideos(argument);
 		songInfo = await youtube.getVideo(video[0].url);
-		return message.channel.send(songInfo)
+		songInfo.url = video[0].url;
 		}
-		let title = songInfo.title;
-		let url = songInfo.url;
-		let duration = songInfo.duration;
-		let thumbnail = songInfo.thumbnails.high.url;	
 		const song = {
-			title: title,
-			url: url,
-			duration: duration, 
-			thumbnail: thumbnail
+			title: songInfo.title,
+			url: songInfo.url,
+			duration: songInfo.duration, 
+			thumbnail: songInfo.thumbnails.high.url
 		};
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
-			return message.channel.send(`✅ **${song.title}** has been added to the queue!`);
+			const added = new d.Discord.MessageEmbed()
+			.setColor('#dd2de0')
+			.setTitle(song.title)
+			.setURL(song.url)
+			.setDescription(`Duration: ${song.duration}`)
+			.setThumbnail(song.thumbnail)
+			.addField('Added to the queue!', '_')
+			.setTimestamp()
+			.setFooter('DJ Grape');
+			message.channel.send(added);
 		}
 
 		const queueConstruct = {
@@ -50,6 +55,7 @@ module.exports = {
 			volume: 2,
 			playing: true
 		};
+		
 		message.client.queue.set(message.guild.id, queueConstruct);
 		queueConstruct.songs.push(song);
 
@@ -68,7 +74,16 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`🎶 Start playing: **${song.title}**`);
+			const started = new d.Discord.MessageEmbed()
+			.setColor('#dd2de0')
+			.setTitle(song.title)
+			.setURL(song.url)
+			.setDescription(`Duration: ${song.duration}`)
+			.setThumbnail(song.thumbnail)
+			.addField('Groovin to the tunes!', '_')
+			.setTimestamp()
+			.setFooter('DJ Grape');
+			queue.textChannel.send(started);
 		};
 
 		try {
