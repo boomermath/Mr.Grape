@@ -12,7 +12,7 @@ module.exports = {
   	case 1:
 	loop = "the **song**"
     	break;
-  	case y:
+  	case 2:
 	loop = "the **queue**"
     	break;
   	default:
