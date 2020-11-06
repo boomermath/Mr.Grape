@@ -90,7 +90,11 @@ module.exports = {
 								}))
 				.on('finish', () => {
 					if (queue.repeatMode === 1) {
-					play(queue.songs[0])	
+					play(queue.songs[0]);	
+					}
+					else if (queue.repeatMode === 2) {
+					queue.songs.push(queue.songs.shift());
+					play(queue.songs[0]);						
 					}
 					else {
 					queue.songs.shift();
