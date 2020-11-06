@@ -11,6 +11,8 @@ module.exports = {
     const actualSeek = ((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000)
     const seek = new Date(actualSeek * 1000).toISOString().substr(11,8);
     const timeLeft = new Date((duration - actualSeek) * 1000).toISOString().substr(11,8);
+    if (seek.length === 8 && seek.startsWith("00:")) {seek.replace('00:','')}
+    if (timeLeft.length === 8 && timeLeft.startsWith("00:")) {timeLeft.replace('00:','')}
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Now Playing')
