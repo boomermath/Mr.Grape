@@ -15,8 +15,9 @@ module.exports = {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Bruh wdym there is nothing playin");
     const q = serverQueue.songs[0];
-    const seek = new Date(((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000) * 1000).toISOString().substr(11,8);
-    const timeLeft = new Date((convertTime(q.duration) - seek) * 1000).toISOString().substr(11,8);
+    const actualSeek = ((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000)
+    const seek = new Date(actualSeek * 1000).toISOString().substr(11,8);
+    const timeLeft = new Date((convertTime(q.duration) - actualSeek) * 1000).toISOString().substr(11,8);
     if (seek.startsWith('00:00:')) {seek.replace('00:')}
     if (timeLeft.startsWith('00:00:')) {timeLeft.replace('00:')}
     const np = new d.Discord.MessageEmbed()
