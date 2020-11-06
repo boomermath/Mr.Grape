@@ -9,6 +9,6 @@ module.exports = {
 			serverQueue.connection.dispatcher.pause();
 			return message.channel.send('Music Paused.');
 		}
-		return message.channel.send("There's no music playin");
+		return message.channel.send("Its paused now");
 	}
 };
