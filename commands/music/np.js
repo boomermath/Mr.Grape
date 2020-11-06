@@ -15,9 +15,10 @@ module.exports = {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Bruh wdym there is nothing playin");
     const q = serverQueue.songs[0];
-    const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000;
-    const timeLeft = convertTime(q.duration) - seek;
-    const show = new Date(timeLeft * 1000).toISOString().substr(11, 8);
+    const seek = new Date(((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000) * 1000).toISOString().substr(11,8);
+    const timeLeft = new Date((convertTime(q.duration) - seek) * 1000).toISOString().substr(11,8);
+    if (seek.startsWith('00:00:')) {seek.replace('00:')}
+    if (timeLeft.startsWith('00:00:')) {timeLeft.replace('00:')}
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Now Playing')
@@ -25,7 +26,7 @@ module.exports = {
     	    .setThumbnail(q.thumbnail)
             .addFields(
             {name: `${q.title}`, value: '\u200b'},
-            {name: 'Time elapsed' , value: `${new Date(seek * 1000).toISOString().substr(11, 8)}`},
+            {name: 'Time elapsed' , value: seek},
             {name: 'Time remaining' , value: timeLeft},
             {name: 'Total Duration' , value: `${q.duration}`},
 
