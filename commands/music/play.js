@@ -89,17 +89,10 @@ module.exports = {
 								    quality: "highestaudio"
 								}))
 				.on('finish', () => {
-					if (queue.repeatMode === 1) {
-					play(queue.songs[0]);	
-					}
-					else if (queue.repeatMode === 2) {
-					queue.songs.push(queue.songs.shift());
-					play(queue.songs[0]);						
-					}
-					else {
-					queue.songs.shift();
+					if (queue.repeatMode === 0) {queue.songs.shift();}
+					else if (queue.repeatMode === 2) {queue.songs.push(queue.songs.shift());					}
+					else {null;}
 					play(queue.songs[0]);
-					}
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
