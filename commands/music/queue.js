@@ -22,7 +22,7 @@ module.exports = {
    	 const queue = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Song Queue')
-	    .setDescription(loop)
+	    .setDescription(loop + '\n_')
             .setTimestamp()
             .setFooter('DJ Grape');
       for (var key in q) {queue.addFields({name: '\u200b' + `${parseInt(key) + 1}` + '. ' + q[key].title, value: '_' })}
