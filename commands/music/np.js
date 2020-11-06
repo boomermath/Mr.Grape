@@ -7,7 +7,7 @@ module.exports = {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Bruh wdym there is nothing playin");
     const q = serverQueue.songs[0];
-    const seek = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000
+    const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Now Playing')
