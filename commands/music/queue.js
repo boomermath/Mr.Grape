@@ -10,19 +10,19 @@ module.exports = {
 	let loop;
 	switch(serverQueue.repeatMode) {
   	case 1:
-	loop = "the song"
+	loop = "Looping the **song**"
     	break;
   	case 2:
-	loop = "the queue"
+	loop = "Looping the **queue**"
     	break;
   	default:
-	loop = "nothing"
+	loop = " "
 	}
    	 const q = serverQueue.songs;
    	 const queue = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Song Queue')
-	    .addField(`Looping + ${loop}`, '\u200b', true)
+	    .setDescription(loop)
             .setTimestamp()
             .setFooter('DJ Grape');
       for (var key in q) {queue.addFields({name: '\u200b' + `${parseInt(key) + 1}` + '. ' + q[key].title, value: '_' })}
