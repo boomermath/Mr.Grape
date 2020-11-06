@@ -7,14 +7,16 @@ module.exports = {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Bruh wdym there is nothing playin");
     const q = serverQueue.songs[0];
+    const seek = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setTitle('Now Playing\n_')
+            .setTitle('Now Playing')
     	    .setURL(q.url)
     	    .setThumbnail(q.thumbnail)
             .addFields(
             {name: `${q.title}`, value: '\u200b'},
-            {name: `${q.duration}` , value: '_'}
+            {name: `${q.duration}` , value: '_'},
+	    {name: 'Seek' , value: seek} 
             )
             .setTimestamp()
             .setFooter('DJ Grape');
