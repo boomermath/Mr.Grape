@@ -5,7 +5,7 @@ module.exports = {
   	aliases: ['np'],
 	execute(message, args, d) {
 	function convertTime(youtubeFormattedTime) {
-		let vidTime = qtime.split(':');
+		let vidTime = youtubeFormattedTime.split(':');
 		let final;
 		if (vidTime.length === 2 && vidTime[0] !== 0) {final = (vidTime[0] * 60) + (vidTime[1])}
 		else if (vidTime.length === 3) {final = (vidTime[0] * 3600) + (vidTime[1] * 60) + (vidTime[2]);}
