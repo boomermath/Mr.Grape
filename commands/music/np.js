@@ -11,8 +11,9 @@ module.exports = {
     const actualSeek = Math.floor((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000) + 1;
     const seek = new Date(actualSeek * 1000).toISOString().substr(11,8);
     const timeLeft = new Date((duration - actualSeek) * 1000).toISOString().substr(11,8);
-    if (seek.length === 8 && seek.startsWith("00:")) {seek.replace('00:','')}
-    if (timeLeft.length === 8 && timeLeft.startsWith("00:")) {timeLeft.replace('00:','')}
+    let finalTotal;
+     if (q.duration.length === 5) {finalTotal = "00:" + q.duration}
+     else {finalTotal = q.duration]
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Now Playing')
@@ -22,7 +23,7 @@ module.exports = {
             {name: `${q.title}`, value: '_'},
             {name: 'Time elapsed' , value: seek},
             {name: 'Time remaining' , value: timeLeft},
-            {name: 'Total Duration' , value: `${q.duration}`},
+            {name: 'Total Duration' , value: finalTotal},
 
             )
             .setTimestamp()
