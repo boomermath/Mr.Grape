@@ -1,6 +1,4 @@
-<
-script >
-    module.exports = {
+module.exports = {
         name: 'remove',
         description: 'get see what song is currently playin',
         cooldown: 2,
@@ -23,5 +21,4 @@ script >
         }
     };
 
-<
-/script>
+
