@@ -8,7 +8,7 @@ module.exports = {
     if (!serverQueue) return message.channel.send("Bruh wdym there is nothing playin");
     const q = serverQueue.songs[0];
     const duration = q.duration.split(':').reverse().reduce((prev, curr, i) => prev + curr*Math.pow(60, i), 0)
-    const actualSeek = ((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000) + 1;
+    const actualSeek = Math.floor((serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000) + 1;
     const seek = new Date(actualSeek * 1000).toISOString().substr(11,8);
     const timeLeft = new Date((duration - actualSeek) * 1000).toISOString().substr(11,8);
     if (seek.length === 8 && seek.startsWith("00:")) {seek.replace('00:','')}
