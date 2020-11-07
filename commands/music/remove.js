@@ -9,7 +9,7 @@ module.exports = {
    if (!serverQueue) return message.channel.send('Nothin is playin');
    let remove = args[0] - 1;
    let arr = serverQueue.songs;
-   if (remove > arr.length || remove < 0) return message.channel.send('Bro that\'s not a valid song to remove.')
+   if (remove > arr.length || remove < 0 || remove === arr.length + 1) return message.channel.send('Bro that\'s not a valid song to remove.')
    message.channel.send('Removed ' + `**${arr[remove].title}**`)
    arr.splice(remove, 1);
   }
