@@ -87,7 +87,7 @@ module.exports = {
 			const dispatcher = queue.connection.play(ytdl(song.url,  {
 								    filter: "audioonly",
 								    quality: "highestaudio",
-								    encoderArgs: ['bass=g=10']
+								    encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
 								}))
 				.on('finish', () => {
 					if (queue.repeatMode === 0) {queue.songs.shift();}
