@@ -13,7 +13,7 @@ module.exports = {
     const timeLeft = new Date((duration - actualSeek) * 1000).toISOString().substr(11,8);
     let finalTotal;
      if (q.duration.length === 5) {finalTotal = "00:" + q.duration}
-     else {finalTotal = q.duration]
+     else {finalTotal = q.duration}
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('Now Playing')
