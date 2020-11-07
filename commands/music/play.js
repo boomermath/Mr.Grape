@@ -18,7 +18,7 @@ module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
 	aliases: ['p'],
-	cooldown: 2,
+	cooldown: 0,
 	async execute(message, args, d) {
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('Get in a voice channel if you wanna play music!');
