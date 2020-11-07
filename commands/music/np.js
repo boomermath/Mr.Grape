@@ -12,7 +12,7 @@ module.exports = {
     const seek = new Date(actualSeek * 1000).toISOString().substr(11,8);
     const timeLeft = new Date((duration - actualSeek) * 1000).toISOString().substr(11,8);
     let finalTotal;
-     if (q.duration.length === 3) {finalTotal = "00:0" + q.duration}
+     if (q.duration.length === 4) {finalTotal = "00:0" + q.duration}
      else {finalTotal = q.duration}
     const np = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
