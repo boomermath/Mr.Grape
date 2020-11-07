@@ -1,5 +1,5 @@
 const { Util } = require('discord.js');
-const ytdl = require('ytdl-core');
+const ytdl = require('discord-ytdl-core');
 const YoutubeAPI = require('simple-youtube-api');
 const youtube = new YoutubeAPI(process.env.YOUTUBE);
 function formatDuration(durationObj) {
@@ -68,7 +68,7 @@ module.exports = {
 			voiceChannel: channel,
 			connection: null,
 			songs: [],
-			volume: 2,
+			volume: 4,
 			playing: true,
 			repeatMode: 0
 		};
