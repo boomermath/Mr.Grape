@@ -1,5 +1,5 @@
 const { Util } = require('discord.js');
-const ytdl = require('discord-ytdl-core');
+const ytdl = require('ytdl-core');
 const YoutubeAPI = require('simple-youtube-api');
 const youtube = new YoutubeAPI(process.env.YOUTUBE);
 function formatDuration(durationObj) {
@@ -18,7 +18,7 @@ module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
 	aliases: ['p'],
-	cooldown: 0,
+	cooldown: 2,
 	async execute(message, args, d) {
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('Get in a voice channel if you wanna play music!');
@@ -68,7 +68,7 @@ module.exports = {
 			voiceChannel: channel,
 			connection: null,
 			songs: [],
-			volume: 4,
+			volume: 2,
 			playing: true,
 			repeatMode: 0
 		};
@@ -86,9 +86,7 @@ module.exports = {
 
 			const dispatcher = queue.connection.play(ytdl(song.url,  {
 								    filter: "audioonly",
-								    quality: "highestaudio",
-								    opusEncoded: true,
-								    encoderArgs: ["bass=g=5"]
+								    quality: "highestaudio"
 								}))
 				.on('finish', () => {
 					if (queue.repeatMode === 0) {queue.songs.shift();}
