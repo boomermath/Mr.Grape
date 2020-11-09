@@ -40,7 +40,7 @@ module.exports = {
                     await d.items.set(message.author.id, inv);
                     continue;
                 }
-
+                if (inv[key] === inv.ore) {continue;}
                 invEmbed.addFields({
                     name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
                     value: `${inv[key]}`
