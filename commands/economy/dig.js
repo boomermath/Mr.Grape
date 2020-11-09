@@ -28,15 +28,6 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Enterprises');
 
-        if (inv && inv.shovel && inv.shovel > 0 && shovelBreak === 1) {
-            mine.addFields({
-                name: 'Uh oh!',
-                value: 'Your shovel broke! If you want a new one, buy it from the shop!'
-            });
-            inv.shovel += -1;
-            await d.items.set(message.author.id, inv);
-        }
-        
         if (!inv) {inv = {};}
         if (!inv.ore) {inv.ore = {};}
         
@@ -100,6 +91,14 @@ module.exports = {
             await d.items.set(message.author.id, inv);
         }
         
+        if (inv && inv.shovel && inv.shovel > 0 && shovelBreak === 1) {
+            mine.addFields({
+                name: 'Uh oh!',
+                value: 'Your shovel broke! If you want a new one, buy it from the shop!'
+            });
+            inv.shovel += -1;
+            await d.items.set(message.author.id, inv);
+        }
         
         message.channel.send(mine);
         d.addMoni(message.author.id, earn);
