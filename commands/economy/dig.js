@@ -61,7 +61,7 @@ module.exports = {
         if (getTierThree === 1) {
         let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
         const rand = Math.floor(Math.random() * 1) + 1;
-        if (!inv.ore[tierTwoOre]) {inv.ore[tierThree] = 0}
+        if (!inv.ore[tierThree]) {inv.ore[tierThree] = 0}
         inv.ore[tierThree] += rand;
          mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
         }
