@@ -84,14 +84,14 @@ module.exports = {
          let secondTier = Math.floor(Math.random() * 25) + 1;
          if (rand === 1) {
              let ore = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
-             if (!inv.ore[ore]) {inv.ore[ore] = 1}
-             else {inv.ore += 1}
+             if (!inv.ore[ore]) {inv.ore[ore] = 0}
+             inv.ore[ore] += Math.floor(Math.random() * 3) + 1;
              mine.addField('You got an ore!', ore);
          }
            if (secondTier === 1) {
-             let ore = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
-             if (!inv.ore[ore]) {inv.ore[ore] = 1}
-             else {inv.ore += 1}
+             let Twoore = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
+             if (!inv.ore[ore]) {inv.ore[ore] = 0}
+             inv.ore[Twoore] += 1
              mine.addField('You got a tier 2 ore!', ore);
            }
             await d.items.set(message.author.id, inv);
