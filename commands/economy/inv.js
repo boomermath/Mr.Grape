@@ -48,10 +48,6 @@ module.exports = {
             }
         }
         if (inv.ore) {
-            invEmbed.addFields({
-                name: "Ore(s)",
-                value: "\u200b"
-            });
             for (const key in inv.ore) {
                 invEmbed.addFields({
                     name: key.charAt(0).toUpperCase() + key.slice(1) + " ore(s)",
