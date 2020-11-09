@@ -59,6 +59,7 @@ module.exports = {
         inv.ore[tierThree] += 1;
          mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
         }
+            await d.items.set(message.author.id, inv);
         }
         else if (inv.t2p) {
         let getTierOne = Math.floor(Math.random() * 4) + 1;  
@@ -73,6 +74,7 @@ module.exports = {
         inv.ore[tierTwoOre] += Math.floor(Math.random() * 2) + 1;
         mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
         }     
+            await d.items.set(message.author.id, inv);
         }
         if (inv.t1p) {
          let rand = Math.floor(Math.random() * 4) + 1;  
