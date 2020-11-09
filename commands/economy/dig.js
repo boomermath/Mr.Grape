@@ -40,6 +40,40 @@ module.exports = {
         if (!inv) {inv = {};}
         if (!inv.ore) {inv.ore = {};}
         
+        if (inv.t3p) {
+        let getTierOne = Math.floor(Math.random() * 2) + 1;  
+        let getTierTwo = Math.floor(Math.random() * 4) + 1;
+        let getTierThree = Math.floor(Math.random() * 8) + 1;
+        if (getTierOne === 1) {
+        let tierOneOre = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
+        inv.ore[tierOneOre] += Math.floor(Math.random() * 3) + 1;
+        mine.addField(`You got ${inv.ore[tierOneOre]} ${tierOneOre}(s)!`,'_')
+        }
+        if (getTierTwo === 1) {
+        let tierTwoOre = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
+        inv.ore[tierTwoOre] += Math.floor(Math.random() * 2) + 1;
+        mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
+        }
+        if (getTierThree === 1) {
+        let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
+        inv.ore[tierThree] += 1;
+         mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
+        }
+        }
+        else if (inv.t2p) {
+        let getTierOne = Math.floor(Math.random() * 4) + 1;  
+        let getTierTwo = Math.floor(Math.random() * 5) + 1;
+        if (getTierOne === 1) {
+        let tierOneOre = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
+        inv.ore[tierOneOre] += Math.floor(Math.random() * 3) + 1;
+        mine.addField(`You got ${inv.ore[tierOneOre]} ${tierOneOre}(s)!`,'_')
+        }
+        if (getTierTwo === 1) {
+        let tierTwoOre = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
+        inv.ore[tierTwoOre] += Math.floor(Math.random() * 2) + 1;
+        mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
+        }     
+        }
         if (inv.t1p) {
          let rand = Math.floor(Math.random() * 4) + 1;  
          let secondTier = Math.floor(Math.random() * 25) + 1;
@@ -48,9 +82,16 @@ module.exports = {
              if (!inv.ore[ore]) {inv.ore[ore] = 1}
              else {inv.ore += 1}
              mine.addField('You got an ore!', ore);
-             await d.items.set(message.author.id, inv);
          }
+           if (secondTier === 1) {
+             let ore = ores.tier1[Math.floor(Math.random() * ores.tier2.length)];
+             if (!inv.ore[ore]) {inv.ore[ore] = 1}
+             else {inv.ore += 1}
+             mine.addField('You got a tier 2 ore!', ore);
+           }
+            await d.items.set(message.author.id, inv);
         }
+        
         
         message.channel.send(mine);
         d.addMoni(message.author.id, earn);
