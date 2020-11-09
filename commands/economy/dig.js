@@ -47,18 +47,21 @@ module.exports = {
         if (getTierOne === 1) {
         let tierOneOre = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
         const rand = Math.floor(Math.random() * 3) + 1;
+        if (!inv.ore[tierOneOre]) {inv.ore[tierOneOre] = 0}            
         inv.ore[tierOneOre] += rand;
         mine.addField(`You got ${inv.ore[tierOneOre]} ${tierOneOre}(s)!`,'_')
         }
         if (getTierTwo === 1) {
         let tierTwoOre = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
         const rand = Math.floor(Math.random() * 2) + 1;
+        if (!inv.ore[tierTwoOre]) {inv.ore[tierTwoOre] = 0}
         inv.ore[tierTwoOre] += rand;
         mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
         }
         if (getTierThree === 1) {
         let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
         const rand = Math.floor(Math.random() * 1) + 1;
+        if (!inv.ore[tierTwoOre]) {inv.ore[tierThree] = 0}
         inv.ore[tierThree] += rand;
          mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
         }
