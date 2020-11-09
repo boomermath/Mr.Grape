@@ -37,39 +37,45 @@ module.exports = {
         let getTierThree = Math.floor(Math.random() * 8) + 1;
         if (getTierOne === 1) {
         let tierOneOre = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
-        const rand = Math.floor(Math.random() * 3) + 1;
         if (!inv.ore[tierOneOre]) {inv.ore[tierOneOre] = 0}            
-        inv.ore[tierOneOre] += rand;
-        mine.addField(`You got ${inv.ore[tierOneOre]} ${tierOneOre}(s)!`,'_')
-        }
-        if (getTierTwo === 1) {
-        let tierTwoOre = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
-        const rand = Math.floor(Math.random() * 2) + 1;
-        if (!inv.ore[tierTwoOre]) {inv.ore[tierTwoOre] = 0}
-        inv.ore[tierTwoOre] += rand;
-        mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
-        }
-        if (getTierThree === 1) {
-        let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
-        const rand = Math.floor(Math.random() * 1) + 1;
-        if (!inv.ore[tierThree]) {inv.ore[tierThree] = 0}
-        inv.ore[tierThree] += rand;
-         mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
-        }
-            await d.items.set(message.author.id, inv);
-        }
-        else if (inv.t2p) {
-        let getTierOne = Math.floor(Math.random() * 4) + 1;  
-        let getTierTwo = Math.floor(Math.random() * 5) + 1;
-        if (getTierOne === 1) {
-        let tierOneOre = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
         inv.ore[tierOneOre] += Math.floor(Math.random() * 3) + 1;
         mine.addField(`You got ${inv.ore[tierOneOre]} ${tierOneOre}(s)!`,'_')
         }
         if (getTierTwo === 1) {
         let tierTwoOre = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
+        if (!inv.ore[tierTwoOre]) {inv.ore[tierTwoOre] = 0}
         inv.ore[tierTwoOre] += Math.floor(Math.random() * 2) + 1;
         mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
+        }
+        if (getTierThree === 1) {
+        let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
+        if (!inv.ore[tierThree]) {inv.ore[tierThree] = 0}
+        inv.ore[tierThree] += Math.floor(Math.random() * 1) + 1;;
+         mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
+        }
+            await d.items.set(message.author.id, inv);
+        }
+        else if (inv.t2p) {
+        let getTierOne = Math.floor(Math.random() * 3) + 1;  
+        let getTierTwo = Math.floor(Math.random() * 5) + 1;
+        let getTierThree = Math.floor(Math.random() * 30) + 1;
+        if (getTierOne === 1) {
+        let tierOne = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
+        if (!inv.ore[tierOne]) {inv.ore[tierOne] = 0}
+        inv.ore[tierOne] += Math.floor(Math.random() * 3) + 1;;
+         mine.addField(`You got ${inv.ore[tierOne]} ${tierOne}(s)!`,'_')
+        }
+        if (getTierTwo === 1) {
+        let tierTwo = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
+        if (!inv.ore[tierTwo]) {inv.ore[tierTwo] = 0}
+        inv.ore[tierTwo] += Math.floor(Math.random() * 1) + 1;;
+         mine.addField(`You got ${inv.ore[tierTwo]} ${tierTwo}(s)!`,'_')
+        }     
+        if (getTierThree === 1) {
+        let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
+        if (!inv.ore[tierThree]) {inv.ore[tierThree] = 0}
+        inv.ore[tierThree] += Math.floor(Math.random() * 1) + 1;;
+         mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
         }     
             await d.items.set(message.author.id, inv);
         }
@@ -83,7 +89,7 @@ module.exports = {
              mine.addField('You got an ore!', ore);
          }
            if (secondTier === 1) {
-             let ore = ores.tier1[Math.floor(Math.random() * ores.tier2.length)];
+             let ore = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
              if (!inv.ore[ore]) {inv.ore[ore] = 1}
              else {inv.ore += 1}
              mine.addField('You got a tier 2 ore!', ore);
