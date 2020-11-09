@@ -40,10 +40,25 @@ module.exports = {
                     await d.items.set(message.author.id, inv);
                     continue;
                 }
+                if (inv.ore) {
+                    continue;
+                }
                 invEmbed.addFields({
                     name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
                     value: `${inv[key]}`
                 });
+            }
+        }
+        if (inv.ore) {
+            invEmbed.addFields({
+                name: "Ore(s)",
+                value: "__"
+            });
+            for (const key in inv.ore) {
+                invEmbed.addFields({
+                    name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
+                    value: `${inv.ore[key]}`
+                })
             }
         }
         message.channel.send(invEmbed);
