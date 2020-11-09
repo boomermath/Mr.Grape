@@ -46,17 +46,20 @@ module.exports = {
         let getTierThree = Math.floor(Math.random() * 8) + 1;
         if (getTierOne === 1) {
         let tierOneOre = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
-        inv.ore[tierOneOre] += Math.floor(Math.random() * 3) + 1;
+        const rand = Math.floor(Math.random() * 3) + 1;
+        inv.ore[tierOneOre] += rand;
         mine.addField(`You got ${inv.ore[tierOneOre]} ${tierOneOre}(s)!`,'_')
         }
         if (getTierTwo === 1) {
         let tierTwoOre = ores.tier2[Math.floor(Math.random() * ores.tier2.length)];
-        inv.ore[tierTwoOre] += Math.floor(Math.random() * 2) + 1;
+        const rand = Math.floor(Math.random() * 2) + 1;
+        inv.ore[tierTwoOre] += rand;
         mine.addField(`You got ${inv.ore[tierTwoOre]} ${tierTwoOre}(s)!`,'_')
         }
         if (getTierThree === 1) {
         let tierThree = ores.tier3[Math.floor(Math.random() * ores.tier3.length)];
-        inv.ore[tierThree] += 1;
+        const rand = Math.floor(Math.random() * 1) + 1;
+        inv.ore[tierThree] += rand;
          mine.addField(`You got ${inv.ore[tierThree]} ${tierThree}(s)!`,'_')
         }
             await d.items.set(message.author.id, inv);
