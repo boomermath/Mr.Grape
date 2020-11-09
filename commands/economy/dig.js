@@ -76,7 +76,7 @@ module.exports = {
         }     
             await d.items.set(message.author.id, inv);
         }
-        if (inv.t1p) {
+        else if (inv.t1p) {
          let rand = Math.floor(Math.random() * 4) + 1;  
          let secondTier = Math.floor(Math.random() * 25) + 1;
          if (rand === 1) {
