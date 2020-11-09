@@ -48,6 +48,7 @@ module.exports = {
              if (!inv.ore[ore]) {inv.ore[ore] = 1}
              else {inv.ore += 1}
              mine.addField('You got an ore!', ore);
+             await d.items.set(message.author.id, inv);
          }
         }
         
