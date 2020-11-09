@@ -16,8 +16,11 @@ module.exports = {
                 value: 'Gold, Platinum, Titanium, Obsidian, Cobalt'
             }, {
                 name: 'Tier 3',
-                value: 'Starium, Lumionite, Hellinite, Grapium'
-            }, )
+                value: 'Starium, Lumionite, Hellinite, Grapium\n'
+            }, {
+                name: 'Pickaxes',
+                value: 'Tier 1: Allows you to get Tier 1 ores, and gives you a small chance of getting Tier 2 ores.\nTier 2: Increases chance of getting Tier 2 ores, small chance of getting Tier 3 ores.\nIncreases chance of getting Tier 3 ores.'
+            },)
             .setTimestamp()
             .setFooter('Grape Mining Corp');
 
