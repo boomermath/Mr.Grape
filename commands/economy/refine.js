@@ -6,14 +6,14 @@ module.exports = {
         let inv = await d.users.get(message.author.id)
         if (argument === 'all') {
             function cost() {
-                let cost = 0;
+                let moni = 0;
                 for (const key in inv.ore) {
                     if (key.includes('Refined') || key.includes('refined')) { continue; }
-                    if (d.ores.tier1.includes(key)) { cost += 3 }
-                    if (d.ores.tier2.includes(key)) { cost += 5 }
-                    if (d.ores.tier3.includes(key)) { cost += 10 }
+                    if (d.ores.tier1.includes(key)) { moni += 3 }
+                    if (d.ores.tier2.includes(key)) { moni += 5 }
+                    if (d.ores.tier3.includes(key)) { moni += 10 }
                 }
-                return cost;
+                return moni;
             }
             let cost = cost();
             if (cost > await d.users.get(message.author.id)) {
