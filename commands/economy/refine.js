@@ -5,7 +5,7 @@ module.exports = {
         let argument = args.join(' ');
         let inv = await d.users.get(message.author.id)
         if (argument === 'all') {
-            function cost() {
+            function getCost() {
                 let moni = 0;
                 for (const key in inv.ore) {
                     if (key.includes('Refined') || key.includes('refined')) { continue; }
@@ -15,7 +15,7 @@ module.exports = {
                 }
                 return moni;
             }
-            let cost = cost();
+            let cost = getCost();
             if (cost > await d.users.get(message.author.id)) {
                 const refine = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
