@@ -43,25 +43,25 @@ module.exports = {
            if (randNum(2) === 1) {pick(randArray(ores.tier1), randNum(7));}
            if (randNum(3) === 1) {pick(randArray(ores.tier2), randNum(4));}
            if (randNum(7) === 1) {pick(randArray(ores.tier3), randNum(3));}
+           if (randNum(100) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tierthreepick -= 1;}
           await d.items.set(message.author.id, inv);
         }
         else if (inv.t2p) {
            if (randNum(3) === 1) {pick(randArray(ores.tier1), randNum(5));}
            if (randNum(5) === 1) {pick(randArray(ores.tier2), randNum(3));}
            if (randNum(35) === 1) {pick(randArray(ores.tier3), 1);}
+           if (randNum(50) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tiertwopick -= 1;}
           await d.items.set(message.author.id, inv);
         }
         else if (inv.t1p) {
            if (randNum(4) === 1) {pick(randArray(ores.tier1), randNum(3));}
            if (randNum(25) === 1) {pick(randArray(ores.tier2), 1);}
+           if (randNum(15) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tieronepick -= 1;}
           await d.items.set(message.author.id, inv);
         }
         
         if (inv && inv.shovel && inv.shovel > 0 && shovelBreak === 1) {
-            mine.addFields({
-                name: 'Uh oh!',
-                value: 'Your shovel broke! If you want a new one, buy it from the shop!'
-            });
+            mine.addFields('Uh oh!','Your shovel broke! If you want a new one, buy it from the shop!');
             inv.shovel += -1;
             await d.items.set(message.author.id, inv);
         }
