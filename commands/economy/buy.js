@@ -9,6 +9,7 @@ module.exports = {
         let numberOfItemsRaw = args.join(' ').match(regex);
         let numberOfItems = parseInt(numberOfItemsRaw);
         let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
+                message.channel.send(item);
         if (have === undefined || have === null) {
             have = {};
         }
