@@ -8,7 +8,7 @@ module.exports = {
         let regex = /\d+/g;
         let numberOfItemsRaw = args.join(' ').match(regex);
         let numberOfItems = parseInt(numberOfItemsRaw);
-        let item = args.join(' ').replace(numberOfItems, '').replace(' ', '').replace('s','');
+        let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
         if (have === undefined || have === null) {
             have = {};
         }
