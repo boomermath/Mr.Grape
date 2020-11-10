@@ -39,13 +39,13 @@ module.exports = {
            const amount = randNum(3);
            if (!inv.ore[tier1]) {inv.ore[tier1] = amount;}
            else {inv.ore[tier1] += amount}
-           mine.addField(`You got ${amount} ${inv.ore[tier1]}(s)!`,'_')
+           mine.addField(`You got ${amount} ${tier1}(s)!`,'_')
           }
            if (randNum(25) === 1) {
             const tier2 = randArray(ores.tier2);
             if (!inv.ore[tier2]) {inv.ore[tier2] = 1}
             else {inv.ore[tier2] += 1}
-            mine.addField(`You got a ${inv.ore[tier2]}!`,'_')
+            mine.addField(`You got a ${tier2}!`,'_')
            }
           await d.items.set(message.author.id, inv);
         }
