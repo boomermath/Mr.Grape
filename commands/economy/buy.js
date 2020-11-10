@@ -8,7 +8,8 @@ module.exports = {
         let regex = /\d+/g;
         let numberOfItemsRaw = args.join(' ').match(regex);
         let numberOfItems = parseInt(numberOfItemsRaw);
-        let item = args.join(' ').replace(numberOfItems, '').replace(' ', '');
+        let item = args.join('').replace(numberOfItems, '');
+        message.channel.send(item)
         if (have === undefined || have === null) {
             have = {};
         }
