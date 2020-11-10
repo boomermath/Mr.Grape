@@ -3,6 +3,11 @@ module.exports = {
     description: 'give items for a price to people',
     cooldown: 5,
     async execute(message, args, d) {
+        const ores = {
+            tier1: ['copper','tin','iron','lead','silver','bronze'],   
+            tier2: ['gold','platinum','titanium','obisidan','cobalt','goshine','faslalt','maclantite'], 
+            tier3: ['starium','lumionite','hellinite','grapium','heaveninite','erdon','shakerium','kelite','limeinite'] 
+           }
         let inv = await d.items.get(message.author.id);
         let regex = /\d+/g;
         let numberOfItemsRaw = args.join(' ').match(regex);

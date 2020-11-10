@@ -49,6 +49,11 @@ module.exports = {
         }
         if (inv.ore) {
             for (const key in inv.ore) {
+                if (inv.ore[key] === 0) {
+                    delete inv.ore[key];
+                    await d.items.set(message.author.id, inv);
+                    continue;
+                }
                 invEmbed.addFields({
                     name: key.charAt(0).toUpperCase() + key.slice(1) + " ore(s)",
                     value: `${inv.ore[key]}`
