@@ -29,7 +29,6 @@ module.exports = {
             .setFooter('Grape Enterprises');
 
         if (!inv) {inv = {};}
-        if (!inv.ore) {inv.ore = {};}
         
         if (inv.t3p) {
         let getTierOne = Math.floor(Math.random() * 2) + 1;  
