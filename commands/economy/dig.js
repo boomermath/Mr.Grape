@@ -23,7 +23,7 @@ module.exports = {
             }, )
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
-            .setFooter('Grape Enterprises');
+            .setFooter('Grape Mining Guild');
 
         if (!inv) {inv = {};}
         if (!inv.ore) {inv.ore = {};}
