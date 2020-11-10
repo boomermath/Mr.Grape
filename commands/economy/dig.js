@@ -60,9 +60,10 @@ module.exports = {
         let getTierTwo = Math.floor(Math.random() * 5) + 1;
         let getTierThree = Math.floor(Math.random() * 30) + 1;
         if (getTierOne === 1) {
+        let quantity = Math.floor(Math.random() * 3) + 1;
         let tierOne = ores.tier1[Math.floor(Math.random() * ores.tier1.length)];
-        if (inv.ore[tierOne] === undefined) {inv.ore[tierOne] = 0}
-        inv.ore[tierOne] += Math.floor(Math.random() * 3) + 1;
+        if (inv.ore[tierOne] === undefined) {inv.ore[tierOne] = quantity}
+        inv.ore[tierOne] += quantity;
          mine.addField(`You got ${inv.ore[tierOne]} ${tierOne}(s)!`,'_')
         }
         if (getTierTwo === 1) {
