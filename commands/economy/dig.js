@@ -39,16 +39,21 @@ module.exports = {
            mine.addField(`You got ${amount} ${ore}(s)!`,'_')
         }
         
-        if (inv.t1p) {
-          if (randNum(4) === 1) {
-            pick(randArray(ores.tier1), randNum(3));
-          }
-           if (randNum(25) === 1) {
-            const tier2 = randArray(ores.tier2);
-            if (!inv.ore[tier2]) {inv.ore[tier2] = 1}
-            else {inv.ore[tier2] += 1}
-            mine.addField(`You got a ${tier2}!`,'_')
-           }
+        if (inv.t3p) {
+           if (randNum(2) === 1) {pick(randArray(ores.tier1), randNum(7));}
+           if (randNum(3) === 1) {pick(randArray(ores.tier2), randNum(4));}
+           if (randNum(7) === 1) {pick(randArray(ores.tier3), randNum(3));}
+          await d.items.set(message.author.id, inv);
+        }
+        else if (inv.t2p) {
+          if (randNum(3) === 1) {pick(randArray(ores.tier1), randNum(5));}
+           if (randNum(5) === 1) {pick(randArray(ores.tier2), randNum(3));}
+           if (randNum(35) === 1) {pick(randArray(ores.tier3), 1);}
+          await d.items.set(message.author.id, inv);
+        }
+        else if (inv.t1p) {
+          if (randNum(4) === 1) {pick(randArray(ores.tier1), randNum(3));}
+           if (randNum(25) === 1) {pick(randArray(ores.tier2), 1);}
           await d.items.set(message.author.id, inv);
         }
         
