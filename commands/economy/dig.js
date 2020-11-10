@@ -46,13 +46,13 @@ module.exports = {
           await d.items.set(message.author.id, inv);
         }
         else if (inv.t2p) {
-          if (randNum(3) === 1) {pick(randArray(ores.tier1), randNum(5));}
+           if (randNum(3) === 1) {pick(randArray(ores.tier1), randNum(5));}
            if (randNum(5) === 1) {pick(randArray(ores.tier2), randNum(3));}
            if (randNum(35) === 1) {pick(randArray(ores.tier3), 1);}
           await d.items.set(message.author.id, inv);
         }
         else if (inv.t1p) {
-          if (randNum(4) === 1) {pick(randArray(ores.tier1), randNum(3));}
+           if (randNum(4) === 1) {pick(randArray(ores.tier1), randNum(3));}
            if (randNum(25) === 1) {pick(randArray(ores.tier2), 1);}
           await d.items.set(message.author.id, inv);
         }
