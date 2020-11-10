@@ -33,13 +33,15 @@ module.exports = {
         if (!inv) {inv = {};}
         if (!inv.ore) {inv.ore = {};}
         
+        function pick(ore, amount) {
+           if (!inv.ore[ore]) {inv.ore[ore] = amount;}
+           else {inv.ore[ore] += amount}
+           mine.addField(`You got ${amount} ${ore}(s)!`,'_')
+        }
+        
         if (inv.t1p) {
           if (randNum(4) === 1) {
-           const tier1 = randArray(ores.tier1);
-           const amount = randNum(3);
-           if (!inv.ore[tier1]) {inv.ore[tier1] = amount;}
-           else {inv.ore[tier1] += amount}
-           mine.addField(`You got ${amount} ${tier1}(s)!`,'_')
+            pick(randArray(ores.tier1), randNum(3));
           }
            if (randNum(25) === 1) {
             const tier2 = randArray(ores.tier2);
