@@ -19,7 +19,7 @@ module.exports = {
                 value: 'Starium, Lumionite, Hellinite, Grapium\n'
             }, {
                 name: 'Pickaxes',
-                value: 'Tier 1: Allows you to get Tier 1 ores, and gives you a small chance of getting Tier 2 ores.\nTier 2: Increases chance of getting Tier 2 ores, small chance of getting Tier 3 ores.\nTier 3: Increases chance of getting Tier 3 ores.'
+                value: '**Tier 1**: Allows you to get Tier 1 ores, and gives you a small chance of getting Tier 2 ores.\n500:star:s\n**Tier 2**: Increases chance of getting Tier 2 ores, small chance of getting Tier 3 ores.\n650:star:s\n**Tier 3**: Increases chance of getting Tier 3 ores.\n750:star:s'
             },)
             .setTimestamp()
             .setFooter('Grape Mining Corp');
