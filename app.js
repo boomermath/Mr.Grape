@@ -23,9 +23,9 @@ const itemShop = {
     starmagnet: 100,
     shovel: 100,
     starmill: 400,
-    tier1pick: 500,
-    tier2pick: 650,
-    tier3pick: 750
+    tieronepick: 500,
+    tiertwopick: 650,
+    tierthreepick: 750
 }
 const d = {
 	"Discord":Discord, 
