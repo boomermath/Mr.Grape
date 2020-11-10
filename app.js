@@ -22,7 +22,10 @@ const itemShop = {
     carrotdetector: 50,
     starmagnet: 100,
     shovel: 100,
-    starmill: 400
+    starmill: 400,
+    tier1pick: 500,
+    tier2pick: 650,
+    tier3pick: 750
 }
 const d = {
 	"Discord":Discord, 
