@@ -52,9 +52,9 @@ module.exports = {
         }
         else {
             if (argument.includes('all')) {
-                let item = argument.replace('all', '').replace(' ','');
+                let item = argument.replace('all', '').replace(' ', '');
                 message.channel.send(item);
-                if (!Object.keys(d.ores.tier1) || !Object.keys(d.ores.tier2) || !Object.keys(d.ores.tier3)) {
+                if (!Object.keys(d.ores.tier1).includes(item) || !Object.keys(d.ores.tier2).includes(item) || !Object.keys(d.ores.tier3).includes(item)) {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + '\'s refinement')
@@ -86,7 +86,8 @@ module.exports = {
                     return moni;
                 }
                 let cost = getCostSingle();
-                inv.ore["Refined " + item] = inv.ore[item];
+                if (!inv.ore["Refined " + item]) {inv.ore["Refined " + item] = inv.ore[item];}
+                else {inv.ore["Refined " + item] += inv.ore[item];}
                 delete inv.ore[item];
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
