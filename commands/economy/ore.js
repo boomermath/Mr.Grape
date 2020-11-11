@@ -4,19 +4,27 @@ module.exports = {
     aliases: ['ores'],
     cooldown: 2,
     execute(message, args, d) {
+        const toTitleCase = (thingy) => {
+            return thingy
+                .toLowerCase()
+                .split('\n')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('\n');
+        };
+
         const ore = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('The Ores')
             .setDescription("A list of ores you can obtain by buying/mining.")
             .addFields({
                 name: 'Tier 1',
-                value: 'Copper, Tin , Iron, Lead, Silver, Bronze'
+                value: `${d.ores.tier1.map(ore => toTitleCase(ore))}`
             }, {
                 name: 'Tier 2',
-                value: 'Gold, Platinum, Titanium, Obsidian, Cobalt'
+                value: `${d.ores.tier2.map(ore => toTitleCase(ore))}`
             }, {
                 name: 'Tier 3',
-                value: 'Starium, Lumionite, Hellinite, Grapium\n'
+                value: `${d.ores.tier3.map(ore => toTitleCase(ore))}`
             }, {
                 name: 'Pickaxes',
                 value: '**Tier 1**: Allows you to get Tier 1 ores, small chance of getting Tier 2 ores.\n500:star:s\n**Tier 2**: Increases chance of getting Tier 2 ores, small chance of getting Tier 3 ores.\n650:star:s\n**Tier 3**: Increases chance of getting Tier 3 ores.\n750:star:s'
