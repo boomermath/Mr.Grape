@@ -54,7 +54,7 @@ module.exports = {
             if (argument.includes('all')) {
                 let item = argument.replace('all', '').replace(' ', '');
                 message.channel.send(item);
-                if (!Object.keys(d.ores.tier1).includes(item) || !Object.keys(d.ores.tier2).includes(item) || !Object.keys(d.ores.tier3).includes(item)) {
+                if (!d.ores.tier1.includes(item) || d.ores.tier2.includes(item) || d.ores.tier3.includes(item)) {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + '\'s refinement')
@@ -102,7 +102,6 @@ module.exports = {
                     .setFooter('Grape Refinery');
                 return message.channel.send(r);
             }
-
         }
     }
 };
