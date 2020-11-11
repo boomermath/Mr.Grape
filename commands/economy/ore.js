@@ -9,7 +9,7 @@ module.exports = {
                 .toLowerCase()
                 .split('\n')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join('\n');
+                .join('\n ');
         };
 
         const ore = new d.Discord.MessageEmbed()
