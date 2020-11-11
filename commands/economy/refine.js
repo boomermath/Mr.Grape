@@ -33,7 +33,8 @@ module.exports = {
             if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
                 if (key.includes('Refined') || key.includes('refined')) { continue; }
-                inv.ore["Refined " + key] = inv.ore[key];
+                if(!inv.ore["Refined " + key]) {inv.ore["Refined " + key] = inv.ore[key];}
+                else {inv.ore["Refined " + key] += inv.ore[key];}
                 delete inv.ore[key];
             }
             d.addMoni(message.author.id, -cost);
