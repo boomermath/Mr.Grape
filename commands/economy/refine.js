@@ -80,9 +80,9 @@ module.exports = {
                 }
                 function getCostSingle() {
                     let moni = 0;
-                    if (d.ores.tier1.includes(key)) { moni += 3 * inv.ore[item] }
-                    if (d.ores.tier2.includes(key)) { moni += 5 * inv.ore[item] }
-                    if (d.ores.tier3.includes(key)) { moni += 10 * inv.ore[item] }
+                    if (d.ores.tier1.includes(item)) { moni += 3 * inv.ore[item] }
+                    if (d.ores.tier2.includes(item)) { moni += 5 * inv.ore[item] }
+                    if (d.ores.tier3.includes(item)) { moni += 10 * inv.ore[item] }
                     return moni;
                 }
                 let cost = getCostSingle();
