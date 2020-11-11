@@ -32,7 +32,7 @@ module.exports = {
             }
             if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
-                if (key.includes('Refined') || key.includes('refined')) { continue; }
+                if (key.includes('Refined')) { continue; }
                 if (!inv.ore["Refined " + key]) { inv.ore["Refined " + key] = inv.ore[key]; }
                 else { inv.ore["Refined " + key] += inv.ore[key]; }
                 delete inv.ore[key];
