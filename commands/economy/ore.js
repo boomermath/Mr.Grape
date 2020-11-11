@@ -11,7 +11,6 @@ module.exports = {
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join('\n');
         };
-
         const ore = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('The Ores')

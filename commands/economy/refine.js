@@ -53,6 +53,7 @@ module.exports = {
         else {
             if (argument.includes('all')) {
                 let item = argument.replace('all', '');
+                message.channel.send(item);
                 if (!Object.keys(d.ores.tier1) || !Object.keys(d.ores.tier2) || !Object.keys(d.ores.tier3)) {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
