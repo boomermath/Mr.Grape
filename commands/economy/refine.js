@@ -61,6 +61,9 @@ module.exports = {
                         .addFields({
                             name: 'Cannot Refine',
                             value: 'That ore doesn\'t exist bruh'
+                        },{
+                            name: 'Cannot Refine',
+                            value: d.ores.tier2
                         })
                         .setTimestamp()
                         .setFooter('Grape Refinery');
