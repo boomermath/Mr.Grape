@@ -1,5 +1,6 @@
 const fs = require('fs');
 const querystring = require('querystring');
+const rand = require('./utils/randomevent')
 const r2 = require('r2');
 const Discord = require('discord.js');
 const config = require('./config.json');
@@ -66,6 +67,7 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
+	rand.run;
 	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
