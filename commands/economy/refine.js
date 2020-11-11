@@ -34,6 +34,8 @@ module.exports = {
             inv.ore["Refined " + key] = inv.ore[key];
             delete inv.ore[key];
            }
+           d.addMoni(message.author.id, -cost);
+           await d.items.set(message.author.id, inv);
         }
     }
 };
