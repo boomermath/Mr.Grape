@@ -3,7 +3,7 @@ module.exports = {
     cooldown: 0,
     async execute(message, args, d) {
         let argument = args.join(' ');
-        let inv = await d.users.get(message.author.id)
+        let inv = await d.items.get(message.author.id)
         if (!inv || !inv.ore) { return message.channel.send('Bruh you don\'t got ores git good'); }
         if (argument === 'all') {
             function getCost() {

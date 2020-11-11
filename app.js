@@ -19,7 +19,7 @@ const addMoni = async function (who, add) {
 }
 const itemShop = {
 	fan: 100,
-	orangedetector: 100,
+	orangedetector: 100,	
 	mangodetector: 50,
 	carrotdetector: 50,
 	starmagnet: 100,
