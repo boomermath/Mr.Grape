@@ -9,7 +9,7 @@ module.exports = {
                 .toLowerCase()
                 .split('\n')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join('\n ');
+                .join('\n');
         };
 
         const ore = new d.Discord.MessageEmbed()
@@ -18,7 +18,7 @@ module.exports = {
             .setDescription("A list of ores you can obtain by buying/mining.")
             .addFields({
                 name: 'Tier 1',
-                value: `${d.ores.tier1.map(ore => toTitleCase(ore))}`
+                value: `${d.ores.tier1.map(ore => toTitleCase(ore)).join(', ')}`
             }, {
                 name: 'Tier 2',
                 value: `${d.ores.tier2.map(ore => toTitleCase(ore))}`
