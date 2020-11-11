@@ -4,6 +4,7 @@ module.exports = {
     async execute(message, args, d) {
         let argument = args.join(' ');
         let inv = await d.users.get(message.author.id)
+        if (!inv || !inv.ore) { return message.channel.send('Bruh you don\'t got ores git good'); }
         if (argument === 'all') {
             function getCost() {
                 let moni = 0;
@@ -17,7 +18,7 @@ module.exports = {
             }
             let cost = getCost();
             if (cost > await d.users.get(message.author.id)) {
-                const refine = new d.Discord.MessageEmbed()
+                const error = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
                     .addFields({
@@ -27,15 +28,26 @@ module.exports = {
                     .setTimestamp()
                     .setFooter('Grape Refinery');
 
-                return message.channel.send(refine);
+                return message.channel.send(error);
             }
-           for (let key in inv.ore) {
-            if (key.includes('Refined') || key.includes('refined')) { continue; }
-            inv.ore["Refined " + key] = inv.ore[key];
-            delete inv.ore[key];
-           }
-           d.addMoni(message.author.id, -cost);
-           await d.items.set(message.author.id, inv);
+            for (let key in inv.ore) {
+                if (key.includes('Refined') || key.includes('refined')) { continue; }
+                inv.ore["Refined " + key] = inv.ore[key];
+                delete inv.ore[key];
+            }
+            d.addMoni(message.author.id, -cost);
+            await d.items.set(message.author.id, inv);
+            const refine = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle(message.author.username + '\'s refinement')
+                .addFields({
+                    name: 'Refined',
+                    value: `Successfully refined all of your ores for ${cost}`
+                })
+                .setTimestamp()
+                .setFooter('Grape Refinery');
+
+            return message.channel.send(refine);
         }
     }
 };
