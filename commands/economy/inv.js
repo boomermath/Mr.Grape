@@ -7,7 +7,7 @@ module.exports = {
         let target = message.mentions.members.first();
         let person;
         let personName;
-        if (args[0] === undefined) {
+        if (!args[0]) {
             person = message.author;
             personName = message.author.username;
         } else if (args[0].startsWith("<@") && args[0].endsWith(">")) {

@@ -17,7 +17,7 @@ module.exports = {
             message.channel.send('Whaddya wanna sell?');
             return;
         }
-        if (numberOfItemsRaw === NaN || numberOfItemsRaw === null || numberOfItemsRaw === undefined) {
+        if (isNaN(numberOfItems) || !numberOfItemsRaw) {
             numberOfItems = 1;
         }
         if (numberOfItems === 0) {
@@ -28,7 +28,7 @@ module.exports = {
             message.channel.send("bruh wdym, that's not a valid item to sell");
             return;
         }
-        if (inv[item] === undefined) {
+        if (!inv[item]) {
             message.channel.send("bruh you don't even have that item lol");
             return;
         }

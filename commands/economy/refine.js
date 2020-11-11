@@ -33,8 +33,8 @@ module.exports = {
             if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
                 if (key.includes('Refined') || key.includes('refined')) { continue; }
-                if(!inv.ore["Refined " + key]) {inv.ore["Refined " + key] = inv.ore[key];}
-                else {inv.ore["Refined " + key] += inv.ore[key];}
+                if (!inv.ore["Refined " + key]) { inv.ore["Refined " + key] = inv.ore[key]; }
+                else { inv.ore["Refined " + key] += inv.ore[key]; }
                 delete inv.ore[key];
             }
             d.addMoni(message.author.id, -cost);
@@ -54,7 +54,60 @@ module.exports = {
         else {
             if (argument.includes('all')) {
                 let item = argument.replace('all', '').replace(' ', '');
-                message.channel.send(item);
+                if (!d.ores.tier1.includes(item) && !d.ores.tier2.includes(item) && !d.ores.tier3.includes(item)) {
+                    const e = new d.Discord.MessageEmbed()
+                        .setColor('#dd2de0')
+                        .setTitle(message.author.username + '\'s refinement')
+                        .addFields({
+                            name: 'Cannot Refine',
+                            value: 'That ore doesn\'t exist bruh'
+                        })
+                        .setTimestamp()
+                        .setFooter('Grape Refinery');
+                    return message.channel.send(e);
+                }
+                if (!inv.ore[item]) {
+                    const e = new d.Discord.MessageEmbed()
+                        .setColor('#dd2de0')
+                        .setTitle(message.author.username + '\'s refinement')
+                        .addFields({
+                            name: 'Cannot Refine',
+                            value: 'You don\'t have that ore, git good.'
+                        })
+                        .setTimestamp()
+                        .setFooter('Grape Refinery');
+                    return message.channel.send(e);
+                }
+                function getCostAll() {
+                    let moni = 0;
+                    if (d.ores.tier1.includes(item)) { moni += 3 * inv.ore[item] }
+                    if (d.ores.tier2.includes(item)) { moni += 5 * inv.ore[item] }
+                    if (d.ores.tier3.includes(item)) { moni += 10 * inv.ore[item] }
+                    return moni;
+                }
+                let cost = getCostAll();
+                if (!inv.ore["Refined " + item]) { inv.ore["Refined " + item] = inv.ore[item]; }
+                else { inv.ore["Refined " + item] += inv.ore[item]; }
+                delete inv.ore[item];
+                d.addMoni(message.author.id, -cost);
+                await d.items.set(message.author.id, inv);
+                const r = new d.Discord.MessageEmbed()
+                    .setColor('#dd2de0')
+                    .setTitle(message.author.username + '\'s refinement')
+                    .addFields({
+                        name: 'Refined',
+                        value: `You refined your ${item} ore(s) for ${cost} :star:s`
+                    })
+                    .setTimestamp()
+                    .setFooter('Grape Refinery');
+                return message.channel.send(r);
+            }
+            else {
+                let regex = /\d+/g;
+                let numberOfItemsRaw = args.join(' ').match(regex);
+                let numberOfItems = parseInt(numberOfItemsRaw);
+                let item = args.join('').replace(numberOfItems, '');
+                if (!numberOfItemsRaw || isNaN(numberOfItems)) { numberOfItems = 1; }
                 if (!d.ores.tier1.includes(item) && !d.ores.tier2.includes(item) && !d.ores.tier3.includes(item)) {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
@@ -81,14 +134,14 @@ module.exports = {
                 }
                 function getCostSingle() {
                     let moni = 0;
-                    if (d.ores.tier1.includes(item)) { moni += 3 * inv.ore[item] }
-                    if (d.ores.tier2.includes(item)) { moni += 5 * inv.ore[item] }
-                    if (d.ores.tier3.includes(item)) { moni += 10 * inv.ore[item] }
+                    if (d.ores.tier1.includes(item)) { moni += 3 * numberOfItems }
+                    if (d.ores.tier2.includes(item)) { moni += 5 * numberOfItems }
+                    if (d.ores.tier3.includes(item)) { moni += 10 * numberOfItems }
                     return moni;
                 }
                 let cost = getCostSingle();
-                if (!inv.ore["Refined " + item]) { inv.ore["Refined " + item] = inv.ore[item]; }
-                else { inv.ore["Refined " + item] += inv.ore[item]; }
+                if (!inv.ore["Refined " + item]) { inv.ore["Refined " + item] = numberOfItems; }
+                else { inv.ore["Refined " + item] += numberOfItems; }
                 delete inv.ore[item];
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
@@ -97,7 +150,7 @@ module.exports = {
                     .setTitle(message.author.username + '\'s refinement')
                     .addFields({
                         name: 'Refined',
-                        value: `You refined your ${item} ore(s) for ${cost} :star:s`
+                        value: `You refined your ${numberOfItems} ${item} ore(s) for ${cost} :star:s`
                     })
                     .setTimestamp()
                     .setFooter('Grape Refinery');
