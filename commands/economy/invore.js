@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'inv',
-    description: 'check your inventory',
-    aliases: ['inventory'],
+    name: 'invore',
+    description: 'check your ore inventory',
+    aliases: ['io'],
     cooldown: 3,
     async execute(message, args, d) {
         let target = message.mentions.members.first();
@@ -24,25 +24,23 @@ module.exports = {
         let inv = await d.items.get(person.id);
         const invEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setDescription(`To check your ores, do ${d.config.prefix}io`)
+            .setDescription('Ore Inventory')
             .setTitle(personName + "'s inventory")
-            .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
             .setFooter('Grape Storages Org.');
-        if (!inv || Object.keys(inv).length === 0) {
+        if (inv === undefined || Object.keys(inv).length === 0) {
             invEmbed.addFields({
-                name: 'nothing but cobwebs and dust m8',
+                name: 'nothing but cobwebs and pebbles m8',
                 value: '_'
             });
         }
         else {
-            for (const key in inv) {
+            for (const key in inv.ore) {
                 if (inv[key] === 0) {
                     delete inv[key];
                     await d.items.set(message.author.id, inv);
                     continue;
                 }
-                if (inv[key] === inv.ore) { continue; }
                 invEmbed.addFields({
                     name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
                     value: `${inv[key]}`
