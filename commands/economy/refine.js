@@ -54,16 +54,13 @@ module.exports = {
             if (argument.includes('all')) {
                 let item = argument.replace('all', '').replace(' ', '');
                 message.channel.send(item);
-                if (!d.ores.tier1.includes(item) || !d.ores.tier2.includes(item) || !d.ores.tier3.includes(item)) {
+                if (!d.ores.tier1.includes(item) && !d.ores.tier2.includes(item) && !d.ores.tier3.includes(item)) {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + '\'s refinement')
                         .addFields({
                             name: 'Cannot Refine',
                             value: 'That ore doesn\'t exist bruh'
-                        },{
-                            name: 'Cannot Refine',
-                            value: d.ores.tier2
                         })
                         .setTimestamp()
                         .setFooter('Grape Refinery');
