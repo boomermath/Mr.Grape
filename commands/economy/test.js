@@ -2,7 +2,7 @@ module.exports = {
     name: "test",
     cooldown: 0,
     async execute(message, args, d) {
-        function main() {
+        async function main() {
             let argument = args.join(' ').toLowerCase();
             let inv = await d.items.get(message.author.id);
             function errorCheck(item) {
