@@ -35,7 +35,7 @@ module.exports = {
             else { inv.ore["Refined " + item] += numberOfItems; }
             delete inv.ore[item];
         }
-        function checkCost(cost) {
+        async function checkCost(cost) {
             if (cost > await d.users.get(message.author.id)) {
                 const error = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
