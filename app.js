@@ -32,7 +32,7 @@ const itemShop = {
 const ores = {
 	tier1: ['copper', 'tin', 'iron', 'lead', 'silver', 'bronze'],
 	tier2: ['gold', 'platinum', 'titanium', 'obisidan', 'cobalt', 'goshine', 'faslalt', 'maclantite'],
-	tier3: ['starium', 'lumionite', 'hellinite', 'grapium', 'heaveninite', 'erdon', 'shakerium', 'kelite', 'limeinite']
+	tier3: ['rainbonite','starium', 'lumionite', 'hellinite', 'grapium', 'heaveninite', 'erdon', 'shakerium', 'kelite', 'limeinite']
 }
 const d = {
 	"Discord": Discord,
