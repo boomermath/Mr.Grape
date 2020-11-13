@@ -2,7 +2,7 @@ module.exports = {
     name: 'sell',
     description: 'give items for a price to people',
     cooldown: 5,
-    execute(message, args, d) {
+    async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         let regex = /\d+/g;
         let numberOfItemsRaw = args.join(' ').match(regex);
