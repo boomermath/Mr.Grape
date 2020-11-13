@@ -3,7 +3,7 @@ module.exports = {
     description: 'basic info about the bot',
     cooldown: 5,
     execute(message, args, d) {
-        let uptime = d.client.uptime / 1000;
+        let uptime = message.client.uptime / 1000;
         let unit = "second(s)";
         if (uptime > 59 && unit === "second(s)") {
             uptime /= 60;

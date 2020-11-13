@@ -9,7 +9,7 @@ module.exports = {
             function getCost() {
                 let moni = 0;
                 for (const key in inv.ore) {
-                    if (key.includes('Refined') || key.includes('refined')) { continue; }
+                    if (key.includes('Refined')) { continue; }
                     if (d.ores.tier1.includes(key)) { moni += 3 * inv.ore[key] }
                     if (d.ores.tier2.includes(key)) { moni += 5 * inv.ore[key] }
                     if (d.ores.tier3.includes(key)) { moni += 10 * inv.ore[key] }

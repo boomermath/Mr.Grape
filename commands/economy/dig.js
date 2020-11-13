@@ -6,7 +6,6 @@ module.exports = {
     aliases: ['mine'],
     cooldown: 30,
     async execute(message, args, d) {
-        let shovelBreak = Math.floor(Math.random() * 15) + 1;
         let inv = await d.items.get(message.author.id);
         let earn;
         if (!inv || !inv.shovel || inv.shovel === 0) {
@@ -36,8 +35,8 @@ module.exports = {
         
         if (inv.tierthreepick) {
            if (randNum(2) === 1) {pick(randArray(d.ores.tier1), randNum(7));}
-           if (randNum(3) === 1) {pick(randArray(d.ores.tier2), randNum(4));}
-           if (randNum(7) === 1) {pick(randArray(d.ores.tier3), randNum(3));}
+           if (randNum(3) === 1) {pick(randArray(d.ores.tier2), randNum(5));}
+           if (randNum(7) === 1) {pick(randArray(d.ores.tier3), randNum(2));}
            if (randNum(100) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tierthreepick -= 1;}
           await d.items.set(message.author.id, inv);
         }
@@ -55,7 +54,7 @@ module.exports = {
           await d.items.set(message.author.id, inv);
         }
         
-        if (inv && inv.shovel && inv.shovel > 0 && shovelBreak === 1) {
+        if (inv && inv.shovel && inv.shovel > 0 && randNum(45) === 1) {
             mine.addFields('Uh oh!','Your shovel broke! If you want a new one, buy it from the shop!');
             inv.shovel += -1;
             await d.items.set(message.author.id, inv);
