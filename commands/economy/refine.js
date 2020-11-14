@@ -17,19 +17,7 @@ module.exports = {
                 return moni;
             }
             let cost = getCost();
-            if (cost > await d.users.get(message.author.id)) {
-                const error = new d.Discord.MessageEmbed()
-                    .setColor('#dd2de0')
-                    .setTitle(message.author.username + '\'s refinement')
-                    .addFields({
-                        name: 'Cannot Refine',
-                        value: 'You don\'t have the monies!'
-                    })
-                    .setTimestamp()
-                    .setFooter('Grape Refinery');
-
-                return message.channel.send(error);
-            }
+            if (cost > await d.users.get(message.author.id)) {return message.channel.send('Bruh you don\'t have the moni');}
             if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
                 if (key.includes('Refined')) { continue; }

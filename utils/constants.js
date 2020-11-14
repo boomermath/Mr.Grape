@@ -10,22 +10,28 @@ const addMoni = async function (who, add) {
     if (current === undefined) { await users.set(who, add); }
     else { await users.set(who, (current + add)) }
 }
-const itemShop = { 
-    fan: 100, 
-    orangedetector: 100, 
-    mangodetector: 50, 
-    carrotdetector: 50, 
-    starmagnet: 100, 
-    shovel: 100, 
-    starmill: 400, 
-    tieronepick: 500, 
-    tiertwopick: 650, 
-    tierthreepick: 750 
+const itemShop = {
+    fan: 100,
+    orangedetector: 100,
+    mangodetector: 50,
+    carrotdetector: 50,
+    starmagnet: 100,
+    shovel: 100,
+    starmill: 400,
+    tieronepick: 500,
+    tiertwopick: 650,
+    tierthreepick: 750
 }
-const ores = { 
-    tier1: ['copper', 'tin', 'iron', 'lead', 'silver', 'bronze'], 
-    tier2: ['gold', 'platinum', 'titanium', 'obisidan', 'cobalt', 'goshine', 'faslalt', 'maclantite'], 
-    tier3: ['rainbonite', 'starium', 'lumionite', 'hellinite', 'grapium', 'heaveninite', 'erdon', 'shakerium', 'kelite', 'limeinite'] 
+const ores = {
+    tier1: ['copper', 'tin', 'iron', 'lead', 'silver', 'bronze'],
+    tier2: ['gold', 'platinum', 'titanium', 'obisidan', 'cobalt', 'goshine', 'faslalt', 'maclantite'],
+    tier3: ['rainbonite', 'starium', 'lumionite', 'hellinite', 'grapium', 'heaveninite', 'erdon', 'shakerium', 'kelite', 'limeinite']
+}
+
+const oreSell = {
+    tier1: 9,
+    tier2: 19,
+    tier3: 25, 
 }
 module.exports = {
     "Discord": Discord,
@@ -36,5 +42,6 @@ module.exports = {
     "itemShop": itemShop,
     "querystring": querystring,
     "r2": r2,
-    "ores": ores
+    "ores": ores,
+    "oreSell": oreSell
 };

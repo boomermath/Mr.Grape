@@ -18,8 +18,8 @@ fs.readdirSync('./commands').forEach(folder => {
 
 const cooldowns = new Discord.Collection();
 
-users.on('error', err => console.error('Keyv connection error:', err));
-items.on('error', err => console.error('Keyv connection error:', err));
+users.on('error', err => console.error('Keyv (users) connection error:', err));
+items.on('error', err => console.error('Keyv (items) connection error:', err));
 
 client.once('ready', () => {
 	console.log('Ready!');
