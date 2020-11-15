@@ -104,7 +104,7 @@ module.exports = {
                         { name: 'Profit', value: `${profit} :star:s` }
                     )
                     .setTimestamp()
-                    .setFooter('Grape Marketplaces');
+                    .setFooter('Grape Marketplaces but for ores');
 
                 message.channel.send(sale);
             }
