@@ -43,7 +43,7 @@ module.exports = {
 		songInfo.duration = formatDuration(songInfo.duration);
 		}
 		const song = {
-			title: songInfo.title,
+			title: Util.escapeMarkdown(songInfo.title),
 			url: songInfo.url,
 			duration: songInfo.duration, 
 			thumbnail: songInfo.thumbnails.high.url

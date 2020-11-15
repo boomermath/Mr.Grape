@@ -4,10 +4,10 @@ module.exports = {
     cooldown: 5,
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
-        if (!inv) { return message.channel.send('Bruh you don\'t have anything'); }
         let argument = args.join('');
+        let oreConcat = d.oreSell.tier1.concat(d.oreSell.tier2, d.oreSell.tier3);
         let item;
-        if (argument.includes(Object.keys(d.itemShop))) {
+        if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all');
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
@@ -53,7 +53,7 @@ module.exports = {
             }
             await d.items.set(message.author.id, inv);
         }
-        else if (argument.includes(d.ores.tier1) || argument.includes(d.ores.tier2) || argument.includes(d.ores.tier3)) {
+        else if (oreConcat.some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all', '');
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
@@ -104,8 +104,7 @@ module.exports = {
                 message.channel.send(sale);
             }
             else {
-                let concentatedArray = d.oreSell.tier1.concat(d.oreSell.tier2, d.oreSell.tier3)
-                let numItems = parseInt(argument.replace(concentatedArray, '').replace('refined', ''));
+                let numItems = parseInt(argument.replace(oreConcat, '').replace('refined', ''));
                 item = argument.replace(numItems, '');
                 if (!inv.ore[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
