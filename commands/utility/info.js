@@ -34,7 +34,7 @@ module.exports = {
                 value: 'Originally by Horsey4, Remade by Kinglalu and DAONE'
             }, {
                 name: '# of Servers Mr.Grape is in:',
-                value: `${d.client.guilds.cache.size}`
+                value: `${message.client.guilds.cache.size}`
             }, )
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
