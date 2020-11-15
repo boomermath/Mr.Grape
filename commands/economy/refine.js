@@ -9,7 +9,7 @@ module.exports = {
             function getCost() {
                 let moni = 0;
                 for (const key in inv.ore) {
-                    if (key.includes('Refined')) { continue; }
+                    if (key.includes('refined')) { continue; }
                     if (d.ores.tier1.includes(key)) { moni += 3 * inv.ore[key] }
                     if (d.ores.tier2.includes(key)) { moni += 5 * inv.ore[key] }
                     if (d.ores.tier3.includes(key)) { moni += 10 * inv.ore[key] }
@@ -20,9 +20,9 @@ module.exports = {
             if (cost > await d.users.get(message.author.id)) {return message.channel.send('Bruh you don\'t have the moni');}
             if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
-                if (key.includes('Refined')) { continue; }
-                if (!inv.ore["Refined " + key]) { inv.ore["Refined " + key] = inv.ore[key]; }
-                else { inv.ore["Refined " + key] += inv.ore[key]; }
+                if (key.includes('refined')) { continue; }
+                if (!inv.ore["refined " + key]) { inv.ore["refined " + key] = inv.ore[key]; }
+                else { inv.ore["refined " + key] += inv.ore[key]; }
                 delete inv.ore[key];
             }
             d.addMoni(message.author.id, -cost);
@@ -31,7 +31,7 @@ module.exports = {
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + '\'s refinement')
                 .addFields({
-                    name: 'Refined',
+                    name: 'refined',
                     value: `Successfully refined all of your ores for ${cost} :star:s!`
                 })
                 .setTimestamp()
@@ -74,8 +74,8 @@ module.exports = {
                     return moni;
                 }
                 let cost = getCostAll();
-                if (!inv.ore["Refined " + item]) { inv.ore["Refined " + item] = inv.ore[item]; }
-                else { inv.ore["Refined " + item] += inv.ore[item]; }
+                if (!inv.ore["refined " + item]) { inv.ore["refined " + item] = inv.ore[item]; }
+                else { inv.ore["refined " + item] += inv.ore[item]; }
                 delete inv.ore[item];
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
@@ -83,7 +83,7 @@ module.exports = {
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
                     .addFields({
-                        name: 'Refined',
+                        name: 'refined',
                         value: `You refined your ${item} ore(s) for ${cost} :star:s`
                     })
                     .setTimestamp()
@@ -128,8 +128,8 @@ module.exports = {
                     return moni;
                 }
                 let cost = getCostSingle();
-                if (!inv.ore["Refined " + item]) { inv.ore["Refined " + item] = numberOfItems; }
-                else { inv.ore["Refined " + item] += numberOfItems; }
+                if (!inv.ore["refined " + item]) { inv.ore["refined " + item] = numberOfItems; }
+                else { inv.ore["refined " + item] += numberOfItems; }
                 delete inv.ore[item];
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
@@ -137,7 +137,7 @@ module.exports = {
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
                     .addFields({
-                        name: 'Refined',
+                        name: 'refined',
                         value: `You refined your ${numberOfItems} ${item} ore(s) for ${cost} :star:s`
                     })
                     .setTimestamp()

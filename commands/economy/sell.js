@@ -29,6 +29,7 @@ module.exports = {
             else {
                 let numItems = parseInt(argument.replace(Object.keys(d.itemShop), ''));
                 item = argument.replace(numItems, '');
+                message.channel.send(item + ' ' + numItems)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
