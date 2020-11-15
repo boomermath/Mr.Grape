@@ -10,6 +10,7 @@ module.exports = {
         if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all');
+                message.channel.send(item)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 let profit = (d.itemShop[item] / 2) * inv[item];
                 d.addMoni(message.author.id, profit);
