@@ -4,7 +4,7 @@ module.exports = {
     cooldown: 5,
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
-        let argument = args.join('');
+        let argument = args.join(' ');
         let oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
         let item;
         if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
