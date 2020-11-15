@@ -7,7 +7,7 @@ module.exports = {
         let argument = args.join('');
         let oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
         let item;
-        if (Object.keys(d.itemShop).s   (e => argument.includes(e))) {
+        if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all');
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
