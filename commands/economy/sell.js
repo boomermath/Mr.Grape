@@ -59,6 +59,7 @@ module.exports = {
         else if (oreConcat.some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all', '');
+                message.channel.send(item);
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 let profit = 0;
                 let each;
