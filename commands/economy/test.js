@@ -5,6 +5,7 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.channel.send(`<:silver:778032565197865020>`);
+        message.react('778032565197865020');
+
     }
 };
