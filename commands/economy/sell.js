@@ -6,6 +6,7 @@ module.exports = {
         let inv = await d.items.get(message.author.id);
         let argument = args.join('');
         let oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
+        const numberRegex = /\d+/g;
         let item;
         if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
             if (argument.includes('all')) {
@@ -28,9 +29,8 @@ module.exports = {
                 message.channel.send(saleAll);
             }
             else {
-                let check = Object.keys(d.itemShop).find(v => argument.includes(v))
-                let numItems = parseInt(argument.replace(check, ''));
-                item = argument.replace(numItems, '');
+                let numItems = parseInt(argument.match(numberRegex))
+                item = Object.keys(d.itemShop).find(v => argument.includes(v))
                 message.channel.send(item + ' ' + numItems)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
