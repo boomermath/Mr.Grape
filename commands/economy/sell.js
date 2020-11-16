@@ -66,7 +66,7 @@ module.exports = {
                     let arrVal = [];
                     let each;
                     let profit = 0;
-                    if (d.ores.tier1.some(e => item.includes(e)) {
+                    if (d.ores.tier1.some(e => item.includes(e))) {
                         if (item.includes("refined")) {
                             each = d.oreSell.tier1 * 2;
                             profit += each * numberOfItems;
@@ -78,7 +78,7 @@ module.exports = {
                         arrVal.push(each)
                         arrVal.push(profit);
                     }
-                    else if (d.ores.tier2.some(e => item.includes(e)) {
+                    else if (d.ores.tier2.some(e => item.includes(e))) {
                         if (item.includes("refined")) {
                             each = d.oreSell.tier2 * 2;
                             profit += each * numberOfItems;
@@ -90,7 +90,7 @@ module.exports = {
                         arrVal.push(each)
                         arrVal.push(profit);
                     }
-                    else if (d.ores.tier3.some(e => item.includes(e)) {
+                    else if (d.ores.tier3.some(e => item.includes(e))) {
                         if (item.includes("refined")) {
                             each = d.oreSell.tier3 * 2
                             profit += each * numberOfItems;
