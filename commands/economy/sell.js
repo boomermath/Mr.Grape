@@ -30,7 +30,7 @@ module.exports = {
             }
             else {
                 let numItems = parseInt(argument.match(numberRegex))
-                item = Object.keys(d.itemShop).find(v => argument.includes(v))
+                item = Object.keys(d.itemShop).filter(v => argument.includes(v)).pop()
                 message.channel.send(item + ' ' + numItems)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
@@ -100,8 +100,8 @@ module.exports = {
                 return arrVal;
             }
             if (argument.includes('all')) {
-                if (argument.includes('refined')) { item = "refined " + oreConcat.find(v => argument.includes(v)); }
-                else { item = oreConcat.find(v => argument.includes(v)); }
+                if (argument.includes('refined')) { item = "refined " + oreConcat.filter(v => argument.includes(v)).pop(); }
+                else { item = oreConcat.filter(v => argument.includes(v)).pop(); }
                 message.channel.send(item)
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(argument, item, inv.ore[item])
