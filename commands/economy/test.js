@@ -5,7 +5,7 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        let emojiss = message.client.emojis.get("778023226449330176");
+        let emojiss =  message.guild.emojis.cache.find(emoji => emoji.name === 'silver');
         message.channel.send(`${emojiss}`);
     }
 };
