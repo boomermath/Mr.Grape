@@ -100,8 +100,8 @@ module.exports = {
                 return arrVal;
             }
             if (argument.includes('all')) {
-                if (argument.includes('refined')) {item = "refined " + oreConcat.find(v => argument.includes(v));}
-                else {item = oreConcat.find(v => argument.includes(v));}
+                if (argument.includes('refined')) { item = "refined " + oreConcat.find(v => argument.includes(v)); }
+                else { item = oreConcat.find(v => argument.includes(v)); }
                 message.channel.send(item)
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(argument, item, inv.ore[item])
@@ -120,9 +120,12 @@ module.exports = {
                 message.channel.send(sale);
             }
             else {
-                if (argument.includes('refined')) {item = "refined " + oreConcat.find(v => argument.includes(v));}
-                else {item = oreConcat.find(v => argument.includes(v));}
+                if (argument.includes('refined')) { item = "refined " + oreConcat.find(v => argument.includes(v)); }
+                else { item = oreConcat.find(v => argument.includes(v)); }
                 let numItems = parseInt(argument.match(numberRegex))
+                if (isNaN(numItems) || numItems < 0) { numItems = 1; }
+                if (numItems === 0) { return message.channel.send('ok boomer'); }
+                if (numItems > inv[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
                 message.channel.send(numItems + ' ' + item)
                 if (item.includes('refined')) { item = item.substring(0, 7) + " " + item.substring(7, item.length) }
                 if (!inv.ore[item]) { return message.channel.send('You dont\'t have that item!') }
