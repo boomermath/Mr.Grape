@@ -5,7 +5,6 @@ const client = new Discord.Client();
 const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
 const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
-//const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
 const d = require('./utils/constants');
 client.commands = new Discord.Collection();
 client.queue = new Map();
@@ -25,13 +24,13 @@ items.on('error', err => console.error('Keyv (items) connection error:', err));
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setPresence({ activity: { name: `with ${prefix}help` }, status: 'idle' })
+	client.user.setPresence({ activity: { name: `with ${config.prefix}help` }, status: 'idle' })
 });
 
 client.on('message', async message => {
-	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
+	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName)
