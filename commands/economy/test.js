@@ -5,6 +5,6 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.channel.send(`<a:silver:778039400159379486>`)
+        message.channel.send(`<:silver778039400159379486:>`)
     }
 };
