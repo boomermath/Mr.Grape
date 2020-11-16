@@ -59,6 +59,7 @@ module.exports = {
         else if (oreConcat.some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all', '');
+                if (item.includes('refined')) { item = item.substring(0, 6) + " " + item.substring(6, item.length) }
                 message.channel.send(item);
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 function getOreCost(argument, item, numberOfItems) {
@@ -106,7 +107,7 @@ module.exports = {
                 const soldItem = getOreCost(argument, item, inv.ore[item])
                 message.channel.send(soldItem[1] + ' ' + soldItem[0])
                 d.addMoni(message.author.id, soldItem[1]);
-                delete inv[item];
+                delete inv.ore[item];
                 const sale = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s sale')

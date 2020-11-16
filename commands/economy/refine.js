@@ -31,7 +31,7 @@ module.exports = {
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + '\'s refinement')
                 .addFields({
-                    name: 'refined',
+                    name: 'Refined',
                     value: `Successfully refined all of your ores for ${cost} :star:s!`
                 })
                 .setTimestamp()
@@ -83,7 +83,7 @@ module.exports = {
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
                     .addFields({
-                        name: 'refined',
+                        name: 'Refined',
                         value: `You refined your ${item} ore(s) for ${cost} :star:s`
                     })
                     .setTimestamp()
@@ -137,7 +137,7 @@ module.exports = {
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
                     .addFields({
-                        name: 'refined',
+                        name: 'Refined',
                         value: `You refined your ${numberOfItems} ${item} ore(s) for ${cost} :star:s`
                     })
                     .setTimestamp()
