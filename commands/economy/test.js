@@ -5,7 +5,7 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        const emoji = client.emojis.find(emoji => emoji.name === "silver");
+        const emoji = '<:silver:777985067016126474>'
         message.reply(`${emoji} silver look cool`);
     }
 };
