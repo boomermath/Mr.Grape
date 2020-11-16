@@ -103,9 +103,8 @@ module.exports = {
                     }
                     return arrVal;
                 }
-                const soldItem = getOreCost(argument, item, inv[item])
+                const soldItem = getOreCost(argument, item, inv.ore[item])
                 message.channel.send(soldItem[1] + ' ' + soldItem[0])
-                message.channel.send(inv[item]);
                 d.addMoni(message.author.id, soldItem[1]);
                 delete inv[item];
                 const sale = new d.Discord.MessageEmbed()
