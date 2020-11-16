@@ -104,7 +104,7 @@ module.exports = {
                     return arrVal;
                 }
                 const soldItem = getOreCost(argument, item, inv[item])
-                d.addMoni(message.author.id, profit);
+                d.addMoni(message.author.id, soldItem[1]);
                 delete inv[item];
                 const sale = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
