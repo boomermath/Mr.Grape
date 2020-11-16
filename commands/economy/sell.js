@@ -133,7 +133,7 @@ module.exports = {
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
                 if (numItems > inv.ore[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
                 const soldItem = getOreCost(argument, item, numItems);
-                d.addMoni(message.author.id, profit);
+                d.addMoni(message.author.id, soldItem);
                 inv.ore[item] -= numItems;
                 let receipt;
                 if (numItems === 1) { receipt = `You sold a ${item} for ${soldItem[0]} :star:s each!` }
