@@ -29,7 +29,7 @@ module.exports = {
                 message.channel.send(saleAll);
             }
             else {
-                let numItems = parseInt(argument.match(numberRegex))
+                let numItems = parseInt(argument.match(numberRegex)[0])
                 item = Object.keys(d.itemShop).find(v => argument.includes(v))
                 message.channel.send(item + ' ' + numItems)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
