@@ -5,7 +5,9 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.react('778032565197865020');
-
+        function emoji (id) {
+            return message.client.emojis.get(id).toString();
+        }
+        message.channel.send(emoji("778032565197865020"))
     }
 };
