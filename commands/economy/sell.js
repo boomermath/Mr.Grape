@@ -59,7 +59,7 @@ module.exports = {
         else if (oreConcat.some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all', '');
-                if (item.includes('refined')) { item = item.substring(0, 6) + " " + item.substring(6, item.length) }
+                if (item.includes('refined')) { item = item.substring(0, 7) + " " + item.substring(7, item.length) }
                 message.channel.send(item);
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 function getOreCost(argument, item, numberOfItems) {
