@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         function emoji (id) {
-            return message.client.emojis.cache.get(id).toString();
+            return message.guild.emojis.get(id).toString()
         }
         message.channel.send(emoji("778032565197865020"))
     }
