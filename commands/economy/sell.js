@@ -60,10 +60,11 @@ module.exports = {
             if (argument.includes('all')) {
                 item = argument.replace('all', '');
                 message.channel.send(item);
-                message.channel.send(d.oreSell.tier1);
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 function getOreCost(argument, item, numberOfItems) {
                     let arrVal = [];
+                    let each;
+                    let profit = 0;
                     if (d.ores.tier1.includes(item)) {
                         if (item.includes("refined")) {
                             each = d.oreSell.tier1 * 2;
