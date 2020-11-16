@@ -120,8 +120,9 @@ module.exports = {
                 message.channel.send(sale);
             }
             else {
+                if (argument.includes('refined')) {item = "refined " + oreConcat.find(v => argument.includes(v));}
+                else {item = oreConcat.find(v => argument.includes(v));}
                 let numItems = parseInt(argument.match(numberRegex))
-                item = Object.keys(oreConcat).find(v => argument.includes(v));
                 message.channel.send(numItems + ' ' + item)
                 if (item.includes('refined')) { item = item.substring(0, 7) + " " + item.substring(7, item.length) }
                 if (!inv.ore[item]) { return message.channel.send('You dont\'t have that item!') }
