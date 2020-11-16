@@ -100,10 +100,9 @@ module.exports = {
                 return arrVal;
             }
             if (argument.includes('all')) {
-                item = argument.replace('all', '').replace(' ','');
-                message.channel.send('Befonr' + ' ' + item)
-                if (item.includes('refined')) { item = item.substring(0, 7) + " " + item.substring(7, item.length) }
-                message.channel.send('Afterr' + ' ' + item)
+                if (argument.includes('refined')) {item = "refined " + oreConcat.find(v => argument.includes(v));}
+                else {item = oreConcat.find(v => argument.includes(v));}
+                message.channel.send(item)
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(argument, item, inv.ore[item])
                 d.addMoni(message.author.id, soldItem[1]);
