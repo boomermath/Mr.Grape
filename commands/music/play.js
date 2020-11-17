@@ -87,7 +87,6 @@ module.exports = {
 				opusEncoded: true,
 				encoderArgs: ['-af'],
 				bitrate: 320,
-				seek: seekTime,
 				quality: "highestaudio",
 				liveBuffer: 40000,
 				highWaterMark: 1 << 25,
