@@ -17,13 +17,13 @@ module.exports = {
             .setDescription("A list of ores you can obtain by buying/mining.")
             .addFields({
                 name: 'Tier 1',
-                value: `${d.ores.tier1.map(ore => toTitleCase(ore)).join(', ')}`
+                value: `${d.ores.tier1.map(ore => toTitleCase(ore) + d.emoji(ore)).join(', ')}`
             }, {
                 name: 'Tier 2',
-                value: `${d.ores.tier2.map(ore => toTitleCase(ore)).join(', ')}`
+                value: `${d.ores.tier2.map(ore => toTitleCase(ore) + d.emoji(ore)).join(', ')}`
             }, {
                 name: 'Tier 3',
-                value: `${d.ores.tier3.map(ore => toTitleCase(ore)).join(', ')}`
+                value: `${d.ores.tier3.map(ore => toTitleCase(ore) + d.emoji(ore)).join(', ')}`
             }, {
                 name: 'Pickaxes',
                 value: '**Tier 1**: Allows you to get Tier 1 ores, small chance of getting Tier 2 ores.\n500:star:s\n**Tier 2**: Increases chance of getting Tier 2 ores, small chance of getting Tier 3 ores.\n650:star:s\n**Tier 3**: Increases chance of getting Tier 3 ores.\n750:star:s'
