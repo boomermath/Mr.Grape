@@ -5,7 +5,7 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         const someEmoji = message.client.emojis.cache.get("778264742606798860");
-        console.log(someEmoji);
+        console.log(message.client.emojis.cache);
         message.channel.send(`${someEmoji}`);
     }
 };
