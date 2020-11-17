@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args, d) {
         if (!args[0]) { return; }
         else {
-            message.channel.send(`${d.emoji[args[0]]}`);
+            message.channel.send(d.emoji[args[0]]);
         }
     }
 };
