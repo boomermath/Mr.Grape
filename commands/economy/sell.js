@@ -11,7 +11,6 @@ module.exports = {
         if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
             if (argument.includes('all')) {
                 item = argument.replace('all', '').replace(' ', '');
-                message.channel.send(item)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 let profit = (d.itemShop[item] / 2) * inv[item];
                 d.addMoni(message.author.id, profit);
@@ -31,7 +30,6 @@ module.exports = {
             else {
                 let numItems = parseInt(argument.match(numberRegex))
                 item = Object.keys(d.itemShop).filter(v => argument.includes(v)).pop()
-                message.channel.send(item + ' ' + numItems)
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
@@ -102,7 +100,6 @@ module.exports = {
             if (argument.includes('all')) {
                 if (argument.includes('refined')) { item = "refined " + oreConcat.filter(v => argument.includes(v)).pop(); }
                 else { item = oreConcat.filter(v => argument.includes(v)).pop(); }
-                message.channel.send(item)
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(argument, item, inv.ore[item])
                 d.addMoni(message.author.id, soldItem[1]);
@@ -126,7 +123,6 @@ module.exports = {
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
                 if (numItems > inv.ore[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
-                message.channel.send(numItems + ' ' + item)
                 const soldItem = getOreCost(argument, item, numItems);
                 d.addMoni(message.author.id, soldItem[1]);
                 inv.ore[item] -= numItems;
