@@ -4,6 +4,9 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.channel.send(`${d.emoji.silver}`);
+        if (!args[0]) { return; }
+        else {
+            message.channel.send(`${d.emoji[args[0]]}`);
+        }
     }
 };
