@@ -144,5 +144,6 @@ module.exports = {
             }
             await d.items.set(message.author.id, inv);
         }
+        else {return message.channel.send('Bro that\'s not even a valid item, get good');}
     }
 };
