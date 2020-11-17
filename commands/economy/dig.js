@@ -17,54 +17,54 @@ module.exports = {
             .addFields({
                 name: 'You dug up ' + earn + ' :star:s',
                 value: '_'
-            }, )
+            })
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
             .setFooter('Grape Mining Guild');
 
-        if (!inv) {inv = {};}
-        if (!inv.ore) {inv.ore = {};}
-        
+        if (!inv) { inv = {}; }
+        if (!inv.ore) { inv.ore = {}; }
+
         function pick(ore, amount) {
-           if (!inv.ore[ore]) {inv.ore[ore] = amount;}
-           else {inv.ore[ore] += amount}
-           mine.addField(`You got ${amount} ${ore}(s)!`,'_')
+            if (!inv.ore[ore]) { inv.ore[ore] = amount; }
+            else { inv.ore[ore] += amount }
+            mine.addField(`You got ${amount} ${ore}(s)!`, '_')
         }
-        
-        function randNum(e) {return Math.floor(Math.random() * e) + 1;}
+
+        function randNum(e) { return Math.floor(Math.random() * e) + 1; }
 
         function randArray(array) {
             const chosenOre = array[Math.floor(Math.random() * array.length)];
             return chosenOre + " " + d.emoji[chosenOre];
         }
-        
+
         if (inv.tierthreepick) {
-           if (randNum(2) === 1) {pick(randArray(d.ores.tier1), randNum(7));}
-           if (randNum(3) === 1) {pick(randArray(d.ores.tier2), randNum(5));}
-           if (randNum(7) === 1) {pick(randArray(d.ores.tier3), randNum(2));}
-           if (randNum(100) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tierthreepick -= 1;}
-          await d.items.set(message.author.id, inv);
+            if (randNum(2) === 1) { pick(randArray(d.ores.tier1), randNum(7)); }
+            if (randNum(3) === 1) { pick(randArray(d.ores.tier2), randNum(5)); }
+            if (randNum(7) === 1) { pick(randArray(d.ores.tier3), randNum(2)); }
+            if (randNum(100) === 1) { mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tierthreepick -= 1; }
+            await d.items.set(message.author.id, inv);
         }
         else if (inv.tiertwopick) {
-           if (randNum(3) === 1) {pick(randArray(d.ores.tier1), randNum(5));}
-           if (randNum(5) === 1) {pick(randArray(d.ores.tier2), randNum(3));}
-           if (randNum(35) === 1) {pick(randArray(d.ores.tier3), 1);}
-           if (randNum(50) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tiertwopick -= 1;}
-          await d.items.set(message.author.id, inv);
+            if (randNum(3) === 1) { pick(randArray(d.ores.tier1), randNum(5)); }
+            if (randNum(5) === 1) { pick(randArray(d.ores.tier2), randNum(3)); }
+            if (randNum(35) === 1) { pick(randArray(d.ores.tier3), 1); }
+            if (randNum(50) === 1) { mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tiertwopick -= 1; }
+            await d.items.set(message.author.id, inv);
         }
         else if (inv.tieronepick) {
-           if (randNum(4) === 1) {pick(randArray(d.ores.tier1), randNum(3));}
-           if (randNum(25) === 1) {pick(randArray(d.ores.tier2), 1);}
-           if (randNum(15) === 1) {mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tieronepick -= 1;}
-          await d.items.set(message.author.id, inv);
+            if (randNum(4) === 1) { pick(randArray(d.ores.tier1), randNum(3)); }
+            if (randNum(25) === 1) { pick(randArray(d.ores.tier2), 1); }
+            if (randNum(15) === 1) { mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tieronepick -= 1; }
+            await d.items.set(message.author.id, inv);
         }
-        
+
         if (inv && inv.shovel && inv.shovel > 0 && randNum(45) === 1) {
-            mine.addFields('Uh oh!','Your shovel broke! If you want a new one, buy it from the shop!');
+            mine.addFields('Uh oh!', 'Your shovel broke! If you want a new one, buy it from the shop!');
             inv.shovel += -1;
             await d.items.set(message.author.id, inv);
         }
-        
+
         message.channel.send(mine);
         d.addMoni(message.author.id, earn);
 
