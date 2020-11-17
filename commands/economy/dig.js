@@ -35,9 +35,9 @@ module.exports = {
 
         function randArray(array) {
             const chosenOre = array[Math.floor(Math.random() * array.length)];
-            return d.emoji[chosenOre] + " - " + chosenOre;
+            return chosenOre + " " + d.emoji[chosenOre];
         }
-
+        
         if (inv.tierthreepick) {
            if (randNum(2) === 1) {pick(randArray(d.ores.tier1), randNum(7));}
            if (randNum(3) === 1) {pick(randArray(d.ores.tier2), randNum(5));}
