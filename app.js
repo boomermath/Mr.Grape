@@ -31,10 +31,8 @@ client.on('message', async message => {
 	const badWordArray = ['pretendthisisabadword'];
 
 	if (badWordArray.some(e => message.content.includes(e))) {
-		message.channel.send('No cursing!').then(message => {
-			message.delete();
-		})
-			.catch(console.error);
+		message.channel.send('No cursing!');
+		message.delete();
 	}
 
 	else if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
