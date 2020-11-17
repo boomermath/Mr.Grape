@@ -42,7 +42,7 @@ module.exports = {
                     continue;
                 }
                 invEmbed.addFields({
-                    name: key.charAt(0).toUpperCase() + key.slice(1) + "(s) " + d.emoji[d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).filter(v => argument.includes(v)).pop()],
+                    name: key.charAt(0).toUpperCase() + key.slice(1) + "(s) " + d.emoji[d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).filter(v => key.includes(v)).pop()],
                     value: `${inv.ore[key]}`
                 });
             }
