@@ -34,33 +34,31 @@ const oreSell = {
     tier2: 19,
     tier3: 25,
 }
-function get(id) {
-    return message.client.emojis.cache.get(id);
-}
+
 const emoji = {
-    silver: get("776578867988267059"),
-    titanium: get("776587848924135434"),
-    tin: get("776581611193368579"),
-    starium: get("776601907254788107"),
-    shakerium: get("776875604967948293"),
-    rainbonite: get("776596286887165962"),
-    platinum: get("776586722560966666"),
-    obsidian: get("776589898039296021"),
-    hellinite: get("776619917193117728"),
-    maclantite: get("776598697022324769"),
-    lumionite: get("776604908701876267"),
-    lead: get("776579886637776908"),
-    iron: get("776582852065230858"),
-    magmanite: get("776607429034770494"),
-    heaveninite: get("776616949533638657"),
-    grapium: get("776612094929010688"),
-    goshine: get("776592415209029643"),
-    gold: get("776585426689327105"),
-    fasalt: get("776598681218056203"),
-    erdon: get("776623794622038066"),
-    copper: get("776577290506600489"),
-    cobalt: get("776590825412624414"),
-    bronze: get("776581702318424134")
+    silver: "<:silver:776578867988267059>",
+    titanium: "776587848924135434",
+    tin: "776581611193368579",
+    starium: "776601907254788107",
+    shakerium: "776875604967948293",
+    rainbonite: "776596286887165962",
+    platinum: "776586722560966666",
+    obsidian: "776589898039296021",
+    hellinite: "776619917193117728",
+    maclantite: "776598697022324769",
+    lumionite: "776604908701876267",
+    lead: "776579886637776908",
+    iron: "776582852065230858",
+    magmanite: "776607429034770494",
+    heaveninite: "776616949533638657",
+    grapium: "776612094929010688",
+    goshine: "776592415209029643",
+    gold: "776585426689327105",
+    fasalt: "776598681218056203",
+    erdon: "776623794622038066",
+    copper: "776577290506600489",
+    cobalt: "776590825412624414",
+    bronze: "776581702318424134"
 }
 module.exports = {
     "Discord": Discord,
