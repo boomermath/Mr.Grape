@@ -28,15 +28,12 @@ module.exports = {
         function pick(ore, amount) {
             if (!inv.ore[ore]) { inv.ore[ore] = amount; }
             else { inv.ore[ore] += amount }
-            mine.addField(`You got ${amount} ${ore}(s)!`, '_')
+            mine.addField(`You got ${amount} ${ore}(s)! ${d.emoji[ore]}`, '_')
         }
 
         function randNum(e) { return Math.floor(Math.random() * e) + 1; }
 
-        function randArray(array) {
-            const chosenOre = array[Math.floor(Math.random() * array.length)];
-            return chosenOre + " " + d.emoji[chosenOre];
-        }
+        function randArray(array) {return array[Math.floor(Math.random() * array.length)];}
 
         if (inv.tierthreepick) {
             if (randNum(2) === 1) { pick(randArray(d.ores.tier1), randNum(7)); }
