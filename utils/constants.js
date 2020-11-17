@@ -44,5 +44,4 @@ module.exports = {
     "r2": r2,
     "ores": ores,
     "oreSell": oreSell,
-    "guilds": guilds
 };
