@@ -5,9 +5,10 @@ const client = new Discord.Client();
 const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
 const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
+const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
 client.commands = new Discord.Collection();
-client.queue = new Map();
+client.queue = new Discord.Collection();
 
 fs.readdirSync('./commands').forEach(folder => {
 	fs.readdirSync(`./commands/${folder}`).forEach(file => {
@@ -16,7 +17,6 @@ fs.readdirSync('./commands').forEach(folder => {
 	});
 });
 
-const cooldowns = new Discord.Collection();
 
 users.on('error', err => console.error('Keyv (users) connection error:', err));
 items.on('error', err => console.error('Keyv (items) connection error:', err));
