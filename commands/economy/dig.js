@@ -1,5 +1,3 @@
-function randArray(array) {return array[Math.floor(Math.random() * array.length)];}
-function randNum(e) {return Math.floor(Math.random() * e) + 1;}
 module.exports = {
     name: 'dig',
     description: 'dig to earn stars',
@@ -32,6 +30,10 @@ module.exports = {
            else {inv.ore[ore] += amount}
            mine.addField(`You got ${amount} ${ore}(s)!`,'_')
         }
+        
+        function randNum(e) {return Math.floor(Math.random() * e) + 1;}
+
+        function randArray(array) {return d.emoji[chosenOre] + " - " + array[Math.floor(Math.random() * array.length)];}
         
         if (inv.tierthreepick) {
            if (randNum(2) === 1) {pick(randArray(d.ores.tier1), randNum(7));}
