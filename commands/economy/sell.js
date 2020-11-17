@@ -125,7 +125,7 @@ module.exports = {
                 let numItems = parseInt(argument.match(numberRegex))
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
-                if (numItems > inv[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
+                if (numItems > inv.ore[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
                 message.channel.send(numItems + ' ' + item)
                 const soldItem = getOreCost(argument, item, numItems);
                 d.addMoni(message.author.id, soldItem[1]);
