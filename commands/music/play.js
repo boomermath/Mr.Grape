@@ -1,5 +1,5 @@
 const { Util } = require('discord.js');
-const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core-discord');
 const YoutubeAPI = require('simple-youtube-api');
 const youtube = new YoutubeAPI(process.env.YOUTUBE);
 function formatDuration(durationObj) {
