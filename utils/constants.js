@@ -34,7 +34,6 @@ const oreSell = {
     tier2: 19,
     tier3: 25,
 }
-
 const emoji = {
     silver: "<:silver:776578867988267059>",
     titanium: "776587848924135434",
