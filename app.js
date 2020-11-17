@@ -29,7 +29,7 @@ client.once('ready', () => {
 
 client.on('message', async message => {
 	const badWordArray = ['shit', 'fuck', 'retard', 'damn', 'bitch', 'bastard', 'idiot']
-]
+
 	if (badWordArray.some(e => message.content.includes(e))) {
 		message.channel.send('No cursing!').then(msg => {
 			msg.delete({ timeout: 3000 })
