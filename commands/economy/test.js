@@ -4,6 +4,6 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.channel.send(`${d.silver}`);
+        message.channel.send(`${d.emoji.silver}`);
     }
 };
