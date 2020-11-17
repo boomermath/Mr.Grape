@@ -97,9 +97,10 @@ module.exports = {
                 }
                 return arrVal;
             }
+            const oreFromArray = oreConcat.filter(v => argument.includes(v)).pop();
             if (argument.includes('all')) {
-                if (argument.includes('refined')) { item = "refined " + oreConcat.filter(v => argument.includes(v)).pop(); }
-                else { item = oreConcat.filter(v => argument.includes(v)).pop(); }
+                if (argument.includes('refined')) { item = "refined " +  oreFromArray}
+                else { item = oreFromArray}
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(argument, item, inv.ore[item])
                 d.addMoni(message.author.id, soldItem[1]);
@@ -108,7 +109,7 @@ module.exports = {
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s sale')
                     .addFields(
-                        { name: 'Transaction', value: `You sold all of your ${item}s for ${soldItem[0]} :star:s each!` },
+                        { name: 'Transaction', value: `You sold all of your ${item}s ${d.emoji[oreFromArray]} for ${soldItem[0]} :star:s each!` },
                         { name: 'Profit', value: `${soldItem[1]} :star:s` }
                     )
                     .setTimestamp()
@@ -117,8 +118,8 @@ module.exports = {
                 message.channel.send(sale);
             }
             else {
-                if (argument.includes('refined')) { item = "refined " + oreConcat.filter(v => argument.includes(v)).pop(); }
-                else { item = oreConcat.filter(v => argument.includes(v)).pop(); }
+                if (argument.includes('refined')) { item = "refined " + oreFromArray; }
+                else { item = oreFromArray }
                 let numItems = parseInt(argument.match(numberRegex))
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
@@ -127,8 +128,8 @@ module.exports = {
                 d.addMoni(message.author.id, soldItem[1]);
                 inv.ore[item] -= numItems;
                 let receipt;
-                if (numItems === 1) { receipt = `You sold a ${item} for ${soldItem[0]} :star:s each!` }
-                else { receipt = `You sold ${numItems} ${item}s for ${soldItem[0]} :star:s each!` }
+                if (numItems === 1) { receipt = `You sold a ${item} ${d.emoji[oreFromArray]} for ${soldItem[0]} :star:s each!` }
+                else { receipt = `You sold ${numItems} ${item}s ${d.emoji[oreFromArray]} for ${soldItem[0]} :star:s each!` }
                 const sale = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s sale')
