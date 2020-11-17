@@ -99,8 +99,8 @@ module.exports = {
             }
             const oreFromArray = oreConcat.filter(v => argument.includes(v)).pop();
             if (argument.includes('all')) {
-                if (argument.includes('refined')) { item = "refined " +  oreFromArray}
-                else { item = oreFromArray}
+                if (argument.includes('refined')) { item = "refined " + oreFromArray }
+                else { item = oreFromArray }
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(argument, item, inv.ore[item])
                 d.addMoni(message.author.id, soldItem[1]);
@@ -144,6 +144,6 @@ module.exports = {
             }
             await d.items.set(message.author.id, inv);
         }
-        else {return message.channel.send('Bro that\'s not even a valid item, get good');}
+        else { return message.channel.send('Bro that\'s not even a valid item, get good'); }
     }
 };

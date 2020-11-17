@@ -28,7 +28,7 @@ module.exports = {
             .setTitle(personName + "'s inventory")
             .setTimestamp()
             .setFooter('Grape Storages Org.');
-        if (!inv.ore|| Object.keys(inv.ore).length === 0) {
+        if (!inv.ore || Object.keys(inv.ore).length === 0) {
             invEmbed.addFields({
                 name: 'nothing but cobwebs and pebbles m8',
                 value: '_'

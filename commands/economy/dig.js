@@ -33,7 +33,7 @@ module.exports = {
 
         function randNum(e) { return Math.floor(Math.random() * e) + 1; }
 
-        function randArray(array) {return array[Math.floor(Math.random() * array.length)];}
+        function randArray(array) { return array[Math.floor(Math.random() * array.length)]; }
 
         if (inv.tierthreepick) {
             if (randNum(2) === 1) { pick(randArray(d.ores.tier1), randNum(7)); }
