@@ -5,6 +5,7 @@ module.exports = {
     description: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.channel.send(`<:silver778039400159379486:>`)
+        const someEmoji = message.client.emojis.get("<778264742606798860>");
+        message.channel.send(someEmoji);
     }
 };

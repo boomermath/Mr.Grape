@@ -43,5 +43,6 @@ module.exports = {
     "querystring": querystring,
     "r2": r2,
     "ores": ores,
-    "oreSell": oreSell
+    "oreSell": oreSell,
+    "guilds": guilds
 };

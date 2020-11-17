@@ -20,7 +20,6 @@ const cooldowns = new Discord.Collection();
 
 users.on('error', err => console.error('Keyv (users) connection error:', err));
 items.on('error', err => console.error('Keyv (items) connection error:', err));
-//guilds.on('error', err => console.error('Keyv (guilds) connection error:', err));
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -28,16 +27,7 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
-	const badWordArray = ['shit', 'fuck', 'retard', 'damn', 'bitch', 'bastard', 'idiot']
-
-	if (badWordArray.some(e => message.content.includes(e))) {
-		message.channel.send('No cursing!').then(msg => {
-			msg.delete({ timeout: 3000 })
-		}).catch(console.error);
-		message.delete();
-	}
-
-	else if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
+	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
