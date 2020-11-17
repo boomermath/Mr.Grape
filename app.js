@@ -31,7 +31,9 @@ client.on('message', async message => {
 	const badWordArray = ['pretendthisisabadword'];
 
 	if (badWordArray.some(e => message.content.includes(e))) {
-		message.channel.send('No cursing!');
+		message.channel.send('No cursing!').then(msg => {
+			msg.delete({ timeout: 3000 })
+		}).catch(console.error);
 		message.delete();
 	}
 
