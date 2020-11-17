@@ -1,6 +1,7 @@
 const querystring = require('querystring');
 const r2 = require('r2');
-const { message, Discord } = require('discord.js');
+const Discord = require('discord.js');
+const message = require('discord.js')
 const config = require('../config.json');
 const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
@@ -13,7 +14,7 @@ const addMoni = async function (who, add) {
 const itemShop = {
     fan: 100,
     orangedetector: 100,
-    mangodetector: 50,
+    mangodetector: 50, 
     carrotdetector: 50,
     starmagnet: 100,
     shovel: 100,
