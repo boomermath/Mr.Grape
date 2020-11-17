@@ -59,7 +59,7 @@ const emoji = {
     cobalt: "<:cobalt:776590825412624414>",
     bronze: "<:bronze:776581702318424134>",
     kelite: "\:question:",
-    limeinite: "\:question"
+    limeinite: "\:question:"
 }
 module.exports = {
     "Discord": Discord,
