@@ -84,7 +84,7 @@ module.exports = {
 				return;
 			}
 
-			const dispatcher = queue.connection.play(ytdl(song.url,  {
+			const dispatcher = queue.connection.play(await ytdl(song.url,  {
 								    filter: "audioonly",
 								    quality: "highestaudio"
 								}))
