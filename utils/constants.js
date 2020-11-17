@@ -39,7 +39,7 @@ const emoji = {
     titanium: "<:titanium:776587848924135434>",
     tin: "<:tin:776581611193368579>",
     starium: "<a:starium:776601907254788107>",
-    shakerium: "<a:shakerium:>776875604967948293>",
+    shakerium: "<a:shakerium:776875604967948293>",
     rainbonite: "<a:rainbonite:776596286887165962>",
     platinum: "<:platinum:776586722560966666>",
     obsidian: "<:obsidian:776589898039296021>",
