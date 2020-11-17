@@ -28,7 +28,10 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
-	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
+	const badWordArray = ['pretendthisisabadword'];
+	if (badWordArray.some(e => message.includes(e))) {message.delete(); message.channel.send('No cursing!')}
+	
+	else if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
