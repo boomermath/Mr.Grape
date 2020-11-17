@@ -57,7 +57,9 @@ const emoji = {
     erdon: "<a:Erdon:776623794622038066>",
     copper: "<:copper:776577290506600489>",
     cobalt: "<:cobalt:776590825412624414>",
-    bronze: "<:bronze:776581702318424134>"
+    bronze: "<:bronze:776581702318424134>",
+    kelite: "\:question:",
+    limeinite: "\:question"
 }
 module.exports = {
     "Discord": Discord,

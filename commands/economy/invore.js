@@ -41,8 +41,9 @@ module.exports = {
                     await d.items.set(message.author.id, inv);
                     continue;
                 }
+                let orePic = d.emoji[d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).filter(v => key.includes(v)).pop()];
                 invEmbed.addFields({
-                    name: key.charAt(0).toUpperCase() + key.slice(1) + "(s) " + d.emoji[d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).filter(v => key.includes(v)).pop()],
+                    name: orePic + " - " + key.charAt(0).toUpperCase() + key.slice(1) + "(s) ",
                     value: `${inv.ore[key]}`
                 });
             }
