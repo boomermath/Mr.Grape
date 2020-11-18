@@ -17,7 +17,7 @@ module.exports = {
                 return moni;
             }
             let cost = getCost();
-            if (cost > await d.users.get(message.author.id)) {return message.channel.send('Bruh you don\'t have the moni');}
+            if (cost > await d.users.get(message.author.id)) { return message.channel.send('Bruh you don\'t have the moni'); }
             if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
                 if (key.includes('refined')) { continue; }
@@ -94,7 +94,7 @@ module.exports = {
                 let regex = /\d+/g;
                 let numberOfItemsRaw = args.join(' ').match(regex);
                 let numberOfItems = parseInt(numberOfItemsRaw);
-                let item = args.join('').replace(numberOfItems, '');
+                item = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).filter(v => argument.includes(v)).pop();
                 if (!numberOfItemsRaw || isNaN(numberOfItems)) { numberOfItems = 1; }
                 if (!d.ores.tier1.includes(item) && !d.ores.tier2.includes(item) && !d.ores.tier3.includes(item)) {
                     const e = new d.Discord.MessageEmbed()
@@ -128,9 +128,9 @@ module.exports = {
                     return moni;
                 }
                 let cost = getCostSingle();
+                inv.ore[item] -= numberOfItems;
                 if (!inv.ore["refined " + item]) { inv.ore["refined " + item] = numberOfItems; }
                 else { inv.ore["refined " + item] += numberOfItems; }
-                delete inv.ore[item];
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
                 const r = new d.Discord.MessageEmbed()
