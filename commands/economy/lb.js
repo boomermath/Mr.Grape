@@ -3,7 +3,7 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         const lbObj = {};
-        message.guild.then(member => {
+        message.guild.fetch().then(member => {
             member.members.array().forEach(member => {
                 async function lb() {
                     let userBal = await d.users.get(member.id);
