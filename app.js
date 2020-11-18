@@ -5,7 +5,6 @@ const client = new Discord.Client();
 const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
 const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
-const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
 client.commands = new Discord.Collection();
@@ -21,7 +20,6 @@ fs.readdirSync('./commands').forEach(folder => {
 
 users.on('error', err => console.error('Keyv (users) connection error:', err));
 items.on('error', err => console.error('Keyv (items) connection error:', err));
-guilds.on('error', err => console.error('Keyv (guilds) connection error:', err));
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -29,20 +27,9 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
-	if (message.author.bot) return;
+	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel.type === 'dm') return;
 
-	let args;
-	if (message.guild) {
-		let prefix;
-		if (message.content.startsWith(config.prefix)) {
-			prefix = config.prefix;
-		} else {
-			const guildPrefix = await guilds.get(message.guild.id);
-			if (message.content.startsWith(guildPrefix)) prefix = guildPrefix.prefix;
-		}
-		if (!prefix) return;
-		args = message.content.slice(prefix.length).trim().split(/\s+/);
-	} else { return; }
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName)
