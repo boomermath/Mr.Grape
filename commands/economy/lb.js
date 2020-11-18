@@ -14,7 +14,7 @@ module.exports = {
                 }
                 const sort = Object.entries(lbObj).sort((a, b) => b[1] - a[1]);
                 message.channel.send(sort);
-            }
+            
 
     }
 };
