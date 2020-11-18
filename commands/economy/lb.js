@@ -8,10 +8,10 @@ module.exports = {
         for (const member in members) {
             let m = members[member];
             const userBal = await d.users.get(m)
-            if (!userBal || userBal === 0) { null; }
-            else { lbObj[m] = userBal }
+            if (!userBal || userBal <= 0) { null; }
+            else { lbObj[message.client.fetchUser(m)] = userBal }
         }
-        const sort = Object.entries(lbObj).sort((a, b) => a[1] - b[1]);
+        const sort = Object.entries(lbObj).sort((a, b) => b[1] - a[1]);
         message.channel.send(sort);
     }
 };
