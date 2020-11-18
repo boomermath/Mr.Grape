@@ -29,15 +29,20 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
+	if (message.author.bot) return;
 
-	let prefix;
-	const guildPrefix = await guilds.get(message.guild.id);
-	if (!guildPrefix) { prefix = config.prefix; }
-	else { prefix = guildPrefix.prefix }
-
-	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
-
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	let args;
+	if (message.guild) {
+		let prefix;
+		if (message.content.startsWith(config.prefix)) {
+			prefix = config.prefix;
+		} else {
+			const guildPrefix = await guilds.get(message.guild.id);
+			if (message.content.startsWith(guildPrefix)) prefix = guildPrefix.prefix;
+		}
+		if (!prefix) return;
+		args = message.content.slice(prefix.length).trim().split(/\s+/);
+	} else { return; }
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName)
