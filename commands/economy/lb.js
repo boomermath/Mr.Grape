@@ -1,7 +1,7 @@
 module.exports = {
     name: "lb",
     cooldown: 0,
-    execute(message, args, d) {
+    async execute(message, args, d) {
     
                 const lbObj = {};
                 const guild = message.client.guilds.cache.get(message.guild.id);
