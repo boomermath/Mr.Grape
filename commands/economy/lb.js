@@ -7,6 +7,7 @@ module.exports = {
         const members = guild.members.cache.map(member => member.id);
         for (const member in members) {
             let m = members[member];
+            message.channel.send(m);
             const userBal = await d.users.get(m)
             if (!userBal || userBal === 0) { null; }
             else { lbObj[m] = userBal }
