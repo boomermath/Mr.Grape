@@ -3,17 +3,17 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         const lbObj = {};
-        message.guild.members.fetch().forEach(member => {
-            async function lb() {
-                let userBal = await d.users.get(member.id);
-                if (member.user.bot || userBal === 0 || !userBal) { null; }
-                else {
-                    lbObj[member.id] = userBal;
-                }
+        async function lb() {
+            let userBal = await d.users.get(member.id);
+            if (member.user.bot || userBal === 0 || !userBal) { null; }
+            else {
+                lbObj[member.id] = userBal;
             }
-            lb();
-        });
+        }
+        message.guild.members.fetch()
+        .then(lb());
         const sort = Object.entries(lbObj).sort((a, b) => a[1] - b[1]);
         message.channel.send(sort);
     }
 };
+            
