@@ -4,6 +4,7 @@ module.exports = {
     async execute(message, args, d) {
         const lbObj = {};
         message.guild.members.cache.forEach(member => {
+            message.channel.send(member.id + " " + member.displayName)
             async function lb(member) {
                 let userBal = await d.users.get(member.id);
                 if (!userBal || userBal <= 0) { null; }
