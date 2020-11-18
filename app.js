@@ -29,11 +29,11 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
-	
+
 	let prefix;
 	const guildPrefix = await guilds.get(message.guild.id);
-	if (!guildPrefix) {prefix = config.prefix;}
-	else {prefix = guildPrefix.prefix}
+	if (!guildPrefix) { prefix = config.prefix; }
+	else { prefix = guildPrefix.prefix }
 
 	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
 

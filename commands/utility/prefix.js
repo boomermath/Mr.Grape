@@ -4,7 +4,7 @@ module.exports = {
 	cooldown: 2,
 	async execute(message, args, d) {
     if (!args[0]) {return message.channel.send('What do you wanna set the prefix to?');}
-    const guild = await d.guilds.get(message.guild.id);
+    let guild = await d.guilds.get(message.guild.id);
     if (!guild) {guild = {};}
     guild.prefix = args[0];
 	const prefixEmbed = new d.Discord.MessageEmbed()
