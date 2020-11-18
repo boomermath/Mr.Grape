@@ -4,7 +4,7 @@ module.exports = {
     execute(message, args, d) {
         const lbObj = {};
         message.guild.fetch().then(member => {
-            member.members.array().forEach(member => {
+            member.members.forEach(member => {
                 async function lb() {
                     let userBal = await d.users.get(member.id);
                     if (member.user.bot || userBal === 0 || !userBal) { null; }
