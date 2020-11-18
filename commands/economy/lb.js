@@ -3,7 +3,7 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         const lbObj = {};
-        message.guild.fetch().then(member => {
+        message.guild.members.fetch().then(member => {
             message.channel.send(member.displayName);
         });
         const sort = Object.entries(lbObj).sort((a, b) => a[1] - b[1]);
