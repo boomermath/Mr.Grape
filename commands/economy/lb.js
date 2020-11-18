@@ -3,6 +3,7 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         const lbObj = {};
+        message.channel.send(message.gulid.id)
         message.guild.members.fetch().then(member => {
             message.channel.send(member);
         });
