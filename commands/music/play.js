@@ -69,7 +69,7 @@ module.exports = {
 			volume: 2,
 			playing: true,
 			repeatMode: 0,
-			effects: ['-af','dynaudnorm=f=200']
+			effects: ['-af']
 		};
 
 		message.client.queue.set(message.guild.id, queueConstruct);
@@ -92,6 +92,7 @@ module.exports = {
 						  liveBuffer: 40000,
 						  highWaterMark: 1 << 50, 
 			})
+			
 			const dispatcher = queue.connection.play(stream)
 				.on('finish', () => {
 					if (queue.repeatMode === 0) { queue.songs.shift(); }
