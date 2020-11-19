@@ -142,6 +142,7 @@ module.exports = {
             }
             const oreFromArray = oreConcat.filter(v => argument.includes(v)).pop();
             if (argument.includes('ores' || 'ore' && 'all') && !oreConcat.some(e => argument.includes(e))) {
+                let filter = m => m.author.id === message.author.id;
                 async function sellOresAll() {
                     let profit = 0;
                     for (key in inv.ore) {
