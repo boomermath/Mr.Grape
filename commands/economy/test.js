@@ -3,7 +3,7 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         message.channel.send('Yes or no?')
-        message.channel.awaitMessages(filter, {
+        message.channel.awaitMessages(message.author.id, {
             max: 1,
             time: 5000,
             errors: ['time']
