@@ -13,7 +13,7 @@ module.exports = {
                 function sellTools() {
                     let profit = 0;
                     if (!inv) { return message.channel.send('You got nothin!') }
-                    for (key in inv) { profit += d.itemShop[key] / 2; delete inv[key]; }
+                    for (key in inv) { profit += d.itemShop[key] / 2; delete inv[key]; message.channel.send(profit);}
                     d.addMoni(message.author.id, profit);
                     const saleAllTools = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
