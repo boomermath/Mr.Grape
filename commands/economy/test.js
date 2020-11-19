@@ -2,8 +2,9 @@ module.exports = {
     name: 'test',
     cooldown: 0,
     execute(message, args, d) {
-        message.channel.send('Yes or no?')
-        message.channel.awaitMessages(message.author.id, {
+        message.channel.send('Yes or no?');
+        let filter = m => m.author.id === message.author.id
+        message.channel.awaitMessages(filter, {
             max: 1,
             time: 5000,
             errors: ['time']
