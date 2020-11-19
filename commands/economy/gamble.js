@@ -2,7 +2,7 @@ module.exports = {
     name: 'gamble',
     description: 'gamble your stars 50/50 chance of losing or gaining your stars',
     cooldown: 5,
-    execute(message, args, d) {
+    async execute(message, args, d) {
         async function actualGamble(param) {
             let roll = Math.floor(Math.random() * 5) + 1;
             const gambleEmbed = new d.Discord.MessageEmbed()
