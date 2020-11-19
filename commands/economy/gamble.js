@@ -86,10 +86,13 @@ module.exports = {
                 })
                     .then(message => {
                         message = message.first()
-                        if (message.content.toUpperCase() == 'YES' || message.content.toUpperCase() == 'Y') {
-                            ask = await d.users.get(message.author.id);
-                            actualGamble(ask);
-                        } else if (message.content.toUpperCase() == 'NO' || message.content.toUpperCase() == 'N') {
+                        if (message.content.toLowerCase() == 'yes' || message.content.toLowerCase() == 'y') {
+                            async function gambleAll() {
+                                ask = await d.users.get(message.author.id);
+                                actualGamble(ask);
+                            }
+                            gambleAll();
+                        } else if (message.content.toLowerCase() == 'no' || message.content.toLowerCase() == 'n') {
                             message.channel.send('kk')
                         } else {
                             message.channel.send('bruh its yes or no')
