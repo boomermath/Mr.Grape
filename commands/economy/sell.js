@@ -146,7 +146,7 @@ module.exports = {
                 async function sellOresAll() {
                     let profit = 0;
                     for (key in inv.ore) {
-                        profit += getOreCost(key, inv.ore[key]);
+                        profit += getOreCost(key, inv.ore[key])[1];
                         delete inv.ore[key];
                     }
                     d.addMoni(message.author.id, profit);
@@ -162,6 +162,7 @@ module.exports = {
                     message.channel.send(saleAllOres);
                     await d.items.set(message.author.id, inv);
                 }
+                message.channel.send('Do you wanna sell all of your ores?')
                 message.channel.awaitMessages(filter, {
                     max: 1,
                     time: 7000,
