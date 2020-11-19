@@ -10,7 +10,7 @@ module.exports = {
         let item;
         if (Object.keys(d.itemShop).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
             if (argument.includes('item' || 'items' && 'all')) {
-                async function sellTools() {
+                function sellTools() {
                     let profit = 0;
                     if (!inv) { return message.channel.send('You got nothin!') }
                     for (key in inv) { profit += d.itemShop[key] / 2; delete inv[key]; }
