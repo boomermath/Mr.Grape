@@ -77,8 +77,27 @@ module.exports = {
             let ask;
             let check = await d.users.get(message.author.id);
             if (args[0] === 'all') {
-                ask = await d.users.get(message.author.id);
-                actualGamble(ask);
+                message.channel.send('Are you sure about that?');
+                let filter = m => m.author.id === message.author.id
+                message.channel.awaitMessages(filter, {
+                    max: 1,
+                    time: 7000,
+                    errors: ['time']
+                })
+                    .then(message => {
+                        message = message.first()
+                        if (message.content.toUpperCase() == 'YES' || message.content.toUpperCase() == 'Y') {
+                            ask = await d.users.get(message.author.id);
+                            actualGamble(ask);
+                        } else if (message.content.toUpperCase() == 'NO' || message.content.toUpperCase() == 'N') {
+                            message.channel.send('kk')
+                        } else {
+                            message.channel.send('bruh its yes or no')
+                        }
+                    })
+                    .catch(collected => {
+                        message.channel.send('ur slow');
+                    });
             } else if (!parseInt(args[0]) || parseInt(args[0]) < 1 || parseInt(args[0]) > check) {
                 message.channel.send("thats not a valid number of stars to gamble");
             } else {
