@@ -68,7 +68,8 @@ module.exports = {
 			songs: [],
 			volume: 2,
 			playing: true,
-			repeatMode: 0
+			repeatMode: 0,
+			effects: ["-af"]
 		};
 
 		message.client.queue.set(message.guild.id, queueConstruct);
@@ -85,7 +86,7 @@ module.exports = {
 			let stream = ytdl(song.url, {
 				filter: "audioonly",
 				opusEncoded: true,
-				encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
+				encoderArgs: queue.effects
 			});
 			const dispatcher = queue.connection.play(stream, {
 				type: "opus"
