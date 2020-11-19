@@ -82,12 +82,14 @@ module.exports = {
 				return;
 			}
 
-			const dispatcher = queue.connection.play(
-				ytdl(song.url, {
-					filter: "audioonly",
-					opusEncoded: true,
-            		encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
-				}))
+			let stream = ytdl(song.url, {
+				filter: "audioonly",
+				opusEncoded: true,
+				encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
+			});
+			const dispatcher = queue.connection.play(stream, {
+				type: "opus"
+			})
 				.on('finish', () => {
 					if (queue.repeatMode === 0) { queue.songs.shift(); }
 					else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
