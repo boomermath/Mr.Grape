@@ -10,14 +10,13 @@ module.exports = {
         let item;
         if (Object.keys(d.itemShop).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
             if (argument.includes('item' || 'items' && 'all')) {
-                function sellTools() {
+                async function sellTools() {
                     let profit = 0;
                     if (!inv) { return message.channel.send('You got nothin!') }
                     for (key in inv) {
-                        if (inv[key] == inv.ore) { break; }
+                        if (key === "ore") { break; }
                         profit += (d.itemShop[key] / 2) * inv[key];
                         delete inv[key];
-                        message.channel.send(profit);
                     }
                     d.addMoni(message.author.id, profit);
                     const saleAllTools = new d.Discord.MessageEmbed()
@@ -29,7 +28,8 @@ module.exports = {
                         )
                         .setTimestamp()
                         .setFooter('Grape Marketplaces');
-                    message.channel.send(saleAllTools)
+                    message.channel.send(saleAllTools);
+                    await d.items.set(message.author.id, inv);
                 }
                 message.channel.send('Do you really wanna sell ALL of that useful stuff?')
                 let filter = m => m.author.id === message.author.id
