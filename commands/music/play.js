@@ -92,7 +92,7 @@ module.exports = {
 						  liveBuffer: 40000,
 						  highWaterMark: 1 << 50, 
 			})
-			const dispatcher = queue.connection.play(stream,  { type: streamType })
+			const dispatcher = queue.connection.play(stream)
 				.on('finish', () => {
 					if (queue.repeatMode === 0) { queue.songs.shift(); }
 					else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
