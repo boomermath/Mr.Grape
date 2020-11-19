@@ -97,8 +97,8 @@ module.exports = {
             }
             await d.items.set(message.author.id, inv);
         }
-        else if (oreConcat.some(e => argument.includes(e))) {
-            function getOreCost(argument, item, numberOfItems) {
+        else if (oreConcat.some(e => argument.includes(e)) || argument.includes('ores' || 'ore')) {
+            function getOreCost(item, numberOfItems) {
                 let arrVal = [];
                 let each;
                 let profit = 0;
@@ -141,11 +141,50 @@ module.exports = {
                 return arrVal;
             }
             const oreFromArray = oreConcat.filter(v => argument.includes(v)).pop();
-            if (argument.includes('all')) {
+            if (argument.includes('ores' || 'ore' && 'all') && !oreConcat.some(e => argument.includes(e))) {
+                async function sellOresAll() {
+                    let profit = 0;
+                    for (key in inv.ore) {
+                        profit += getOreCost(key, inv.ore[key]);
+                        delete inv.ore[key];
+                    }
+                    d.addMoni(message.author.id, profit);
+                    const saleAllOres = new d.Discord.MessageEmbed()
+                        .setColor('#dd2de0')
+                        .setTitle(message.author.username + '\'s sale')
+                        .addFields(
+                            { name: 'Transaction', value: 'You sold all of your ores successfully!' },
+                            { name: 'Profit', value: `${profit} :star:s` }
+                        )
+                        .setTimestamp()
+                        .setFooter('Grape Marketplaces');
+                    message.channel.send(saleAllOres);
+                    await d.items.set(message.author.id, inv);
+                }
+                message.channel.awaitMessages(filter, {
+                    max: 1,
+                    time: 7000,
+                    errors: ['time']
+                })
+                    .then(message => {
+                        message = message.first()
+                        if (message.content.toLowerCase() == 'yes' || message.content.toLowerCase() == 'y') {
+                            sellOresAll();
+                        } else if (message.content.toLowerCase() == 'no' || message.content.toLowerCase() == 'n') {
+                            message.channel.send('i thought so')
+                        } else {
+                            message.channel.send('bruh its yes or no')
+                        }
+                    })
+                    .catch(collected => {
+                        message.channel.send('ur slow');
+                    });
+            }
+            else if (argument.includes('all')) {
                 if (argument.includes('refined')) { item = "refined " + oreFromArray }
                 else { item = oreFromArray }
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
-                const soldItem = getOreCost(argument, item, inv.ore[item])
+                const soldItem = getOreCost(item, inv.ore[item])
                 d.addMoni(message.author.id, soldItem[1]);
                 delete inv.ore[item];
                 const sale = new d.Discord.MessageEmbed()
@@ -167,7 +206,7 @@ module.exports = {
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
                 if (numItems > inv.ore[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
-                const soldItem = getOreCost(argument, item, numItems);
+                const soldItem = getOreCost(item, numItems);
                 d.addMoni(message.author.id, soldItem[1]);
                 inv.ore[item] -= numItems;
                 let receipt;
