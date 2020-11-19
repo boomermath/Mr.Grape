@@ -69,7 +69,7 @@ module.exports = {
 			volume: 2,
 			playing: true,
 			repeatMode: 0,
-			effects: ["-af"]
+			effects: ['-af','dynaudnorm=f=200']
 		};
 
 		message.client.queue.set(message.guild.id, queueConstruct);
@@ -84,14 +84,15 @@ module.exports = {
 			}
 
 			let stream = ytdl(song.url, {
-				filter: "audioonly",
-				opusEncoded: false,
-				fmt: "mp3",
-				encoderArgs: queue.effects
-			});
-			const dispatcher = queue.connection.play(stream, {
-				type: "unknown"
+				          filter: "audioonly",
+						  opusEncoded: true,
+						  encoderArgs: queue.effects,
+						  bitrate: 320,
+						  quality: "highestaudio",
+						  liveBuffer: 40000,
+						  highWaterMark: 1 << 50, 
 			})
+			const dispatcher = queue.connection.play(stream)
 				.on('finish', () => {
 					if (queue.repeatMode === 0) { queue.songs.shift(); }
 					else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
