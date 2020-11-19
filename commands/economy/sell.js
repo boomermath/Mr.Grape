@@ -8,8 +8,10 @@ module.exports = {
         let oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
         const numberRegex = /\d+/g;
         let item;
-        if (Object.keys(d.itemShop).some(e => argument.includes(e))) {
-            if (argument.includes('all')) {
+        if (Object.keys(d.itemShop).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
+            if (argument.includes('item' || 'items' && 'all')) {null;
+            }
+            else if (argument.includes('all')) {
                 item = argument.replace('all', '').replace(' ', '');
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 let profit = (d.itemShop[item] / 2) * inv[item];
