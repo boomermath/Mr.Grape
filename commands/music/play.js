@@ -85,11 +85,12 @@ module.exports = {
 
 			let stream = ytdl(song.url, {
 				filter: "audioonly",
-				opusEncoded: true,
+				opusEncoded: false,
+				fmt: "mp3",
 				encoderArgs: queue.effects
 			});
 			const dispatcher = queue.connection.play(stream, {
-				type: "opus"
+				type: "unknown"
 			})
 				.on('finish', () => {
 					if (queue.repeatMode === 0) { queue.songs.shift(); }
