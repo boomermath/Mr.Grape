@@ -109,9 +109,6 @@ module.exports = {
             }
 
         }
-
         gamble();
-
-
     }
 };

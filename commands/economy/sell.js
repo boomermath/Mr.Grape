@@ -9,7 +9,43 @@ module.exports = {
         const numberRegex = /\d+/g;
         let item;
         if (Object.keys(d.itemShop).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
-            if (argument.includes('item' || 'items' && 'all')) {null;
+            if (argument.includes('item' || 'items' && 'all')) {
+                async function sellTools() {
+                    let profit = 0;
+                    if (!inv) { return message.channel.send('You got nothin!') }
+                    for (key in inv) { profit += d.itemShop[key] / 2; delete inv[key]; }
+                    d.addMoni(message.author.id, profit);
+                    const saleAllTools = new d.Discord.MessageEmbed()
+                        .setColor('#dd2de0')
+                        .setTitle(message.author.username + '\'s sale')
+                        .addFields(
+                            { name: 'Transaction', value: 'You sold all of your tools successfully!' },
+                            { name: 'Profit', value: `${profit} :star:s` }
+                        )
+                        .setTimestamp()
+                        .setFooter('Grape Marketplaces');
+                    message.channel.send(saleAllTools)
+                }
+                message.channel.send('Do you really wanna sell ALL of that useful stuff?')
+                let filter = m => m.author.id === message.author.id
+                message.channel.awaitMessages(filter, {
+                    max: 1,
+                    time: 7000,
+                    errors: ['time']
+                })
+                    .then(message => {
+                        message = message.first()
+                        if (message.content.toLowerCase() == 'yes' || message.content.toLowerCase() == 'y') {
+                            sellTools();
+                        } else if (message.content.toLowerCase() == 'no' || message.content.toLowerCase() == 'n') {
+                            message.channel.send('i thought so')
+                        } else {
+                            message.channel.send('bruh its yes or no')
+                        }
+                    })
+                    .catch(collected => {
+                        message.channel.send('ur slow');
+                    });
             }
             else if (argument.includes('all')) {
                 item = argument.replace('all', '').replace(' ', '');
