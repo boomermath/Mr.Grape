@@ -61,7 +61,6 @@ module.exports = {
                 }
             })
             .catch(collected => {
-                console.log(collected);
                 const lossTime = Math.floor(robberBal * 0.07);
                 d.addMoni(message.author.id, -lossTime);
                 message.channel.send(`Bruh ur trash, you couldn't crack it in time, also you lost ${lossTime}`);
