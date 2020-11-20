@@ -11,7 +11,7 @@ module.exports = {
         if (robberBal < 10) {return message.channel.send('You don\'t got the moni to do that (get at least 10 :star:s)');}
         function robbery() {
             const successVar = Math.floor(Math.random() * 99) + 1;
-            const e = "0.0" + (Math.floor(Math.random() * 6) + 1).toString();;
+            const e = "0.0" + (Math.floor(Math.random() * 6) + 1).toString();
             if (successVar >= 70) {
                 let earned = Math.floor(+e * targetBal);
                 d.addMoni(message.author.id, earned)
