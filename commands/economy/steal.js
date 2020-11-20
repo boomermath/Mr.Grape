@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['rob'],
     description: "steal stars from the bot's infinite stash",
     cooldown: 5,
-    async execute(message, args, d) {
+    async   execute(message, args, d) {
         let target = message.mentions.members.first();
         if (!target || target.id === message.author.id) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
         let targetBal = await d.users.get(target.id);
@@ -42,7 +42,7 @@ module.exports = {
             }
         }
         let filter = m => m.author.id === message.author.id
-        const rand = Math.floor(Math.random() * 2) + 1;
+        const rand = Math.floor(Math.random() * 0) + 1;
         message.channel.send('Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip')
         message.channel.awaitMessages(filter, {
             max: 1,
