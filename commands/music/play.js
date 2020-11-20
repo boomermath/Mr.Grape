@@ -88,7 +88,7 @@ module.exports = {
 				quality: "highestaudio",
 				fmt: "mp3",
 				opusEncoded: false,
-				encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
+				encoderArgs: ['-af', 'bass=g=10000,dynaudnorm=f=200']
 			});
 
 			const dispatcher = queue.connection.play(stream, { type: "unknown" })
