@@ -68,7 +68,6 @@ module.exports = {
 			volume: 2,
 			playing: true,
 			repeatMode: 0,
-			effects: ['-af']
 		};
 
 		message.client.queue.set(message.guild.id, queueConstruct);

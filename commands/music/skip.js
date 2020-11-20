@@ -1,3 +1,5 @@
+const queue = require("./queue");
+
 module.exports = {
 	name: 'skip',
 	description: 'skip the current song',
@@ -8,6 +10,7 @@ module.exports = {
 		if (!channel) return message.channel.send('Get in a voice channel if you wanna do stuff');
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue) return message.channel.send("There ain't any songs playin");
+		if (queue.repeatMode === 1) {queue.repeatMode = 0;}
 		serverQueue.connection.dispatcher.end('Skipped dat song!');
 	}
 };
