@@ -85,10 +85,7 @@ module.exports = {
 
 			let stream = ytdl(song.url, {
 				          filter: "audioonly",
-						  bitrate: 320,
-						  quality: "highestaudio",
-						  liveBuffer: 40000,
-						  highWaterMark: 1 << 50, 
+						  quality: "highestaudio"
 			})
 			
 			const dispatcher = queue.connection.play(stream)
