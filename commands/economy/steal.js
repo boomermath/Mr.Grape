@@ -4,36 +4,65 @@ module.exports = {
     description: "steal stars from the bot's infinite stash",
     cooldown: 5,
     execute(message, args, d) {
-        let output;
-        let val;
-        let caught = Math.floor(Math.random() * 99) + 1;
-        let randSteal = Math.floor(Math.random() * 19) + 3;
-        const stealArr = [
-            ["Theft", "you stole " + randSteal + " :star:s"],
-            ["You got caught!", "you ended up paying " + randSteal + " :star:s\nThat's karma for ya."]
-        ];
-        if (caught >= 70) {
-            output = stealArr[0][0]
-            val = stealArr[0][1]
-            d.addMoni(message.author.id, randSteal);
+        let target = message.mentions.members.first();
+        if (!target || target.id === message.author.id) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
+        let targetBal = await d.users.get(target.id);
+        let robberBal = await d.users.get(message.author.id);
+        function robbery() {
+            const successVar = Math.floor(Math.random() * 99) + 1;
+            const e = "0.0" + (Math.floor(Math.random() * 6) + 1);
+            if (successVar >= 70) {
+                let earned = Math.floor(+e * targetBal);
+                d.addMoni(message.author.id, earned)
+                d.addMoni(target.id, -earned)
+                const nice = new d.Discord.MessageEmbed()
+                    .setColor('#dd2de0')
+                    .setTitle(message.author.username + '\'s heist')
+                    .addFields(
+                        { name: 'Success', value: `Heist Successful! You got ${earned} :star:s!` }
+                    )
+                    .setTimestamp()
+                    .setFooter('Grape Marketplaces');
 
-        } else {
-            output = stealArr[1][0]
-            val = stealArr[1][1]
-            d.addMoni(message.author.id, -randSteal);
+                message.channel.send(nice);
+            }
+            else {
+                let earned = Math.floor(+e * targetBal);
+                d.addMoni(message.author.id, -earned)
+                const rip = new d.Discord.MessageEmbed()
+                    .setColor('#dd2de0')
+                    .setTitle(message.author.username + '\'s heist')
+                    .addFields(
+                        { name: 'Fail', value: `rip, despite ur effort, you got caught and lost ${earned} :star:s.` }
+                    )
+                    .setTimestamp()
+                    .setFooter('Grape Marketplaces');
+
+                message.channel.send(rip);
+            }
         }
-
-        const stealEmbed = new d.Discord.MessageEmbed()
-            .setColor('#dd2de0')
-            .setTitle(message.author.username + "'s robbery")
-            .addFields({
-                name: output,
-                value: val
-            }, )
-            .setTimestamp()
-            .setFooter('Shady Grape Org');
-
-        message.channel.send(stealEmbed);
-
+        let filter = m => m.author.id === message.author.id
+        const rand = Math.floor(Math.random() * 2) + 1;
+        message.channel.send('Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip')
+        message.channel.awaitMessages(filter, {
+            max: 1,
+            time: 5500,
+            errors: ['time']
+        })
+            .then(message => {
+                message = message.first()
+                if (parseInt(message.content) === rand) {
+                    robbery();
+                } else {
+                    const loss = Math.floor(robberBal * 0.05);
+                    d.addMoni(message.author.id, -loss)
+                    message.channel.send(`you guessed wrong rip, you lost ${loss} :star:s`);
+                }
+            })
+            .catch(collected => {
+                const lossTime = Math.floor(robberBal * 0.07)
+                d.addMoni(message.author.id, -lossTime);
+                message.channel.send(`Bruh ur trash, you couldn't crack it in time, also you lost ${lossTime}`);
+            });
     }
 };
