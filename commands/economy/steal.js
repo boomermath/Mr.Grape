@@ -5,7 +5,7 @@ module.exports = {
     cooldown: 60,
     async execute(message, args, d) {
         let target = message.mentions.members.first();
-        if (!target || target.id === message.author.id) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
+        if (!target || target.id === message.author.id || target.user.bot) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
         let targetBal = await d.users.get(target.id);
         let robberBal = await d.users.get(message.author.id);
         if (robberBal < 10) { return message.channel.send('You don\'t got the moni to do that (get at least 10 :star:s)'); }
