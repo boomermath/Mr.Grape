@@ -84,11 +84,13 @@ module.exports = {
 			}
 
 			let stream = ytdl(song.url, {
-				filter: 'audioonly',
-				quality: "highestaudio"
+				filter: "audioonly",
+				opusEncoded: false,
+				fmt: "mp3",
+				encoderArgs: ['-af', 'dynaudnorm=f=200']
 			});
 
-			const dispatcher = queue.connection.play(stream)
+			const dispatcher = queue.connection.play(stream, { type: "unknown" })
 				.on('finish', () => {
 					if (queue.repeatMode === 0) { queue.songs.shift(); }
 					else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
