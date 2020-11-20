@@ -34,7 +34,7 @@ module.exports = {
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s heist')
                     .addFields(
-                        { name: 'Fail', value: `rip, despite ur effort, you got caught and lost ${earned} :star:s.` }
+                        { name: 'Fail', value: `rip, despite ur effort, you got caught and lost ${loss} :star:s.` }
                     )
                     .setTimestamp()
                     .setFooter('Grape Marketplaces');
