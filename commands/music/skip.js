@@ -11,7 +11,7 @@ module.exports = {
 		if (!channel) return message.channel.send('Get in a voice channel if you wanna do stuff');
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue) return message.channel.send("There ain't any songs playin");
-		if (queue.repeatMode === 1) { queue.repeatMode = 0; message.client.guilds.set(message.guild.id, queue); }
+		if (queue.repeatMode === 1) { queue.repeatMode = 0; message.client.queue.set(message.guild.id, queue); }
 		serverQueue.connection.dispatcher.end('Skipped dat song!');
 	}
 };
