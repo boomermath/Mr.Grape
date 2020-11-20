@@ -1,14 +1,14 @@
 module.exports = {
     name: 'steal',
     aliases: ['rob'],
-    description: "steal stars from the bot's infinite stash",
-    cooldown: 5,
-    async   execute(message, args, d) {
+    description: "steal stars from other ppl",
+    cooldown: 60,
+    async execute(message, args, d) {
         let target = message.mentions.members.first();
         if (!target || target.id === message.author.id) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
         let targetBal = await d.users.get(target.id);
         let robberBal = await d.users.get(message.author.id);
-        if (robberBal < 10) {return message.channel.send('You don\'t got the moni to do that (get at least 10 :star:s)');}
+        if (robberBal < 10) { return message.channel.send('You don\'t got the moni to do that (get at least 10 :star:s)'); }
         function robbery() {
             const successVar = Math.floor(Math.random() * 99) + 1;
             const e = "0.0" + (Math.floor(Math.random() * 6) + 1).toString();
@@ -43,7 +43,7 @@ module.exports = {
             }
         }
         let filter = m => m.author.id === message.author.id
-        const rand = Math.floor(Math.random() * 0) + 1;
+        const rand = Math.floor(Math.random() * 3) + 1;
         message.channel.send('Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip')
         message.channel.awaitMessages(filter, {
             max: 1,
@@ -61,10 +61,9 @@ module.exports = {
                 }
             })
             .catch(collected => {
-                console.log(collected)
                 const lossTime = Math.floor(robberBal * 0.07);
                 d.addMoni(message.author.id, -lossTime);
-                message.channel.send(`Bruh ur trash, you couldn't crack it in time, also you lost ${lossTime}`);
+                message.channel.send(`Bruh ur trash, you couldn't crack it in time, also you lost ${lossTime} :star:s`);
             });
     }
 };
