@@ -28,7 +28,6 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		let duration;
 		if (ytRegex.test(argument)) {
 			songInfo = await youtube.getVideo(argument, 1);
 			songInfo.url = argument;
@@ -87,7 +86,7 @@ module.exports = {
 				filter: "audioonly",
 				opusEncoded: false,
 				fmt: "mp3",
-				encoderArgs: ['-af', 'dynaudnorm=f=200', '']
+				encoderArgs: ['-af', 'dynaudnorm=f=200', 'apulsator=hz=0.08']
 			});
 
 			const dispatcher = queue.connection.play(stream, { type: "unknown" })
