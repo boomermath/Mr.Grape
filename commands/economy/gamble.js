@@ -44,7 +44,7 @@ module.exports = {
 
                     message.channel.send(gambleEmbed).then(msg => {
                         msg.delete({
-                            timeout: 1000
+                            timeout: 0
                         })
                     })
                         .catch(console.error);
@@ -57,7 +57,6 @@ module.exports = {
                             }))
 
                             message.channel.send(gambleEmbed);
-
                             d.addMoni(message.author.id, param);
                         } else {
 
