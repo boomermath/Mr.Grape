@@ -29,7 +29,7 @@ module.exports = {
             }
             else {
                 let loss = Math.floor(+e * robberBal);
-                d.addMoni(message.author.id, -earned)
+                d.addMoni(message.author.id, -loss)
                 const rip = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s heist')
