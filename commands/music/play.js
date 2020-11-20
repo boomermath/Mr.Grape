@@ -85,8 +85,8 @@ module.exports = {
 
 			let stream = ytdl(song.url, {
 				filter: "audioonly",
+				quality: "highestaudio",
 				opusEncoded: false,
-				fmt: "mp3",
 				encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
 			});
 
