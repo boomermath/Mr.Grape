@@ -17,7 +17,6 @@ fs.readdirSync('./commands').forEach(folder => {
 	});
 });
 
-
 users.on('error', err => console.error('Keyv (users) connection error:', err));
 items.on('error', err => console.error('Keyv (items) connection error:', err));
 
@@ -43,7 +42,7 @@ client.on('message', async message => {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	const commandFanException = ['daily']
+	const commandFanException = ['daily', 'steal']
 	let inv = await items.get(message.author.id);
 	let haveFan;
 	if (inv === undefined || inv === null) { inv = {}; }
