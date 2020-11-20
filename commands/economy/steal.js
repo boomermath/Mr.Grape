@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['rob'],
     description: "steal stars from the bot's infinite stash",
     cooldown: 5,
-    execute(message, args, d) {
+    async execute(message, args, d) {
         let target = message.mentions.members.first();
         if (!target || target.id === message.author.id) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
         let targetBal = await d.users.get(target.id);
