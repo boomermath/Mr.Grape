@@ -85,13 +85,13 @@ module.exports = {
 
 			let stream = ytdl(song.url, {
 				filter: 'audioonly',
-				opusEncoded: true,
-				encoderArgs: ["-af"],
+				opusEncoded: false,
+				encoderArgs: ['-af'],
 				highWaterMark: 1 << 25
 			});
 
 			const dispatcher = queue.connection.play(stream, {
-				type: 'opus',
+				type: 'unknown',
 				bitrate: 'auto'
 			})
 				.on('finish', () => {
