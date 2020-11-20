@@ -28,7 +28,7 @@ module.exports = {
                 message.channel.send(nice);
             }
             else {
-                let earned = Math.floor(+e * targetBal);
+                let loss = Math.floor(+e * robberBal);
                 d.addMoni(message.author.id, -earned)
                 const rip = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
