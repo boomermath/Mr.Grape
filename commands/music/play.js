@@ -1,5 +1,5 @@
 const { Util } = require('discord.js');
-const ytdl = require('ytdl-core');
+const ytdl = require('discord-ytdl-core');
 const YoutubeAPI = require('simple-youtube-api');
 const youtube = new YoutubeAPI(process.env.YOUTUBE);
 function formatDuration(durationObj) {
@@ -87,7 +87,7 @@ module.exports = {
 				filter: "audioonly",
 				opusEncoded: false,
 				fmt: "mp3",
-				encoderArgs: ['-af', 'dynaudnorm=f=200']
+				encoderArgs: ['-af', 'dynaudnorm=f=200', '']
 			});
 
 			const dispatcher = queue.connection.play(stream, { type: "unknown" })
