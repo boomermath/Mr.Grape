@@ -43,10 +43,16 @@ module.exports = {
                     continue;
                 }
                 if (inv[key] === inv.ore) { continue; }
-                invEmbed.addFields({
-                    name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
-                    value: `${inv[key]}`
-                });
+                if (inv[key] === 'starmill') {
+                    invEmbed.addFields({
+                        name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
+                        value: `${inv[key][0]}`
+                    });
+                }
+                    invEmbed.addFields({
+                        name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
+                        value: `${inv[key]}`
+                    });
             }
         }
 
