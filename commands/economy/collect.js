@@ -11,7 +11,7 @@ module.exports = {
         if (!inv || !inv.starmill || inv.starmill === 0) { return message.channel.send('You don\'t have a starmill! ~~broke man~~'); }
         if (typeof inv.starmill !== 'object') {
             inv.starmill = [inv.starmill, rn]
-            collectedStars = inv.starmill;
+            collectedStars = inv.starmill[0];
             await d.items.set(message.author.id, inv);
         }
         else {
@@ -19,7 +19,7 @@ module.exports = {
             let elapsedTime = Math.floor((rn - arr[1]) / 60000);
             collectedStars = arr[0] * (elapsedTime / 1);
         }
-        d.addMoni(message.author.id, collectedStars)
+        d.addMoni(message.author.id, collectedStars);
         const colEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s collection of stars`)
