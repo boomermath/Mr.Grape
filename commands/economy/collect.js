@@ -2,7 +2,7 @@ module.exports = {
     name: 'collect',
     aliases: ['col'],
     description: 'collect the stars from your starmill!',
-    cooldown: 600,
+    cooldown: 0,
     description: 'collect stars if you have a starmill',
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
@@ -12,14 +12,14 @@ module.exports = {
         if (typeof inv.starmill !== 'object') {
             inv.starmill = [inv.starmill, rn]
             collectedStars = inv.starmill[0];
-            await d.items.set(message.author.id, inv);
         }
         else {
-            const arr = inv.starmill;
-            let elapsedTime = Math.floor((rn - arr[1]) / 60000);
-            collectedStars = arr[0] * (elapsedTime / 1);
+            let elapsedTime = Math.floor((rn - inv.starmill[1]) / 60000);
+            collectedStars = inv.starmill[0] * (elapsedTime / 1);
+            inv.starmill[1] = rn;
         }
         d.addMoni(message.author.id, collectedStars);
+        await d.items.set(message.author.id, inv)
         const colEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s collection of stars`)
