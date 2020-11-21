@@ -3,20 +3,20 @@ module.exports = {
     aliases: ['col'],
     description: 'collect the stars from your starmill!',
     cooldown: 0,
-    description: 'collect stars if you have a starmill',
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         let collectedStars;
         const rn = Date.now();
         if (!inv || !inv.starmill || inv.starmill === 0) { return message.channel.send('You don\'t have a starmill! ~~broke man~~'); }
-        if (typeof inv.starmill !== 'object') {
-            inv.starmill = [inv.starmill, rn]
-            collectedStars = inv.starmill[0];
+        if (!inv.time) {
+            inv.time = {};
+            inv.time.starmill = rn;
+            collectedStars = inv.starmill;
         }
         else {
-            let elapsedTime = Math.floor((rn - inv.starmill[1]) / 60000);
-            collectedStars = inv.starmill[0] * (elapsedTime / 1);
-            inv.starmill[1] = rn;
+            let elapsedTime = Math.floor((rn - inv.time.starmill) / 60000);
+            inv.time.starmill = rn;
+            collectedStars = inv.starmill * (elapsedTime / 1);
         }
         d.addMoni(message.author.id, collectedStars);
         await d.items.set(message.author.id, inv)

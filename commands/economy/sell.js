@@ -14,13 +14,8 @@ module.exports = {
                     let profit = 0;
                     if (!inv) { return message.channel.send('You got nothin!') }
                     for (key in inv) {
-                        if (key === "ore") { continue; }
+                        if (key === "ore" || key === "time") { continue; }
                         profit += (d.itemShop[key] / 2) * inv[key];
-                        if (key === 'starmill') { 
-                            profit += (d.itemShop[key] / 2) * inv[key][0]; 
-                            delete inv[key]; 
-                            continue;
-                        }
                         delete inv[key];
                     }
                     d.addMoni(message.author.id, profit);
