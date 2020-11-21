@@ -38,8 +38,8 @@ module.exports = {
         if (total > await d.users.get(message.author.id)) { return message.channel.send(broke); }
         d.addMoni(message.author.id, -total)
         if (item === 'starmill') {
-            if (!inv.starmill) { inv.starmill = numberOfItems; }
-            else { inv.starmill[0] += numberOfItems }
+            if (!have.starmill) { inv.starmill = numberOfItems; }
+            else { have.starmill[0] += numberOfItems }
         }
         else if (!have[item]) { have[item] = numberOfItems; }
         else { have[item] += numberOfItems }
