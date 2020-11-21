@@ -8,8 +8,7 @@ module.exports = {
         let collectedStars;
         const rn = Date.now();
         if (!inv || !inv.starmill || inv.starmill === 0) { return message.channel.send('You don\'t have a starmill! ~~broke man~~'); }
-        if (!inv.time) {
-            inv.time = {};
+        if (!inv.time.starmill) {
             inv.time.starmill = rn;
             collectedStars = inv.starmill;
         }
