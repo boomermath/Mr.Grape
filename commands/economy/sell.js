@@ -72,7 +72,7 @@ module.exports = {
             }
             else {
                 let numItems = parseInt(argument.match(numberRegex))
-                item = Object.keys(d.itemShop).filter(v => argument.includes(v)).pop()
+                item = Object.keys(d.itemShop).filter(v => argument.includes(v)).pop();
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
