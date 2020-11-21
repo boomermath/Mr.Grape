@@ -43,7 +43,7 @@ module.exports = {
                     continue;
                 }
                 if (inv[key] === inv.ore) { continue; }
-                if (inv[key] === 'starmill') {
+                if (key === 'starmill') {
                     invEmbed.addFields({
                         name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
                         value: `${inv[key][0]}`

@@ -16,6 +16,11 @@ module.exports = {
                     for (key in inv) {
                         if (key === "ore") { continue; }
                         profit += (d.itemShop[key] / 2) * inv[key];
+                        if (key === 'starmill') { 
+                            profit += (d.itemShop[key] / 2) * inv[key][0]; 
+                            delete inv[key]; 
+                            continue;
+                        }
                         delete inv[key];
                     }
                     d.addMoni(message.author.id, profit);
