@@ -24,11 +24,38 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I don\'t have perms to connect');
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I don\'t have perms to speak');
 
+		const plRegex = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;
 		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		if (ytRegex.test(argument)) {
+		if (plRegex.test(argument)) {
+			const playlist = await youtube.getPlaylist(argument);
+			const songs = await playlist.getVideos();
+			for (let i = 0; i < videosObj.length; i++) {
+				const video = await videosObj[i].fetch();
+				const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
+				const title = video.raw.snippet.title;
+				let duration = formatDuration(video.duration);
+				const thumbnail = video.thumbnails.high.url;
+				if (duration == '00:00') duration = 'Live Stream';
+				const song = {
+					url,
+					title,
+					duration,
+					thumbnail
+				};
+
+				if (serverQueue) {
+					serverQueue.songs.push(song)
+					return message.channel.send(added);
+				}
+				else {
+					serverQueue.songs.push(song)
+				}
+			}
+		}
+		else if (ytRegex.test(argument)) {
 			songInfo = await youtube.getVideo(argument, 1);
 			songInfo.url = argument;
 			songInfo.duration = formatDuration(songInfo.duration);
