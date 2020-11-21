@@ -95,6 +95,7 @@ module.exports = {
 
                 message.channel.send(sale);
             }
+            if (!inv.starmill || inv.starmill === 0 && inv.time.starmill) { delete inv.time.starmill; }
             await d.items.set(message.author.id, inv);
         }
         else if (oreConcat.some(e => argument.includes(e)) || argument.includes('ores' || 'ore')) {
