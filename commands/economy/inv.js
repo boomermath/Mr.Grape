@@ -44,15 +44,21 @@ module.exports = {
                 }
                 if (inv[key] === inv.ore) { continue; }
                 if (key === 'starmill') {
+                    if (inv[key] === 0) { 
+                        delete inv[key]; 
+                        await d.items.set(message.author.id, inv); 
+                        continue; 
+                    }
                     invEmbed.addFields({
                         name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
                         value: `${inv[key][0]}`
                     });
+                    continue;
                 }
-                    invEmbed.addFields({
-                        name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
-                        value: `${inv[key]}`
-                    });
+                invEmbed.addFields({
+                    name: key.charAt(0).toUpperCase() + key.slice(1) + "(s)",
+                    value: `${inv[key]}`
+                });
             }
         }
 
