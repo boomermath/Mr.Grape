@@ -24,10 +24,7 @@ module.exports = {
         const colEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s collection of stars`)
-            .addFields({
-                name: 'Collected',
-                value: collectedStars + " :star:s"
-            })
+            .addField('Collected', collectedStars + " :star:s")
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
             .setFooter('Grape Bank Inc.');

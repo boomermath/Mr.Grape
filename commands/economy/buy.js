@@ -49,10 +49,7 @@ module.exports = {
         const buy = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + "'s purchase")
-            .addFields({
-                name: 'Receipt',
-                value: receipt
-            })
+            .addField('Receipt', receipt)
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
             .setFooter('Grape Marketplaces');
