@@ -3,7 +3,7 @@ module.exports = {
     description: 'set prefix',
     cooldown: 2,
     async execute(message, args, d) {
-        const guilds = await d.guilds.get(message.guild.id);
+        let guilds = await d.guilds.get(message.guild.id);
         if (!guilds) { guilds = {}; }
         if (!args[0]) { return message.channel.send('What do you want me to set the prefix to?') }
         guilds.prefix = args[0];
