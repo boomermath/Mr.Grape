@@ -8,6 +8,7 @@ const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
+const cache = new Discord.Collection();
 client.commands = new Discord.Collection();
 client.queue = new Discord.Collection();
 
@@ -28,10 +29,16 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
+
 	let prefix;
-	const guild = await guilds.get(message.guild.id);
-	if (!guild || !guild.prefix) { prefix = config.prefix; }
-	else { prefix = guild.prefix; }
+	let guild = cache.get(message.guild.id);
+	if (!cachedGuild) {
+		const dBguild = await guilds.get(message.guild.id);
+		if (!dBguild || !dBguild.prefix) { null; }
+		else { cache.set(message.guild.id, dBguild.prefix); }
+	}
+	if (!guild) { prefix = config.prefix; }
+	else { prefix = guild }
 
 	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
 
@@ -51,7 +58,7 @@ client.on('message', async message => {
 	const timestamps = cooldowns.get(command.name);
 	const commandFanException = ['daily', 'steal', 'collect']
 	let inv = await items.get(message.author.id);
-	let haveFan;																																				
+	let haveFan;
 	if (!inv) { inv = {}; }
 	if (!inv.fan) { haveFan = 0 }
 	else { haveFan = inv.fan }
