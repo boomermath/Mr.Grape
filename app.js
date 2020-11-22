@@ -8,7 +8,7 @@ const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
-const cache = new Discord.Collection();
+client.cache = new Discord.Collection();
 client.commands = new Discord.Collection();
 client.queue = new Discord.Collection();
 
@@ -31,16 +31,16 @@ client.once('ready', () => {
 client.on('message', async message => {
 
 	let prefix;
-	let guild = cache.get(message.guild.id);
+	let guild = client.cache.get(message.guild.id);
+	const dBguild = await guilds.get(message.guild.id);
 	if (!guild) {
-		const dBguild = await guilds.get(message.guild.id);
 		if (!dBguild || !dBguild.prefix) { prefix = config.prefix }
 		else { 
-			cache.set(message.guild.id, dBguild.prefix); 
+			client.cache.set(message.guild.id, dBguild.prefix); 
 			prefix = guild;
 		}
 	}
-	else { prefix = guild }
+	else { prefix = guild; }
 
 	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
 
