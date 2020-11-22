@@ -71,5 +71,6 @@ module.exports = {
     "r2": r2,
     "ores": ores,
     "oreSell": oreSell,
-    "emoji": emoji
+    "emoji": emoji,
+    "guilds": guilds
 };
