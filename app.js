@@ -31,7 +31,7 @@ client.on('message', async message => {
 	let prefix;
 	const guild = await guilds.get(message.guild.id);
 	if (!guild || !guild.prefix) { prefix = config.prefix; }
-	else { prefix = guild.prefix; }
+	else { prefix = config.prefix; }
 
 	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
 
@@ -51,9 +51,9 @@ client.on('message', async message => {
 	const timestamps = cooldowns.get(command.name);
 	const commandFanException = ['daily', 'steal', 'collect']
 	let inv = await items.get(message.author.id);
-	let haveFan;
-	if (inv === undefined || inv === null) { inv = {}; }
-	if (inv.fan === undefined || inv.fan === null) { haveFan = 0 }
+	let haveFan;																																				
+	if (!inv) { inv = {}; }
+	if (!inv.fan) { haveFan = 0 }
 	else { haveFan = inv.fan }
 	let cooldownAmount;
 	if (commandFanException.includes(command.name)) { cooldownAmount = command.cooldown * 1000 }
