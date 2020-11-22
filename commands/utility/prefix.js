@@ -7,7 +7,7 @@ module.exports = {
         if (!guilds) { guilds = {}; }
         if (!args[0]) { return message.channel.send('What do you want me to set the prefix to?') }
         guilds.prefix = args[0];
-        await d.guilds.set(message.guild.id);
+        await d.guilds.set(message.guild.id, guilds);
         return message.channel.send(`Set prefix to ${args[0]}!`)
     }
 }; 
