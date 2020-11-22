@@ -8,6 +8,7 @@ const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
+client.commands = new Discord.Collection();
 client.queue = new Discord.Collection();
 
 fs.readdirSync('./commands').forEach(folder => {
