@@ -32,12 +32,11 @@ client.on('message', async message => {
 
 	let prefix;
 	let guild = cache.get(message.guild.id);
-	if (!cachedGuild) {
+	if (!guild) {
 		const dBguild = await guilds.get(message.guild.id);
-		if (!dBguild || !dBguild.prefix) { null; }
+		if (!dBguild || !dBguild.prefix) { prefix = config.prefix }
 		else { cache.set(message.guild.id, dBguild.prefix); }
 	}
-	if (!guild) { prefix = config.prefix; }
 	else { prefix = guild }
 
 	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
