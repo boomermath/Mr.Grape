@@ -7,7 +7,6 @@ module.exports = {
         if (!guilds) { guilds = {}; }
         if (!args[0]) { return message.channel.send('Whaddya want me to set the prefix to?') }
         guilds.prefix = args[0];
-        message.client.cache.set(message.guild.id, args[0]);
         await d.guilds.set(message.guild.id, guilds);
         const prefixSetEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
