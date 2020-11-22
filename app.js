@@ -35,7 +35,10 @@ client.on('message', async message => {
 	if (!guild) {
 		const dBguild = await guilds.get(message.guild.id);
 		if (!dBguild || !dBguild.prefix) { prefix = config.prefix }
-		else { cache.set(message.guild.id, dBguild.prefix); }
+		else { 
+			cache.set(message.guild.id, dBguild.prefix); 
+			prefix = guild;
+		}
 	}
 	else { prefix = guild }
 
