@@ -32,11 +32,11 @@ client.on('message', async message => {
 
 	let prefix;
 	let guild = client.cache.get(message.guild.id);
-	const dBguild = await guilds.get(message.guild.id);
 	if (!guild) {
+		const dBguild = await guilds.get(message.guild.id);
 		if (!dBguild || !dBguild.prefix) { prefix = config.prefix }
-		else { 
-			client.cache.set(message.guild.id, dBguild.prefix); 
+		else {
+			client.cache.set(message.guild.id, dBguild.prefix);
 			prefix = guild;
 		}
 	}
