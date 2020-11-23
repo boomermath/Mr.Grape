@@ -22,7 +22,7 @@ module.exports = {
             .setTitle(personName + "'s inventory")
             .setTimestamp()
             .setFooter('Grape Storages Org.');
-        if (inv === undefined || !inv || Object.keys(inv).length === 0 || inv.ore && Object.keys(inv).length === 1) { invEmbed.addField('nothing but cobwebs and dust m8', '_'); }
+        if (!inv || Object.keys(inv).length === 0 || inv.ore && Object.keys(inv).length === 1) { invEmbed.addField('nothing but cobwebs and dust m8', '_'); }
         else {
             for (const key in inv) {
                 if (inv[key] === 0) {
@@ -31,8 +31,8 @@ module.exports = {
                     continue;
                 }
                 if (key === 'ore' || key === 'time') {
-                    if (Object.keys(inv.time).length === 0) { delete inv.time; }
-                    if (Object.keys(inv.ore).length === 0) { delete inv.ore; }
+                    if (inv.time && Object.keys(inv.time).length === 0) { delete inv.time; }
+                    if (inv.ore && Object.keys(inv.ore).length === 0) { delete inv.ore; }
                     continue;
                 }
                 invEmbed.addField(key.charAt(0).toUpperCase() + key.slice(1) + "(s)", inv[key]);
