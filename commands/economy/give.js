@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['donate'],
     description: 'give stars to people',
     cooldown: 5,
-    execute(message, args, d) {
+    async execute(message, args, d) {
         let target = message.mentions.members.first();
         let donation = parseInt(args.find(arg => !/<@!?\d+>/g.test(arg)));
         let check = await d.users.get(message.author.id)
