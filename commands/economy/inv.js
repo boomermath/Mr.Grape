@@ -22,7 +22,7 @@ module.exports = {
             .setTitle(personName + "'s inventory")
             .setTimestamp()
             .setFooter('Grape Storages Org.');
-        if (!inv || Object.keys(inv).length === 0 || inv.ore && Object.keys(inv).length === 1) { invEmbed.addField('nothing but cobwebs and dust m8', '_'); }
+        if (inv === undefined || !inv || Object.keys(inv).length === 0 || inv.ore && Object.keys(inv).length === 1) { invEmbed.addField('nothing but cobwebs and dust m8', '_'); }
         else {
             for (const key in inv) {
                 if (inv[key] === 0) {
