@@ -45,7 +45,7 @@ module.exports = {
         let receipt;
         if (item === 'starmill') {
             if (!inv.time) { inv.time = {}; }
-            inv.time.starmill = Date.now();
+            if (!inv.time.starmill) { inv.time.starmill = Date.now() }
         }
         if (numberOfItems === 1) {
             receipt = "You successfully purchased a " + item + "!";
