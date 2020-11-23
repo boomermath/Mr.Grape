@@ -35,8 +35,5 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Bank Inc.');
         message.channel.send(balEmbed);
-
-
-
     }
 };
