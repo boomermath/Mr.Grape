@@ -1,3 +1,5 @@
+const inv = require("./inv");
+
 module.exports = {
     name: 'buy',
     aliases: ['purchase'],
@@ -41,6 +43,10 @@ module.exports = {
         else { have[item] += numberOfItems }
         d.items.set(message.author.id, have);
         let receipt;
+        if (item === 'starmill') {
+            if (!inv.time) { inv.time = {}; }
+            inv.time.starmill = Date.now();
+        }
         if (numberOfItems === 1) {
             receipt = "You successfully purchased a " + item + "!";
         } else {
