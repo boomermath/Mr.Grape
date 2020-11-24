@@ -21,7 +21,7 @@ module.exports = {
                 ifEarn.push(1);
             }
         }
-
+		
         let earnJob = Math.floor(Math.random() * ifEarn.length);
 
         if (inv && inv.starmagnet && inv.starmagnet > 0) {
