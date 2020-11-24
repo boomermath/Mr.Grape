@@ -18,7 +18,7 @@ module.exports = {
                 if (!inv.ore[key] || inv.ore[key] < recipeCollection[recipe]) {
                     return message.channel.send('you dont have the sutff');
                 }
-                inv.ore[key] -= recipeCollection[recipe];
+                inv.ore[key] -= recipeCollection[recipe][key];
             }
             if (!inv[recipeCollection[recipe].createditem]) { inv[recipeCollection[recipe].createditem] = 1 }
             else { inv[recipeCollection[recipe].createditem] += 1 }
