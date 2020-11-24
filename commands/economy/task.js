@@ -13,7 +13,7 @@ module.exports = {
             }
             return array.join('');
         }
-        let word = Math.floor(Math.random() * fruitArray.length);
+        let word = fruitArray[Math.floor(Math.random() * fruitArray.length)];
         let scrambledWord = shuffle(word.split(''));
         const scrambleEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
