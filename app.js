@@ -39,6 +39,8 @@ client.on('message', async message => {
 	}
 	else { prefix = guild.prefix; }
 
+	d.prefix = prefix;
+
 	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.type === 'dm') return;
 
 	const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/);

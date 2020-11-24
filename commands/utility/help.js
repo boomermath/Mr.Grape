@@ -29,7 +29,7 @@ module.exports = {
                         value: toTitleCase(sub)
                     }, {
                         name: 'Help',
-                        value: `For help on a specific command or category, do ${d.config.prefix}help [category/command]`
+                        value: `For help on a specific command or category, do ${d.prefix}help [category/command]`
                     }, )
                     .setTimestamp()
                     .setFooter('Grape Databases');
@@ -64,7 +64,7 @@ module.exports = {
                         value: files
                     }, {
                         name: 'Help',
-                        value: `For more help on a specific command, do ${d.config.prefix}help [command]`
+                        value: `For more help on a specific command, do ${d.prefix}help [command]`
                     }, )
                     .setTimestamp()
                     .setFooter('Grape Databases');

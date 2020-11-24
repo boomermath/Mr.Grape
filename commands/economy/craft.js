@@ -1,11 +1,13 @@
 const recipe = require('../../utils/recipes');
 module.exports = {
     name: "craft",
+    description: 'craft items using ores!',
     cooldown: 0,
     async execute(message, args, d) {
         let argument = args.join(' ');
         const numberMatch = /\d+/g;
         let inv = await d.items.get(message.author.id);
+        if (!args[0]) { return message.channel.send(`Do ${d.prefix}recipe to see what you can craft!`) }
         if (Object.keys(recipe).some(e => argument.includes(e))) {
             let craft = Object.keys(recipe).find(e => argument.includes(e));
             let numItems = parseInt(argument.match(numberMatch));
@@ -14,15 +16,35 @@ module.exports = {
             for (const key in recipe[craft]) {
                 if (key === 'createditem') { continue; }
                 if (!inv.ore[key] || inv.ore[key] < recipe[craft][key] * numItems) {
-                    return message.channel.send('you dont have the stuff');
+                    const e = new d.Discord.MessageEmbed()
+                        .setColor('#dd2de0')
+                        .setTitle(message.author.username + `'s craftin`)
+                        .addField('Failed', ` you don\'t have all the things you need to make ${craft}(s)!`)
+                        .setTimestamp()
+                        .setFooter('Grape Maker Thingy');
+                    return message.channel.send(e);
                 }
                 inv.ore[key] -= recipe[craft][key] * numItems;
             }
             if (!inv[recipe[craft].createditem]) { inv[recipe[craft].createditem] = numItems }
             else { inv[recipe[craft].createditem] += numItems }
             await d.items.set(message.author.id, inv);
-            message.channel.send('successfully crafted')
+            const done = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle(message.author.username + `'s craftin`)
+                .addField('Success!', `you made ${numItems} ${craft}(s)`)
+                .setTimestamp()
+                .setFooter('Grape Maker Thingy');
+            return message.channel.send(done);
         }
-        else { message.channel.send('idk bro') }
+        else {
+            const e = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle(message.author.username + `'s craftin`)
+                .addField('Failed', 'that item doesn\'t exist!')
+                .setTimestamp()
+                .setFooter('Grape Maker Thingy');
+            return message.channel.send(e);
+        }
     }
 };
