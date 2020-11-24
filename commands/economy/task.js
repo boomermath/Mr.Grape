@@ -18,7 +18,7 @@ module.exports = {
         const scrambleEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle(message.author.username + `'s task`)
-            .addField('Unscramble', ```${word}```)
+            .addField('Unscramble', `${word}`)
             .setTimestamp()
             .setFooter('Grape Enterprises');
         message.channel.send(scrambleEmbed);
