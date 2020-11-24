@@ -14,6 +14,7 @@ module.exports = {
         if (Object.keys(recipeCollection).includes(args[0])) {
             let recipe = Object.keys(recipeCollection).find(v => args[0].includes(v));
             for (const key in recipeCollection[recipe]) {
+                if (key === 'createditem') {continue;}
                 if (!inv[key] || inv[key] < recipeCollection[recipe]) {
                     return message.channel.send('you dont have the sutff');
                 }
