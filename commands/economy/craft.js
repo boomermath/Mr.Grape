@@ -20,8 +20,8 @@ module.exports = {
                 }
                 inv.ore[key] -= recipeCollection[recipe];
             }
-            if (!inv[recipe.createditem]) { inv[recipe.createditem] = 1 }
-            else { inv[recipe.createditem] += 1 }
+            if (!inv[recipeCollection[recipe].createditem]) { inv[recipeCollection[recipe].createditem] = 1 }
+            else { inv[recipeCollection[recipe].createditem] += 1 }
             await d.items.set(message.author.id, inv);
         }
         else { message.channel.send('idk bro') }
