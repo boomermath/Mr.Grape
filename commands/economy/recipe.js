@@ -1,6 +1,6 @@
 const recipe = require('../../utils/recipes');
 module.exports = {
-    name: "hack",
+    name: "recipe",
     cooldown: 0,
     async execute(message, args, d) {
         let argument = args.join(' ');
