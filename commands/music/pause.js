@@ -7,7 +7,14 @@ module.exports = {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
-			return message.channel.send('Its paused now');
+			const p = new d.Discord.MessageEmbed()
+				.setColor('#dd2de0')
+				.setTitle('Song Queue')
+				.setDescription('Removal')
+				.addField(`Paused.`, '_')
+				.setTimestamp()
+				.setFooter('DJ Grape');
+			return message.channel.send(p);
 		}
 		return message.channel.send("Can't pause if its playing or if there\'s no music bruh");
 	}
