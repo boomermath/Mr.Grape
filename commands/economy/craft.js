@@ -19,7 +19,7 @@ module.exports = {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + `'s craftin`)
-                        .addField('Failed', ` you don\'t have all the things you need to make ${craft}(s)!`)
+                        .addField('Failed', `You don\'t have all the things you need to make ${craft}(s)!`)
                         .setTimestamp()
                         .setFooter('Grape Maker Thingy');
                     return message.channel.send(e);
@@ -32,7 +32,7 @@ module.exports = {
             const done = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + `'s craftin`)
-                .addField('Success!', `you made ${numItems} ${craft}(s)`)
+                .addField('Success!', `You made ${numItems} ${craft}(s)!`)
                 .setTimestamp()
                 .setFooter('Grape Maker Thingy');
             return message.channel.send(done);
@@ -41,7 +41,7 @@ module.exports = {
             const e = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + `'s craftin`)
-                .addField('Failed', 'that item doesn\'t exist!')
+                .addField('Failed', 'That item doesn\'t exist!')
                 .setTimestamp()
                 .setFooter('Grape Maker Thingy');
             return message.channel.send(e);
