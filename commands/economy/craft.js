@@ -14,11 +14,11 @@ module.exports = {
         if (Object.keys(recipeCollection).includes(args[0])) {
             let recipe = Object.keys(recipeCollection).find(v => args[0].includes(v));
             for (const key in recipeCollection[recipe]) {
-                if (key === 'createditem') {continue;}
-                if (!inv[key] || inv[key] < recipeCollection[recipe]) {
+                if (key === 'createditem') { continue; }
+                if (!inv.ore[key] || inv.ore[key] < recipeCollection[recipe]) {
                     return message.channel.send('you dont have the sutff');
                 }
-                inv[key] -= recipeCollection[recipe];
+                inv.ore[key] -= recipeCollection[recipe];
             }
             if (!inv[recipe.createditem]) { inv[recipe.createditem] = 1 }
             else { inv[recipe.createditem] += 1 }
