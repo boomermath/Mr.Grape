@@ -1,4 +1,4 @@
-const recipe = require('/utils/recipes');
+const recipe = require('.././utils/recipes');
 module.exports = {
     name: "craft",
     cooldown: 0,
