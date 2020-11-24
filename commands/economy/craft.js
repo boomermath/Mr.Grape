@@ -1,4 +1,4 @@
-const recipe = require('./utils/recipes');
+const recipe = require('../utils/recipes');
 module.exports = {
     name: "craft",
     cooldown: 0,
@@ -17,6 +17,7 @@ module.exports = {
             if (!inv[recipe[craft].createditem]) { inv[recipe[craft].createditem] = 1 }
             else { inv[recipe[craft].createditem] += 1 }
             await d.items.set(message.author.id, inv);
+            message.channel.send('successfully crafted')
         }
         else { message.channel.send('idk bro') }
     }
