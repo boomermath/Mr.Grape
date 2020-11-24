@@ -4,7 +4,7 @@ module.exports = {
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         const fakeRecipe = {
-            "refined shakerium": 1,
+            "refined tin": 1,
             "iron": 1,
             createditem: 'rigged dice'
         }
