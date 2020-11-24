@@ -4,11 +4,11 @@ module.exports = {
     cooldown: 0,
     async execute(message, args, d) {
         let argument = args.join(' ');
-        let numberMatch = /\d+/g;
+        const numberMatch = /\d+/g;
         let inv = await d.items.get(message.author.id);
         if (Object.keys(recipe).some(e => argument.includes(e))) {
             let craft = Object.keys(recipe).find(e => argument.includes(e));
-            let numItems = parseInt(numberMatch.match(argument));
+            let numItems = parseInt(argument.match(numberMatch)));
             if (numItems === 0) { return message.channel.send('ur not funny'); }
             if (isNaN(numItems) || numItems < 1) { numItems = 1; }
             for (const key in recipe[craft]) {
