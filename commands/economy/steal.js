@@ -5,6 +5,7 @@ module.exports = {
     cooldown: 60,
     async execute(message, args, d) {
         let target = message.mentions.members.first();
+        let inv = await d.items.get(message.author.id);
         if (!target || target.id === message.author.id || target.user.bot) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
         let targetBal = await d.users.get(target.id);
         let robberBal = await d.users.get(message.author.id);
@@ -12,7 +13,10 @@ module.exports = {
         function robbery() {
             const successVar = Math.floor(Math.random() * 99) + 1;
             const e = "0.0" + (Math.floor(Math.random() * 6) + 1).toString();
-            if (successVar >= 60) {
+            let percentage;
+            if (inv.lockpick) { percentage = 40; }
+            else { percentage = 60; }
+            if (successVar >= percentage) {
                 let earned = Math.floor(+e * targetBal);
                 d.addMoni(message.author.id, earned)
                 d.addMoni(target.id, -earned)
@@ -22,7 +26,11 @@ module.exports = {
                     .addField('Success', `Heist Successful! You got ${earned} :star:s!`)
                     .setTimestamp()
                     .setFooter('Shady Grape Org');
-
+                if (inv.lockpick && Math.floor(Math.random() * 10) + 1 === 1) {
+                    nice.addField('Uh Oh!', 'Your lockpick broke! You\'re gonna have to craft a new one!');
+                    inv.lockpick -= 1;
+                    await d.items.set(message.author.id, inv);
+                }
                 message.channel.send(nice);
             }
             else {

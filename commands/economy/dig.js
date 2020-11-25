@@ -32,7 +32,14 @@ module.exports = {
 
         function randArray(array) { return array[Math.floor(Math.random() * array.length)]; }
 
-        if (inv.tierthreepick) {
+        if (inv["rainbonite pick"]) {
+            pick(randArray(d.ores.tier1), randNum(7))
+            if (randNum(2) === 1) { pick(randArray(d.ores.tier2), randNum(6)); }
+            if (randNum(4) === 1) { pick(randArray(d.ores.tier3), randNum(4)); }
+            if (randNum(150) === 1) { mine.addField('Uh oh!', 'Your rainbonite pickaxe broke, buy a new one from the shop!'); inv["rainbonite pick"] -= 1; }
+            await d.items.set(message.author.id, inv);
+        }
+        else if (inv.tierthreepick) {
             if (randNum(2) === 1) { pick(randArray(d.ores.tier1), randNum(7)); }
             if (randNum(3) === 1) { pick(randArray(d.ores.tier2), randNum(5)); }
             if (randNum(7) === 1) { pick(randArray(d.ores.tier3), randNum(2)); }
