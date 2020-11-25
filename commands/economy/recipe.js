@@ -23,7 +23,7 @@ module.exports = {
             .setFooter('Grape Maker Thingy');
         for (const key in recipe[item]) {
             if (key === 'createditem') { continue; }
-            let orePic = d.emoji[d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).find(v => item.replace("refined ").includes(v))];
+            let orePic = d.emoji[d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).find(v => key.replace("refined ").includes(v))];
             recipeItem.addField(orePic + " - " + key.charAt(0).toUpperCase() + key.slice(1) + "(s) ", recipe[item][key])
         }
         message.channel.send(recipeItem);
