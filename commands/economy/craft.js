@@ -12,7 +12,7 @@ module.exports = {
         if (Object.keys(recipe).some(e => argument.includes(e))) {
             let craft = Object.keys(recipe).find(e => argument.includes(e));
             let numItems = parseInt(argument.match(numberMatch));
-            if (numItems === 0) { return message.channel.send('ur not funny'); }
+            if (numItems === 0) { return message.channel.send('ur not funny kid'); }
             if (isNaN(numItems) || numItems < 1) { numItems = 1; }
             for (const key in recipe[craft]) {
                 if (key === 'createditem') { continue; }
@@ -22,7 +22,7 @@ module.exports = {
                         .setTitle(message.author.username + `'s craftin`)
                         .addField('Failed', `You don\'t have all the things you need to make ${craft}(s)!`)
                         .setTimestamp()
-                        .setFooter('Grape Maker Thingy');
+                        .setFooter(' The Grape Blacksmith');
                     return message.channel.send(e);
                 }
                 inv.ore[key] -= recipe[craft][key] * numItems;
@@ -35,7 +35,7 @@ module.exports = {
                 .setTitle(message.author.username + `'s craftin`)
                 .addField('Success!', `You made ${numItems} ${craft}(s)!`)
                 .setTimestamp()
-                .setFooter('Grape Maker Thingy');
+                .setFooter('The Grape Blacksmith');
             return message.channel.send(done);
         }
         else {
@@ -44,7 +44,7 @@ module.exports = {
                 .setTitle(message.author.username + `'s craftin`)
                 .addField('Failed', 'That item doesn\'t exist!')
                 .setTimestamp()
-                .setFooter('Grape Maker Thingy');
+                .setFooter('The Grape Blacksmith');
             return message.channel.send(e);
         }
     }
