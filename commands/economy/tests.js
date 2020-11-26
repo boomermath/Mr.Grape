@@ -11,6 +11,7 @@ module.exports = {
                   .setFooter('Grape Mining Guild');
             message.channel.send(mine);
             mine.addField('field 2', '_')
-            message.edit(mine)
-      }
+            message.channel.send(mine).then((m) =>
+                  m.edit(editEmbed.addField('field 2', '_')))
+      },
 };
