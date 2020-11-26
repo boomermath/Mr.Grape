@@ -41,7 +41,8 @@ module.exports = {
                         finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];
                   }
                   else { finalNumber = Math.floor(Math.random() * 6) + 1; }
-                  if (animateEmbed(finalNumber, bet)) { d.addMoni(message.author.id, bet); }
+                  let e = animateEmbed(finalNumber, bet)
+                  if (e) { d.addMoni(message.author.id, bet); }
                   else { d.addMoni(message.author.id, -bet) }
             }
             let userBal = await d.users.get(message.author.id);
