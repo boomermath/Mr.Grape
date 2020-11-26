@@ -26,11 +26,11 @@ module.exports = {
                                                                   msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
                                                                   return false;
                                                             }
-                                                      }, 1000)
+                                                      }, 1700)
                                                 });
                                           }, 3500)
                                     });
-                              }, 1000)
+                              }, 1700)
                         })
             }
             async function decideFate(bet) {
