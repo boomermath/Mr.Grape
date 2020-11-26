@@ -9,7 +9,8 @@ module.exports = {
                   .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                   .setTimestamp()
                   .setFooter('Grape Mining Guild');
-
-            mine.edit(mine.addField('field 2', '_'))
+            message.channel.send(mine);
+            mine.addField('field 2', '_')
+            message.edit(mine)
       }
 };
