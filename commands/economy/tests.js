@@ -21,11 +21,11 @@ module.exports = {
                                                       setTimeout(function () {
                                                             if (diceRoll % 2 === 0) {
                                                                   msg.edit(gambleEmbed.addField(`Congrats, you get ${bet} :star:s!`, '_'));
-                                                                  x = 1;
+                                                                  d.addMoni(message.author.id, bet);;
                                                             }
                                                             else {
                                                                   msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
-                                                                  x = 0
+                                                                  d.addMoni(message.author.id, -bet);
                                                             }
                                                       }, 1700)
                                                 });
@@ -33,8 +33,6 @@ module.exports = {
                                     });
                               }, 1700)
                         })
-                  if (x === 1) { return true; }
-                  else { return false; }
             }
             async function decideFate(bet) {
                   let finalNumber;
@@ -44,10 +42,7 @@ module.exports = {
                         finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];
                   }
                   else { finalNumber = Math.floor(Math.random() * 6) + 1; }
-                  let e = animateEmbed(finalNumber, bet)
-                  message.channel.send(e)
-                  if (e) { d.addMoni(message.author.id, bet); }
-                  else { d.addMoni(message.author.id, -bet) }
+                  animateEmbed(finalNumber, bet)
             }
             let userBal = await d.users.get(message.author.id);
             if (args[0] === 'all') {
