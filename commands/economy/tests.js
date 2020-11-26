@@ -7,7 +7,7 @@ module.exports = {
             function animateEmbed(diceRoll, bet) {
                   const gambleEmbed = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
-                        .setTitle(message.author.username + `'s gambling table`)
+                        .setTitle(message.author.username + `'s gambling table` + '\n___')
                         .addField('Ok, if you roll an even number you win, if you roll an odd number, you lose.', '_')
                         .setTimestamp()
                         .setFooter('Grape Gambling Club.');
@@ -23,16 +23,50 @@ module.exports = {
                                                                   return true;
                                                             }
                                                             else {
-                                                                  msg.edit(gambleEmbed.addField('Rip, you lost your :star:s.', '_'));
+                                                                  msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
                                                                   return false;
                                                             }
-                                                      }, 2000)
+                                                      }, 1000)
                                                 });
-                                          }, 4000)
+                                          }, 3500)
                                     });
-                              }, 2000)
+                              }, 1000)
                         })
             }
-            animateEmbed((Math.floor(Math.random() * 6) + 1), 50)
+            function decideFate(bet) {
+                  let finalNumber;
+                  let inv = await d.items.get(message.author.id);
+                  if (inv && inv["rigged dice"]) {
+                        const riggedArray = [2, 2, 2, 2, 5, 5]
+                        finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];
+                  }
+                  else { finalNumber = Math.floor(Math.random() * 6) + 1; }
+                  if (animateEmbed(finalNumber, bet)) { d.addMoni(message.author.id, bet); }
+                  else { d.addMoni(message.author.id, -bet) }
+            }
+            if (args[0] === 'all') {
+                  message.channel.send("Are you sure you wanna do that?")
+                  let filter = m => m.author.id === message.author.id
+                  message.channel.awaitMessages(filter, {
+                        max: 1,
+                        time: 3500,
+                        errors: ['time']
+                  })
+                        .then(message => {
+                              message = message.first()
+                              if (message.content.toLowerCase() === 'yes' || message.content.toLowerCase() === 'y') {
+                                    let userBal = await d.users.get(message.author.id);
+                                    decideFate(userBal)
+                              } else if (message.content.toLowerCase() === 'no' || message.content.toLowerCase() === 'n') {
+                                    message.channel.send('ok then')
+                              }
+                              else { message.channel.send('Bruh its yes/no') }
+                        })
+                        .catch(collected => {
+                              message.channel.send('ig not')
+                        });
+            }
+            else if (!IsNaN(parseInt(args[0]))) { decideFate(parseInt(args[0])) }
+            else { message.channel.send('Bruh that\'s not a valid number of stars to bet') }
       },
 };
