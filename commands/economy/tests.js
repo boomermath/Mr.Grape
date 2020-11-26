@@ -66,7 +66,7 @@ module.exports = {
                               message.channel.send('ig not')
                         });
             }
-            else if (!IsNaN(parseInt(args[0])) && parseInt(args[0]) > 1 && parseInt(args[0]) <= userBal) { decideFate(parseInt(args[0])) }
+            else if (!isNaN(parseInt(args[0])) && parseInt(args[0]) > 1 && parseInt(args[0]) <= userBal) { decideFate(parseInt(args[0])) }
             else { message.channel.send('Bruh that\'s not a valid number of stars to bet') }
       },
 };
