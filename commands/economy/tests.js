@@ -21,7 +21,7 @@ module.exports = {
                                                       setTimeout(function () {
                                                             if (diceRoll % 2 === 0) {
                                                                   msg.edit(gambleEmbed.addField(`Congrats, you get ${bet} :star:s!`, '_'));
-                                                                  d.addMoni(message.author.id, bet);;
+                                                                  d.addMoni(message.author.id, bet);
                                                             }
                                                             else {
                                                                   msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
@@ -38,7 +38,7 @@ module.exports = {
                   let finalNumber;
                   let inv = await d.items.get(message.author.id);
                   if (inv && inv["rigged dice"]) {
-                        const riggedArray = [2, 4, 6, 2, 3, 5]
+                        const riggedArray = [2, 4, 6, 2, 4, 1, 3, 5]
                         finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];
                   }
                   else { finalNumber = Math.floor(Math.random() * 6) + 1; }
