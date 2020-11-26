@@ -5,6 +5,7 @@ module.exports = {
       cooldown: 0,
       async execute(message, args, d) {
             function animateEmbed(diceRoll, bet) {
+                  let x;
                   const gambleEmbed = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + `'s gambling table` + '\n___')
@@ -20,11 +21,11 @@ module.exports = {
                                                       setTimeout(function () {
                                                             if (diceRoll % 2 === 0) {
                                                                   msg.edit(gambleEmbed.addField(`Congrats, you get ${bet} :star:s!`, '_'));
-                                                                  return true;
+                                                                  x = 1;
                                                             }
                                                             else {
                                                                   msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
-                                                                  return false;
+                                                                  x = 0
                                                             }
                                                       }, 1700)
                                                 });
@@ -32,6 +33,8 @@ module.exports = {
                                     });
                               }, 1700)
                         })
+                  if (x === 1) { return true; }
+                  else { return false; }
             }
             async function decideFate(bet) {
                   let finalNumber;
