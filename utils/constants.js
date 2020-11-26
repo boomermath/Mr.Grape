@@ -11,7 +11,7 @@ const addMoni = async function (who, add) {
     if (current === undefined) { await users.set(who, add); }
     else { await users.set(who, (current + add)) }
 }
-const itemShop = {
+const buyableItems = {
     fan: 100,
     orangedetector: 100,
     mangodetector: 50,
@@ -21,7 +21,23 @@ const itemShop = {
     starmill: 400,
     tieronepick: 500,
     tiertwopick: 650,
-    tierthreepick: 750
+    tierthreepick: 750,
+}
+const sellableItems = {
+    fan: 50,
+    orangedetector: 50,
+    mangodetector: 25,
+    carrotdetector: 25,
+    starmagnet: 50,
+    shovel: 50,
+    starmill: 200,
+    tieronepick: 250,
+    tiertwopick: 325,
+    tierthreepick: 375,
+    "rainbonite pick": 400,
+    "personal refinery": 1000,
+    lockpick: 70,
+    "rigged dice": 100
 }
 const ores = {
     tier1: ['copper', 'tin', 'iron', 'lead', 'silver', 'bronze'],
@@ -66,11 +82,12 @@ module.exports = {
     "users": users,
     "addMoni": addMoni,
     "items": items,
-    "itemShop": itemShop,
+    "buyableItems": buyableItems,
     "querystring": querystring,
     "r2": r2,
     "ores": ores,
     "oreSell": oreSell,
     "emoji": emoji,
-    "guilds": guilds
+    "guilds": guilds,
+    "sellableItems": sellableItems
 };
