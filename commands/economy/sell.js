@@ -15,7 +15,7 @@ module.exports = {
                     if (!inv) { return message.channel.send('You got nothin!') }
                     for (key in inv) {
                         if (key === "ore" || key === "time") { continue; }
-                        profit += (d.sellableItems[key] / 2) * inv[key];
+                        profit += (d.sellableItems[key]) * inv[key];
                         delete inv[key];
                     }
                     d.addMoni(message.author.id, profit);
@@ -95,7 +95,7 @@ module.exports = {
 
                 message.channel.send(sale);
             }
-            if (!inv.starmill || inv.starmill === 0 && inv.time.starmill) { delete inv.time.starmill; }
+            if (inv.time) { if (!inv.starmill || inv.starmill === 0 && inv.time.starmill) { delete inv.time.starmill; } }
             await d.items.set(message.author.id, inv);
         }
         else if (oreConcat.some(e => argument.includes(e)) || argument.includes('ores' || 'ore')) {
