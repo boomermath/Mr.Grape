@@ -33,7 +33,7 @@ module.exports = {
                               }, 1000)
                         })
             }
-            function decideFate(bet) {
+            async function decideFate(bet) {
                   let finalNumber;
                   let inv = await d.items.get(message.author.id);
                   if (inv && inv["rigged dice"]) {
@@ -44,6 +44,7 @@ module.exports = {
                   if (animateEmbed(finalNumber, bet)) { d.addMoni(message.author.id, bet); }
                   else { d.addMoni(message.author.id, -bet) }
             }
+            let userBal = await d.users.get(message.author.id);
             if (args[0] === 'all') {
                   message.channel.send("Are you sure you wanna do that?")
                   let filter = m => m.author.id === message.author.id
@@ -55,8 +56,7 @@ module.exports = {
                         .then(message => {
                               message = message.first()
                               if (message.content.toLowerCase() === 'yes' || message.content.toLowerCase() === 'y') {
-                                    let userBal = await d.users.get(message.author.id);
-                                    decideFate(userBal)
+                                    decideFate(userBal);
                               } else if (message.content.toLowerCase() === 'no' || message.content.toLowerCase() === 'n') {
                                     message.channel.send('ok then')
                               }
@@ -66,7 +66,7 @@ module.exports = {
                               message.channel.send('ig not')
                         });
             }
-            else if (!IsNaN(parseInt(args[0]))) { decideFate(parseInt(args[0])) }
+            else if (!IsNaN(parseInt(args[0])) && parseInt(args[0]) > 1 && parseInt(args[0]) <= userBal) { decideFate(parseInt(args[0])) }
             else { message.channel.send('Bruh that\'s not a valid number of stars to bet') }
       },
 };
