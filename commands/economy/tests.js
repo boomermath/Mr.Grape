@@ -8,7 +8,7 @@ module.exports = {
                   const gambleEmbed = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + `'s gambling table`)
-                        .addFields('Ok, if you roll an even number you win, if you roll an odd number, you lose.', '_')
+                        .addField('Ok, if you roll an even number you win, if you roll an odd number, you lose.', '_')
                         .setTimestamp()
                         .setFooter('Grape Gambling Club.');
                   message.channel.send(gambleEmbed)
