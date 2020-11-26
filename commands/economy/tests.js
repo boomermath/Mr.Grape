@@ -2,14 +2,24 @@ module.exports = {
       name: "test",
       cooldown: 0,
       execute(message, args, d) {
-            const mine = new d.Discord.MessageEmbed()
+            const gambleEmbed = new d.Discord.MessageEmbed()
                   .setColor('#dd2de0')
-                  .setTitle('test')
-                  .addField('field 1', '_')
-                  .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
+                  .setTitle(message.author.username + `'s gambling table`)
+                  .addFields({
+                        name: '--------------',
+                        value: 'ok, if you roll an even number you win, if you roll an odd number, you lose'
+                  })
                   .setTimestamp()
-                  .setFooter('Grape Mining Guild');
-            message.channel.send(mine).then((m) =>
-                  m.edit(mine.addField('field 2', '_')))
+                  .setFooter('Grape Gambling Club.');
+            message.channel.send(gambleEmbed)
+                  .then((msg) => {
+                        setTimeout(function () {
+                              msg.edit(gambleEmbed.addField('--------------', 'you rolled a . . .')).then((msg) => {
+                                    setTimeout(function () {
+                                          msg.edit(gambleEmbed.addField('--------------', '<insert number here>'));
+                                    })
+                              });
+                        }, 1000)
+                  })
       },
 };

@@ -12,7 +12,6 @@ module.exports = {
                     name: '--------------',
                     value: 'ok, if you roll an even number you win, if you roll an odd number, you lose'
                 })
-                .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
                 .setTimestamp()
                 .setFooter('Grape Gambling Club.');
 
