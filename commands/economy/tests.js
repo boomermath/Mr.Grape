@@ -33,5 +33,6 @@ module.exports = {
                               }, 2000)
                         })
             }
+            animateEmbed((Math.floor(Math.random() * 6) + 1), 50)
       },
 };
