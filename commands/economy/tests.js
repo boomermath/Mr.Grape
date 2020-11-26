@@ -38,7 +38,7 @@ module.exports = {
                   let finalNumber;
                   let inv = await d.items.get(message.author.id);
                   if (inv && inv["rigged dice"]) {
-                        const riggedArray = [2, 2, 2, 2, 5, 5]
+                        const riggedArray = [2, 4, 6, 2, 3, 5]
                         finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];
                   }
                   else { finalNumber = Math.floor(Math.random() * 6) + 1; }
