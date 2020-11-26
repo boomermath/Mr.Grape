@@ -42,6 +42,7 @@ module.exports = {
                   }
                   else { finalNumber = Math.floor(Math.random() * 6) + 1; }
                   let e = animateEmbed(finalNumber, bet)
+                  message.channel.send(e)
                   if (e) { d.addMoni(message.author.id, bet); }
                   else { d.addMoni(message.author.id, -bet) }
             }
