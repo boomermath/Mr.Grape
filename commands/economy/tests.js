@@ -17,9 +17,9 @@ module.exports = {
                               msg.edit(gambleEmbed.addField('--------------', 'you rolled a . . .')).then((msg) => {
                                     setTimeout(function () {
                                           msg.edit(gambleEmbed.addField('--------------', '<insert number here>'));
-                                    })
+                                    }, 2000)
                               });
-                        }, 1000)
+                        }, 2000)
                   })
       },
 };
