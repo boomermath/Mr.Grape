@@ -9,7 +9,7 @@ module.exports = {
         const numberRegex = /\d+/g;
         let item;
         if (Object.keys(d.sellableItems).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
-            if (argument.includes('item' && 'all') || argument.includes('items' && 'all')) {
+            if (argument.includes('item') && argument.includes('all') || argument.includes('items') && argument.includes('all')) {
                 async function sellTools() {
                     let profit = 0;
                     if (!inv) { return message.channel.send('You got nothin!') }
@@ -95,7 +95,7 @@ module.exports = {
 
                 message.channel.send(sale);
             }
-            if (!inv.starmill || inv.starmill === 0 && inv.time && inv.time.starmill) { delete inv.time.starmill; }
+            if (!inv.starmill || inv.starmill === 0 && inv.time.starmill) { delete inv.time.starmill; }
             await d.items.set(message.author.id, inv);
         }
         else if (oreConcat.some(e => argument.includes(e)) || argument.includes('ores' || 'ore')) {
