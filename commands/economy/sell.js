@@ -55,14 +55,14 @@ module.exports = {
             else if (argument.includes('all')) {
                 item = argument.replace('all', '').replace(' ', '');
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
-                let profit = (d.sellableItems[item] / 2) * inv[item];
+                let profit = (d.sellableItems[item]) * inv[item];
                 d.addMoni(message.author.id, profit);
                 delete inv[item];
                 const saleAll = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s sale')
                     .addFields(
-                        { name: 'Transaction', value: `You sold all of your ${item}s for ${d.sellableItems[item] / 2} :star:s each!` },
+                        { name: 'Transaction', value: `You sold all of your ${item}s for ${d.sellableItems[item]} :star:s each!` },
                         { name: 'Profit', value: `${profit} :star:s` }
                     )
                     .setTimestamp()
@@ -78,11 +78,11 @@ module.exports = {
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
                 if (numItems > inv[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
                 inv[item] -= numItems;
-                let profit = (d.sellableItems[item] / 2) * numItems;
+                let profit = (d.sellableItems[item]) * numItems;
                 d.addMoni(message.author.id, profit);
                 let receipt;
-                if (numItems === 1) { receipt = `You sold a ${item} for ${d.sellableItems[item] / 2} :star:s each!` }
-                else { receipt = `You sold ${numItems} ${item}s for ${d.sellableItems[item] / 2} :star:s each!` }
+                if (numItems === 1) { receipt = `You sold a ${item} for ${d.sellableItems[item]} :star:s each!` }
+                else { receipt = `You sold ${numItems} ${item}s for ${d.sellableItems[item]} :star:s each!` }
                 const sale = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s sale')
