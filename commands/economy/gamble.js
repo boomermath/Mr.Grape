@@ -4,6 +4,20 @@ module.exports = {
     description: 'gamble your stars, 50/50 chance of losing your stars or winning double the amount you bet',
     cooldown: 5,
     async execute(message, args, d) {
+        let inv = await d.items.get(message.author.id);
+        async function busted(bet) {
+            let bal = await d.users.get(message.author.id);
+            let owe = Math.floor(bal * 0.05);
+            message.channel.send('---');
+            const busted = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle('Busted!')
+                .addField(`You were lookin kinda sus, so you lost your dice and ${owe} :star:s!`, '_')
+                .setTimestamp()
+                .setFooter('Grape Gambling Club.');
+            d.addMoni(message.author.id, -(bet + owe))
+            message.channel.send(busted);
+        }
         function animateEmbed(diceRoll, bet) {
             const gambleEmbed = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
@@ -26,6 +40,9 @@ module.exports = {
                                             msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
                                             d.addMoni(message.author.id, -bet);
                                         }
+                                        if (inv && inv["rigged dice"] && Math.floor(Math.random() * 0) + 1 === 1) {
+                                            busted();
+                                        }
                                     }, 1700)
                                 });
                             }, 3500)
@@ -35,7 +52,6 @@ module.exports = {
         }
         async function decideFate(bet) {
             let finalNumber;
-            let inv = await d.items.get(message.author.id);
             if (inv && inv["rigged dice"]) {
                 const riggedArray = [2, 4, 6, 2, 4, 1, 3, 5]
                 finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];

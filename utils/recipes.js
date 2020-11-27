@@ -27,7 +27,8 @@ const prefiner = {
     "refined titanium": 6,
     "refined obsidian": 8,
     "refined goshine": 4,
-    "refine kelite": 1,
+    "refined kelite": 3,
+    "refined rainbonite": 10,
     createditem: "personal refinery"
 }
 
