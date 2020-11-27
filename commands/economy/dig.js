@@ -59,7 +59,6 @@ module.exports = {
                 if (randNum(25) === 1) { mine.addField('Uh oh!', 'Your pickaxe broke, buy a new one from the shop!'); inv.tieronepick -= 1; }
                 await d.items.set(message.author.id, inv);
             }
-
             if (inv && inv.shovel && inv.shovel > 0 && randNum(45) === 1) {
                 mine.addFields('Uh oh!', 'Your shovel broke! If you want a new one, buy it from the shop!');
                 inv.shovel += -1;

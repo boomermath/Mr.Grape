@@ -8,6 +8,7 @@ module.exports = {
         if (argument === 'all') {
             function getCost() {
                 let moni = 0;
+                if (inv["personal refinery"]) { return moni; }
                 for (const key in inv.ore) {
                     if (key.includes('refined')) { continue; }
                     if (d.ores.tier1.includes(key)) { moni += 3 * inv.ore[key] }
@@ -59,6 +60,7 @@ module.exports = {
                 }
                 function getCostAll() {
                     let moni = 0;
+                    if (inv["personal refinery"]) { return moni; }
                     if (d.ores.tier1.includes(item)) { moni += 3 * inv.ore[item] }
                     if (d.ores.tier2.includes(item)) { moni += 5 * inv.ore[item] }
                     if (d.ores.tier3.includes(item)) { moni += 10 * inv.ore[item] }
@@ -104,6 +106,7 @@ module.exports = {
                 }
                 function getCostSingle() {
                     let moni = 0;
+                    if (inv["personal refinery"]) { return moni; }
                     if (d.ores.tier1.includes(item)) { moni += 3 * numberOfItems }
                     if (d.ores.tier2.includes(item)) { moni += 5 * numberOfItems }
                     if (d.ores.tier3.includes(item)) { moni += 10 * numberOfItems }
