@@ -61,7 +61,6 @@ client.on('message', async message => {
 	let inv = await items.get(message.author.id);
 	let haveFan;
 	if (!inv) { inv = {}; }
-	if (inv = {}) { await items.delete(message.author.id); }
 	if (!inv.fan) { haveFan = 0 }
 	else { haveFan = inv.fan }
 	let cooldownAmount;
