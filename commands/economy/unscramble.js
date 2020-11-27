@@ -43,7 +43,7 @@ module.exports = {
                     const yay = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + `'s task`)
-                        .addField('Unscramble Resultes', `Yay! You guessed the word correctly! You get ${e} :star:s`)
+                        .addField('Unscramble Results', `Yay! You guessed the word correctly! You get ${e} :star:s`)
                         .setTimestamp()
                         .setFooter('Grape Enterprises');
                     message.channel.send(yay)
@@ -51,7 +51,7 @@ module.exports = {
                     const oof = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + `'s task`)
-                        .addField('Unscramble Resultes', `bruh ur bad, the word was ${word} duh`)
+                        .addField('Unscramble Results', `bruh ur bad, the word was ${word} duh`)
                         .setTimestamp()
                         .setFooter('Grape Enterprises');
                     message.channel.send(oof)
@@ -61,7 +61,7 @@ module.exports = {
                 const oof = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + `'s task`)
-                    .addField('Unscramble Resultes', `cmon slowpoke, its not that hard, it was ${word}`)
+                    .addField('Unscramble Results', `cmon slowpoke, its not that hard, it was ${word}`)
                     .setTimestamp()
                     .setFooter('Grape Enterprises');
                 message.channel.send(oof)

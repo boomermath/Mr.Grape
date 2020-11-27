@@ -19,7 +19,7 @@ module.exports = {
             }
             let cost = getCost();
             if (cost > await d.users.get(message.author.id)) { return message.channel.send('Bruh you don\'t have the moni'); }
-            if (cost === 0) { return message.channel.send('There\'s nothing to refine!') }
+            if (cost === 0 && !inv["personal refinery"]) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
                 if (key.includes('refined')) { continue; }
                 if (!inv.ore["refined " + key]) { inv.ore["refined " + key] = inv.ore[key]; }
@@ -34,7 +34,6 @@ module.exports = {
                 .addField('Refined', `Successfully refined all of your ores for ${cost} :star:s!`)
                 .setTimestamp()
                 .setFooter('Grape Refinery');
-
             return message.channel.send(refine);
         }
         else {
