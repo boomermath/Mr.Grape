@@ -27,11 +27,6 @@ module.exports = {
                     .addField('Success', `Heist Successful! You got ${earned} :star:s!`)
                     .setTimestamp()
                     .setFooter('Shady Grape Org');
-                if (inv && inv.lockpick && Math.floor(Math.random() * 10) + 1 === 1) {
-                    nice.addField('Uh Oh!', 'Your lockpick broke! You\'re gonna have to craft a new one!');
-                    inv.lockpick -= 1;
-                    await d.items.set(message.author.id, inv);
-                }
                 message.channel.send(nice);
             }
             else {
@@ -92,6 +87,10 @@ module.exports = {
                     message.channel.send(rip);
                 });
         }
-        else { robbery(); }
+        else {
+            robbery();
+            inv.lockpick -= 1;
+            await d.items.set(message.author.id, inv);
+        }
     }
 };
