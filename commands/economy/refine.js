@@ -8,30 +8,33 @@ module.exports = {
         if (argument === 'all') {
             function getCost() {
                 let moni = 0;
-                if (inv["personal refinery"]) { return moni; }
                 for (const key in inv.ore) {
                     if (key.includes('refined')) { continue; }
                     if (d.ores.tier1.includes(key)) { moni += 3 * inv.ore[key] }
                     if (d.ores.tier2.includes(key)) { moni += 5 * inv.ore[key] }
                     if (d.ores.tier3.includes(key)) { moni += 10 * inv.ore[key] }
                 }
-                return moni;
+                if (moni === 0 && inv["personal refinery"]) { return true; }
+                else { return moni; }
             }
             let cost = getCost();
+            if (cost === true || cost === 0 && !inv["personal refinery"]) { return message.channel.send('There\'s nothing to refine!') }
             if (cost > await d.users.get(message.author.id)) { return message.channel.send('Bruh you don\'t have the moni'); }
-            if (cost === 0 && !inv["personal refinery"]) { return message.channel.send('There\'s nothing to refine!') }
             for (let key in inv.ore) {
                 if (key.includes('refined')) { continue; }
                 if (!inv.ore["refined " + key]) { inv.ore["refined " + key] = inv.ore[key]; }
                 else { inv.ore["refined " + key] += inv.ore[key]; }
                 delete inv.ore[key];
             }
+            let refinementRecipt;
+            if (inv["personal refinery"]) { refinementRecipt = `Successfully refined all of your ores (for free cus you have a personal refiner)` }
+            else { refinementRecipt = `Successfully refined all of your ores for ${cost} :star:s!` }
             d.addMoni(message.author.id, -cost);
             await d.items.set(message.author.id, inv);
             const refine = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle(message.author.username + '\'s refinement')
-                .addField('Refined', `Successfully refined all of your ores for ${cost} :star:s!`)
+                .addField('Refined', refinementRecipt)
                 .setTimestamp()
                 .setFooter('Grape Refinery');
             return message.channel.send(refine);
@@ -71,10 +74,13 @@ module.exports = {
                 delete inv.ore[item];
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
+                let oreRefine;
+                if (inv["personal refinery"]) { oreRefine = `You refined your ${item} ore(s) for free, cus you have a personal refiner (flexx)` }
+                else { `You refined your ${item} ore(s) for ${cost} :star:s` }
                 const r = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
-                    .addField('Refined', `You refined your ${item} ore(s) for ${cost} :star:s`)
+                    .addField('Refined', oreRefine)
                     .setTimestamp()
                     .setFooter('Grape Refinery');
                 return message.channel.send(r);
@@ -117,10 +123,13 @@ module.exports = {
                 else { inv.ore["refined " + item] += numberOfItems; }
                 d.addMoni(message.author.id, -cost);
                 await d.items.set(message.author.id, inv);
+                let oreRefiner;
+                if (inv["personal refinery"]) { oreRefiner = `You refined your ${numberOfItems} ${item} ore(s) for free, cus personal refinery (ez)` }
+                else { `You refined your ${numberOfItems} ${item} ore(s) for ${cost} :star:s` }
                 const r = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(message.author.username + '\'s refinement')
-                    .addField('Refined', `You refined your ${numberOfItems} ${item} ore(s) for ${cost} :star:s`)
+                    .addField('Refined', oreRefiner)
                     .setTimestamp()
                     .setFooter('Grape Refinery');
                 return message.channel.send(r);
