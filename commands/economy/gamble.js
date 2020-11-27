@@ -12,10 +12,10 @@ module.exports = {
             const busted = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')
                 .setTitle('Busted!')
-                .addField(`You were lookin kinda sus, so you lost your dice and ${owe} :star:s!`, '_')
+                .addField(`You were lookin kinda sus, so you lost your dice, and ${((2 * bet) + owe)} :star:s!`, '_')
                 .setTimestamp()
                 .setFooter('Grape Gambling Club.');
-            d.addMoni(message.author.id, -(bet + owe))
+            d.addMoni(message.author.id, -((2 * bet) + owe))
             message.channel.send(busted);
         }
         function animateEmbed(diceRoll, bet) {
@@ -40,8 +40,8 @@ module.exports = {
                                             msg.edit(gambleEmbed.addField(`Rip, you lost your ${bet} :star:s.`, '_'));
                                             d.addMoni(message.author.id, -bet);
                                         }
-                                        if (inv && inv["rigged dice"] && Math.floor(Math.random() * 0) + 1 === 1) {
-                                            busted(bet);
+                                        if (inv && inv["rigged dice"] && Math.floor(Math.random() * 25) + 1 === 1) {
+                                            setTimeout(function () { busted(bet); }, 1700)
                                         }
                                     }, 1700)
                                 });
