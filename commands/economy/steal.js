@@ -47,16 +47,16 @@ module.exports = {
                 message.channel.send(rip);
             }
         }
-        let filter = m => m.author.id === message.author.id
-        const rand = Math.floor(Math.random() * 3) + 1;
-        const go = new d.Discord.MessageEmbed()
-            .setColor('#dd2de0')
-            .setTitle(message.author.username + '\'s heist')
-            .addField('Fail', 'Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip\nYou have 7 seconds, go!')
-            .setTimestamp()
-            .setFooter('Shady Grape Org');
-        message.channel.send(go);
         if (inv && !inv.lockpick) {
+            let filter = m => m.author.id === message.author.id
+            const rand = Math.floor(Math.random() * 3) + 1;
+            const go = new d.Discord.MessageEmbed()
+                .setColor('#dd2de0')
+                .setTitle(message.author.username + '\'s heist')
+                .addField('Task', 'Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip\nYou have 7 seconds, go!')
+                .setTimestamp()
+                .setFooter('Shady Grape Org');
+            message.channel.send(go);
             message.channel.awaitMessages(filter, {
                 max: 1,
                 time: 7100,
