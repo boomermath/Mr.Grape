@@ -15,7 +15,7 @@ module.exports = {
             const successVar = Math.floor(Math.random() * 99) + 1;
             const e = "0.0" + (Math.floor(Math.random() * 6) + 1).toString();
             let percentage;
-            if (inv.lockpick) { percentage = Math.floor(Math.random() * 3) + 1; }
+            if (inv && inv.lockpick) { percentage = Math.floor(Math.random() * 3) + 1; }
             else { percentage = Math.floor(Math.random() * 4) + 1; }
             if (percentage === 1) {
                 let earned = Math.floor(+e * targetBal);
@@ -56,39 +56,42 @@ module.exports = {
             .setTimestamp()
             .setFooter('Shady Grape Org');
         message.channel.send(go);
-        message.channel.awaitMessages(filter, {
-            max: 1,
-            time: 7100,
-            errors: ['time']
-        })
-            .then(message => {
-                message = message.first()
-                if (parseInt(message.content) === rand) {
-                    robbery();
-                } else {
-                    const loss = Math.floor(robberBal * 0.05);
-                    d.addMoni(message.author.id, -loss)
+        if (inv && !inv.lockpick) {
+            message.channel.awaitMessages(filter, {
+                max: 1,
+                time: 7100,
+                errors: ['time']
+            })
+                .then(message => {
+                    message = message.first()
+                    if (parseInt(message.content) === rand) {
+                        robbery();
+                    } else {
+                        const loss = Math.floor(robberBal * 0.05);
+                        d.addMoni(message.author.id, -loss)
+                        const rip = new d.Discord.MessageEmbed()
+                            .setColor('#dd2de0')
+                            .setTitle(message.author.username + '\'s heist')
+                            .addField('Fail', `you guessed wrong rip, you lost ${loss} :star:s`)
+                            .setTimestamp()
+                            .setFooter('Shady Grape Org');
+
+                        message.channel.send(rip);
+                    }
+                })
+                .catch(collected => {
+                    const lossTime = Math.floor(robberBal * 0.07);
+                    d.addMoni(message.author.id, -lossTime);
                     const rip = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + '\'s heist')
-                        .addField('Fail', `you guessed wrong rip, you lost ${loss} :star:s`)
+                        .addField('Fail', `Bruh ur trash, you couldn't crack it in time, also you lost ${lossTime} :star:s`)
                         .setTimestamp()
                         .setFooter('Shady Grape Org');
 
                     message.channel.send(rip);
-                }
-            })
-            .catch(collected => {
-                const lossTime = Math.floor(robberBal * 0.07);
-                d.addMoni(message.author.id, -lossTime);
-                const rip = new d.Discord.MessageEmbed()
-                    .setColor('#dd2de0')
-                    .setTitle(message.author.username + '\'s heist')
-                    .addField('Fail', `Bruh ur trash, you couldn't crack it in time, also you lost ${lossTime} :star:s`)
-                    .setTimestamp()
-                    .setFooter('Shady Grape Org');
-
-                message.channel.send(rip);
-            });
+                });
+        }
+        else { robbery(); }
     }
 };
