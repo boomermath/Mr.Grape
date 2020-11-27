@@ -8,10 +8,10 @@ module.exports = {
         if (!target || target.id === message.author.id || target.user.bot) { return message.channel.send('That\'s aint a valid person to ~~steal~~ forcefully borrow from!'); }
         let targetBal = await d.users.get(target.id);
         let robberBal = await d.users.get(message.author.id);
+        let inv = await d.items.get(message.author.id);
         if (!targetBal || targetBal < 10) { return message.channel.send("Bruh don't bully, mans too poor to steal from"); }
         if (robberBal < 10) { return message.channel.send('You don\'t got the moni to do that (get at least 10 :star:s)'); }
         async function robbery() {
-            let inv = await d.items.get(message.author.id);
             const successVar = Math.floor(Math.random() * 99) + 1;
             const e = "0.0" + (Math.floor(Math.random() * 6) + 1).toString();
             let percentage;
