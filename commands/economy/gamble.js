@@ -41,7 +41,7 @@ module.exports = {
                                             d.addMoni(message.author.id, -bet);
                                         }
                                         if (inv && inv["rigged dice"] && Math.floor(Math.random() * 0) + 1 === 1) {
-                                            busted();
+                                            busted(bet);
                                         }
                                     }, 1700)
                                 });
