@@ -87,7 +87,7 @@ module.exports = {
             }
             else {
                 let regex = /\d+/g;
-                let numberOfItemsRaw = args.join(' ').match(regex);
+                let numberOfItemsRaw = argument.match(regex);
                 let numberOfItems = parseInt(numberOfItemsRaw);
                 item = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3).filter(v => argument.includes(v)).pop();
                 if (!numberOfItemsRaw || isNaN(numberOfItems)) { numberOfItems = 1; }

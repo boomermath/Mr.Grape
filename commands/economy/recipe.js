@@ -3,7 +3,7 @@ module.exports = {
     name: "recipe",
     cooldown: 0,
     async execute(message, args, d) {
-        let argument = args.join(' ');
+        let argument = args.join(' ').toLowerCase();
         if (!argument) {
             const recipeHelp = new d.Discord.MessageEmbed()
                 .setColor('#dd2de0')

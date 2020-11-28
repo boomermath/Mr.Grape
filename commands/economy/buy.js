@@ -27,7 +27,7 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Marketplaces');
         let have = await d.items.get(message.author.id);
-        let argument = args.join(' ');
+        let argument = args.join(' ').toLowerCase();
         let regex = /\d+/g;
         let numberOfItemsRaw = parseInt(argument.match(regex));
         let numberOfItems = parseInt(numberOfItemsRaw);

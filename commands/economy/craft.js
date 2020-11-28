@@ -4,11 +4,11 @@ module.exports = {
     description: 'craft items using ores!',
     cooldown: 0,
     async execute(message, args, d) {
-        let argument = args.join(' ');
+        let argument = args.join(' ').toLowerCase();
         const numberMatch = /\d+/g;
         let inv = await d.items.get(message.author.id);
         if (!inv || !inv.ore) {return message.channel.send('You don\'t have any ores!')}
-        if (!args[0]) { return message.channel.send(`Do ${d.prefix}recipe to see what you can craft!`) }
+        if (!argument) { return message.channel.send(`Do ${d.prefix}recipe to see what you can craft!`) }
         if (Object.keys(recipe).some(e => argument.includes(e))) {
             let craft = Object.keys(recipe).find(e => argument.includes(e));
             let numItems = parseInt(argument.match(numberMatch));
