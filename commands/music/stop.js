@@ -9,6 +9,7 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue) return message.channel.send("There ain't any music!");
 		serverQueue.connection.dispatcher.end("Music stopped.");
+		serverQueue.voiceChannel.leave();
 		message.client.queue.delete(message.guild.id);
 	}
 };
