@@ -1,7 +1,6 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
-const YoutubeAPI = require('simple-youtube-api');
-const youtube = new YoutubeAPI(process.env.YOUTUBE);
+const youtube = require('youtube-sr');
 function formatDuration(durationObj) {
 	const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${durationObj.minutes ? durationObj.minutes : '00'
 		}:${durationObj.seconds < 10
@@ -34,16 +33,14 @@ module.exports = {
 			songInfo.duration = formatDuration(songInfo.duration);
 		}
 		else {
-			let video = await youtube.searchVideos(argument, 1);
-			songInfo = await youtube.getVideo(video[0].url);
-			songInfo.url = video[0].url;
-			songInfo.duration = formatDuration(songInfo.duration);
+			let video = await youtube.search(argument, { limit: 1 });
+			songInfo = video[0];
 		}
 		const song = {
 			title: Util.escapeMarkdown(songInfo.title),
-			url: songInfo.url,
-			duration: songInfo.duration,
-			thumbnail: songInfo.thumbnails.high.url
+			url: `https://youtube.com/watch?v=${songInfo.id}`,
+			duration: songInfo.durationFormatted,
+			thumbnail: songInfo.thumbnail.url
 		};
 
 		if (serverQueue) {

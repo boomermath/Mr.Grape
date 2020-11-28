@@ -20,7 +20,7 @@
     "keyv": "^4.0.3",
     "querystring": "^0.2.0",
     "r2": "^2.0.1",
-    "simple-youtube-api": "^5.2.1",
+    "youtube-sr": "^2.0.4",
     "ytdl-core":"^4.0.5"
   }
 }
