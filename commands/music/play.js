@@ -20,7 +20,7 @@ module.exports = {
 		const argument = args.join(' ');
 		let songInfo;
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			const playlist = await ytpl('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
+			const playlist = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
 			for (video in playlist.items) {
 				let plSong = playlist.items[video];
 				var tempArray = [];
