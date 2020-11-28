@@ -19,7 +19,6 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await ytpl('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
 			for (video in playlist.items) {
