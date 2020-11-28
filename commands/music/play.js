@@ -23,7 +23,7 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I don\'t have perms to connect');
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I don\'t have perms to speak');
 
-		const ytRegex = /a/gi;
+		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
@@ -32,6 +32,7 @@ module.exports = {
 			//planning to add playlist stuff
 		}
 		else {
+			if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
 			songInfo = await youtube.searchOne(argument);
 		}
 		const song = {
