@@ -19,9 +19,9 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
+		if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			let plID = argument.match(plRegex)[1];
-			const playlist = await ytpl(plID);
+			const playlist = await ytpl(argument);
 			for (video in playlist.items) {
 				let plSong = playlist.items[video];
 				var tempArray = [];
@@ -36,7 +36,6 @@ module.exports = {
 			if (serverQueue) { serverQueue.songs.push(...tempArray); }
 		}
 		else {
-			if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
 			songInfo = await youtube.searchOne(argument);
 		}
 		const song = {
