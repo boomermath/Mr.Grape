@@ -28,9 +28,8 @@ module.exports = {
 		const argument = args.join(' ');
 		let songInfo;
 		if (ytRegex.test(argument)) {
-			songInfo = await youtube.getVideo(argument, 1);
-			songInfo.url = argument;
-			songInfo.duration = formatDuration(songInfo.duration);
+			songInfo = await youtube.search(argument, { limit: 1 });
+			songInfo = video[0];
 		}
 		else {
 			let video = await youtube.search(argument, { limit: 1 });
