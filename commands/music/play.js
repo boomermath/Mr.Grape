@@ -20,7 +20,7 @@ module.exports = {
 		const argument = args.join(' ');
 		let songInfo;
 		if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
-		if (ytRegex.test(argument) && plRegex.test(argument)) {
+		if (true) {
 			const playlist = await ytpl('https://www.youtube.com/watch?v=wDgQdr8ZkTw&list=RDwDgQdr8ZkTw&start_radio=1&t=1&ab_channel=GameGuard');
 			for (video in playlist.items) {
 				let plSong = playlist.items[video];
@@ -33,7 +33,7 @@ module.exports = {
 				};
 				tempArray.push(song);
 			}
-			if (serverQueue) { serverQueue.songs.push(...tempArray); }
+			if (serverQueue) { return serverQueue.songs.push(...tempArray); }
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
