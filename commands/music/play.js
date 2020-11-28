@@ -1,16 +1,7 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
-function formatDuration(durationObj) {
-	const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${durationObj.minutes ? durationObj.minutes : '00'
-		}:${durationObj.seconds < 10
-			? '0' + durationObj.seconds
-			: durationObj.seconds
-				? durationObj.seconds
-				: '00'
-		}`;
-	return duration;
-}
+const ytpl = require('ytpl');
 module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
@@ -23,13 +14,26 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I don\'t have perms to connect');
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I don\'t have perms to speak');
 
-		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi
+		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		if (false) {
-			null;
-			//planning to add playlist stuff
+		if (ytRegex.test(argument) && plRegex.test(argument)) {
+			let plID = argument.match(plRegex)[1];
+			const playlist = await ytpl(plID);
+			for (video in playlist.items) {
+				let plSong = playlist.items[video];
+				var tempArray = [];
+				const song = {
+					title: Util.escapeMarkdown(plSong.title),
+					url: plSong["url_simple"],
+					duration: plSong.duration,
+					thumbnail: plSong.thumbnail
+				};
+				tempArray.push(song);
+			}
+			if (serverQueue) { serverQueue.songs.push(...tempArray); }
 		}
 		else {
 			if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
