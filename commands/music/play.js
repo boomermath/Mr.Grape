@@ -23,21 +23,20 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh I don\'t have perms to connect');
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I don\'t have perms to speak');
 
-		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+		const ytRegex = /a/gi;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		let songInfo;
-		if (ytRegex.test(argument)) {
-			let video = await youtube.search(argument, { limit: 1 });
-			songInfo = video[0];
+		if (false) {
+			null;
+			//planning to add playlist stuff
 		}
 		else {
-			let video = await youtube.search(argument, { limit: 1 });
-			songInfo = video[0];
+			songInfo = await youtube.searchOne(argument);
 		}
 		const song = {
 			title: Util.escapeMarkdown(songInfo.title),
-			url: `https://youtube.com/watch?v=${songInfo.id}`,
+			url: songInfo.url,
 			duration: songInfo.durationFormatted,
 			thumbnail: songInfo.thumbnail.url
 		};
