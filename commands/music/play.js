@@ -21,7 +21,7 @@ module.exports = {
 		let songInfo;
 		if (ytRegex.test(argument)) { if (!ytdl.validateURL(argument)) { return message.channel.send('That\'s not a valid youtube url!') } }
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			const playlist = await ytpl(argument);
+			const playlist = await ytpl('https://www.youtube.com/watch?v=wDgQdr8ZkTw&list=RDwDgQdr8ZkTw&start_radio=1&t=1&ab_channel=GameGuard');
 			for (video in playlist.items) {
 				let plSong = playlist.items[video];
 				var tempArray = [];
