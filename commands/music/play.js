@@ -37,7 +37,7 @@ module.exports = {
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
-			const song = {
+			var song = {
 				title: Util.escapeMarkdown(songInfo.title),
 				url: songInfo.url,
 				duration: songInfo.durationFormatted,
