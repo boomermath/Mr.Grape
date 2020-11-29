@@ -37,13 +37,14 @@ module.exports = {
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
+			const song = {
+				title: Util.escapeMarkdown(songInfo.title),
+				url: songInfo.url,
+				duration: songInfo.durationFormatted,
+				thumbnail: songInfo.thumbnail.url
+			};
 		}
-		const song = {
-			title: Util.escapeMarkdown(songInfo.title),
-			url: songInfo.url,
-			duration: songInfo.durationFormatted,
-			thumbnail: songInfo.thumbnail.url
-		};
+
 
 		if (serverQueue) {
 			serverQueue.songs.push(song);
