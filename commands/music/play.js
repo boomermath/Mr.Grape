@@ -21,21 +21,19 @@ module.exports = {
 		let songInfo;
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
-			console.log(playlist);
-			/*
-			for (video in playlist.items) {
-				let plSong = playlist.items[video];
+			for (video in playlist.videos) {
+				let plSong = playlist.videos[video];
 				var tempArray = [];
 				const song = {
 					title: Util.escapeMarkdown(plSong.title),
-					url: plSong["url_simple"],
-					duration: plSong.duration,
+					url: `https://www.youtube.com/watch?v=${plSong.id}`,
+					duration: plSong.durationFormatted,
 					thumbnail: plSong.thumbnail
 				};
 				tempArray.push(song);
 			}
 			if (serverQueue) { serverQueue.songs.push(...tempArray); }
-			*/
+
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
