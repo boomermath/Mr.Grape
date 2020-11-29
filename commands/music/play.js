@@ -21,6 +21,8 @@ module.exports = {
 		let songInfo;
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
+			console.log(playlist);
+			/*
 			for (video in playlist.items) {
 				let plSong = playlist.items[video];
 				var tempArray = [];
@@ -33,6 +35,7 @@ module.exports = {
 				tempArray.push(song);
 			}
 			if (serverQueue) { serverQueue.songs.push(...tempArray); }
+			*/
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
