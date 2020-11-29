@@ -33,6 +33,7 @@ module.exports = {
 				};
 				tempArray.push(song);
 			}
+			console.log(tempArray)
 			if (serverQueue) { return serverQueue.songs.push(...tempArray); }
 		}
 		else {
