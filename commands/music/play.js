@@ -34,7 +34,7 @@ module.exports = {
 				};
 				tempArray.push(song);
 			}
-			if (serverQueue) { serverQueue.songs.push(...tempArray); }
+			if (serverQueue) { return serverQueue.songs.push(...tempArray); }
 
 		}
 		else {
