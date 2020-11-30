@@ -28,6 +28,7 @@ module.exports = {
 			}
 			return song;
 		}
+
 		function announce(song, started, isPlaylist) {
 			let e;
 			if (isPlaylist) { e = 'Playlist added!' }
@@ -47,10 +48,8 @@ module.exports = {
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist(argument);
-			console.log(playlist.videos[0].id)
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
-				console.log(video);
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
 				playSong(song, message, channel, serverQueue, true)
 			}
@@ -72,6 +71,7 @@ module.exports = {
 			if (queue) {
 				queue.songs.push(song);
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
+				return;
 			}
 
 			const queueConstruct = {
