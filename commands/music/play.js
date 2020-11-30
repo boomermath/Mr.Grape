@@ -45,9 +45,9 @@ module.exports = {
 			return announceEmbed;
 		}
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			let playlist;
-			const playPre = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH').then(p => p = playlist)
+			const playlist = await youtube.getPlaylist(argument)
 			console.log(playlist)
+			/*
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
@@ -60,6 +60,7 @@ module.exports = {
 				duration: 'N/A'
 			}
 			message.channel.send(announce(playlistInfo, false, true));
+			*/
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
