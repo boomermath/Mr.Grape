@@ -45,7 +45,8 @@ module.exports = {
 			return announceEmbed;
 		}
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			const playlist = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
+			let playlist;
+			const playPre = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH').then(p => p = playlist)
 			console.log(playlist)
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
