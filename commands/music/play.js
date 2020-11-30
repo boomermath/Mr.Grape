@@ -18,7 +18,7 @@ module.exports = {
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
-		let songInfo;
+
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
 				"title": title,
@@ -44,9 +44,10 @@ module.exports = {
 				.setFooter('DJ Grape');
 			return announceEmbed;
 		}
+
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist(argument);
-			console.log(playlist.videos[0])
+			console.log(playlist.videos[0].id)
 			/*
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
@@ -63,7 +64,7 @@ module.exports = {
 			*/
 		}
 		else {
-			songInfo = await youtube.searchOne(argument);
+			let songInfo = await youtube.searchOne(argument);
 			let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
 			playSong(song, message, channel, serverQueue, false)
 		}
