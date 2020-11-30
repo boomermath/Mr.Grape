@@ -48,9 +48,9 @@ module.exports = {
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist(argument);
 			console.log(playlist.videos[0].id)
-			/*
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
+				console.log(video);
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
 				playSong(song, message, channel, serverQueue, true)
 			}
@@ -61,7 +61,6 @@ module.exports = {
 				duration: 'N/A'
 			}
 			message.channel.send(announce(playlistInfo, false, true));
-			*/
 		}
 		else {
 			let songInfo = await youtube.searchOne(argument);
