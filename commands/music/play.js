@@ -34,28 +34,33 @@ module.exports = {
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
-				playSong(song, message, channel, serverQueue)
+				playSong(song, message, channel, serverQueue, true)
 			}
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
 			let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
-			playSong(song, message, channel, serverQueue)
+			playSong(song, message, channel, serverQueue, false)
 		}
 
-		async function playSong(song, message, vc, queue) {
+		async function playSong(song, message, vc, queue, ifPlaylist) {
 			if (queue) {
-				queue.songs.push(song);
-				const added = new d.Discord.MessageEmbed()
-					.setColor('#dd2de0')
-					.setTitle(song.title)
-					.setURL(song.url)
-					.setDescription(`Duration: ${song.duration}`)
-					.setThumbnail(song.thumbnail)
-					.addField('Added to the queue!', '_')
-					.setTimestamp()
-					.setFooter('DJ Grape');
-				return message.channel.send(added);
+				if (ifPlaylist) {
+					queue.songs.push(song);
+				}
+				else {
+					queue.songs.push(song);
+					const added = new d.Discord.MessageEmbed()
+						.setColor('#dd2de0')
+						.setTitle(song.title)
+						.setURL(song.url)
+						.setDescription(`Duration: ${song.duration}`)
+						.setThumbnail(song.thumbnail)
+						.addField('Added to the queue!', '_')
+						.setTimestamp()
+						.setFooter('DJ Grape');
+					return message.channel.send(added);
+				}
 			}
 
 			const queueConstruct = {

@@ -12,7 +12,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "@keyv/postgres": "^1.0.16",
-    "discord.js": "^12.4.1",
+    "discord.js": "^12.5.1",
     "discord-ytdl-core": "^4.1.5",
     "ffmpeg-static": "^4.2.7",
     "filehound": "^1.17.4",
@@ -21,7 +21,7 @@
     "querystring": "^0.2.0",
     "r2": "^2.0.1",
     "youtube-sr": "^2.0.4",
-    "ytdl-core": "^4.0.5",
+    "ytdl-core": "^4.1.1",
     "ytpl": "^1.0.1"
   }
 }
