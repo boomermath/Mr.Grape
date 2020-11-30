@@ -28,6 +28,22 @@ module.exports = {
 			}
 			return song;
 		}
+		function announce(song, started, isPlaylist) {
+			let e;
+			if (isPlaylist) { e = 'Playlist added!' }
+			else if (started) { e = 'Groovin to the tunes!' }
+			else { e = 'Added to the queue!' }
+			const announceEmbed = new d.Discord.MessageEmbed()
+				.setColor('#dd2de0')
+				.setTitle(song.title)
+				.setURL(song.url)
+				.setDescription(`Duration: ${song.duration}`)
+				.setThumbnail(song.thumbnail)
+				.addField(e, '_')
+				.setTimestamp()
+				.setFooter('DJ Grape');
+			return announceEmbed;
+		}
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist('https://www.youtube.com/playlist?list=PLAuXvMFaTiZwojnLr7JLOupJCikzwShYH');
 			console.log(playlist)
@@ -36,6 +52,13 @@ module.exports = {
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
 				playSong(song, message, channel, serverQueue, true)
 			}
+			const playlistInfo = {
+				title: playlist.title.charAt(0).toUpperCase() + playlist.title.slice(1),
+				url: playlist.url,
+				thumbnail: playlist.thumbnail,
+				duration: 'N/A'
+			}
+			message.channel.send(announce(playlistInfo, false, true));
 		}
 		else {
 			songInfo = await youtube.searchOne(argument);
@@ -45,22 +68,8 @@ module.exports = {
 
 		async function playSong(song, message, vc, queue, ifPlaylist) {
 			if (queue) {
-				if (ifPlaylist) {
-					queue.songs.push(song);
-				}
-				else {
-					queue.songs.push(song);
-					const added = new d.Discord.MessageEmbed()
-						.setColor('#dd2de0')
-						.setTitle(song.title)
-						.setURL(song.url)
-						.setDescription(`Duration: ${song.duration}`)
-						.setThumbnail(song.thumbnail)
-						.addField('Added to the queue!', '_')
-						.setTimestamp()
-						.setFooter('DJ Grape');
-					return message.channel.send(added);
-				}
+				queue.songs.push(song);
+				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
 			}
 
 			const queueConstruct = {
@@ -94,16 +103,7 @@ module.exports = {
 					})
 					.on('error', error => console.error(error));
 				dispatcher.setVolumeLogarithmic(queue.volume / 5);
-				const started = new d.Discord.MessageEmbed()
-					.setColor('#dd2de0')
-					.setTitle(song.title)
-					.setURL(song.url)
-					.setDescription(`Duration: ${song.duration}`)
-					.setThumbnail(song.thumbnail)
-					.addField('Groovin to the tunes!', '_')
-					.setTimestamp()
-					.setFooter('DJ Grape');
-				queue.textChannel.send(started);
+				queue.textChannel.send(announce(song, true, false));
 			};
 
 			try {

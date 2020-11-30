@@ -56,7 +56,6 @@ module.exports = {
             .setColor('#dd2de0')
             .setTitle(message.author.username + "'s purchase")
             .addField('Receipt', receipt)
-            .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
             .setFooter('Grape Marketplaces');
         message.channel.send(buy);
