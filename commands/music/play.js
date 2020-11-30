@@ -43,7 +43,7 @@ module.exports = {
 			playSong(song, message, channel, serverQueue)
 		}
 
-		async function playSong(video, message, vc, queue) {
+		async function playSong(song, message, vc, queue) {
 			if (queue) {
 				queue.songs.push(song);
 				const added = new d.Discord.MessageEmbed()
