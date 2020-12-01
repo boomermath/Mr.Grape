@@ -4,6 +4,6 @@ module.exports = {
 	cooldown: 2,
 	execute(message, args, d) {
     const q = message.client.queue.get(message.guild.id);
-    message.channel.send(q.dispatcher);	
+    message.channel.send(q);	
 	}
 };
