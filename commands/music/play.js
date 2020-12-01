@@ -57,7 +57,7 @@ module.exports = {
 				title: playlist.title.charAt(0).toUpperCase() + playlist.title.slice(1),
 				url: playlist.url,
 				thumbnail: playlist.thumbnail,
-				duration: 'N/A'
+				duration: 'It\'s a playlist bro'
 			}
 			message.channel.send(announce(playlistInfo, false, true));
 		}
@@ -73,7 +73,6 @@ module.exports = {
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
 				return;
 			}
-
 			const queueConstruct = {
 				textChannel: message.channel,
 				voiceChannel: channel,

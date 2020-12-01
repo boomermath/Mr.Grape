@@ -8,7 +8,7 @@ module.exports = {
 		if (!channel) return message.channel.send("Go to a voice channel to do stuff");
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue) return message.channel.send("There ain't any music!");
-		serverQueue.connection.dispatcher.end("Music stopped.");
+		serverQueue.connection.dispatcher.destroy("Music stopped.");
 		serverQueue.voiceChannel.leave();
 		message.client.queue.delete(message.guild.id);
 	}
