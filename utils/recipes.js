@@ -11,7 +11,7 @@ const lockpick = {
     "refined silver": 2,
     "refined iron": 2,
     createditem: "lockpick",
-    description: "Bypasses number-lock, and increases chances of a successfuly robbery.\nOne use only."
+    description: "Bypasses number-lock, and increases chances of a successful robbery.\nOne use only."
 }
 
 const rainbowpick = {
