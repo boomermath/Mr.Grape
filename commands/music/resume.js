@@ -9,8 +9,7 @@ module.exports = {
 			serverQueue.connection.dispatcher.resume();
 			const p = new d.Discord.MessageEmbed()
 				.setColor('#dd2de0')
-				.setTitle('Song Queue')
-				.setDescription('Removal')
+				.setTitle('Song')
 				.addField(`Resumin Tunes!`, '_')
 				.setTimestamp()
 				.setFooter('DJ Grape');
