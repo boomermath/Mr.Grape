@@ -2,6 +2,7 @@ const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
 const ytpl = require('ytpl');
+const stop = require('stop')
 module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
@@ -70,8 +71,7 @@ module.exports = {
 		async function playSong(song, message, vc, queue, ifPlaylist) {
 			if (queue) {
 				if (queue.dispatcher === null || typeof queue.dispatcher === undefined) {
-					message.client.queue.delete(message.guild.id);
-					await vc.join();
+					stop.execute(message, args, d)
 				}
 				queue.songs.push(song);
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
