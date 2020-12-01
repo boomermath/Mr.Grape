@@ -69,7 +69,7 @@ module.exports = {
 
 		async function playSong(song, message, vc, queue, ifPlaylist) {
 			if (queue) {
-				if (queue.dispatcher === null) {
+				if (queue.dispatcher === null || typeof queue.dispatcher === undefined) {
 					message.client.queue.delete(message.guild.id);
 					await vc.join();
 				}
@@ -93,7 +93,6 @@ module.exports = {
 			const play = async song => {
 				const queue = message.client.queue.get(message.guild.id);
 				if (!song) { return; }
-
 				let stream = ytdl(song.url, {
 					filter: "audioonly",
 					quality: "highestaudio"
