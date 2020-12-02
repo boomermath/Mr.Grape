@@ -72,7 +72,7 @@ module.exports = {
 
 			if (queue) {
 				if (!message.client.user.voice) {
-					message.channel.send('e')
+					message.channel.send('e');
 					message.client.queue.delete(message.guild.id);
 				}
 				else {
