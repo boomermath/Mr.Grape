@@ -71,7 +71,9 @@ module.exports = {
 		async function playSong(song, message, vc, queue, ifPlaylist) {
 			
 			if (queue) {
-				if (!message.guild.voiceConnection) { message.client.queue.delete(message.guild.id); }
+				if (!message.guild.voiceConnection) {
+					message.channel.send('e')
+					message.client.queue.delete(message.guild.id); }
 				else {
 					queue.songs.push(song);
 					if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
