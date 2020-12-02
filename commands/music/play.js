@@ -20,6 +20,8 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 
+		if (serverQueue && !client.user.voiceChannel) { stop.execute(message, args, d); }
+
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
 				"title": title,
@@ -70,9 +72,6 @@ module.exports = {
 
 		async function playSong(song, message, vc, queue, ifPlaylist) {
 			if (queue) {
-				if (queue.dispatcher === null || typeof queue.dispatcher === undefined) {
-					stop.execute(message, args, d)
-				}
 				queue.songs.push(song);
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
 				return;
