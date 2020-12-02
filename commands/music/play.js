@@ -19,9 +19,9 @@ module.exports = {
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
-
-		if (serverQueue && !message.client.user.voiceChannel) { stop.execute(message, args, d); }
-
+		let e = message.client.user.voiceChannel;
+		if (serverQueue && !e) { stop.execute(message, args, d); }
+		message.channel.send(e)
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
 				"title": title,
