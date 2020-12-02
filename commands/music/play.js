@@ -21,7 +21,7 @@ module.exports = {
 		const argument = args.join(' ');
 
 		if (serverQueue && !message.guild.voiceConnection) { 
-			serverQueue.voiceChannel.leave();
+			message.channel.send('detected');
 			message.client.queue.delete(message.guild.id); 
 		}
 		
