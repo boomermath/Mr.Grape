@@ -20,12 +20,6 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 
-		if (serverQueue && !message.guild.voiceConnection) {
-			message.channel.send('detected');
-			message.client.queue.delete(message.guild.id);
-			setTimeout(function () { null; }, 1500)
-		}
-
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
 				"title": title,
@@ -75,11 +69,16 @@ module.exports = {
 		}
 
 		async function playSong(song, message, vc, queue, ifPlaylist) {
+			
 			if (queue) {
-				queue.songs.push(song);
-				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
-				return;
+				if (!message.guild.voiceConnection) { message.client.queue.delete(message.guild.id); }
+				else {
+					queue.songs.push(song);
+					if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
+					return;
+				}
 			}
+
 			const queueConstruct = {
 				textChannel: message.channel,
 				voiceChannel: channel,
