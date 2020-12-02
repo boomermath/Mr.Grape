@@ -19,7 +19,7 @@ module.exports = {
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
-		let e = message.client.user.voiceChannel;
+		let e = message.guild.voiceConnection;
 		if (serverQueue && !e) { stop.execute(message, args, d); }
 		message.channel.send(e)
 		function createSong(title, url, duration, thumbnail) {
