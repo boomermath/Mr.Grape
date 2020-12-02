@@ -21,7 +21,6 @@ module.exports = {
 		const argument = args.join(' ');
 		let e = message.guild.voiceConnection;
 		if (serverQueue && !e) { stop.execute(message, args, d); }
-		message.channel.send(e)
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
 				"title": title,
