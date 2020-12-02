@@ -19,8 +19,7 @@ module.exports = {
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
-		let e = message.guild.voiceConnection;
-		if (serverQueue && !e) { message.client.queue.delete(message.guild.id); }
+		if (serverQueue && !message.guild.voiceConnection) { message.client.queue.delete(message.guild.id); }
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
 				"title": title,
