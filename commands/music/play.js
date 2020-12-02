@@ -20,7 +20,7 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 
-		if (serverQueue.songs && !message.guild.voiceConnection) { message.client.queue.delete(message.guild.id); }
+		if (serverQueue && serverQueue.songs && !message.guild.voiceConnection) { message.client.queue.delete(message.guild.id); }
 		
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
