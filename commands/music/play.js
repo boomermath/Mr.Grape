@@ -22,7 +22,7 @@ module.exports = {
 
 		if (serverQueue && !message.guild.voiceConnection) { 
 			message.channel.send('detected');
-			message.client.queue.delete(message.guild.id); 
+			await message.client.queue.delete(message.guild.id); 
 		}
 		
 		function createSong(title, url, duration, thumbnail) {
