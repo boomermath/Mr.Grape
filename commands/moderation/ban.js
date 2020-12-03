@@ -10,7 +10,7 @@ module.exports = {
         if (boolean) {
             if (target) {
                 if (message.author.id === rawTarget.id) {
-                    return message.channel.send('Bruh imagine kicking yourself');
+                    return message.channel.send('Bruh imagine banning yourself');
                 }
                 if (message.client.user.id === rawTarget.id) {
                     return message.channel.send('Woah there, im too cool to ban')
