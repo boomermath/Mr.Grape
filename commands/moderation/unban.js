@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports = {
-    name: 'ban',
-    description: 'ban ppl',
+    name: 'unban',
+    description: 'unban ppl',
     cooldown: 0,
     execute(message, args, d) {
         /*
