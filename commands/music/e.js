@@ -4,6 +4,6 @@ module.exports = {
 	cooldown: 2,
 	execute(message, args, d) {
         const { currentChannel } = message.client.voice;
-        message.channel.send(currentChannel)
+        if (currentChannel) {message.channel.send('e');}
 	}
 };
