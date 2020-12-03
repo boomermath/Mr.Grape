@@ -18,7 +18,7 @@ module.exports = {
         else {finalAnswer = answer}
         const answerEmbed = new d.Discord.MessageEmbed()
 				.setColor('#dd2de0')
-				.setTitle(Answer)
+				.setTitle('Answer')
 				.setDescription('Powered by Wolfram-Alpha')
 				.addField(finalAnswer, '_')
 				.setTimestamp()
