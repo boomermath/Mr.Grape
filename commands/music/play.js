@@ -18,6 +18,7 @@ module.exports = {
 		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
+		if (serverQueue && !message.client.user.voiceChannel) { stop.execute(message, args, d) }
 		const argument = args.join(' ');
 
 		function createSong(title, url, duration, thumbnail) {
@@ -71,15 +72,9 @@ module.exports = {
 		async function playSong(song, message, vc, queue, ifPlaylist) {
 
 			if (queue) {
-				if (!message.client.user.voice) {
-					message.channel.send('e');
-					message.client.queue.delete(message.guild.id);
-				}
-				else {
-					queue.songs.push(song);
-					if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
-					return;
-				}
+				queue.songs.push(song);
+				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
+				return;
 			}
 
 			const queueConstruct = {
