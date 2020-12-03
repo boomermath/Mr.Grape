@@ -15,8 +15,8 @@ module.exports = {
             if (numItems === 0) { return message.channel.send('ur not funny kid'); }
             if (isNaN(numItems) || numItems < 1) { numItems = 1; }
             for (const key in recipe[craft]) {
-                if (typeof key === 'string') { continue; }
-                if (!inv.ore[key] || inv.ore[key] < recipe[craft][key] * numItems) {
+                if (typeof recipe[craft][key] === 'string') { continue; }
+                if (!inv.ore[key] || inv.ore[key] < (recipe[craft][key] * numItems)) {
                     const e = new d.Discord.MessageEmbed()
                         .setColor('#dd2de0')
                         .setTitle(message.author.username + `'s craftin`)
