@@ -20,7 +20,7 @@ module.exports = {
 				.setColor('#dd2de0')
 				.setTitle('Answer')
 				.setDescription('Powered by Wolfram-Alpha')
-				.addField(finalAnswer, '_')
+				.addField(finalAnswer.charAt(0).toUpperCase() + finalAnswer.slice(1), '_')
 				.setTimestamp()
 				.setFooter('DJ Grape');
 		message.channel.send(answerEmbed)
