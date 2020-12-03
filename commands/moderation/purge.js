@@ -8,9 +8,7 @@ module.exports = {
         let number = parseInt(args[0]);
         let iteration = ~~(number / 100);
         let leftover = number - (iteration * 100);
-        for (let i = 0; i < iteration; i++) {
-            message.channel.bulkDelete(100);
-        }
+        for (let i = 0; i < iteration; i++) { message.channel.bulkDelete(100); }
         if (leftover > 0) { message.channel.bulkDelete(leftover); }
         message.channel.send('Purged those messages!');
     }
