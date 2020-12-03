@@ -30,6 +30,6 @@ module.exports = {
             message.channel.send("Cannot kick " + unbanUser.displayName + " maybe use a valid mention?");
         }
 */
-        message.channel.send(message.client.fetchUser(args[0]).displayName);
+        message.channel.send(message.client.users.fetch(args[0]).displayName);
     }
 };
