@@ -3,7 +3,7 @@ module.exports = {
 	description: 'stop playing music',
 	cooldown: 2,
 	execute(message, args, d) {
-        const { currentChannel } = message.guild.voiceChannel;
+        const { currentChannel } = message.client.voice.channel;
         message.channel.send(currentChannel)
 	}
 };
