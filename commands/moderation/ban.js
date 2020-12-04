@@ -17,7 +17,7 @@ module.exports = {
                 }
                 try {
                     target.ban();
-                    message.channel.send(":wave: " + target.displayName + " has been kicked, what a noob lol ");
+                    message.channel.send("\:hammer: " + target.displayName + " has been banned, with an iron fist");
                 } catch {
                     message.channel.send("I don't got permissions (or high enough role) to kick ppl. How about ya give me it?")
                 }
