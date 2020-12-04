@@ -16,7 +16,7 @@ module.exports = {
                     return message.channel.send('Woah there, im too cool to ban')
                 }
                 try {
-                    target.kick();
+                    target.ban();
                     message.channel.send(":wave: " + target.displayName + " has been kicked, what a noob lol ");
                 } catch {
                     message.channel.send("I don't got permissions (or high enough role) to kick ppl. How about ya give me it?")
