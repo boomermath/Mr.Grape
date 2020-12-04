@@ -4,8 +4,7 @@ module.exports = {
     description: 'unban ppl',
     cooldown: 0,
     execute(message, args, d) {
-        /*
-        let unbanUser = unbanUser;
+        let unbanUser = args[0];
         let boolean = message.member.hasPermission("BAN_MEMBERS");
         if (boolean) {
             if (unbanUser) {
@@ -17,19 +16,18 @@ module.exports = {
                 }
                 try {
                     message.guild.members.unban(unbanUser)
-                    message.channel.send(" " + unbanUser.displayName + " has been kicked, what a noob lol ");
+                    message.channel.send("User unbanned!");
                 } catch {
-                    message.channel.send("I don't got permissions (or high enough role) to kick ppl. How about ya give me it?")
+                    message.channel.send("I don't got permissions (or high enough role) to unban ppl. How about ya give me it?")
                 }
             }
         } else if (!unbanUser) {
             message.channel.send('who are we unbanning? (you gotta give me their id bro)');
         } else if (!boolean) {
-            message.reply("bruh you dont even have permission to kick people, stop trying smh ");
+            message.reply("bruh you dont even have permission to unban people, stop trying smh ");
         } else {
-            message.channel.send("Cannot kick " + unbanUser.displayName + " maybe use a valid mention?");
+            message.channel.send("Cannot unban that user");
         }
-*/
-        message.channel.send(message.client.users.cache.get(args[0]).displayName);
+
     }
 };
