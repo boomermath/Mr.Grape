@@ -20,7 +20,8 @@ module.exports = {
         }
         const volumeEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .addField(title, number)
+            .setTitle(title)
+            .setDescription(number)
         message.channel.send(volumeEmbed);
     }
 };
