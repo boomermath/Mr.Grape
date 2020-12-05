@@ -8,7 +8,7 @@ module.exports = {
         if (!channel) return message.channel.send('Get in a voice channel if you wanna pump it up!')
         const queue = message.client.queue.get(message.guild.id);
         if (!queue) return message.channel.send('There ain\'t any music!')
-        if (!args[0]) { title = 'Current Volume'; number = queue.volume }
+        if (!args.length) { title = 'Current Volume'; number = queue.volume }
         let set = parseInt(args.join(' '))
         queue.volume = set;
         queue.connection.dispatcher.setVolumeLogarithmic(set / 5);

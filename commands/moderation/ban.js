@@ -24,7 +24,7 @@ module.exports = {
                 }
             }
         } else if (!target) {
-            message.channel.send('who you gonna hammer?');
+            message.channel.send('who you gonna hammer? (mention)');
         } else if (!boolean) {
             message.reply("bruh you dont even have permission to kick people, stop trying smh ");
         } else if (!myBoolean) {
