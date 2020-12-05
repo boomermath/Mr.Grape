@@ -4,7 +4,8 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         try {
-            if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send('You don\'t have perms!')
+            if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You don\'t have perms!')
+            if (!message.member.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Bruh I don't have perms, give me some")
             if (!args[0]) return message.channel.send('Bruh how many messages should I purge?');
             let number = parseInt(args[0]);
             let iteration = ~~(number / 100);

@@ -7,7 +7,8 @@ module.exports = {
         let rawTarget = message.mentions.members.first();
         let target = message.guild.member(rawTarget);
         let boolean = message.member.hasPermission("BAN_MEMBERS");
-        if (boolean) {
+        let myBoolean = message.member.me.hasPermission("BAN_MEMBERS");
+        if (boolean && myBoolean) {
             if (target) {
                 if (message.author.id === rawTarget.id) {
                     return message.channel.send('Bruh imagine banning yourself');
@@ -26,6 +27,8 @@ module.exports = {
             message.channel.send('who you gonna hammer?');
         } else if (!boolean) {
             message.reply("bruh you dont even have permission to kick people, stop trying smh ");
+        } else if (!myBoolean) {
+            message.channel.send("I don't have perms to ban")
         } else {
             message.channel.send("Cannot kick " + target.displayName + " maybe use a valid mention?");
         }
