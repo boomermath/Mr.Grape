@@ -30,10 +30,11 @@ client.once('ready', () => {
 client.on('voiceStateUpdate', (old, New) => {
 	if (old.id != client.user.id) return;
 	if (old.channelID && !New.channelID) client.queue.delete(old.guild.id)
-	else if (old.channelID !== New.channelID) client.queue.get(old.guild.id).voiceChannel = New
+	else if (old.channelID !== New.channelID) client.queue.get(old.guild.id).voiceChannel = New.voice
 });
 
 client.on('message', async message => {
+	
 	let prefix;
 	let guild = await guilds.get(message.guild.id);
 	if (!guild || !guild.prefix) { prefix = config.prefix }
