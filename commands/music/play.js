@@ -68,7 +68,7 @@ module.exports = {
 			playSong(song, message, channel, serverQueue, false)
 		}
 
-		async function playSong(song, vc, queue, ifPlaylist) {
+		async function playSong(song, message, vc, queue, ifPlaylist) {
 			if (queue) {
 				queue.songs.push(song);
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
@@ -89,14 +89,7 @@ module.exports = {
 
 			const play = async song => {
 				const queue = message.client.queue.get(message.guild.id);
-				if (!song) {
-					setTimeout(function () {
-						queue.voiceChannel.leave();
-						message.client.queue.delete(message.guild.id);
-					}, 60000)
-					return;
-				}
-
+				if (!song) { return; }
 				let stream = ytdl(song.url, {
 					filter: "audioonly",
 					quality: "highestaudio"
