@@ -1,5 +1,5 @@
 module.exports = {
-    name: volume,
+    name: 'volume',
     description: 'set volume of the bot',
     aliases: ['vol'],
     execute(message, args, d) {
