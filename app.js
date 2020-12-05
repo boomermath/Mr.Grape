@@ -27,6 +27,11 @@ client.once('ready', () => {
 	client.user.setPresence({ activity: { name: `with ${config.prefix}help` }, status: 'idle' })
 });
 
+client.on('voiceStateUpdate', (old, New) => {
+	if (old.id != client.user.id) return;
+	if (old.channelID && !New.channelID) console.log("Disconnected from voice channel!")
+});
+
 client.on('message', async message => {
 
 	let prefix;
