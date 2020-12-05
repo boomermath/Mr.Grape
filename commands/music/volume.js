@@ -10,8 +10,8 @@ module.exports = {
         if (!queue) return message.channel.send('There ain\'t any music!')
         if (!args[0]) { title = 'Current Volume'; number = queue.volume }
         let set = parseInt(args.join(' '))
-        serverQueue.volume = set;
-        serverQueue.connection.dispatcher.setVolumeLogarithmic(set / 5);
+        queue.volume = set;
+        queue.connection.dispatcher.setVolumeLogarithmic(set / 5);
         title = 'Volume set to'
         number = set
         const volumeEmbed = new d.Discord.MessageEmbed()
