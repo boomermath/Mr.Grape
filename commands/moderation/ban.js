@@ -7,7 +7,7 @@ module.exports = {
         let rawTarget = message.mentions.members.first();
         let target = message.guild.member(rawTarget);
         let boolean = message.member.hasPermission("BAN_MEMBERS");
-        let myBoolean = message.member.me.hasPermission("BAN_MEMBERS");
+        let myBoolean = message.guild.me.hasPermission("BAN_MEMBERS");
         if (boolean && myBoolean) {
             if (target) {
                 if (message.author.id === rawTarget.id) {

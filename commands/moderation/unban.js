@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args, d) {
         let unbanUser = args[0];
         let boolean = message.member.hasPermission("BAN_MEMBERS");
-        let myBoolean = message.member.me.hasPermission("BAN_MEMBERS");
+        let myBoolean = message.guild.me.hasPermission("BAN_MEMBERS");
         if (boolean && myBoolean) {
             if (unbanUser) {
                 if (message.author.id === unbanUser) {
