@@ -18,5 +18,6 @@ module.exports = {
             .setColor('#dd2de0')
             .setTitle('Volume')
             .addField(title, number)
+        message.channel.send(volumeEmbed);
     }
 };
