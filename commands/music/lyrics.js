@@ -14,10 +14,10 @@ module.exports = {
         console.log(res)
         const lyricEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2ed0')
-            .setTitle(argument.charAt(0).toUpperCase() + argument.slice(1))
+            .setTitle(res.name.charAt(0).toUpperCase() + res.name.slice(1))
             .setThumbnail(res.artwork)
         if (res.lyrics.length > 1024) {
-            let arr = res.lyrics.match(/(.|[\r\n]){1,n}/g);
+            let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
             for (part in arr) {
                 if (part === 0) {
                     lyricEmbed.addField('**Lyrics**', arr[part]);
