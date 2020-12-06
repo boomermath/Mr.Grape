@@ -6,7 +6,9 @@ module.exports = {
     cooldown: 1,
     aliases: ['lyr'],
     async execute(message, args, d) {
-        let e = await ksoft.lyrics.search(args.join(' '), { limit: 5 });
+        let e = await ksoft.lyrics.get('Billie Eyelash - the bald guy', { textOnly: true });
+        console.log(process.env.KSOFT);
         console.log(e);
+
     }
 };
