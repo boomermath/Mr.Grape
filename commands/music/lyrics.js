@@ -15,7 +15,7 @@ module.exports = {
             .setColor('#dd2ed0')
             .setTitle(argument.charAt(0).toUpperCase() + argument.slice(1))
             .setThumbnail(lyrics.artwork)
-            .addField('Lyrics', lyrics.lyrics)
+            .setDescription('**Lyrics**\n' + lyrics.lyrics)
         message.channel.send(lyricEmbed);
     }
 };
