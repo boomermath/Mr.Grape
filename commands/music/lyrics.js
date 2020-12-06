@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 1,
     aliases: ['lyr'],
     async execute(message, args, d) {
-        let e = await ksoft.lyrics.get(args.join(' '));
+        let e = await ksoft.lyrics.search(args.join(' '), { limit: 5 });
         console.log(e);
     }
 };
