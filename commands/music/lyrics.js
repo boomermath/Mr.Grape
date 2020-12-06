@@ -1,5 +1,5 @@
 const { kClient } = require('@ksoft/api');
-const ksoft = new KClient(process.env.KSOFT)
+const ksoft = new kClient(process.env.KSOFT)
 module.exports = {
     name: 'lyrics',
     description: 'get lyrics of a song',

@@ -3,8 +3,18 @@ module.exports = {
     cooldown: 0,
     execute(message, args, d) {
         const guild = message.client.guilds.cache.get(message.guild.id);
-        guild.members.cache.each(member => {
-            message.channel.send(member.id)
+        const obj = {};
+       guild.members.cache.each(async member => {
+            let bal = await d.users.get(member.id);
+            if (!bal || bal <= 0) { null; }
+            else {
+                obj[member.tag] = bal;
+            }
         });
+        const lb = Object.entries(lb)
+            .sort(([, a], [, b]) => a - b)
+            .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+        
+            message.channel.send(lb)
     }
 };
