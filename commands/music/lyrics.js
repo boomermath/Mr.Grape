@@ -15,7 +15,7 @@ module.exports = {
             .setColor('#dd2ed0')
             .setTitle(argument.charAt(0).toUpperCase() + argument.slice(1))
             .setThumbnail(res.artwork)
-        if (res.lyrics.length > 2048) {
+        if (res.lyrics.length > 1024) {
             let arr = res.lyrics.match(/(.|[\r\n]){1,n}/g);
             for (part in arr) {
                 if (part === 0) {
