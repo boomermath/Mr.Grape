@@ -50,10 +50,10 @@ module.exports = {
                     }, 1700)
                 })
         }
-        async function decideFate(bet) {
+        function decideFate(bet) {
             let finalNumber;
             if (inv && inv["rigged dice"]) {
-                const riggedArray = [2, 4, 6, 2, 4, 1, 3, 5]
+                const riggedArray = [2, 4, 6, 2, 4, 1, 3, 6]
                 finalNumber = riggedArray[Math.floor(Math.random() * riggedArray.length)];
             }
             else { finalNumber = Math.floor(Math.random() * 6) + 1; }

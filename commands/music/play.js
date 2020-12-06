@@ -64,6 +64,7 @@ module.exports = {
 		}
 		else {
 			let songInfo = await youtube.searchOne(argument);
+			if (songInfo === null) { return message.channel.send("No results found!"); }
 			let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
 			playSong(song, message, channel, serverQueue, false)
 		}
@@ -74,18 +75,21 @@ module.exports = {
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
 				return;
 			}
+
 			const queueConstruct = {
 				textChannel: message.channel,
 				voiceChannel: channel,
 				connection: null,
 				songs: [],
-				volume: 2,
+				volume: 69,
 				playing: true,
 				repeatMode: 0,
 			};
 
-			message.client.queue.set(message.guild.id, queueConstruct);
-			queueConstruct.songs.push(song);
+			if (!ifPlaylist) {
+				message.client.queue.set(message.guild.id, queueConstruct);
+				queueConstruct.songs.push(song);
+			}
 
 			const play = async song => {
 				const queue = message.client.queue.get(message.guild.id);
@@ -103,8 +107,10 @@ module.exports = {
 						play(queue.songs[0]);
 					})
 					.on('error', error => console.error(error));
-				dispatcher.setVolumeLogarithmic(queue.volume / 5);
-				queue.textChannel.send(announce(song, true, false));
+				dispatcher.setVolumeLogarithmic(queue.volume / 100);
+				if (!ifPlaylist) {
+					queue.textChannel.send(announce(song, true, false));
+				}
 			};
 
 			try {

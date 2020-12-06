@@ -12,9 +12,9 @@ module.exports = {
         if (!argument) { title = 'Current Volume'; number = queue.volume }
         else {
             let set = parseInt(argument)
-            if (set > 10) return message.channel.send("Let's not earrape ppl ok?")
+            if (set > 100) return message.channel.send("Let's not earrape ppl ok?")
             queue.volume = set;
-            queue.connection.dispatcher.setVolumeLogarithmic(set / 5);
+            queue.connection.dispatcher.setVolumeLogarithmic(set / 100);
             title = 'Volume set to'
             number = set
         }
