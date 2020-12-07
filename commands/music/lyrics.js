@@ -16,6 +16,7 @@ module.exports = {
             .setColor('#dd2ed0')
             .setTitle(res.name.charAt(0).toUpperCase() + res.name.slice(1))
             .setThumbnail(res.artwork)
+            .setFooter('DJ Grape | Provided by KSoft.Si')
         if (res.lyrics.length > 1024) {
             let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
             for (part in arr) {
