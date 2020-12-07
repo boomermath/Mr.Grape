@@ -21,7 +21,7 @@ const formatCooldown = function (time) {
     else if (time > 60) {
         let minutes = ~~(time / 60);
         let seconds = time - (minutes * 60);
-        final = `${hours} hours, ${minutes} minutes, and ${seconds.toFixed(1)} seconds left`
+        final = `${minutes} minutes, and ${seconds.toFixed(1)} seconds left`
     }
     else { final = `${time.toFixed(1)} seconds left` }
     return final;
