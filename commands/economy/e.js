@@ -15,6 +15,6 @@ module.exports = {
             .sort(([, a], [, b]) => a - b)
             .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
 
-        message.channel.send(lb)
+        message.channel.send(Object.entries(lb))
     }
 };

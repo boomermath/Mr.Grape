@@ -28,7 +28,7 @@ client.once('ready', () => {
 });
 
 client.on('voiceStateUpdate', (old, New) => {
-	if (old.id != client.user.id) return;
+	if (old.id !== client.user.id) return;
 	if (old.channelID && !New.channelID) client.queue.delete(old.guild.id)
 });
 
