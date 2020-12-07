@@ -47,6 +47,7 @@ module.exports = {
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			const playlist = await youtube.getPlaylist(argument);
+			console.log(playlist)
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
