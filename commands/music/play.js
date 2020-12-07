@@ -58,7 +58,6 @@ module.exports = {
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
 			const playlist = await youtube.getPlaylist(argument);
-			console.log(playlist);
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
@@ -92,7 +91,13 @@ module.exports = {
 
 			const play = async song => {
 				const queue = message.client.queue.get(message.guild.id);
-				if (!song) { return; }
+				if (!song) {
+					setTimeout(function () {
+						message.guild.me.voice.channel.leave();
+						message.client.queue.delete(message.guild.id);
+						return;
+					}, 60000)
+				}
 				let stream = ytdl(song.url, {
 					filter: "audioonly",
 					quality: "highestaudio",
@@ -121,5 +126,7 @@ module.exports = {
 				return message.channel.send(`I could not join the voice channel: ${error}`);
 			}
 		}
-	}
+	},
+	"playSong": playSong,
+	"announce": announce
 };

@@ -15,5 +15,6 @@ module.exports = {
         }
         queue.songs = shuffle(queue.songs);
         message.client.queue.set(message.guild.id, queue)
+        message.channel.send('**Shuffled**');
     }
 };

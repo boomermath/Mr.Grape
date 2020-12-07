@@ -5,6 +5,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
 const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
+const music = new Keyv(process.env.DATABASE_URL, { namespace: 'music' });
 const addMoni = async function (who, add) {
     let current = await users.get(who);
     if (current === undefined) { await users.set(who, add); }
@@ -105,4 +106,5 @@ module.exports = {
     "guilds": guilds,
     "sellableItems": sellableItems,
     "formatCooldown": formatCooldown,
+    "music": music
 };
