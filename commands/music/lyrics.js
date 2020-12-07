@@ -14,20 +14,14 @@ module.exports = {
         const lyricEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2ed0')
             .setTitle(res.name.charAt(0).toUpperCase() + res.name.slice(1))
+            .setDescription('**Lyrics**')
             .setThumbnail(res.artwork)
             .setFooter('DJ Grape | Provided by KSoft.Si')
         if (res.lyrics.length > 1024) {
             let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
-            for (part in arr) {
-                message.channel.send(part);
-                if (part === 0) {
-                    lyricEmbed.addField('**Lyrics**', arr[part]);
-                    continue;
-                }
-                lyricEmbed.addField('\u200b', arr[part]);
-            }
+            for (part in arr) { lyricEmbed.addField('\u200b', arr[part]); }
         }
-        else { lyricEmbed.addField('**Lyrics**', res.lyrics) }
+        else { lyricEmbed.addField('\u200b', res.lyrics) }
         message.channel.send(lyricEmbed);
     }
 };
