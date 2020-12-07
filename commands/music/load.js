@@ -4,7 +4,7 @@ module.exports = {
     description: 'load saved playlists',
     cooldown: 2,
     cd: "Chill, don't load too many playlists",
-    execute(message, args, d) {
+    async execute(message, args, d) {
         const serverQueue = message.client.queue.get(message.guild.id);
         const savedMusic = await d.music.get(message.author.id);
         let argument = args.join(' ');

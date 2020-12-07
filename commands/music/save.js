@@ -3,7 +3,7 @@ module.exports = {
     description: 'save current queue as playlist',
     cooldown: 2,
     cd: "Chill, don't spam playlists",
-    execute(message, args, d) {
+    async execute(message, args, d) {
         const serverQueue = message.client.queue.get(message.guild.id);
         const savedMusic = await d.music.get(message.author.id);
         if (serverQueue.songs.length > 20) return message.channel.send('The queue is too big to save! (Max 20)');
