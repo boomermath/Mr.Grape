@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const r2 = require('r2');
 const Discord = require('discord.js');
 const config = require('../config.json');
