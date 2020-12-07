@@ -57,7 +57,6 @@ module.exports = {
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
-			playSong(bufferSong, message, channel, serverQueue, true)
 			const playlist = await youtube.getPlaylist(argument);
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
