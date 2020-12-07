@@ -46,8 +46,9 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
+			const bufferSong = 'buffer';
+			playSong(bufferSong, message, channel, serverQueue, true)
 			const playlist = await youtube.getPlaylist(argument);
-			console.log(playlist)
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
 				let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
@@ -106,7 +107,8 @@ module.exports = {
 					})
 					.on('error', error => console.error(error));
 				dispatcher.setVolumeLogarithmic(queue.volume / 100);
-				if (!ifPlaylist) {
+				if (ifPlaylist) { queue.songs.shift(); }
+				else {
 					queue.textChannel.send(announce(song, true, false));
 				}
 			};
