@@ -2,6 +2,7 @@ const recipe = require('../../utils/recipes');
 module.exports = {
     name: "recipe",
     cooldown: 0,
+    type: 'economy',
     async execute(message, args, d) {
         let argument = args.join(' ').toLowerCase();
         if (!argument) {

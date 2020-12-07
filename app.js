@@ -33,7 +33,7 @@ client.on('voiceStateUpdate', (old, New) => {
 });
 
 client.on('message', async message => {
-	
+
 	let prefix;
 	let guild = await guilds.get(message.guild.id);
 	if (!guild || !guild.prefix) { prefix = config.prefix }
@@ -69,7 +69,7 @@ client.on('message', async message => {
 	if (!inv.fan) { haveFan = 0 }
 	else { haveFan = inv.fan }
 	let cooldownAmount;
-	if (commandFanException.includes(command.name)) { cooldownAmount = command.cooldown * 1000 }
+	if (commandFanException.includes(command.name) || command.type !== 'economy') { cooldownAmount = command.cooldown * 1000 }
 	else { cooldownAmount = (1 - (0.05 * haveFan)) * (command.cooldown * 1000) };
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;

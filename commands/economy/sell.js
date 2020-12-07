@@ -2,6 +2,7 @@ module.exports = {
     name: 'sell',
     description: 'give items for a price to people',
     cooldown: 5,
+    type: 'economy',
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         let argument = args.join(' ').toLowerCase();

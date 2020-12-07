@@ -3,6 +3,7 @@ module.exports = {
     aliases: ['col'],
     description: 'collect the stars from your starmill!',
     cooldown: 600,
+    type: 'economy',
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         let collectedStars;

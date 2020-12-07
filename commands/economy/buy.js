@@ -1,10 +1,9 @@
-const inv = require("./inv");
-
 module.exports = {
     name: 'buy',
     aliases: ['purchase'],
     description: 'buy stuff from the shop',
     cooldown: 2,
+    type: 'economy',
     async execute(message, args, d) {
         const notitem = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')

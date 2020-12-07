@@ -3,6 +3,7 @@ module.exports = {
     aliases: ['bet'],
     description: 'gamble your stars, 50/50 chance of losing your stars or winning double the amount you bet',
     cooldown: 5,
+    type: 'economy',
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         async function busted(bet) {

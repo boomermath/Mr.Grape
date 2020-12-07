@@ -2,6 +2,7 @@ module.exports = {
     name: 'shop',
     description: 'display the shop',
     cooldown: 2,
+    type: 'economy',
     execute(message, args, d) {
         const shop = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')

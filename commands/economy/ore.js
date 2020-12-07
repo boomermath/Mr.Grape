@@ -3,6 +3,7 @@ module.exports = {
     description: 'display ores you can get',
     aliases: ['ores'],
     cooldown: 2,
+    type: 'economy',
     execute(message, args, d) {
         const toTitleCase = (thingy) => {
             return thingy

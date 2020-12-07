@@ -3,6 +3,7 @@ module.exports = {
     description: 'check your ore inventory',
     aliases: ['io'],
     cooldown: 3,
+    type: 'economy',
     async execute(message, args, d) {
         let target = message.mentions.members.first();
         let person;
