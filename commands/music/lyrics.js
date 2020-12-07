@@ -19,6 +19,7 @@ module.exports = {
         if (res.lyrics.length > 1024) {
             let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
             for (part in arr) {
+                message.channel.send(part);
                 if (part === 0) {
                     lyricEmbed.addField('**Lyrics**', arr[part]);
                     continue;
