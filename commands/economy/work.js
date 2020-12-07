@@ -3,7 +3,8 @@ module.exports = {
     aliases: ['job'],
     description: 'do honest work to get stars',
     cooldown: 30,
-    type: 'economy',
+    cd: "Don't be a workaholic",
+    fan: true,
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         let earn = Math.round(Math.random() * 7) + 1;

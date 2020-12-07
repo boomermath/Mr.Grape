@@ -1,7 +1,8 @@
 module.exports = {
     name: 'purge',
     description: 'purge messages from a channel',
-    cooldown: 0,
+    cooldown: 1,
+    cd: "Chill, those messages won't incriminate you (i think)",
     execute(message, args, d) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You don\'t have perms!')
         if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Bruh I don't have perms, give me some")

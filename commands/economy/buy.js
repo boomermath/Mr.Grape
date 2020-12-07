@@ -3,7 +3,8 @@ module.exports = {
     aliases: ['purchase'],
     description: 'buy stuff from the shop',
     cooldown: 2,
-    type: 'economy',
+    cd: "Stop buying so much, ur gonna look like a diva",
+    fan: true,
     async execute(message, args, d) {
         const notitem = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')

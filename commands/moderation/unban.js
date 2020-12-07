@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'unban',
     description: 'unban ppl',
-    cooldown: 0,
+    cooldown: 1,
+    cd: "Chill on the unbans",
     execute(message, args, d) {
         let unbanUser = args[0];
         let boolean = message.member.hasPermission("BAN_MEMBERS");

@@ -2,6 +2,7 @@ module.exports = {
     name: 'volume',
     description: 'set volume of the bot',
     aliases: ['vol'],
+    cd: "Enough volume cranking!",
     execute(message, args, d) {
         let title, number;
         let argument = args.join(' ');

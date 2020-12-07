@@ -2,8 +2,8 @@ module.exports = {
     name: 'collect',
     aliases: ['col'],
     description: 'collect the stars from your starmill!',
+    cd: "Ya gotta wait for the stars to generate (hey that rhymed!)",
     cooldown: 600,
-    type: 'economy',
     async execute(message, args, d) {
         let inv = await d.items.get(message.author.id);
         let collectedStars;

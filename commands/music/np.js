@@ -2,7 +2,8 @@ module.exports = {
 	name: 'nowplaying',
 	description: 'see what song is currently playin',
 	cooldown: 2,
-  	aliases: ['np'],
+    aliases: ['np'],
+    cd: "I just showed you what was playing!",
 	execute(message, args, d) {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return message.channel.send("Bruh wdym there is nothing playin");

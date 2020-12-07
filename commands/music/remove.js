@@ -3,6 +3,7 @@ module.exports = {
     description: 'get see what song is currently playin',
     cooldown: 2,
     aliases: ['rm'],
+    cd: "If you keep removing like this, there won't be any songs",
     execute(message, args, d) {
         try {
             const serverQueue = message.client.queue.get(message.guild.id);

@@ -5,6 +5,7 @@ module.exports = {
     description: 'get lyrics of a song',
     cooldown: 1,
     aliases: ['lyr'],
+    cd: "Chill on the karaoke kid",
     async execute(message, args, d) {
         const q = message.client.queue.get(message.guild.id);
         if (!args.length && !q) { return message.channel.send('Give me something to search up bruh') }

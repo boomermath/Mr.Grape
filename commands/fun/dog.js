@@ -2,6 +2,7 @@ module.exports = {
     name: 'dog',
     description: 'get a dog pic',
     cooldown: 3,
+    cd: "Dogs = epic, but chill",
     async execute(message, args, d) {
         let catapi = "https://api.thedogapi.com"
         let key = process.env.DOGAPI;

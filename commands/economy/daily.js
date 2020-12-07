@@ -2,7 +2,7 @@ module.exports = {
     name: 'daily',
     description: 'get ur daily amount of stars',
     cooldown: 86400,
-    type: 'economy',
+    cd: "It's called daily for a reason, smh",
     async execute(message, args, d) {
         let random = Math.floor(Math.random() * 25) + 25;
         const dailystarEmbed = new d.Discord.MessageEmbed()

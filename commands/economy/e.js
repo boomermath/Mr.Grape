@@ -1,7 +1,7 @@
 module.exports = {
     name: 'e',
     cooldown: 0,
-    type: 'economy',
+    fan: true,
     execute(message, args, d) {
         const guild = message.client.guilds.cache.get(message.guild.id);
         const obj = {};

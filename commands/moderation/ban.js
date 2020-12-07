@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'ban',
     description: 'ban ppl',
-    cooldown: 0,
+    cooldown: 1,
+    cd: "Don't bully",
     execute(message, args, d) {
         let rawTarget = message.mentions.members.first();
         let target = message.guild.member(rawTarget);

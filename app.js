@@ -8,6 +8,7 @@ const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
+const { formatCooldown } = require('./utils/constants');
 client.commands = new Discord.Collection();
 client.queue = new Discord.Collection();
 
@@ -62,15 +63,14 @@ client.on('message', async message => {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	const commandFanException = ['daily', 'steal', 'collect']
 	let inv = await items.get(message.author.id);
 	let haveFan;
 	if (!inv) { inv = {}; }
 	if (!inv.fan) { haveFan = 0 }
 	else { haveFan = inv.fan }
 	let cooldownAmount;
-	if (commandFanException.includes(command.name) || command.type !== 'economy') { cooldownAmount = command.cooldown * 1000 }
-	else { cooldownAmount = (1 - (0.05 * haveFan)) * (command.cooldown * 1000) };
+	if (command.fan) { cooldownAmount = (1 - (0.03 * haveFan)) * (command.cooldown * 1000); }
+	else { cooldownAmount = command.cooldown * 1000; };
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
@@ -80,7 +80,7 @@ client.on('message', async message => {
 				.setTitle('ayo chill man')
 				.addFields({
 					name: `${command.name.charAt(0).toUpperCase() + command.name.slice(1)}`,
-					value: `${timeLeft.toFixed(1)}` + " second(s) left"
+					value: `${command.cd}\n${formatCooldown(timeLeft)}`
 				})
 				.setTimestamp()
 				.setFooter('Grape Enterprises');

@@ -2,8 +2,9 @@ const recipe = require('../../utils/recipes');
 module.exports = {
     name: "craft",
     description: 'craft items using ores!',
-    cooldown: 0,
-    type: 'economy',
+    cooldown: 2,
+    cd: 'You can craft later bruh',
+    fan: true,
     async execute(message, args, d) {
         let argument = args.join(' ').toLowerCase();
         const numberMatch = /\d+/g;

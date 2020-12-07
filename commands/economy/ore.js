@@ -3,7 +3,8 @@ module.exports = {
     description: 'display ores you can get',
     aliases: ['ores'],
     cooldown: 2,
-    type: 'economy',
+    cd: "I just showed you the gigantic list of ores, chilll",
+    fan: true,
     execute(message, args, d) {
         const toTitleCase = (thingy) => {
             return thingy
