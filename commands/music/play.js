@@ -1,6 +1,15 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
+const queueConstruct = {
+	textChannel: message.channel,
+	voiceChannel: channel,
+	connection: null,
+	songs: [],
+	volume: 42,
+	playing: true,
+	repeatMode: 0,
+};
 const playSong = async function (song, message, vc, queue, ifPlaylist) {
 	if (queue) {
 		queue.songs.push(song);
@@ -84,15 +93,6 @@ module.exports = {
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
-		const queueConstruct = {
-			textChannel: message.channel,
-			voiceChannel: channel,
-			connection: null,
-			songs: [],
-			volume: 42,
-			playing: true,
-			repeatMode: 0,
-		};
 
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
