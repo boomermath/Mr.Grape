@@ -82,7 +82,6 @@ module.exports = {
     "addMoni": addMoni,
     "items": items,
     "buyableItems": buyableItems,
-    "querystring": querystring,
     "r2": r2,
     "ores": ores,
     "oreSell": oreSell,
