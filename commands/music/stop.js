@@ -5,10 +5,11 @@ module.exports = {
 	aliases: ['leave', 'disconnect', 'dc'],
 	execute(message, args, d) {
 		const { channel } = message.member.voice;
+		const myChannel = message.guild.me.voice.channel;
 		if (!channel) return message.channel.send("Go to a voice channel to stop the music!");
 		const serverQueue = message.client.queue.get(message.guild.id);
-		if (!serverQueue) return message.channel.send("There ain't any music!");
-		message.guild.me.voice.channel.leave();
+		if (!serverQueue && !myChannel) return message.channel.send("There ain't any music!");
+		myChannel.leave();
 		message.client.queue.delete(message.guild.id);
 	}
 };

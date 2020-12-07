@@ -14,7 +14,7 @@ module.exports = {
         const lyricEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2ed0')
             .setTitle(res.name.charAt(0).toUpperCase() + res.name.slice(1))
-            .setDescription('**Lyrics**')
+            .setDescription('\u200b **Lyrics**')
             .setThumbnail(res.artwork)
             .setFooter('DJ Grape | Provided by KSoft.Si')
         if (res.lyrics.length > 1024) {
