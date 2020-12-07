@@ -1,7 +1,7 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
-const queueConstruct = function (message) {
+const queueConstruct = function (message, channel) {
 	const obj = {
 		textChannel: message.channel,
 		voiceChannel: channel,
@@ -20,8 +20,8 @@ const playSong = async function (song, message, vc, queue, ifPlaylist) {
 		return;
 	}
 
-	message.client.queue.set(message.guild.id, queueConstruct(message));
-	queueConstruct(message).songs.push(song);
+	message.client.queue.set(message.guild.id, queueConstruct(message, vc));
+	queueConstruct(message, vc).songs.push(song);
 
 
 	const play = async song => {
@@ -52,8 +52,8 @@ const playSong = async function (song, message, vc, queue, ifPlaylist) {
 
 	try {
 		const connection = await channel.join();
-		queueConstruct(message).connection = connection;
-		play(queueConstruct(message).songs[0]);
+		queueConstruct(message, vc).connection = connection;
+		play(queueConstruct(message, vc).songs[0]);
 	} catch (error) {
 		console.error(`I could not join the voice channel: ${error}`);
 		message.client.queue.delete(message.guild.id);
@@ -108,7 +108,7 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct(message)); }
+			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct(message, channel)); }
 			const playlist = await youtube.getPlaylist(argument);
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
