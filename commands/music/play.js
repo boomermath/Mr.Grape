@@ -1,14 +1,17 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
-const queueConstruct = {
-	textChannel: message.channel,
-	voiceChannel: channel,
-	connection: null,
-	songs: [],
-	volume: 42,
-	playing: true,
-	repeatMode: 0,
+const queueConstruct = function (message) {
+	const obj = {
+		textChannel: message.channel,
+		voiceChannel: channel,
+		connection: null,
+		songs: [],
+		volume: 42,
+		playing: true,
+		repeatMode: 0,
+	}
+	return obj;
 };
 const playSong = async function (song, message, vc, queue, ifPlaylist) {
 	if (queue) {
@@ -17,8 +20,8 @@ const playSong = async function (song, message, vc, queue, ifPlaylist) {
 		return;
 	}
 
-	message.client.queue.set(message.guild.id, queueConstruct);
-	queueConstruct.songs.push(song);
+	message.client.queue.set(message.guild.id, queueConstruct(message));
+	queueConstruct(message).songs.push(song);
 
 
 	const play = async song => {
@@ -49,8 +52,8 @@ const playSong = async function (song, message, vc, queue, ifPlaylist) {
 
 	try {
 		const connection = await channel.join();
-		queueConstruct.connection = connection;
-		play(queueConstruct.songs[0]);
+		queueConstruct(message).connection = connection;
+		play(queueConstruct(message).songs[0]);
 	} catch (error) {
 		console.error(`I could not join the voice channel: ${error}`);
 		message.client.queue.delete(message.guild.id);
@@ -105,7 +108,7 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
+			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct(message)); }
 			const playlist = await youtube.getPlaylist(argument);
 			for (video in playlist.videos) {
 				let plSong = playlist.videos[video];
