@@ -21,7 +21,7 @@ module.exports = {
             let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
             for (part in arr) { lyricEmbed.addField('\u200b', arr[part]); }
         }
-        else { lyricEmbed.addField('\u200b', res.lyrics) }
+        else { lyricEmbed.addField('-', res.lyrics) }
         message.channel.send(lyricEmbed);
     }
 };
