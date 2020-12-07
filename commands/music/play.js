@@ -57,7 +57,7 @@ const playSong = async function (song, message, vc, queue, ifPlaylist) {
 	} catch (error) {
 		console.error(`I could not join the voice channel: ${error}`);
 		message.client.queue.delete(message.guild.id);
-		await vc.leave();
+		await channel.leave();
 		return message.channel.send(`I could not join the voice channel: ${error}`);
 	}
 }
