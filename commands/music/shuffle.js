@@ -14,6 +14,6 @@ module.exports = {
             return array;
         }
         queue.songs = shuffle(queue.songs);
-        message.client.queue.set(message.guild.id, q)
+        message.client.queue.set(message.guild.id, queue)
     }
 };
