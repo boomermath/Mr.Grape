@@ -6,7 +6,6 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
 const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
-const music = new Keyv(process.env.DATABASE_URL, { namespace: 'music' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
 client.commands = new Discord.Collection();
