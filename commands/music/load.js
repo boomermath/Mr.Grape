@@ -19,7 +19,7 @@ module.exports = {
                 thumbnail: music[0].thumbnail,
                 duration: "It's a playlist bro"
             }
-            play.announce(playlistInfo, true, true);
+            message.channel.send(play.announce(playlistInfo, true, true));
             for (song in savedMusic[argument]) {
                 play.playSong(song, message, message.member.voice, serverQueue, true)
             }

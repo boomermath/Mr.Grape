@@ -7,6 +7,70 @@ module.exports = {
 	aliases: ['p'],
 	cooldown: 2,
 	cd: "Wait a bit, enjoy the tunes!",
+	playSong: async function (song, message, vc, queue, ifPlaylist) {
+		if (queue) {
+			queue.songs.push(song);
+			if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
+			return;
+		}
+
+		message.client.queue.set(message.guild.id, queueConstruct);
+		queueConstruct.songs.push(song);
+
+
+		const play = async song => {
+			const queue = message.client.queue.get(message.guild.id);
+			if (!song) {
+				setTimeout(function () {
+					message.guild.me.voice.channel.leave();
+					message.client.queue.delete(message.guild.id);
+					return;
+				}, 60000)
+			}
+			let stream = ytdl(song.url, {
+				filter: "audioonly",
+				quality: "highestaudio",
+			});
+
+			const dispatcher = queue.connection.play(stream)
+				.on('finish', () => {
+					if (queue.repeatMode === 0) { queue.songs.shift(); }
+					else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
+					else { null; }
+					play(queue.songs[0]);
+				})
+				.on('error', error => console.error(error));
+			dispatcher.setVolumeLogarithmic(queue.volume / 100);
+			if (!ifPlaylist) { queue.textChannel.send(announce(song, true, false)); }
+		};
+
+		try {
+			const connection = await channel.join();
+			queueConstruct.connection = connection;
+			play(queueConstruct.songs[0]);
+		} catch (error) {
+			console.error(`I could not join the voice channel: ${error}`);
+			message.client.queue.delete(message.guild.id);
+			await channel.leave();
+			return message.channel.send(`I could not join the voice channel: ${error}`);
+		}
+	},
+	announce: function (song, started, isPlaylist) {
+		let e;
+		if (isPlaylist) { e = 'Playlist added!' }
+		else if (started) { e = 'Groovin to the tunes!' }
+		else { e = 'Added to the queue!' }
+		const announceEmbed = new d.Discord.MessageEmbed()
+			.setColor('#dd2de0')
+			.setTitle(song.title)
+			.setURL(song.url)
+			.setDescription(`Duration: ${song.duration}`)
+			.setThumbnail(song.thumbnail)
+			.addField(e, '_')
+			.setTimestamp()
+			.setFooter('DJ Grape');
+		return announceEmbed;
+	},
 	async execute(message, args, d) {
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('Get in a voice channel if you wanna play music!');
@@ -38,23 +102,6 @@ module.exports = {
 			return song;
 		}
 
-		function announce(song, started, isPlaylist) {
-			let e;
-			if (isPlaylist) { e = 'Playlist added!' }
-			else if (started) { e = 'Groovin to the tunes!' }
-			else { e = 'Added to the queue!' }
-			const announceEmbed = new d.Discord.MessageEmbed()
-				.setColor('#dd2de0')
-				.setTitle(song.title)
-				.setURL(song.url)
-				.setDescription(`Duration: ${song.duration}`)
-				.setThumbnail(song.thumbnail)
-				.addField(e, '_')
-				.setTimestamp()
-				.setFooter('DJ Grape');
-			return announceEmbed;
-		}
-
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
 			const playlist = await youtube.getPlaylist(argument);
@@ -78,55 +125,6 @@ module.exports = {
 			playSong(song, message, channel, serverQueue, false)
 		}
 
-		async function playSong(song, message, vc, queue, ifPlaylist) {
-			if (queue) {
-				queue.songs.push(song);
-				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
-				return;
-			}
 
-			message.client.queue.set(message.guild.id, queueConstruct);
-			queueConstruct.songs.push(song);
-
-
-			const play = async song => {
-				const queue = message.client.queue.get(message.guild.id);
-				if (!song) {
-					setTimeout(function () {
-						message.guild.me.voice.channel.leave();
-						message.client.queue.delete(message.guild.id);
-						return;
-					}, 60000)
-				}
-				let stream = ytdl(song.url, {
-					filter: "audioonly",
-					quality: "highestaudio",
-				});
-
-				const dispatcher = queue.connection.play(stream)
-					.on('finish', () => {
-						if (queue.repeatMode === 0) { queue.songs.shift(); }
-						else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
-						else { null; }
-						play(queue.songs[0]);
-					})
-					.on('error', error => console.error(error));
-				dispatcher.setVolumeLogarithmic(queue.volume / 100);
-				if (!ifPlaylist) { queue.textChannel.send(announce(song, true, false)); }
-			};
-
-			try {
-				const connection = await channel.join();
-				queueConstruct.connection = connection;
-				play(queueConstruct.songs[0]);
-			} catch (error) {
-				console.error(`I could not join the voice channel: ${error}`);
-				message.client.queue.delete(message.guild.id);
-				await channel.leave();
-				return message.channel.send(`I could not join the voice channel: ${error}`);
-			}
-		}
 	},
-	"playSong": playSong,
-	"announce": announce
 };
