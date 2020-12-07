@@ -1,5 +1,5 @@
 const { Util } = require('discord.js');
-const ytdl = require('discord-ytdl-core');
+const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
 module.exports = {
 	name: 'play',
@@ -94,12 +94,7 @@ module.exports = {
 				if (!song) { return; }
 				let stream = ytdl(song.url, {
 					filter: "audioonly",
-					opusEncoded: true,
-					encoderArgs: ["apulsator=hz=0.08"],
-					bitrate: 320,
 					quality: "highestaudio",
-					liveBuffer: 40000,
-					highWaterMark: 1 << 50, 
 				});
 
 				const dispatcher = queue.connection.play(stream)
