@@ -18,6 +18,15 @@ module.exports = {
 		const plRegex = /[&?]list=([^&]+)/i;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
+		const queueConstruct = {
+			textChannel: message.channel,
+			voiceChannel: channel,
+			connection: null,
+			songs: [],
+			volume: 42,
+			playing: true,
+			repeatMode: 0,
+		};
 
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
@@ -76,16 +85,6 @@ module.exports = {
 				if (!ifPlaylist) { message.channel.send(announce(song, false, false)); }
 				return;
 			}
-
-			var queueConstruct = {
-				textChannel: message.channel,
-				voiceChannel: channel,
-				connection: null,
-				songs: [],
-				volume: 69,
-				playing: true,
-				repeatMode: 0,
-			};
 
 			message.client.queue.set(message.guild.id, queueConstruct);
 			queueConstruct.songs.push(song);
