@@ -13,7 +13,7 @@ module.exports = {
             }
             return array;
         }
-        queue.songs = shuffle(q.songs);
+        queue.songs = shuffle(queue.songs);
         message.client.queue.set(message.guild.id, q)
     }
 };
