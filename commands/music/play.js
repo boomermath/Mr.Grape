@@ -106,10 +106,7 @@ module.exports = {
 					})
 					.on('error', error => console.error(error));
 				dispatcher.setVolumeLogarithmic(queue.volume / 100);
-				if (ifPlaylist) { queue.songs.shift(); }
-				else {
-					queue.textChannel.send(announce(song, true, false));
-				}
+				if (!ifPlaylist) { queue.textChannel.send(announce(song, true, false)); }
 			};
 
 			try {
