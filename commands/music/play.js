@@ -46,7 +46,7 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			const bufferSong = 'buffer';
+			const bufferSong = {url:'e'};
 			playSong(bufferSong, message, channel, serverQueue, true)
 			const playlist = await youtube.getPlaylist(argument);
 			for (video in playlist.videos) {
