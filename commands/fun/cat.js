@@ -10,10 +10,10 @@ module.exports = {
         let pic = await d.r2.get(submitURL, { key }).json;
         const cat = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setTitle('NASA Picture of the Day!')
+            .setTitle('Cat!')
             .setImage(pic[0].url)
             .setTimestamp()
-            .setFooter('Grape Fortune-Telling');
+            .setFooter('Cat');
         message.channel.send(cat);
     }
 };
