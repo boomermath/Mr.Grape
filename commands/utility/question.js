@@ -9,7 +9,7 @@ module.exports = {
         if (!args[0]) { return message.channel.send('whaddya want me to look up?'); }
         let key = process.env.WOLFRAM;
         let wolfapi = `https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(args.join(' '))}&appid=${key}`;
-        let answer = await d.r2(wolfapi).text;
+        let answer = await d.r2.get(wolfapi).text;
         if (answer === 'No short answer available') {
             let simpleWolf = `https://api.wolframalpha.com/v2/query?input=${encodeURIComponent(args.join(' '))}&format=plaintext&output=JSON&appid=${key}&podindex=2`
             let ans = await d.r2(simpleWolf).json;
