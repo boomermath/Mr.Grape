@@ -10,6 +10,7 @@ module.exports = {
         let NASAURL = `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image`
         let res = await d.r2.get(NASAURL).json;
         let url = res.collection.items[0].links[0].href;
+        console.log(url)
         const nasa = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('NASA Picture of the Day!')
