@@ -7,7 +7,6 @@ module.exports = {
     async execute(message, args, d) {
         let NASAURL = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA}`
         let pic = await d.r2.get(NASAURL).json;
-        message.channel.send({ files: [pic.hdurl] });
         const nasa = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('NASA Picture of the Day!')
