@@ -11,21 +11,17 @@ music, economy and more!
 
 Contains a wide variety of music commands using ytdl-core, and has a very expansive economy systen with many features such as a shop and inventory. This also has many other commands such as kick and banning, purging, and as well as many fun commands.
 
-# Note
- The original Prefix is `+`, although you can change the prefix with `+prefix <prefix>`
-Many of the API's used here have private keys, and thus you will have to get your own api keys from the apis.
+# Notes
+* The bots prefix is `+`, however this can be changed during operation with the command `+prefix <new prefix`.
+* Many of the APIs used in Mr. Grape require Private Keys to be issued and added before those services will work.
 
 # API's
-The links for the apis to where you get your own api key for usage.
-https://api.ksoft.si/
-
-https://thecatapi.com/
-
-https://thedogapi.com/
-
-https://api.nasa.gov/
-
-https://products.wolframalpha.com/api/
+You will need to go to each of these websites and aquire an API key for each of their associated services.
+* https://api.ksoft.si/
+* https://thecatapi.com/
+* https://thedogapi.com/
+* https://api.nasa.gov/
+* https://products.wolframalpha.com/api/
 
 # Setup
  Press the deploy to Heroku Button, give the app a name.
@@ -38,5 +34,8 @@ Once that is done, you will wanna go to Settings and under config vars, you wann
 <div align="center">
 	<img src="images/keys.jpg" alt="KEY config" />
 </div>
-
-#### If you have any problems, you can create an issue, and we can help you!
+Finally, you will need a database to store the data of the players using the economy commands. We use keyv, but it can be easily edited to use a diffrent db such as MongoDB. Go to Resources tab, and where you see Add-ons, Search "Heroku Postgres", and attach it as a database, like so:
+<div align="center">
+	<img src="images/database.JPG" alt="Database config" />
+</div>
+ Make sure in setting and under config vars, that there is a key called DATABASE_URL and the value is the url of the database in Add-ons. You should be all set and the bot should be online. For any questions or inquires, feel free to join the discord and ask! https://discord.gg/bYFkqsdmqQ
