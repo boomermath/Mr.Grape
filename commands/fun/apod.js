@@ -11,7 +11,7 @@ module.exports = {
         const nasa = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('NASA Picture of the Day!')
-            .attachFiles([pic.hdurl])
+            .setImage(pic.hdurl)
             .setTimestamp()
             .setFooter('Grape Fortune-Telling');
         message.channel.send(nasa);
