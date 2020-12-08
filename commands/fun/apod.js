@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'spacepic',
+    name: 'space',
     description: 'get a nasa pic',
-    aliases: ['nasapic', 'npod', 'nasapicoftheday', 'nasa'],
+    aliases: ['nasapic', 'npod', 'nasa'],
     cooldown: 3,
     cd: "Woah. Chill.",
     async execute(message, args, d) {
@@ -9,6 +9,7 @@ module.exports = {
         if (!query) return message.channel.send('You gotta give me something to search up!')
         let NASAURL = `https://images-api.nasa.gov/search?q=moon&media_type=image`
         let res = await d.r2.get(NASAURL).json;
+        console.log(res);
         let url = res.collection.items[0].links[0].href;
         console.log(url)
         const nasa = new d.Discord.MessageEmbed()
