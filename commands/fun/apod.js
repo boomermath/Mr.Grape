@@ -15,7 +15,7 @@ module.exports = {
             .setTitle('NASA Picture of the Day!')
             .setImage(url)
             .setTimestamp()
-            .setFooter('Grape Fortune-Telling');
+            .setFooter('Grape Space and Astronomy');
         message.channel.send(nasa);
     }
 };
