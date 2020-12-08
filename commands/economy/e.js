@@ -4,8 +4,9 @@ module.exports = {
     execute(message, args, d) {
         const guild = message.client.guilds.cache.get(message.guild.id);
         const obj = {};
-        guild.members.cache.each(member => {
-            message.channel.send(member.id)
+        guild.members.cache.each(async member => {
+            let bal = await d.users.get(member).id
+            message.channel.send(bal)
         });
         /*
         const lb = Object.entries(obj)
