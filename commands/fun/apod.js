@@ -7,7 +7,7 @@ module.exports = {
     async execute(message, args, d) {
         let query = args.join(' ');
         if (!query) return message.channel.send('You gotta give me something to search up!')
-        let NASAURL = `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image`
+        let NASAURL = `https://images-api.nasa.gov/search?q=moon&media_type=image`
         let res = await d.r2.get(NASAURL).json;
         let url = res.collection.items[0].links[0].href;
         console.log(url)
