@@ -1,21 +1,16 @@
 module.exports = {
-    name: 'space',
-    description: 'get a nasa pic',
-    aliases: ['nasapic', 'npod', 'nasa'],
+    name: 'apod',
+    description: 'get a daily nasapic',
+    aliases: ['nasapic', 'npod', 'nasapicoftheday', 'nasa'],
     cooldown: 3,
-    cd: "Woah. Chill.",
+    cd: "There's only one NASA pic",
     async execute(message, args, d) {
-        let query = args.join(' ');
-        if (!query) return message.channel.send('You gotta give me something to search up!')
-        let NASAURL = `https://images-api.nasa.gov/search?q=moon&media_type=image`
-        let res = await d.r2.get(NASAURL).json;
-        console.log(res);
-        let url = res.collection.items[0].links[0].href;
-        console.log(url)
+        let NASAURL = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA}`
+        let pic = await d.r2.get(NASAURL).json;
         const nasa = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setTitle('NASA Picture of the Day!')
-            .setImage(url)
+            .setImage(pic.hdurl)
             .setTimestamp()
             .setFooter('Grape Space and Astronomy');
         message.channel.send(nasa);
