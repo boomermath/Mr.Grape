@@ -19,7 +19,8 @@ module.exports = {
             .setDescription('\u200b **Lyrics**')
             .setThumbnail(res.artwork)
             .setFooter('DJ Grape | Provided by KSoft.Si')
-        if (res.lyrics.length > 1024) {
+        if (res.name.length + res.lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', res.url); }
+        else if (res.lyrics.length > 1024) {
             let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
             for (part in arr) { lyricEmbed.addField('\u200b', arr[part]); }
         }
