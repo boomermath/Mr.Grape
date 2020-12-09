@@ -10,7 +10,8 @@ module.exports = {
         let oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
         const numberRegex = /\d+/g;
         let item;
-        if (Object.keys(d.sellableItems).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
+        if (Object.keys(itemAliases).some(e => argument.includes(e)) || Object.keys(d.sellableItems).some(e => argument.includes(e)) || argument.includes('item' || 'items')) {
+            
             if (argument.includes('item') && argument.includes('all') || argument.includes('items') && argument.includes('all')) {
                 async function sellTools() {
                     let profit = 0;

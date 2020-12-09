@@ -27,17 +27,14 @@ module.exports = {
             .setTimestamp()
             .setFooter('Grape Marketplaces');
         let have = await d.items.get(message.author.id);
-        let argument = args.join(' ').toLowerCase();
-        if (Object.keys(d.itemAliases).some(v => argument.includes(v))) {}
+        let argument = args.join('').toLowerCase();
+        if (Object.keys(d.itemAliases).some(v => argument.includes(v))) { }
         let regex = /\d+/g;
         let numberOfItemsRaw = parseInt(argument.match(regex));
         let numberOfItems = parseInt(numberOfItemsRaw);
-        let item = Object.keys(d.buyableItems).filter(v => argument.includes(v)).pop();
-        if (!item) {
-            let alias = Object.keys(d.itemAliases).filter(v => argument.includes(v)).pop();
-            if (!alias) return message.channel.send(notitem);
-            item = d.itemAliases[alias];
-        }
+        let item = argument.replace(numberOfItemsRaw);
+        if (!Object.keys(d.buyableItems).concat(Object.keys(d.itemAliases)).includes(item)) return message.channel.send(notitem);
+        if (Object.keys(d.itemAliases).includes(item)) { item = d.itemAliases[item]; }
         message.channel.send(item);
         if (!have) { have = {}; }
         if (isNaN(numberOfItems) || numberOfItems < 0) { numberOfItems = 1; }
