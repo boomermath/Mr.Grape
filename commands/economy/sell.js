@@ -11,9 +11,7 @@ module.exports = {
         let numItems = parseInt(argument.match(regex));
         let item = argument.replace(numItems, '').replace('all', '');
         let inv = await d.items.get(message.author.id);
-        message.channel.send('Raw input: ' + item)
         if (Object.keys(d.itemAliases).includes(item)) { item = d.itemAliases[item]; }
-        message.channel.send('After Alias: ' + item)
         if (Object.keys(d.sellableItems).includes(item) || argument.includes('item' || 'items')) {
             if (argument.includes('item') && argument.includes('all') || argument.includes('items') && argument.includes('all')) {
                 async function sellTools() {
