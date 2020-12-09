@@ -59,7 +59,6 @@ module.exports = {
                     });
             }
             else if (argument.includes('all')) {
-                item = argument.replace('all', '').replace(' ', '');
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 let profit = (d.sellableItems[item]) * inv[item];
                 d.addMoni(message.author.id, profit);
@@ -77,7 +76,6 @@ module.exports = {
                 message.channel.send(saleAll);
             }
             else {
-                item = Object.keys(d.sellableItems).filter(v => argument.includes(v)).pop();
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
@@ -190,7 +188,6 @@ module.exports = {
             }
             else if (argument.includes('all')) {
                 if (argument.includes('refined')) { item = "refined " + oreFromArray }
-                else { item = oreFromArray }
                 if (!inv.ore[item]) { return message.channel.send('Bruh you don\'t have that ore'); }
                 const soldItem = getOreCost(item, inv.ore[item])
                 d.addMoni(message.author.id, soldItem[1]);
@@ -209,7 +206,6 @@ module.exports = {
             }
             else {
                 if (argument.includes('refined')) { item = "refined " + oreFromArray; }
-                else { item = oreFromArray }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
                 if (numItems > inv.ore[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
