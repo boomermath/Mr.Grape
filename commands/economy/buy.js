@@ -32,7 +32,7 @@ module.exports = {
         let regex = /\d+/g;
         let numberOfItemsRaw = parseInt(argument.match(regex));
         let numberOfItems = parseInt(numberOfItemsRaw);
-        let item = argument.replace(numberOfItemsRaw).replace(/ /g,'');
+        let item = argument.replace(numberOfItemsRaw, '');
         message.channel.send(item);
         if (!Object.keys(d.buyableItems).concat(Object.keys(d.itemAliases)).includes(item)) return message.channel.send(notitem);
         if (Object.keys(d.itemAliases).includes(item)) { item = d.itemAliases[item]; }
