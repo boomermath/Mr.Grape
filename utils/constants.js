@@ -63,7 +63,11 @@ const itemAliases = {
     sh: 'shovel',
     tonep: 'tieronepick',
     ttwop: 'tiertwopick',
-    tthreep: 'tierthreepick'
+    tthreep: 'tierthreepick',
+    rd: 'rigged dice',
+    lp: 'lockpick',
+    rp: 'rainbonite pick',
+    pr: 'personal refinery'
 }
 const ores = {
     tier1: ['copper', 'tin', 'iron', 'lead', 'silver', 'bronze'],

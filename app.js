@@ -40,7 +40,8 @@ client.on('message', async message => {
 	else if (config.prefix === guild.prefix) {
 		prefix = config.prefix;
 		delete guild.prefix;
-		await guilds.set(message.guild.id, guild);
+		if (Object.keys(guild).length === 0) await guilds.delete(message.guild.id);
+		else { await guilds.set(message.guild.id, guild); }
 	}
 	else { prefix = guild.prefix; }
 
