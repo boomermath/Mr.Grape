@@ -8,8 +8,8 @@ module.exports = {
         const regex = /\d+/g;
         const oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
         let argument = args.join('').toLowerCase().replace(/,/g, '');
-        let numberOfItems = parseInt(argument.match(regex));
-        let item = argument.replace(numberOfItems, '');
+        let numItems = parseInt(argument.match(regex));
+        let item = argument.replace(numItems, '');
         if (Object.keys(d.itemAliases).includes(item)) { item = d.itemAliases[item]; }
         if (Object.keys(d.sellableItems).includes(item) || argument.includes('item' || 'items')) {
             if (argument.includes('item') && argument.includes('all') || argument.includes('items') && argument.includes('all')) {
@@ -74,7 +74,6 @@ module.exports = {
                 message.channel.send(saleAll);
             }
             else {
-                let numItems = parseInt(argument.match(numberRegex))
                 item = Object.keys(d.sellableItems).filter(v => argument.includes(v)).pop();
                 if (!inv[item]) { return message.channel.send('You dont\'t have that item!') }
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
@@ -208,7 +207,6 @@ module.exports = {
             else {
                 if (argument.includes('refined')) { item = "refined " + oreFromArray; }
                 else { item = oreFromArray }
-                let numItems = parseInt(argument.match(numberRegex))
                 if (isNaN(numItems) || numItems < 0) { numItems = 1; }
                 if (numItems === 0) { return message.channel.send('ok boomer'); }
                 if (numItems > inv.ore[item]) { return message.channel.send(`You don't have that many ${item}(s)`); }
