@@ -29,13 +29,11 @@ module.exports = {
         let have = await d.items.get(message.author.id);
         let argument = args.join('').toLowerCase();
         if (Object.keys(d.itemAliases).some(v => argument.includes(v))) { }
-        let regex = /\d+/g;
-        let numberOfItemsRaw = parseInt(argument.match(regex));
-        let numberOfItems = parseInt(numberOfItemsRaw);
-        let item = argument.replace(numberOfItemsRaw, '');
-        message.channel.send(item);
-        if (!Object.keys(d.buyableItems).concat(Object.keys(d.itemAliases)).includes(item)) return message.channel.send(notitem);
+        const regex = /\d+/g;
+        let numberOfItems = parseInt(argument.match(regex));
+        let item = argument.replace(numberOfItems, '');
         if (Object.keys(d.itemAliases).includes(item)) { item = d.itemAliases[item]; }
+        if (!Object.keys(d.buyableItems).includes(item)) return message.channel.send(notitem);
         if (!have) { have = {}; }
         if (isNaN(numberOfItems) || numberOfItems < 0) { numberOfItems = 1; }
         if (numberOfItems === 0) { return message.channel.send('ok karen'); }
