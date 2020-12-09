@@ -28,7 +28,6 @@ module.exports = {
             .setFooter('Grape Marketplaces');
         let have = await d.items.get(message.author.id);
         let argument = args.join('').toLowerCase().replace(/,/g,'');
-        if (Object.keys(d.itemAliases).some(v => argument.includes(v))) { }
         const regex = /\d+/g;
         let numberOfItems = parseInt(argument.match(regex));
         let item = argument.replace(numberOfItems, '');
