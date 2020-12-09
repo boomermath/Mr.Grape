@@ -7,7 +7,7 @@ module.exports = {
     async execute(message, args, d) {
         const regex = /\d+/g;
         const oreConcat = d.ores.tier1.concat(d.ores.tier2, d.ores.tier3);
-        let argument = args.join('').toLowerCase().replace(/,/g, '');
+        let argument = args.join('').toLowerCase().replace(/,|all/g, '');
         let numItems = parseInt(argument.match(regex));
         let item = argument.replace(numItems, '');
         let inv = await d.items.get(message.author.id);
