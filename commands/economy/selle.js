@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'se',
+    name: 'sell',
     description: 'give items for a price to people',
     cooldown: 5,
     cd: "Buddy this ain't a bazaar",
