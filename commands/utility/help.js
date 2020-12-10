@@ -30,7 +30,7 @@ module.exports = {
                 .path("./commands")
                 .directory()
                 .findSync();
-            let categories = format(fileCategory, true).toString()
+            let categories = format(fileCategory, true)
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
