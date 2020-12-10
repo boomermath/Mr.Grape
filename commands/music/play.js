@@ -1,6 +1,7 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
+const ytpl = require('@distube/ytpl')
 module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
