@@ -20,6 +20,7 @@ module.exports = {
                 .path("./commands")
                 .directory()
                 .findSync();
+            return message.channel.send(subdirectories);
             const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
