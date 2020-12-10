@@ -73,11 +73,13 @@ module.exports = {
 						duration: 'It\'s a playlist bro'
 					}
 					message.channel.send(announce(playlistInfo, false, true));
+					return message.delete();
 				}
 				catch (e) {
 					message.channel.send("Invalid playlist url, or technical difficulties");
 					message.client.queue.delete(message.guild.id);
 					console.log(e);
+					return message.delete();
 				}
 			})
 		}
