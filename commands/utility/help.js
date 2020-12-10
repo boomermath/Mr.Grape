@@ -24,7 +24,7 @@ module.exports = {
                     if (titleCase) { arr.push(toTitleCase(name)) }
                     else { arr.push(name) }
                 }
-                return arr;
+                return arr.toString();
             }
             const fileCategory = fileReader.create()
                 .path("./commands")
@@ -37,7 +37,7 @@ module.exports = {
                     .setTitle('Help')
                     .addFields({
                         name: 'Command Categories',
-                        value: categories
+                        value: categories.split(',').join('\n')
                     }, {
                         name: 'Help',
                         value: `For help on a specific command or category, do ${d.prefix}help [category/command]`
@@ -51,7 +51,7 @@ module.exports = {
             const name = args[0].toLowerCase();
             const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-            if (categories.join(',').split(',').includes(name)) {
+            if (categories.split(',').includes(name)) {
                 const file = fileReader.create()
                     .paths(`./commands/${name}`)
                     .ext('js')
