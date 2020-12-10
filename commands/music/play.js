@@ -2,6 +2,7 @@ const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
 const ytpl = require('@distube/ytpl');
+const resume = require('./resume')
 module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
@@ -9,6 +10,9 @@ module.exports = {
 	cooldown: 2,
 	cd: "Wait a bit, enjoy the tunes!",
 	async execute(message, args, d) {
+
+		const serverQueue = message.client.queue.get(message.guild.id);
+		if (serverQueue && !serverQueue.playing) return resume.execute(message, args, d);
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('Get in a voice channel if you wanna play music!');
 		const permissions = channel.permissionsFor(message.client.user);
@@ -17,7 +21,6 @@ module.exports = {
 
 		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
 		const plRegex = /^.*(list=)([^#\&\?]*).*/gi;
-		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		const queueConstruct = {
 			textChannel: message.channel,
