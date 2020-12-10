@@ -16,11 +16,14 @@ module.exports = {
                     .join('\n');
             };
             const { commands } = message.client;
+            function format(obj, delimiter) {
+                null;
+            }
             const subdirectories = fileReader.create()
                 .path("./commands")
                 .directory()
                 .findSync();
-            return message.channel.send(subdirectories);
+                message.channel.send(subdirectories)
             const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
@@ -47,6 +50,7 @@ module.exports = {
                     .paths(`./commands/${name}`)
                     .ext('js')
                     .findSync();
+                message.channel.send(file);
                 const map = {
                     'commands': "",
                     ".js": "",
