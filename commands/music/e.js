@@ -1,3 +1,4 @@
+const ytdl = require('ytdl-core');
 module.exports = {
     name: 'e',
     description: 'get see what song is currently playin',
