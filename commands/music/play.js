@@ -80,14 +80,14 @@ module.exports = {
 		}
 		else {
 			let song;
-			message.channel.send(ytRegex.test(argument))
-			if (ytRegex.test(argument)) {
+			const bool = ytRegex.test(argument);
+			if (bool) {
 				message.channel.send('URL found!')
 				if (!ytdl.validateURL(argument)) { return message.channel.send("Bruh that's not a valid URL"); }
 				let e = await ytdl.getBasicInfo(argument);
 				let songInfo = e.videoDetails;
 				let duration = new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8);
-				if (duration.startsWith('00:')) { duration = duration.replace('00:'); }
+				if (duration.startsWith('00:')) { duration = duration.replace('00:', ''); }
 				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.video_url, duration, songInfo.thumbnail.thumbnails[0].url)
 			}
 			else {
