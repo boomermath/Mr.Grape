@@ -81,9 +81,11 @@ module.exports = {
 		else {
 			let song;
 			if (ytRegex.test(argument)) {
+				message.channel.send('URL found!')
 				if (!ytdl.validateURL(argument)) { return message.channel.send("Bruh that's not a valid URL"); }
-				let songInfo = await ytdl.getBasicInfo(argument).videoDetails;
-				song = createSong(Util.escapeMarkdown(songInfo.title), `https://youtube.com/watch?v=${songInfo.videoId}`, (new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8)))
+				let e = await ytdl.getBasicInfo(argument);
+				let songInfo = e.videoDetails;
+				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.video_url, (new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8)), songInfo.thumbnail.thumbnails[0].url)
 			}
 			else {
 				let songInfo = await youtube.searchOne(argument);
