@@ -1,7 +1,7 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
-const ytpl = require('@distube/ytpl')
+const ytpl = require('@distube/ytpl');
 module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
@@ -59,16 +59,16 @@ module.exports = {
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
 			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
 			try {
-				const playlist = await youtube.getPlaylist(argument);
-				for (video in playlist.videos) {
-					let plSong = playlist.videos[video];
-					let song = createSong(Util.escapeMarkdown(plSong.title), `https://www.youtube.com/watch?v=${plSong.id}`, plSong.durationFormatted, plSong.thumbnail.url)
+				const playlist = await ytpl(argument);
+				for (video in playlist.items) {
+					let plSong = playlist.items[video];
+					let song = createSong(Util.escapeMarkdown(plSong.title), plSong.url, plSong.duration, plSong.thumbnail)
 					playSong(song, message, channel, serverQueue, true)
 				}
 				const playlistInfo = {
 					title: playlist.title.charAt(0).toUpperCase() + playlist.title.slice(1),
 					url: playlist.url,
-					thumbnail: playlist.thumbnail,
+					thumbnail: playlist.items[0].thumbnail,
 					duration: 'It\'s a playlist bro'
 				}
 				message.channel.send(announce(playlistInfo, false, true));
