@@ -25,10 +25,10 @@ module.exports = {
                 value: user.id
             }, {
                 name: 'Joined Server',
-                value: user.joinedAt.toString().split(' ').slice(1, 4)
+                value: user.joinedAt.toString().split(' ').slice(1, 4).join(' ')
             }, {
                 name: 'Joined Discord',
-                value: user.user.createdAt
+                value: user.user.createdAt.toString().split(' ').slice(1, 4).join(' ')
             })
             .setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
             .setTimestamp()
