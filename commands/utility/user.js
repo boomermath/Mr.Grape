@@ -20,12 +20,12 @@ module.exports = {
         const usersoloEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
             .setAuthor(user.user.tag, user.user.displayAvatarURL())
-            .addFields( {
+            .addFields({
                 name: 'User ID',
                 value: user.id
             }, {
                 name: 'Joined Server',
-                value: user.joinedAt
+                value: user.joinedAt.split(' ').slice(1, 4)
             }, {
                 name: 'Joined Discord',
                 value: user.user.createdAt
