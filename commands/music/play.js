@@ -80,7 +80,8 @@ module.exports = {
 		}
 		else {
 			let song;
-			const bool = await ytRegex.test(argument);
+			const bool = ytRegex.test(argument);
+			message.channel.send(bool)
 			if (bool) {
 				message.channel.send('URL found!')
 				if (!ytdl.validateURL(argument)) { return message.channel.send("Bruh that's not a valid URL"); }
