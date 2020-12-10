@@ -16,28 +16,18 @@ module.exports = {
                     .join('\n');
             };
             const { commands } = message.client;
-            function format(obj, titleCase) {
-                let initial = obj.toString().split(',')
-                let arr = [];
-                for (dir in initial) {
-                    let name = initial[dir].split('/').pop().replace('.js', '');
-                    if (titleCase) { arr.push(toTitleCase(name)) }
-                    else { arr.push(name) }
-                }
-                return arr.toString();
-            }
-            const fileCategory = fileReader.create()
+            const subdirectories = fileReader.create()
                 .path("./commands")
                 .directory()
                 .findSync();
-            let categories = format(fileCategory, true)
+            const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle('Help')
                     .addFields({
                         name: 'Command Categories',
-                        value: categories.split(',').join('\n')
+                        value: toTitleCase(sub)
                     }, {
                         name: 'Help',
                         value: `For help on a specific command or category, do ${d.prefix}help [category/command]`
@@ -51,17 +41,28 @@ module.exports = {
             const name = args[0].toLowerCase();
             const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-            if (categories.split(',').includes(name)) {
+            if (sub.includes(name)) {
                 const file = fileReader.create()
                     .paths(`./commands/${name}`)
                     .ext('js')
                     .findSync();
+                const map = {
+                    'commands': "",
+                    ".js": "",
+                    "/": '',
+                    ",": ", ",
+                    [name]: ''
+                }
+                let re = new RegExp(Object.keys(map).join("|"), "g");
+                let files = file.toString().replace(re, function (matched) {
+                    return map[matched]
+                });
                 const helpCommandEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(toTitleCase(name))
                     .addFields({
                         name: 'Commands',
-                        value: format(file, false).join(', ')
+                        value: files
                     }, {
                         name: 'Help',
                         value: `For more help on a specific command, do ${d.prefix}help [command]`
@@ -91,9 +92,8 @@ module.exports = {
             } else {
                 message.channel.send('That category or command aint here')
             }
-        } catch (e) {
+        } catch {
             message.channel.send('That category or command aint here')
-            console.log(e)
         }
     }
 };
