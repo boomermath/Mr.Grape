@@ -16,14 +16,17 @@ module.exports = {
                     .join('\n');
             };
             const { commands } = message.client;
-            function format(obj, delimiter) {
-                null;
+            function format(obj) {
+                let initial = obj.toString().split(',')
+                let arr = [];
+                for (dir in initial) { arr.push(initial[dir].split('/').pop().replace('.js', '')) }
+                return arr;
             }
             const subdirectories = fileReader.create()
                 .path("./commands")
                 .directory()
                 .findSync();
-                message.channel.send(subdirectories.toString())
+            message.channel.send(format(subdirectories))
             const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
