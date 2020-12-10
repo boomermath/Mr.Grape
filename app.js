@@ -79,8 +79,8 @@ client.on('message', async message => {
 				.setColor('#dd2de0')
 				.setTitle('ayo chill man')
 				.addFields({
-					name: `${command.name.charAt(0).toUpperCase() + command.name.slice(1)}`,
-					value: '\u200b' + `${command.cd}\n\u200b\n${d.formatCooldown(timeLeft)}`
+					name: `${command.name.charAt(0).toUpperCase() + command.name.slice(1)}\n`,
+					value: `${command.cd}\n\u200b\n${d.formatCooldown(timeLeft)}`
 				})
 				.setTimestamp()
 				.setFooter('Grape Enterprises');
