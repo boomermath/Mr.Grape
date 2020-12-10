@@ -30,7 +30,7 @@ module.exports = {
                 .path("./commands")
                 .directory()
                 .findSync();
-            let categories = format(fileCategory, true)
+            let categories = format(fileCategory, true).toString()
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
@@ -51,7 +51,7 @@ module.exports = {
             const name = args[0].toLowerCase();
             const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-            if (categories.join(',').split(',')) {
+            if (categories.join(',').split(',').includes(name)) {
                 const file = fileReader.create()
                     .paths(`./commands/${name}`)
                     .ext('js')
