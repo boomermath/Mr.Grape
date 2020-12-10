@@ -81,6 +81,10 @@ module.exports = {
 		else {
 			let songInfo = await youtube.searchOne(argument);
 			if (songInfo === null) { return message.channel.send("No results found!"); }
+			if (ytRegex.test(argument)) {
+				let e = await ytdl.getBasicInfo(argument)
+				console.log(e)
+			}
 			let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
 			playSong(song, message, channel, serverQueue, false)
 		}
