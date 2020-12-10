@@ -9,7 +9,7 @@ module.exports = {
         let name;
         let target = message.mentions.members.first();
         if (!target) {
-            user = message.author;
+            user = message.guild.member(message.author);
             name = message.author.username;
         } else if (target) {
             user = target
@@ -19,7 +19,7 @@ module.exports = {
         }
         const usersoloEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setAuthor(user.tag, user.user.displayAvatarURL())
+            .setAuthor(user.user.tag, user.user.displayAvatarURL())
             .addFields( {
                 name: 'User ID',
                 value: user.id
