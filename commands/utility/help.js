@@ -30,14 +30,14 @@ module.exports = {
                 .path("./commands")
                 .directory()
                 .findSync();
-            let categories = format(fileCategory, true).join('\n')
+            let categories = format(fileCategory, true)
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle('Help')
                     .addFields({
                         name: 'Command Categories',
-                        value: categories
+                        value: categories.join('\n')
                     }, {
                         name: 'Help',
                         value: `For help on a specific command or category, do ${d.prefix}help [category/command]`
