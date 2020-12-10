@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'loop',
+    name: 'e',
     description: 'get see what song is currently playin',
     cooldown: 0,
     async execute(message, args, d) {
