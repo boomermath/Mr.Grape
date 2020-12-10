@@ -80,13 +80,15 @@ module.exports = {
 		}
 		else {
 			let song;
-			if (ytRegex.test(argument)) { 
-				let songInfo = await ytdl.getBasicInfo;
+			if (ytRegex.test(argument)) {
+				if (!ytdl.validateURL(argument)) { return message.channel.send("Bruh that's not a valid URL"); }
+				let songInfo = await ytdl.getBasicInfo(argument).videoDetails;
+				song = createSong(Util.escapeMarkdown(songInfo.title), `https://youtube.com/watch?v=${songInfo.videoId}`, (new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8)))
 			}
 			else {
 				let songInfo = await youtube.searchOne(argument);
 				if (songInfo === null) { return message.channel.send("No results found!"); }
-				let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
+				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
 			}
 			playSong(song, message, channel, serverQueue, false)
 		}
