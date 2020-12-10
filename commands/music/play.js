@@ -79,13 +79,15 @@ module.exports = {
 			}
 		}
 		else {
-			let songInfo = await youtube.searchOne(argument);
-			if (songInfo === null) { return message.channel.send("No results found!"); }
-			if (ytRegex.test(argument)) {
-				let e = await ytdl.getBasicInfo(argument)
-				return console.log(e)
+			let song;
+			if (ytRegex.test(argument)) { 
+				let songInfo = await ytdl.getBasicInfo;
 			}
-			let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
+			else {
+				let songInfo = await youtube.searchOne(argument);
+				if (songInfo === null) { return message.channel.send("No results found!"); }
+				let song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
+			}
 			playSong(song, message, channel, serverQueue, false)
 		}
 
@@ -103,9 +105,9 @@ module.exports = {
 			const play = async song => {
 				const queue = message.client.queue.get(message.guild.id);
 				if (!song) {
-						message.guild.me.voice.channel.leave();
-						message.client.queue.delete(message.guild.id);
-						return;
+					message.guild.me.voice.channel.leave();
+					message.client.queue.delete(message.guild.id);
+					return;
 				}
 				let stream = ytdl(song.url, {
 					filter: "audioonly",
