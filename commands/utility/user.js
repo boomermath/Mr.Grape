@@ -19,7 +19,7 @@ module.exports = {
         }
         const usersoloEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2de0')
-            .setAuthor(user.user.tag, user.user.displayAvatarURL())
+            .setAuthor(user.tag, user.user.displayAvatarURL())
             .addFields( {
                 name: 'User ID',
                 value: user.id
