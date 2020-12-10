@@ -100,8 +100,9 @@ module.exports = {
             } else {
                 message.channel.send('That category or command aint here')
             }
-        } catch {
+        } catch (e) {
             message.channel.send('That category or command aint here')
+            console.log(e)
         }
     }
 };
