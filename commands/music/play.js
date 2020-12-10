@@ -89,6 +89,7 @@ module.exports = {
 				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.video_url, (new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8)), songInfo.thumbnail.thumbnails[0].url)
 			}
 			else {
+				message.channel.send('Regex did not match!')
 				let songInfo = await youtube.searchOne(argument);
 				if (songInfo === null) { return message.channel.send("No results found!"); }
 				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
