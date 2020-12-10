@@ -10,7 +10,7 @@ module.exports = {
         console.log(res.lengthSeconds)
         console.log(res.video_url)
         console.log(res.title)
-        console.log(res.thumbnail.thumbnails)
+        console.log(res.thumbnail.thumbnails[0].url)
      
     }
 };
