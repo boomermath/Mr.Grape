@@ -31,6 +31,7 @@ module.exports = {
                 .directory()
                 .findSync();
             let categories = format(fileCategory, true)
+            message.channel.send(categories)
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
