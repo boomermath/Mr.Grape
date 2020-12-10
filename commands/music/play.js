@@ -15,7 +15,7 @@ module.exports = {
 		if (!permissions.has('SPEAK')) return message.channel.send('Bruh I don\'t have perms to speak');
 
 		const ytRegex = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
-		const plRegex = /[?&]list=([^#\&\?]+)/;
+		const plRegex = /^.*(list=)([^#\&\?]*).*/gi;
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const argument = args.join(' ');
 		const queueConstruct = {
@@ -80,11 +80,8 @@ module.exports = {
 		}
 		else {
 			let song;
-			const bool = ytRegex.test(argument.replace(/ /g, ''));
-			message.channel.send(bool)
-			if (bool) {
+			if (ytdl.validateURL(argument)) {
 				message.channel.send('URL found!')
-				if (!ytdl.validateURL(argument)) { return message.channel.send("Bruh that's not a valid URL"); }
 				let e = await ytdl.getBasicInfo(argument);
 				let songInfo = e.videoDetails;
 				let duration = new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8);
