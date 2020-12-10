@@ -78,12 +78,9 @@ client.on('message', async message => {
 			const cool = new Discord.MessageEmbed()
 				.setColor('#dd2de0')
 				.setTitle('ayo chill man')
-				.addFields({
-					name: `${command.name.charAt(0).toUpperCase() + command.name.slice(1)}\n\u200b`,
-					value: `${command.cd}\n\u200b\n${d.formatCooldown(timeLeft)}`
-				})
+				.setDescription(`${command.cd}\nWait for ${d.formatCooldown(timeLeft)}`)
 				.setTimestamp()
-				.setFooter('Grape Enterprises');
+				.setFooter('Grape Cooldowns');
 			return message.channel.send(cool);
 		}
 	}
