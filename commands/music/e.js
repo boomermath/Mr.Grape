@@ -6,8 +6,8 @@ module.exports = {
     async execute(message, args, d) {
         let f = await ytdl.getInfo('https://www.youtube.com/watch?v=D42Cexo75a0')
         console.log(f)
-        let e = await ytdl.getInfo('https://www.youtube.com/watch?v=D42Cexo75a0').videoDetails
-        console.log(e)
+        let e = await ytdl.getInfo('https://www.youtube.com/watch?v=D42Cexo75a0')
+        console.log(e.videoDetails)
      
     }
 };
