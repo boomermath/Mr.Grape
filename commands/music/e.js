@@ -6,7 +6,11 @@ module.exports = {
     async execute(message, args, d) {
    
         let e = await ytdl.getInfo('https://www.youtube.com/watch?v=D42Cexo75a0')
-        console.log(e.videoDetails)
+        let res = e.videoDetails;
+        console.log(res.lengthSeconds)
+        console.log(res.video_url)
+        console.log(res.title)
+        console.log(res.thumbnail.thumbnails)
      
     }
 };
