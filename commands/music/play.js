@@ -57,7 +57,7 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			message.channel.send("Pls wait, im loadin the playlist. . .").then(async message => {
+			message.channel.send("Be patient, its loading").then(async message => {
 				if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
 				try {
 					const playlist = await ytpl(argument);
