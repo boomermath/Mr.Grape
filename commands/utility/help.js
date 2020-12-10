@@ -31,14 +31,13 @@ module.exports = {
                 .directory()
                 .findSync();
             let categories = format(fileCategory, true)
-            message.channel.send(categories)
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle('Help')
                     .addFields({
                         name: 'Command Categories',
-                        value: categories.join('\n')
+                        value: categories
                     }, {
                         name: 'Help',
                         value: `For help on a specific command or category, do ${d.prefix}help [category/command]`
@@ -52,7 +51,7 @@ module.exports = {
             const name = args[0].toLowerCase();
             const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-            if (categories.includes(name)) {
+            if (categories.split('\n')) {
                 const file = fileReader.create()
                     .paths(`./commands/${name}`)
                     .ext('js')
