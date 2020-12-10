@@ -57,27 +57,29 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
-			try {
-				const playlist = await ytpl(argument);
-				for (video in playlist.items) {
-					let plSong = playlist.items[video];
-					let song = createSong(Util.escapeMarkdown(plSong.title), plSong.url, plSong.duration, plSong.thumbnail)
-					playSong(song, message, channel, serverQueue, true)
+			message.channel.send("Pls wait, im loadin the playlist. . .").then(async message => {
+				if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
+				try {
+					const playlist = await ytpl(argument);
+					for (video in playlist.items) {
+						let plSong = playlist.items[video];
+						let song = createSong(Util.escapeMarkdown(plSong.title), plSong.url, plSong.duration, plSong.thumbnail)
+						playSong(song, message, channel, serverQueue, true)
+					}
+					const playlistInfo = {
+						title: playlist.title.charAt(0).toUpperCase() + playlist.title.slice(1),
+						url: playlist.url,
+						thumbnail: playlist.items[0].thumbnail,
+						duration: 'It\'s a playlist bro'
+					}
+					message.channel.send(announce(playlistInfo, false, true));
 				}
-				const playlistInfo = {
-					title: playlist.title.charAt(0).toUpperCase() + playlist.title.slice(1),
-					url: playlist.url,
-					thumbnail: playlist.items[0].thumbnail,
-					duration: 'It\'s a playlist bro'
+				catch (e) {
+					message.channel.send("Invalid playlist url, or technical difficulties");
+					message.client.queue.delete(message.guild.id);
+					console.log(e);
 				}
-				message.channel.send(announce(playlistInfo, false, true));
-			}
-			catch (e) {
-				message.channel.send("Invalid playlist url, or technical difficulties");
-				message.client.queue.delete(message.guild.id);
-				console.log(e);
-			}
+			})
 		}
 		else {
 			let song;
