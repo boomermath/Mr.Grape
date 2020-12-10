@@ -25,7 +25,7 @@ module.exports = {
                 value: user.id
             }, {
                 name: 'Joined Server',
-                value: user.joinedAt.split(' ').slice(1, 4)
+                value: user.joinedAt.toString().split(' ').slice(1, 4)
             }, {
                 name: 'Joined Discord',
                 value: user.user.createdAt
