@@ -80,7 +80,7 @@ module.exports = {
 		}
 		else {
 			let song;
-			const bool = ytRegex.test(argument);
+			const bool = ytRegex.test(argument.replace(/ /g, ''));
 			message.channel.send(bool)
 			if (bool) {
 				message.channel.send('URL found!')
