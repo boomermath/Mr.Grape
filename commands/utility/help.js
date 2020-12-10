@@ -16,7 +16,7 @@ module.exports = {
                     .join('\n');
             };
             const { commands } = message.client;
-            function format(obj, join, titleCase) {
+            function format(obj, titleCase) {
                 let initial = obj.toString().split(',')
                 let arr = [];
                 for (dir in initial) {
@@ -24,21 +24,20 @@ module.exports = {
                     if (titleCase) { arr.push(toTitleCase(name)) }
                     else { arr.push(name) }
                 }
-                return arr.join(join);
+                return arr;
             }
-            const subdirectories = fileReader.create()
+            const fileCategory = fileReader.create()
                 .path("./commands")
                 .directory()
                 .findSync();
-            message.channel.send(format(subdirectories, '\n', true))
-            const sub = subdirectories.toString().replace(/,/g, '\n').replace(/commands\//g, '');
+            let categories = format(fileCategory, true).join('\n')
             if (!args.length) {
                 const helpEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle('Help')
                     .addFields({
                         name: 'Command Categories',
-                        value: toTitleCase(sub)
+                        value: categories
                     }, {
                         name: 'Help',
                         value: `For help on a specific command or category, do ${d.prefix}help [category/command]`
@@ -52,29 +51,17 @@ module.exports = {
             const name = args[0].toLowerCase();
             const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-            if (sub.includes(name)) {
+            if (categories.includes(name)) {
                 const file = fileReader.create()
                     .paths(`./commands/${name}`)
                     .ext('js')
                     .findSync();
-                message.channel.send(file);
-                const map = {
-                    'commands': "",
-                    ".js": "",
-                    "/": '',
-                    ",": ", ",
-                    [name]: ''
-                }
-                let re = new RegExp(Object.keys(map).join("|"), "g");
-                let files = file.toString().replace(re, function (matched) {
-                    return map[matched]
-                });
                 const helpCommandEmbed = new d.Discord.MessageEmbed()
                     .setColor('#dd2de0')
                     .setTitle(toTitleCase(name))
                     .addFields({
                         name: 'Commands',
-                        value: files
+                        value: format(file, false).join(', ')
                     }, {
                         name: 'Help',
                         value: `For more help on a specific command, do ${d.prefix}help [command]`
