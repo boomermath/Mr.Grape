@@ -15,18 +15,20 @@ module.exports = {
         const lyricEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2ed0')
             .setTitle(name.charAt(0).toUpperCase() + name.slice(1))
-            .setDescription('\u200b **Lyrics**')
             .setThumbnail(artwork)
             .setFooter('DJ Grape | Provided by KSoft.Si')
         if (name.length + lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', url); }
         else if (lyrics.length > 1024) {
             let arr = lyrics.split('\n\n');
+            lyric.setDescription('\u200b\n **Lyrics**\n**-**')
             for (part in arr) {
-                if (part === 0) { lyricEmbed.addField('-', arr[part]); }
                 lyricEmbed.addField('\u200b', arr[part]);
             }
         }
-        else { lyricEmbed.addField('-', lyrics) }
+        else {
+            lyricEmbed.setDescription('\u200b\n **Lyrics**')
+            lyricEmbed.addField('-', lyrics)
+        }
         message.channel.send(lyricEmbed);
     }
 };
