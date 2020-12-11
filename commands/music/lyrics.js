@@ -20,7 +20,7 @@ module.exports = {
         if (name.length + lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', url); }
         else if (lyrics.length > 1024) {
             let arr = lyrics.split('\n\n');
-            lyric.setDescription('\u200b\n **Lyrics**\n**-**')
+            lyricEmbed.setDescription('\u200b\n **Lyrics**\n**-**')
             for (part in arr) {
                 lyricEmbed.addField('\u200b', arr[part]);
             }
