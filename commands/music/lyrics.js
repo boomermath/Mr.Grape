@@ -11,20 +11,23 @@ module.exports = {
         if (!args.length && !q) { return message.channel.send('Give me something to search up bruh') }
         let argument = args.join(' ')
         if (!argument) { argument = q.songs[0].title; }
-        let res = await ksoft.lyrics.get(argument);
+        let { name, lyrics, url, artwork } = await ksoft.lyrics.get(argument);
         console.log(res)
         const lyricEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2ed0')
-            .setTitle(res.name.charAt(0).toUpperCase() + res.name.slice(1))
+            .setTitle(name.charAt(0).toUpperCase() + name.slice(1))
             .setDescription('\u200b **Lyrics**')
-            .setThumbnail(res.artwork)
+            .setThumbnail(artwork)
             .setFooter('DJ Grape | Provided by KSoft.Si')
-        if (res.name.length + res.lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', res.url); }
-        else if (res.lyrics.length > 1024) {
-            let arr = res.lyrics.match(/(.|[\r\n]){1,1024}/g);
-            for (part in arr) { lyricEmbed.addField('\u200b', arr[part]); }
+        if (name.length + lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', url); }
+        else if (lyrics.length > 1024) {
+            let arr = lyrics.split('\n\n');
+            for (part in arr) {
+                if (part === 0) { lyricEmbed.addField('-', arr[part]); }
+                lyricEmbed.addField('\u200b', arr[part]);
+            }
         }
-        else { lyricEmbed.addField('-', res.lyrics) }
+        else { lyricEmbed.addField('-', lyrics) }
         message.channel.send(lyricEmbed);
     }
 };
