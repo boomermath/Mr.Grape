@@ -26,7 +26,7 @@ module.exports = {
             }
         }
         else {
-            lyricEmbed.setDescription('\u200b\n **Lyrics**')
+            lyricEmbed.setDescription('**Lyrics**\n**-**')
             lyricEmbed.addField('\u200b', lyrics)
         }
         message.channel.send(lyricEmbed);
