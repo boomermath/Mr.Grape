@@ -20,14 +20,14 @@ module.exports = {
         if (name.length + lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', url); }
         else if (lyrics.length > 1024) {
             let arr = lyrics.split('\n\n');
-            lyricEmbed.setDescription('\u200b\n **Lyrics**\n**-**')
+            lyricEmbed.setDescription('**Lyrics**\n**-**\n\u200b')
             for (part in arr) {
                 lyricEmbed.addField('\u200b', arr[part]);
             }
         }
         else {
             lyricEmbed.setDescription('\u200b\n **Lyrics**')
-            lyricEmbed.addField('-', lyrics)
+            lyricEmbed.addField('\u200b', lyrics)
         }
         message.channel.send(lyricEmbed);
     }
