@@ -80,7 +80,7 @@ const oreSell = {
     tier2: 19,
     tier3: 25,
 }
-const validItems = Object.keys(buyableItems).concat(ores.tier1, ores, tier2, ores.tier3, ["rainbonite pick", "lockpick", "personal refinery", "rigged dice"])
+const validItems = Object.keys(buyableItems).concat(ores.tier1, ores.tier2, ores.tier3, ["rainbonite pick", "lockpick", "personal refinery", "rigged dice"])
 const emoji = {
     silver: "<:silver:776578867988267059>",
     titanium: "<:titanium:776587848924135434>",
