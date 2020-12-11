@@ -1,4 +1,3 @@
-const guild = require('discord.js');
 module.exports = {
 	name: 'queue',
 	description: 'get your server\'s music queue',

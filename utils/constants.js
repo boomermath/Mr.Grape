@@ -5,6 +5,7 @@ const Keyv = require('keyv');
 const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
 const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
 const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
+const auctions = new Keyv(process.env.DATABASE_URL, { namespace: 'auctions' });
 const addMoni = async function (who, add) {
     let current = await users.get(who);
     if (current === undefined) { await users.set(who, add); }
@@ -79,6 +80,7 @@ const oreSell = {
     tier2: 19,
     tier3: 25,
 }
+const validItems = Object.keys(buyableItems).concat(ores.tier1, ores, tier2, ores.tier3, ["rainbonite pick", "lockpick", "personal refinery", "rigged dice"])
 const emoji = {
     silver: "<:silver:776578867988267059>",
     titanium: "<:titanium:776587848924135434>",
@@ -120,5 +122,7 @@ module.exports = {
     "guilds": guilds,
     "sellableItems": sellableItems,
     "formatCooldown": formatCooldown,
-    "itemAliases": itemAliases
+    "itemAliases": itemAliases,
+    "auctions": auctions,
+    "validItems": validItems,
 };

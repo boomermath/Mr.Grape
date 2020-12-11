@@ -12,6 +12,7 @@ module.exports = {
         let argument = args.join(' ')
         if (!argument) { argument = q.songs[0].title; }
         let res = await ksoft.lyrics.get(argument);
+        message.channel.send(res)
         const lyricEmbed = new d.Discord.MessageEmbed()
             .setColor('#dd2ed0')
             .setTitle(res.name.charAt(0).toUpperCase() + res.name.slice(1))
