@@ -2,15 +2,14 @@ const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 const youtube = require('youtube-sr');
 const ytpl = require('@distube/ytpl');
-const resume = require('./resume')
+const resume = require('./resume');
 module.exports = {
 	name: 'play',
 	description: 'play music, either do play <search> or play <youtube_url>',
 	aliases: ['p'],
 	cooldown: 2,
-	cd: "Wait a bit, enjoy the tunes!",
+	cd: 'Wait a bit, enjoy the tunes!',
 	async execute(message, args, d) {
-
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (serverQueue && !serverQueue.playing) return resume.execute(message, args, d);
 		const { channel } = message.member.voice;
@@ -29,24 +28,22 @@ module.exports = {
 			songs: [],
 			volume: 42,
 			playing: true,
-			repeatMode: 0,
+			repeatMode: 0
 		};
 
 		function createSong(title, url, duration, thumbnail) {
 			const song = {
-				"title": title,
-				"url": url,
-				"duration": duration,
-				"thumbnail": thumbnail
-			}
+				title: title,
+				url: url,
+				duration: duration,
+				thumbnail: thumbnail
+			};
 			return song;
 		}
 
 		function announce(song, started, isPlaylist) {
 			let e;
-			if (isPlaylist) { e = 'Playlist added!' }
-			else if (started) { e = 'Groovin to the tunes!' }
-			else { e = 'Added to the queue!' }
+			if (isPlaylist) { e = 'Playlist added!'; } else if (started) { e = 'Groovin to the tunes!'; } else { e = 'Added to the queue!'; }
 			const announceEmbed = new d.Discord.MessageEmbed()
 				.setColor('#dd2de0')
 				.setTitle(song.title)
@@ -60,47 +57,44 @@ module.exports = {
 		}
 
 		if (ytRegex.test(argument) && plRegex.test(argument)) {
-			message.channel.send("Be patient, its loading").then(async message => {
+			message.channel.send('Be patient, its loading').then(async message => {
 				if (!serverQueue) { message.client.queue.set(message.guild.id, queueConstruct); }
 				try {
 					const playlist = await ytpl(argument);
 					for (video in playlist.items) {
-						let plSong = playlist.items[video];
-						let song = createSong(Util.escapeMarkdown(plSong.title), plSong.url, plSong.duration, plSong.thumbnail)
-						playSong(song, message, channel, serverQueue, true)
+						const plSong = playlist.items[video];
+						const song = createSong(Util.escapeMarkdown(plSong.title), plSong.url, plSong.duration, plSong.thumbnail);
+						playSong(song, message, channel, serverQueue, true);
 					}
 					const playlistInfo = {
 						title: playlist.title.charAt(0).toUpperCase() + playlist.title.slice(1),
 						url: playlist.url,
 						thumbnail: playlist.items[0].thumbnail,
 						duration: 'It\'s a playlist bro'
-					}
+					};
 					message.channel.send(announce(playlistInfo, false, true));
 					return message.delete();
-				}
-				catch (e) {
-					message.channel.send("Invalid playlist url, or technical difficulties");
+				} catch (e) {
+					message.channel.send('Invalid playlist url, or technical difficulties');
 					message.client.queue.delete(message.guild.id);
 					console.log(e);
 					return message.delete();
 				}
-			})
-		}
-		else {
+			});
+		} else {
 			let song;
 			if (ytdl.validateURL(argument)) {
-				let e = await ytdl.getBasicInfo(argument);
-				let songInfo = e.videoDetails;
+				const e = await ytdl.getBasicInfo(argument);
+				const songInfo = e.videoDetails;
 				let duration = new Date(songInfo.lengthSeconds * 1000).toISOString().substr(11, 8);
 				if (duration.startsWith('00:')) { duration = duration.replace('00:', ''); }
-				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.video_url, duration, songInfo.thumbnail.thumbnails[0].url)
+				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.video_url, duration, songInfo.thumbnail.thumbnails[0].url);
+			} else {
+				const songInfo = await youtube.searchOne(argument);
+				if (songInfo === null) { return message.channel.send('No results found!'); }
+				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url);
 			}
-			else {
-				let songInfo = await youtube.searchOne(argument);
-				if (songInfo === null) { return message.channel.send("No results found!"); }
-				song = createSong(Util.escapeMarkdown(songInfo.title), songInfo.url, songInfo.durationFormatted, songInfo.thumbnail.url)
-			}
-			playSong(song, message, channel, serverQueue, false)
+			playSong(song, message, channel, serverQueue, false);
 		}
 
 		async function playSong(song, message, vc, queue, ifPlaylist) {
@@ -121,16 +115,14 @@ module.exports = {
 					message.client.queue.delete(message.guild.id);
 					return;
 				}
-				let stream = ytdl(song.url, {
-					filter: "audioonly",
-					quality: "highestaudio"
+				const stream = ytdl(song.url, {
+					filter: 'audioonly',
+					quality: 'highestaudio'
 				});
 
 				const dispatcher = queue.connection.play(stream)
 					.on('finish', () => {
-						if (queue.repeatMode === 0) { queue.songs.shift(); }
-						else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); }
-						else { null; }
+						if (queue.repeatMode === 0) { queue.songs.shift(); } else if (queue.repeatMode === 2) { queue.songs.push(queue.songs.shift()); } else { null; }
 						play(queue.songs[0]);
 					})
 					.on('error', error => console.error(error));

@@ -3,10 +3,11 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 const Keyv = require('keyv');
-const users = new Keyv(process.env.DATABASE_URL, { namespace: 'users' });
-const items = new Keyv(process.env.DATABASE_URL, { namespace: 'items' });
-const guilds = new Keyv(process.env.DATABASE_URL, { namespace: 'guilds' });
-const auctions = new Keyv(process.env.DATABASE_URL, { namespace: 'auctions' });
+require('dotenv').config()
+const users = new Keyv({ namespace: 'users' });
+const items = new Keyv({ namespace: 'items' });
+const guilds = new Keyv({ namespace: 'guilds' });
+const auctions = new Keyv({ namespace: 'auctions' });
 const cooldowns = new Discord.Collection();
 const d = require('./utils/constants');
 client.commands = new Discord.Collection();

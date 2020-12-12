@@ -2,7 +2,7 @@ module.exports = {
 	name: 'resume',
 	description: 'resume a song that\'s paused',
 	cooldown: 2,
-	cd: "No need to check, you can hear it already",
+	cd: 'No need to check, you can hear it already',
 	execute(message, args, d) {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (serverQueue && !serverQueue.playing) {
@@ -15,8 +15,7 @@ module.exports = {
 				.setTimestamp()
 				.setFooter('DJ Grape');
 			return message.channel.send(p);
-		}
-		else if (serverQueue.playing) return message.channel.send("Can't resume if its already playing smh")
+		} else if (serverQueue.playing) { return message.channel.send("Can't resume if its already playing smh"); } 
 		else { return message.channel.send('There is nothing playin'); }
 	}
 };
