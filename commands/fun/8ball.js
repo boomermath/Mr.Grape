@@ -1,31 +1,57 @@
-module.exports = {
-	name: '8ball',
-	description: 'fortune telling is cool',
-	cooldown: 5,
-	cd: 'Even a fortune-teller can tell you to chill',
-	execute(message, args, d) {
-		let output;
-		let val;
-		const wordsOfWisdom = ['Better not tell you now.', 'Don’t count on it.', 'It is certain.', 'It is decidedly so.', 'Most likely.', 'My reply is no.', 'My sources say no.', 'Outlook not so good.', 'Outlook good.', 'Signs point to yes.', 'Very doubtful.', 'Without a doubt.', 'Yes.', 'Yes – definitely.', 'You may rely on it.'];
-		const reject = ['Ask again later', 'Cannot predict now.', 'Concentrate and ask again', 'Reply hazy, try again.'];
-		const randomReject = Math.floor(Math.random() * reject.length);
-		const randomWise = Math.floor(Math.random() * wordsOfWisdom.length);
-		if (args[0] === undefined) {
-			output = reject[randomReject];
-			val = 'Give me a question to foretell!';
-		} else {
-			output = wordsOfWisdom[randomWise];
-			val = '_';
-		}
-		const ballEmbed = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(`${message.author.username}'s crystal ball`)
-			.addFields({
-				name: output,
-				value: val
-			})
-			.setTimestamp()
-			.setFooter('Grape Fortune-Telling');
-		message.channel.send(ballEmbed);
-	}
-};
+const { Command } = require("../../structures");
+
+const responses = [
+    "Better not tell you now.",
+    "Don’t count on it.",
+    "It is certain.",
+    "It is decidedly so.",
+    "Most likely.",
+    "My reply is no.",
+    "My sources say no.",
+    "Outlook not so good.",
+    "Outlook good.",
+    "Signs point to yes.",
+    "Very doubtful.",
+    "Without a doubt.",
+    "Yes.",
+    "Yes – definitely.",
+    "You may rely on it."
+];
+
+const rejections = [
+    "Ask again later",
+    "Cannot predict now.",
+    "Concentrate and ask again",
+    "Reply hazy, try again."
+];
+
+module.exports =
+    class extends Command {
+        constructor(...args) {
+            super(...args, {
+                name: "8ball",
+                type: "fun",
+                aliases: ["8b"],
+                usage: "<question (must end with ?)>",
+                description: "Fortune-telling is cool.",
+                cooldown: 5,
+                saying: "Even a fortune-teller could tell you to chill.",
+            })
+        }
+
+        getResponse(failure) {
+            const array = failure ? rejections : responses;
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        main(msg, args) {
+            let invalid;
+
+            if (!args.length || !args.pop().endsWith("?")) invalid = true;
+
+            const embed = new msg.embed()
+                .setTitle(`${msg.author.username}'s crystal ball`)
+                .setDescription(this.getResponse(invalid))
+            msg.send(embed)
+        }
+    }

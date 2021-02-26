@@ -1,19 +1,23 @@
-module.exports = {
-	name: 'dice',
-	description: 'roll a die',
-	cooldown: 5,
-	cd: 'Chill on the dice',
-	execute(message, args, d) {
-		const roll = Math.floor(Math.random() * 6) + 1;
-		const dice = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(`${message.author.username}'s dice`)
-			.addFields({
-				name: 'Roll',
-				value: roll
-			})
-			.setTimestamp()
-			.setFooter('Grape Dice Club');
-		message.channel.send(dice);
-	}
-};
+const { Command } = require("../../structures");
+
+module.exports =
+    class extends Command {
+        constructor(...args) {
+            super(...args, {
+                name: "dice",
+                type: "fun",
+                aliases: ["roll"],
+                description: "Roll a die!",
+                usage: "No arguments required",
+                cooldown: 5,
+                saying: "Chill on the dice.",
+            })
+        }
+
+        main(msg, args) {
+            const diceRoll = new msg.embed()
+                .setTitle(`${msg.author.username}'s die`)
+                .addField('You rolled', Math.floor(Math.random() * 6) + 1)
+            msg.send(diceRoll)
+        }
+    }

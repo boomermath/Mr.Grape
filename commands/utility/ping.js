@@ -1,23 +1,30 @@
-module.exports = {
-	name: 'ping',
-	aliases: ['pinginfo'],
-	description: 'basic ping pong command, see the ping',
-	cooldown: 2,
-	cd: 'My ping is fine, thanks',
-	execute(message, args, d) {
-		message.channel.send('Pinging...').then(m => {
-			const ping = m.createdTimestamp - message.createdTimestamp;
-			const pingEmbed = new d.Discord.MessageEmbed()
-				.setColor('#dd2de0')
-				.setTitle('Pong!')
-				.addFields(
-					{ name: 'Your ping is:', value: `${ping}` }
-				)
-				.setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
-				.setTimestamp()
-				.setFooter('Grape Databases');
-			m.delete();
-			m.channel.send(pingEmbed);
-		});
-	}
-};
+const { Message } = require("discord.js");
+const { Command } = require("../../structures");
+
+module.exports =
+    class extends Command {
+        constructor(...args) {
+            super(...args, {
+                name: "ping",
+                type: "utility",
+                description: "Get the bot's ping.",
+                usage: "<args> <go> <here>",
+                aliases: ["pong"],
+                saying: "Pong. There, I work.",
+                cooldown: 2
+            });
+        }
+
+        async main(msg, args) {
+            const ping = await msg.send("Ping?")
+            const pingNum = ping.createdTimestamp - msg.createdTimestamp;
+            const pingEmbed = new msg.embed()
+                .setTitle("Pong!")
+                .addFields(
+                    { name: "Bot ping", value: pingNum, inline: true },
+                    { name: "API latency", value: this.client.ws.ping, inline: true },
+                )
+            ping.delete()
+            msg.send(pingEmbed);
+        }
+    };

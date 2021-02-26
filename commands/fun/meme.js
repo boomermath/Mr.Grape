@@ -1,0 +1,55 @@
+const { Collection } = require("discord.js");
+const { RequestCommand } = require("../../structures");
+const memes = [];
+const MemeProgress = new Collection();
+
+module.exports =
+    class extends RequestCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "meme",
+                type: "fun",
+                aliases: ["m"],
+                description: "Get a reddit meme!",
+                usage: "No arguments required",
+                cooldown: 3,
+                saying: "You're not dank.",
+                url: "https://www.reddit.com/r/meme/hot/.json",
+                params: {
+                    limit: 100
+                }
+            });
+        }
+
+        async init() {
+            const res = (await this.request()).data.children;
+            for (const { data } of res) {
+                if (!data.url.substr(8).startsWith("i")) {
+                    continue;
+                }
+                memes.push([data.title, data.url]);
+            }
+        }
+
+        getMeme(id) {
+            const nextPos = MemeProgress.get(id) + 1 || 0;
+            const meme = memes[nextPos];
+            if (!meme) {
+                MemeProgress.set(id, 1);
+                return memes[0];
+            }
+            MemeProgress.set(id, nextPos);
+            return meme;
+        }
+
+        main(msg, args) {
+            const [title, url] = this.getMeme(msg.author.id);
+
+            const memeEmbed = new msg.embed()
+                .setTitle(title)
+                .setImage(url)
+            msg.send(memeEmbed)
+
+            if (new Date().getHours() === 12) this.init();
+        }
+    }

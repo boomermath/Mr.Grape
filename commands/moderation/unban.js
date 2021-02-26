@@ -1,37 +1,29 @@
-const Discord = require('discord.js');
-module.exports = {
-	name: 'unban',
-	description: 'unban ppl',
-	cooldown: 1,
-	cd: 'Chill on the unbans',
-	execute(message, args, d) {
-		const unbanUser = args[0];
-		const boolean = message.member.hasPermission('BAN_MEMBERS');
-		const myBoolean = message.guild.me.hasPermission('BAN_MEMBERS');
-		if (message.mentions.members.first()) { return message.channel.send('Bruh you gotta give me an id to unban'); }
-		if (boolean && myBoolean) {
-			if (unbanUser) {
-				if (message.author.id === unbanUser) {
-					return message.channel.send('I don\'t think ur banned');
-				}
-				if (message.client.user.id === unbanUser) {
-					return message.channel.send('Bruh im not banned');
-				}
-				try {
-					message.guild.members.unban(unbanUser);
-					message.channel.send('User unbanned!');
-				} catch {
-					message.channel.send("I don't got permissions (or high enough role) to unban ppl. How about ya give me it?");
-				}
-			}
-		} else if (!unbanUser) {
-			message.channel.send('who are we unbanning? (you gotta give me their id bro)');
-		} else if (!boolean) {
-			message.reply('bruh you dont even have permission to unban people, stop trying smh ');
-		} else if (!myBoolean) {
-			message.channel.send("I don't have perms");
-		} else {
-			message.channel.send('Cannot unban that user');
-		}
-	}
-};
+const { ModerationCommand } = require("../../structures");
+
+module.exports =
+    class extends ModerationCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "unban",
+                type: "moderation",
+                aliases: ["unhammer"],
+                description: "Unban people.",
+                usage: "<mention|userID>",
+                cooldown: 1,
+                saying: "Don't spam this command.",
+                requiredPermissions: ["BAN_MEMBERS"]
+            })
+        }
+
+        main(msg, args) {
+            if (!args[0] || msg.mentions.members.first()) return msg.send("Who should I unban? (give me an id)");
+            if (msg.author.id === args[0]) return msg.send("I don't think you are banned.");
+            else if (this.client.user.id === args[0]) return msg.send("Bruh I'm not banned.")
+            try {
+                msg.guild.members.unban(args[0]);
+                msg.send("User unbanned!.")
+            } catch {
+                msg.send("Something went wrong. I probably don't have a high enough role to unban that person, or they aren't banned.")
+            }
+        }
+    }

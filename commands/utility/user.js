@@ -1,39 +1,37 @@
-module.exports = {
-	name: 'user',
-	aliases: ['userinfo'],
-	description: 'return basic info about the user',
-	cooldown: 2,
-	cd: 'Stop stalking',
-	execute(message, args, d) {
-		let user;
-		let name;
-		const target = message.mentions.members.first();
-		if (!target) {
-			user = message.guild.member(message.author);
-			name = message.author.username;
-		} else if (target) {
-			user = target;
-			name = target.displayName;
-		} else {
-			return message.channel.send('Use a valid mention!');
-		}
-		const usersoloEmbed = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setAuthor(user.user.tag, user.user.displayAvatarURL())
-			.addFields({
-				name: 'User ID',
-				value: user.id
-			}, {
-				name: 'Joined Server',
-				value: user.joinedAt.toString().split(' ').slice(1, 4).join(' ')
-			}, {
-				name: 'Joined Discord',
-				value: user.user.createdAt.toString().split(' ').slice(1, 4).join(' ')
-			})
-			.setThumbnail('https://i.imgur.com/JXfpgdXh.jpg')
-			.setTimestamp()
-			.setFooter('Grape Databases');
+const { Command } = require("../../structures");
 
-		message.channel.send(usersoloEmbed);
-	}
-};
+module.exports =
+    class extends Command {
+        constructor(...args) {
+            super(...args, {
+                name: "user",
+                type: "utility",
+                description: "Get basic user info.",
+                usage: "<optional user>",
+                aliases: ["usr"],
+                saying: "Stop stalking.",
+                cooldown: 2
+            });
+        }
+
+        formatDate(date) {
+            const dateOptions = { dateStyle: "full", timeStyle: "short" };
+            return new Date(date).toLocaleString("en-US", dateOptions).split(" at").join("\n");
+        }
+
+        main(msg, args) {
+            const person = msg.mentions.users.first() || msg.author;
+            const personAsGuild = msg.guild.member(person);
+            const personEmbed = new msg.embed()
+                .setAuthor(person.tag, person.displayAvatarURL())
+                .setThumbnail(person.displayAvatarURL())
+                .addFields(
+                    { name: "Joined", value: this.formatDate(personAsGuild.joinedAt), inline: true },
+                    { name: "Created", value: this.formatDate(person.createdAt), inline: true },
+                    { name: "Highest Role", value: personAsGuild.roles.highest },
+                    { name: "ID", value: person.id }
+                );
+            if (person.id === msg.client.user.id) personEmbed.setFooter("That's me!");
+            msg.send(personEmbed);
+        }
+    };

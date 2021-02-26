@@ -1,16 +1,23 @@
-module.exports = {
-	name: 'coinflip',
-	description: 'flip a coin',
-	aliases: ['coin', 'cf'],
-	cooldown: 5,
-	cd: '1 coinflip is enough',
-	execute(message, args, d) {
-		const coin = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(`${message.author.username}'s coinflip`)
-			.addField('It landed on', `${Math.round(Math.random()) ? 'Heads!' : 'Tails!'}`)
-			.setTimestamp()
-			.setFooter('Grape Coin Flipper Club');
-		message.channel.send(coin);
-	}
-};
+const { Command } = require("../../structures");
+
+module.exports =
+    class extends Command {
+        constructor(...args) {
+            super(...args, {
+                name: "coinflip",
+                type: "fun",
+                aliases: ["coin", "cf"],
+                description: "Flip a coin!",
+                usage: "No arguments required",
+                cooldown: 5,
+                saying: "One flip is more than enough.",
+            })
+        }
+
+        main(msg, args) {
+            const coinFlip = new msg.embed()
+                .setTitle(`${msg.author.username}'s coinflip`)
+                .addField('It landed on', `${Math.round(Math.random()) ? 'Heads!' : 'Tails!'}`)
+            msg.send(coinFlip)
+        }
+    }

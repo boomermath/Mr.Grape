@@ -1,21 +1,30 @@
-module.exports = {
-	name: 'joke',
-	description: 'get a joke',
-	aliases: ['jk'],
-	cooldown: 3,
-	cd: 'Haha, big funny, finishing laughing first',
-	async execute(message, args, d) {
-		const jokeURL = 'https://sv443.net/jokeapi/v2/joke/Pun?blacklistFlags=nsfw,religious,political,racist,sexist&format=txt';
-		const joke = await d.r2.get(jokeURL).text;
-		const jk = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(`Joke`)
-			.addFields({
-				name: joke,
-				value: '_'
-			})
-			.setTimestamp()
-			.setFooter('Grape Jokes');
-		message.channel.send(jk);
-	}
-};
+const { RequestCommand } = require("../../structures");
+
+module.exports =
+    class extends RequestCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "joke",
+                type: "fun",
+                aliases: ["jk"],
+                description: "Get a joke!",
+                usage: "No arguments required",
+                cooldown: 3,
+                saying: "Haha, big funny, finish laughing first.",
+                url: "https://sv443.net/jokeapi/v2/joke/Pun",
+                params: {
+                    blacklistFlags: "nsfw,religious,political,racist,sexist",
+                    format: "json",
+                }
+            })
+        }
+
+        async main(msg, args) {
+            const { setup, delivery } = await this.request()
+
+            const jokeEmbed = new msg.embed()
+                .setTitle("Meow!")
+                .addField(setup, delivery)
+            msg.send(jokeEmbed)
+        }
+    }

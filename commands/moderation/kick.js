@@ -1,37 +1,30 @@
-const Discord = require('discord.js');
-module.exports = {
-	name: 'kick',
-	description: 'kick ppl',
-	cooldown: 1,
-	cd: "Don't kick ppl too much, didn't ur mom tell you that?",
-	execute(message, args, d) {
-		const rawTarget = message.mentions.members.first();
-		const target = message.guild.member(rawTarget);
-		const boolean = message.member.hasPermission('KICK_MEMBERS');
-		const myBoolean = message.guild.me.hasPermission('KICK_MEMBERS');
-		if (boolean && myBoolean) {
-			if (target) {
-				if (message.author.id === rawTarget.id) {
-					return message.channel.send('Bruh imagine kicking yourself');
-				}
-				if (message.client.user.id === rawTarget.id) {
-					return message.channel.send('Woah there, im too cool to get the boot');
-				}
-				try {
-					target.kick();
-					message.channel.send(`:wave: ${target.displayName} has been kicked, what a noob lol `);
-				} catch {
-					message.channel.send("I don't got permissions (or high enough role) to kick ppl. How about ya give me it?");
-				}
-			}
-		} else if (!target) {
-			message.channel.send('who you gonna give the boot to? (mention)');
-		} else if (!boolean) {
-			message.reply('bruh you dont even have permission to kick people, stop trying smh ');
-		} else if (!myBoolean) {
-			message.channel.send("I don't have perms to give ppl the boot");
-		} else {
-			message.channel.send(`Cannot kick ${target.displayName} maybe use a valid mention?`);
-		}
-	}
-};
+const { ModerationCommand } = require("../../structures");
+
+module.exports =
+    class extends ModerationCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "kick",
+                type: "moderation",
+                aliases: ["boot"],
+                description: "Kick people.",
+                usage: "<mention|userID>",
+                cooldown: 1,
+                saying: "Don't spam this command.",
+                requiredPermissions: ["KICK_MEMBERS"]
+            })
+        }
+
+        async main(msg, args) {
+            if (!args[0]) return msg.send("Who should I kick?");
+            const target = msg.mentions.members.first() || await msg.guild.members.fetch(args[0]);
+            if (msg.author.id === target.id) return msg.send("Bruh imagine kicking yourself.");
+            else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to get the boot.")
+            try {
+                target.kick();
+                msg.send(`:wave: ${target.displayName} has been kicked. What a noob lol`)
+            } catch {
+                msg.send("Something went wrong. I probably don't have a high enough role to kick that person, try again later.")
+            }
+        }
+    }

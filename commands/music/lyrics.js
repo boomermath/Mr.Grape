@@ -1,33 +1,48 @@
-const { KSoftClient } = require('@ksoft/api');
-const ksoft = new KSoftClient(process.env.KSOFT);
-module.exports = {
-	name: 'lyrics',
-	description: 'get lyrics of a song',
-	cooldown: 1,
-	aliases: ['lyr'],
-	cd: 'Chill on the karaoke kid',
-	async execute(message, args, d) {
-		const q = message.client.queue.get(message.guild.id);
-		if (!args.length && !q) { return message.channel.send('Give me something to search up bruh'); }
-		let argument = args.join(' ');
-		if (!argument) { argument = q.songs[0].title; }
-		const { name, lyrics, url, artwork } = await ksoft.lyrics.get(argument);
-		const lyricEmbed = new d.Discord.MessageEmbed()
-			.setColor('#dd2ed0')
-			.setTitle(name.charAt(0).toUpperCase() + name.slice(1))
-			.setThumbnail(artwork)
-			.setFooter('DJ Grape | Provided by KSoft.Si');
-        if (name.length + lyrics.length > 6000) { lyricEmbed.addField('The lyrics are too long, here is the URL!', url); } 
-        else if (lyrics.length > 1024) {
-			const arr = lyrics.split('\n\n');
-			lyricEmbed.setDescription('**Lyrics**\n**-**\n\u200b');
-			for (part in arr) {
-				lyricEmbed.addField('\u200b', arr[part]);
-			}
-		} else {
-			lyricEmbed.setDescription('**Lyrics**\n**-**');
-			lyricEmbed.addField('\u200b', lyrics);
-		}
-		message.channel.send(lyricEmbed);
-	}
-};
+const centra = require("centra");
+const { MusicCommand } = require("../../structures");
+
+module.exports =
+    class extends MusicCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "lyrics",
+                type: "music",
+                description: "Get the Lyrics of a song.",
+                usage: "<song name>",
+                aliases: ["lyr"],
+                saying: "Chill on the karaoke.",
+                cooldown: 2
+            });
+        }
+
+        async main(msg, args) {
+            const music = this.musicQueues.get(msg.guild.id);
+            const query = music?.currentSong.title || args.join(" ");
+
+            if (!query) return msg.send("Give me a valid song to search up!");
+
+            const lyricsRequest = await centra("https://api.ksoft.si/lyrics/search").header(
+                "Authorization", `Bearer ${process.env.KSOFT}`
+            ).query({
+                q: query,
+                limit: 1
+            }).send()
+
+            const { artist, name, lyrics, album_art, url } = (await lyricsRequest.json()).data[0];
+
+            const lyrEmbed = new msg.embed()
+                .setTitle("Lyrics")
+                .setDescription("Powered by [KSoft](https://ksoft.si)")
+                .setThumbnail(album_art)
+                .addFields(
+                    { name: "Title", value: name, inline: true },
+                    { name: "Artist", value: artist, inline: true },
+                )
+
+            if (name.length + lyrics.length > 6000) lyrEmbed.addField("Lyrics", `[Click here!](${url})`);
+
+            else for (const lyric of lyrics.split("\n\n")) lyrEmbed.addField("\u200b", lyric);
+
+            msg.send(lyrEmbed)
+        }
+    };

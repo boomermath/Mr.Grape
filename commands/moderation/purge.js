@@ -1,16 +1,28 @@
-module.exports = {
-	name: 'purge',
-	description: 'purge messages from a channel',
-	cooldown: 1,
-	cd: "Chill, those messages won't incriminate you (i think)",
-	execute(message, args, d) {
-		if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('You don\'t have perms!');
-		if (!message.guild.me.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Bruh I don't have perms, give me some");
-		if (!args[0]) return message.channel.send('Bruh how many messages should I purge?');
-		const number = parseInt(args[0]);
-		const iteration = ~~(number / 100);
-		const leftover = number - (iteration * 100);
-		for (let i = 0; i < iteration; i++) { message.channel.bulkDelete(100); }
-		if (leftover > 0) { message.channel.bulkDelete(leftover); }
-	}
-};
+const { ModerationCommand } = require("../../structures");
+
+module.exports =
+    class extends ModerationCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "purge",
+                type: "moderation",
+                aliases: ["prune", "clean"],
+                description: "Purge messages from a channel.",
+                usage: "<number>",
+                cooldown: 1,
+                saying: "Don't spam this command.",
+                requiredPermissions: ["MANAGE_MESSAGES"]
+            })
+        }
+
+        async main(msg, args) {
+            if (!args[0]) return msg.send("Bruh how many messages should I purge?");
+            const number = parseInt(args[0])
+            if (!number) return msg.send("Give me a valid number!")
+            const [iterations, leftover] = [~~(number / 100), number % 100];
+            for (let i = 0; i < iterations; i++) msg.channel.bulkDelete(100);
+            if (leftover > 0) msg.channel.bulkDelete(leftover);
+            const confirm = await msg.send("Purged messages!");
+            setTimeout(() => { confirm.delete() }, 2000)
+        }
+    }

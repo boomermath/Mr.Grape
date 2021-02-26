@@ -1,18 +1,29 @@
-module.exports = {
-	name: 'apod',
-	description: 'get a daily nasapic',
-	aliases: ['nasapic', 'npod', 'nasapicoftheday', 'nasa'],
-	cooldown: 3,
-	cd: "There's only one NASA pic",
-	async execute(message, args, d) {
-		const NASAURL = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA}`;
-		const pic = await d.r2.get(NASAURL).json;
-		const nasa = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle('NASA Picture of the Day!')
-			.setImage(pic.hdurl)
-			.setTimestamp()
-			.setFooter('Grape Space and Astronomy');
-		message.channel.send(nasa);
-	}
-};
+const { RequestCommand } = require("../../structures");
+
+module.exports =
+    class extends RequestCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "apod",
+                type: "fun",
+                aliases: ["nasapic", "npod", "nasapicoftheday", "nasa"],
+                description: "See pictures of space!",
+                usage: "No arguments required",
+                cooldown: 5,
+                saying: "There's only one NASA pic.",
+                url: "https://api.nasa.gov/planetary/apod",
+                params: {
+                    api_key: process.env.NASA
+                }
+            })
+        }
+
+        async main(msg, args) {
+            const { hdurl: picture } = await this.request();
+
+            const pictureEmbed = new msg.embed()
+                .setTitle("NASA Picture of the day!")
+                .setImage(picture)
+            msg.send(pictureEmbed)
+        }
+    }

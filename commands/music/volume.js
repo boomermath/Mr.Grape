@@ -1,27 +1,34 @@
-module.exports = {
-	name: 'volume',
-	description: 'set volume of the bot',
-	aliases: ['vol'],
-	cd: 'Enough volume cranking!',
-	execute(message, args, d) {
-		let title, number;
-		const argument = args.join(' ');
-		const { channel } = message.member.voice;
-		if (!channel) return message.channel.send('Get in a voice channel if you wanna pump it up!');
-		const queue = message.client.queue.get(message.guild.id);
-		if (!queue) return message.channel.send('There ain\'t any music!');
-		if (!argument) { title = 'Current Volume'; number = queue.volume; } else {
-			const set = parseInt(argument);
-			if (set > 100) return message.channel.send("Let's not earrape ppl ok?");
-			queue.volume = set;
-			queue.connection.dispatcher.setVolumeLogarithmic(set / 100);
-			title = 'Volume set to';
-			number = set;
-		}
-		const volumeEmbed = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle(title)
-			.setDescription(number);
-		message.channel.send(volumeEmbed);
-	}
-};
+const { MusicCommand } = require("../../structures");
+
+module.exports =
+    class extends MusicCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "volume",
+                type: "music",
+                description: "Set the music's volume.",
+                usage: "<volume (between 0-100)>",
+                aliases: ["vol"],
+                saying: "Stop cranking it all over the place.",
+                cooldown: 2
+            });
+        }
+
+        main(msg, args) {
+            const musicPlayer = this.musicQueues.get(msg.guild.id);
+            const number = +args[0];
+            let title, info;
+
+            if (!args[0]) [title, info] = ["**Volume**", musicPlayer.volume];
+
+            else if (isNaN(number) || number < 0 || number > 100) return msg.send(`Setting volume to ${args[0]}, not.`);
+
+            else {
+                [title, info] = ["**Set Volume**", number];
+                musicPlayer.volume = number;
+            }
+            const volEmbed = new msg.embed()
+                .setTitle(`${title}: **${info}**`)
+            return msg.send(volEmbed);
+        }
+    };

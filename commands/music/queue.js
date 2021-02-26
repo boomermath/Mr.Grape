@@ -1,31 +1,26 @@
-module.exports = {
-	name: 'queue',
-	description: 'get your server\'s music queue',
-	cooldown: 2,
-	aliases: ['q'],
-	cd: 'I just showed you the queue!',
-	execute(message, args, d) {
-		const serverQueue = message.client.queue.get(message.guild.id);
-		if (!serverQueue) return message.channel.send("There isn't a song playin");
-		let loop;
-		switch (serverQueue.repeatMode) {
-			case 1:
-				loop = 'Looping the **song**';
-				break;
-			case 2:
-				loop = 'Looping the **queue**';
-				break;
-			default:
-				loop = ' ';
-		}
-		const q = serverQueue.songs;
-		const queue = new d.Discord.MessageEmbed()
-			.setColor('#dd2de0')
-			.setTitle('Song Queue')
-			.setDescription(`${loop}\n_`)
-			.setTimestamp()
-			.setFooter('DJ Grape');
-		for (var key in q) { queue.addFields({ name: `${'\u200b' + `${parseInt(key) + 1}` + '. '}${q[key].title}`, value: '_' }); }
-		message.channel.send(queue);
-	}
-};
+const { MusicCommand } = require("../../structures");
+
+module.exports =
+    class extends MusicCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "queue",
+                type: "music",
+                description: "Get music queue.",
+                usage: "No arguments required.",
+                aliases: ["q"],
+                saying: "I just showed it to you!",
+                cooldown: 2
+            });
+        }
+
+        createEntry(pos, { title, url, duration, author }) {
+            return ["\u200b", `**${pos}) [${title}](${url})\n\`${duration}\`| ${author}**`];
+        }
+
+        main(msg, args) {
+            const { currentSong: { title, url }, queue: { songs } } = this.musicQueues.get(msg.guild.id);
+            const entries = songs.map(s => this.createEntry(songs.indexOf(s) + 1, s));
+            msg.paginate({ title: "Queue", description: `**__Now playing:__** **[${title}](${url})**` }, entries, 10);
+        }
+    };

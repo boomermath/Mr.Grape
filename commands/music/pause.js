@@ -1,21 +1,25 @@
-module.exports = {
-	name: 'pause',
-	description: 'pause a song that\'s playing',
-	cooldown: 2,
-	cd: "No need to double check if its paused",
-	execute(message, args, d) {
-		const serverQueue = message.client.queue.get(message.guild.id);
-		if (serverQueue && serverQueue.playing) {
-			serverQueue.playing = false;
-			serverQueue.connection.dispatcher.pause();
-			const p = new d.Discord.MessageEmbed()
-				.setColor('#dd2de0')
-				.setTitle('Song')
-				.addField(`Paused.`, '_')
-				.setTimestamp()
-				.setFooter('DJ Grape');
-			return message.channel.send(p);
-		}
-		return message.channel.send("Can't if there\'s no music bruh");
-	}
-};
+const { MusicCommand } = require("../../structures");
+
+module.exports =
+    class extends MusicCommand {
+        constructor(...args) {
+            super(...args, {
+                name: "pause",
+                type: "music",
+                description: "Pause the music.",
+                usage: "No arguments required.",
+                aliases: ["ps"],
+                saying: "Pause your pausing.",
+                cooldown: 2
+            });
+        }
+
+        main(msg, args) {
+            const musicPlayer = this.musicQueues.get(msg.guild.id);
+            if (musicPlayer.playing === false) return msg.send("The music is already paused!");
+            musicPlayer.pause();
+            const pauseEmbed = new msg.embed()
+                .setTitle(":pause_button: Paused Music!")
+            msg.send(pauseEmbed);
+        }
+    };
