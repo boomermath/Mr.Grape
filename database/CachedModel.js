@@ -4,9 +4,9 @@ const Model = require("./Model")
 module.exports =
     class extends Model {
         static async load() {
-            this.cache = new Collection()
+            this.cache = new Collection();
 
             const entries = await this.findAll();
-            for (const entry of entries) this.cache.set(entry.id, entry);
+            entries.forEach(entry => this.cache.set(entry.id, entry));
         }
     }
