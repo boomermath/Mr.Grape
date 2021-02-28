@@ -1,30 +1,25 @@
-const { UserItems } = require("../../database");
+const { Users, UserItems, Shop } = require("../../database");
 const Command = require("./Command")
 
 module.exports =
     class extends Command {
         constructor(...args) {
             super(...args);
-            this.users = this.client.database.users
-            this.usersBals = this.client.database.cache.users;
-            this.userItems = this.client.database.useritems;
-            this.shop = this.client.database.shop;
-            this.items = this.client.database.items;
         }
 
         async add(id, amount) {
-            const user = this.usersBals.get(id)
+            const user = Users.cache.get(id)
             if (user) {
                 user.balance += amount;
                 return user.save();
             }
-            const newPerson = await this.users.create({ user_id: id, balance: amount });
-            this.usersBals.set(id, newPerson);
+            const newPerson = await Users.create({ id: id, balance: amount });
+            Users.cache.set(id, newPerson);
             return newPerson;
         }
 
         getBalance(id) {
-            const user = this.usersBals.get(id);
+            const user = Users.cache.get(id);
             return user ? user.balance : 0;
         }
 
@@ -47,4 +42,5 @@ module.exports =
 
             return UserItems.create({ user_id: id, item_id: item.id, amount: amount });
         }
+
     }

@@ -1,3 +1,4 @@
 module.exports = {
-    Message: require("./Message")
+    Message: require("./Message"),
+    Guild: require("./Guild")
 }

@@ -3,7 +3,7 @@ const { Command } = require("../commands");
 const { Store } = require("../base");
 
 module.exports = class extends Store {
-    constructor({ client, directory }) {
+    constructor(client, { directory }) {
         super("commands", client, directory, Command);
         this._aliases = new Collection();
     }

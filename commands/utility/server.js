@@ -15,16 +15,19 @@ module.exports =
         }
 
         main(msg, args) {
+
             const guildEmbed = new msg.embed()
                 .setAuthor(msg.guild.name, msg.guild.iconURL())
                 .setThumbnail(msg.guild.iconURL())
                 .addFields(
+                    { name: "Owner", value: `<@!${msg.guild.ownerID}>`, inline: true },
                     { name: "Members", value: msg.guild.memberCount, inline: true },
-                    { name: "Number of Roles", value: msg.guild.roles.cache.size, inline: true },
+                    { name: "Roles", value: msg.guild.roles.cache.size, inline: true },
+                    { name: "Channels", value: msg.guild.channels.cache.size, inline: true },
                     { name: "Emojis", value: msg.guild.emojis.cache.size, inline: true },
-                    { name: "Owner", value: msg.guild.owner },
-                    { name: "Region", value: msg.guild.region },
-                    { name: "ID", value: msg.guild.id }
+                    { name: "Created", value: new Date(msg.guild.createdAt).toLocaleString(), inline: true },
+                    { name: "Region", value: msg.guild.region, inline: true },
+                    { name: "ID", value: msg.guild.id, inline: true }
                 );
             msg.send(guildEmbed);
         }

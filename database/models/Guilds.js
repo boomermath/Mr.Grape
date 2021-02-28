@@ -1,10 +1,13 @@
 const { DataTypes } = require("sequelize");
-const Model = require("../Model");
+const Model = require("../CachedModel");
 
 class Guilds extends Model { }
 
 Guilds.init({
-    guild_id: DataTypes.STRING,
+    id: {
+        type: DataTypes.STRING,
+        primaryKey: true
+    },
     prefix: DataTypes.STRING
 })
 

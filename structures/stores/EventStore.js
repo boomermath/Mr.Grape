@@ -2,7 +2,7 @@ const { Event } = require("../events");
 const { Store } = require("../base");
 
 module.exports = class extends Store {
-    constructor({ client, directory }) {
+    constructor(client, { directory }) {
         super("events", client, directory, Event)
     }
 

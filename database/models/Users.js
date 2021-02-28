@@ -1,10 +1,10 @@
 const { DataTypes } = require("sequelize");
-const Model = require("../Model");
+const Model = require("../CachedModel");
 
 class Users extends Model { }
 
 Users.init({
-    user_id: {
+    id: {
         type: DataTypes.STRING,
         primaryKey: true
     },

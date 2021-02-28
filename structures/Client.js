@@ -9,23 +9,18 @@ module.exports = class extends Client {
 
         super(...opts)
 
-        this.config = require("../config/client")
+        this.config = require("../config/main");
 
-        this.commands = new CommandStore({
-            client: this,
+        this.commands = new CommandStore(this, {
             directory: "./commands"
         });
 
-        this.events = new EventStore({
-            client: this,
+        this.events = new EventStore(this, {
             directory: "./events"
         });
-
-        this.database = new Database();
     }
 
     async login() {
-        await this.database.init()
         this.events.init();
         this.commands.init();
         super.login();
