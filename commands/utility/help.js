@@ -1,5 +1,4 @@
 const { Command } = require("../../structures");
-const commands = require("../../structures/commands");
 const checkmark = "✅"
 
 module.exports =
