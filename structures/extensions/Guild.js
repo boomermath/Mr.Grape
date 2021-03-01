@@ -5,30 +5,28 @@ const { Guilds: guilds } = require("../../database");
 Structures.extend("Guild", Guild => {
     return class extends Guild {
 
-        async setPrefix(newPrefix) {
-            const entry = guilds.cache.get(this.id)
+        get settings() {
+            return guilds.cache.get(this.id);
+        }
 
+        async setPrefix(newPrefix) {
             if (newPrefix === prefix) {
-                if (entry) {
-                    entry.destroy();
+                if (this.settings) {
+                    this.settings.destroy();
                     guilds.cache.delete(this.id)
                 }
                 else return;
             }
 
-            else if (!entry) {
+            else if (!this.settings) {
                 const guildEntry = await guilds.create({ id: this.id, prefix: newPrefix })
                 guilds.cache.set(guildEntry.id, guildEntry);
             }
-            
-            else {
-                entry.prefix = newPrefix;
-                entry.save();
-            }
-        }
 
-        get prefix() {
-            return guilds.cache.get(this.id)?.prefix;
+            else {
+                this.settings.prefix = newPrefix;
+                this.settings.save();
+            }
         }
     }
 })

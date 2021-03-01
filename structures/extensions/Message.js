@@ -15,7 +15,7 @@ Structures.extend("Message", Message => {
         }
 
         get prefix() {
-            return this.guild.prefix || this.client.config.prefix;
+            return this.guild.settings.prefix || this.client.config.prefix;
         }
 
         send(...opts) {
