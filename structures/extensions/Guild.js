@@ -6,7 +6,7 @@ Structures.extend("Guild", Guild => {
     return class extends Guild {
 
         get settings() {
-            return guilds.cache.get(this.id);
+           return guilds.cache.get(this.id);
         }
 
         async setPrefix(newPrefix) {
