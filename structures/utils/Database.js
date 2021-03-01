@@ -22,7 +22,6 @@ module.exports =
 
         async init() {
             try {
-                this.associate();
                 await sequelize.authenticate();
                 await sequelize.sync({ alter: true });
                 await this.loadShops();
