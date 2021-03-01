@@ -9,6 +9,7 @@ module.exports =
 
         main() {
             console.log("Ready!")
+            this.updatePresence()
         }
 
         updatePresence() {

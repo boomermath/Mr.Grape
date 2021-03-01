@@ -9,7 +9,7 @@ module.exports =
                 name: "help",
                 type: "utility",
                 description: "Get help on commands.",
-                usage: "<command|category>",
+                usage: "If you're reading this, you've figured it out already.",
                 aliases: ["assistance"],
                 saying: "Don't spam help command.",
                 cooldown: 2
@@ -47,7 +47,7 @@ module.exports =
                     .setTitle("Help")
                     .addFields(
                         { name: "Categories", value: categories.map(e => this.toProper(e)).join("\n") },
-                        { name: "Additional Info", value: "For help on a command or category, add it as an argument." }
+                        { name: "Additional Info", value: "For help on a command or category, [command|category]." }
                     )
                 return msg.send(helpEmbed)
             }
