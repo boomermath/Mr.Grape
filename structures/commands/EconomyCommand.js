@@ -7,7 +7,7 @@ module.exports =
             super(...args);
         }
 
-        get model() {
+        get eco() {
             return {
                 users: Users, 
                 inventories: UserItems, 
@@ -31,27 +31,6 @@ module.exports =
         getBalance(id) {
             const user = Users.cache.get(id);
             return user ? user.balance : 0;
-        }
-
-        async getInventory(id) {
-            return await UserItems.findAll({
-                where: { user_id: id },
-                include: ['item']
-            })
-        }
-
-        async addItem(id, item, amount) {
-            const userItem = await UserItems.findOne({
-                where: { user_id: id, item_id: item.id },
-            })
-
-            if (userItem) {
-                userItem.amount += amount;
-                if (!userItem.amount) return userItem.destroy();
-                return userItem.save();
-            }
-
-            return UserItems.create({ user_id: id, item_id: item.id, amount: amount });
         }
 
         get [Symbol.species]() {
