@@ -17,6 +17,8 @@ module.exports =
         main(msg, args) {
             const target = msg.mentions.users.first() || msg.author;
 
+            if (target.bot) return msg.send("No other bots (except me, cus im cool)")
+
             const balEmbed = new msg.embed()
                 .setTitle("Balance")
                 .addField(target.username, `${this.getBalance(target.id)} :star:s`)
