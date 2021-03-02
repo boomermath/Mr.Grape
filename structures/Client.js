@@ -1,6 +1,5 @@
 const { Client } = require("discord.js");
 const { CommandStore, EventStore } = require("./stores");
-const { Database } = require("./utils");
 
 require("./extensions");
 
