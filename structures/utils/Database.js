@@ -15,12 +15,13 @@ UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" })
 
 module.exports =
     class {
+
         async loadShops() {
             await Promise.all(Items.map(item => Shop.upsert(item)));
             await Promise.all(Ores.map(ore => OreStore.upsert(ore)))
         }
 
-        async init() {
+        async init(opts) {
             try {
                 await sequelize.authenticate();
                 await sequelize.sync({ alter: true });

@@ -58,6 +58,7 @@ module.exports =
                 this.queue.songs.push(...songRes.songs);
             } catch (e) {
                 console.error(e);
+                this.disconnect();
                 return msg.send("No songs found!")
             }
         }

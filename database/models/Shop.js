@@ -6,7 +6,7 @@ class Shop extends Model { }
 Shop.init({
     name: {
         type: DataTypes.STRING,
-        unique: true,
+        unique: true
     },
     price: DataTypes.INTEGER
 })

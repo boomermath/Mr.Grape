@@ -1,5 +1,5 @@
 const { Cooldowns, Event } = require("../structures");
-
+const blacklistedUsers = require("../config/blacklisted");
 
 module.exports =
     class extends Event {
@@ -12,12 +12,12 @@ module.exports =
 
             if (message.content === `<@!${this.client.user.id}>`) {
                 const helloEmbed = new message.embed()
-                .setTitle("Hello!")
-                .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`)
+                    .setTitle("Hello!")
+                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`)
                 message.send(helloEmbed);
             }
 
-            if (message.author.bot || !message.command || !message.guild) return;
+            if (message.author.bot || !message.command || !message.guild || blacklistedUsers.has(message.author.id)) return;
 
             const command = this.client.commands.get(message.command.toLowerCase());
 

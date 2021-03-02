@@ -15,8 +15,19 @@ module.exports =
 
         main(msg, args) {
             const invite = new msg.embed()
-                .setTitle("Invite")
-                .setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=0`)
+                .setTitle("Invites")
+                .addFields(
+                    {
+                        name: "Bot", value: `
+                        [Add it to your server!](https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=0)`,
+                        inline: true
+                    },
+                    {
+                        name: "Server", value: `
+                        [Mr.Grape Community](https://invite.com)`,
+                        inline: true
+                    }
+                )
             msg.send(invite);
         }
-    };
+    };           

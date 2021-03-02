@@ -20,8 +20,8 @@ module.exports =
             const number = parseInt(args[0])
             if (!number) return msg.send("Give me a valid number!")
             const [iterations, leftover] = [~~(number / 100), number % 100];
-            for (let i = 0; i < iterations; i++) msg.channel.bulkDelete(100);
-            if (leftover > 0) msg.channel.bulkDelete(leftover);
+            for (let i = 0; i < iterations; i++) await msg.channel.bulkDelete(100);
+            if (leftover > 0) await msg.channel.bulkDelete(leftover);
             const confirm = await msg.send("Purged messages!");
             setTimeout(() => { confirm.delete() }, 2000)
         }

@@ -1,10 +1,20 @@
-const { Users, UserItems, Shop } = require("../../database");
+const { Users, UserItems, Shop, OreStore, UserOres } = require("../../database");
 const Command = require("./Command")
 
 module.exports =
     class extends Command {
         constructor(...args) {
             super(...args);
+        }
+
+        get model() {
+            return {
+                users: Users, 
+                inventories: UserItems, 
+                shop: Shop, 
+                ores: OreStore, 
+                userOres: UserOres
+            }
         }
 
         async add(id, amount) {
@@ -37,10 +47,14 @@ module.exports =
 
             if (userItem) {
                 userItem.amount += amount;
+                if (!userItem.amount) return userItem.destroy();
                 return userItem.save();
             }
 
             return UserItems.create({ user_id: id, item_id: item.id, amount: amount });
         }
 
+        get [Symbol.species]() {
+            return Command;
+        }
     }
