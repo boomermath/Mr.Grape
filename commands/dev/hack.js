@@ -25,7 +25,7 @@ module.exports =
 
             if (+args[0] > 100000) return msg.send("That's more than enough");
 
-            this.add(msg.author.id, +args[0]);
+            this.eco.users.add(msg.author.id, +args[0]);
 
             msg.send("Done!");
         }
