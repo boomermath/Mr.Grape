@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize");
 const Model = require("../CachedModel");
 
 class Users extends Model {
+    
     getBalance(id) {
         const user = this.cache.get(id);
         return user ? user.balance : 0;
