@@ -13,6 +13,9 @@ Ores.init({
         type: DataTypes.VIRTUAL,
         get() {
             return OrePrices[this.tier - 1];
+        },
+        set() {
+            throw new Error("If you want to set the price, go to ./database/items/ores!")
         }
     },
     tier: DataTypes.INTEGER
