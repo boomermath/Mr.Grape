@@ -7,13 +7,13 @@ class Users extends Model {
         return user ? user.balance : 0;
     }
 
-    add(id, amount) {
+    async add(id, amount) {
         const user = this.cache.get(id);
         if (user) {
             user.balance += amount;
             return user.save()
         }
-        const newPerson = await this._creationAttributes({ id: id, balance: amount });
+        const newPerson = await this.create({ id: id, balance: amount });
         this.cache.set(id, newPerson);
         return newPerson;
     }
