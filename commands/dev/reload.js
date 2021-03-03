@@ -25,7 +25,7 @@ module.exports =
         }
 
         getCommands(args) {
-            return args.map(c => this.client.commands.get(c)).filter(c => c !== undefined);
+            return args.map(c => this.client.commands.get(c.toLowerCase())).filter(c => c !== undefined);
         }
 
         main(msg, args) {
