@@ -4,9 +4,9 @@ const Model = require("../Model");
 
 class UserItems extends Model {
 
-    async addItem(id, item, amt) {
+    async addItem(id, itemObj, amt) {
         const userItem = await this.findOne({
-            where: { user_id: id, item_id: item.id }
+            where: { user_id: id, item_id: itemObj.id }
         });
 
         if (userItem) {
