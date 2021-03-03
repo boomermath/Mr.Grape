@@ -18,8 +18,8 @@ class UserItems extends Model {
         return await this.create({ user_id: id, item_id: item.id, amount: amt });
     }
 
-    async getItem(id, item) {
-        const item = await Shop.findOne({ where: { name: item } });
+    async getItem(id, itemName) {
+        const item = await Shop.findOne({ where: { name: itemName } });
 
         if (!item) throw new Error("Invalid item!");
 
