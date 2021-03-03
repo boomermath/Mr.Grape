@@ -3,12 +3,12 @@ const Model = require("../CachedModel");
 
 class Users extends Model {
     
-    getBalance(id) {
+    static getBalance(id) {
         const user = this.cache.get(id);
         return user ? user.balance : 0;
     }
 
-    async add(id, amount) {
+    static async add(id, amount) {
         const user = this.cache.get(id);
         if (user) {
             user.balance += amount;
