@@ -17,7 +17,7 @@ module.exports =
         main(msg, args) {
             const randStars = Math.floor(Math.random() * 25) + 25;
 
-            this.add(msg.author.id, randStars);
+            this.eco.users.add(msg.author.id, randStars);
 
             const dailyEmbed = new msg.embed()
             .setTitle("Daily stars!")

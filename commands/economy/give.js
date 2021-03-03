@@ -25,8 +25,8 @@ module.exports =
 
             if (!number || number < 0 || number > this.getBalance(msg.author.id)) return msg.send("that's not a valid amount smh");
 
-            this.add(target.id, number);
-            this.add(msg.author.id, -number);
+            this.eco.users.add(target.id, number);
+            this.eco.users.add(msg.author.id, -number);
 
             const giveEmbed = new msg.embed()
                 .setTitle("Donation")

@@ -21,7 +21,7 @@ module.exports =
 
             const balEmbed = new msg.embed()
                 .setTitle("Balance")
-                .addField(target.username, `${this.getBalance(target.id)} :star:s`)
+                .addField(target.username, `${this.eco.users.getBalance(target.id)} :star:s`)
             msg.send(balEmbed);
         }
     };

@@ -14,20 +14,6 @@ module.exports =
             });
         }
 
-        async addItem(id, item, number) {
-            const userItem = this.eco.inventories.findOne({
-                where: { user_id: id, item_id: item.id },
-            });
-
-            if (userItem) {
-                userItem.amount += amount;
-                if (!userItem.amount) return userItem.destroy();
-                return userItem.save();
-            }
-
-            return this.eco.inventories.create({ user_id: id, item_id: item.id, amount: amount });
-        }
-
         parseArgs(args) {
             if (args.length === 1) return [args[0], 1];
             const number = args.find(e => +e);
@@ -45,10 +31,10 @@ module.exports =
             const cost = item.price * number;
 
             if (!item) return msg.send("That's not a valid item bruh");
-            if (cost > this.getBalance(msg.author.id)) return msg.send("Ur too broke to buy that");
+            if (cost > this.eco.users.getBalance(msg.author.id)) return msg.send("Ur too broke to buy that");
 
-            await this.addItem(msg.author.id, item, number);
-            this.add(msg.author.id, -cost);
+            await this.eco.items.addItem(msg.author.id, item, number);
+            this.eco.users.add(msg.author.id, -cost);
 
             const receipt = new msg.embed()
                 .setTitle("Purchase")

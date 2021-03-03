@@ -24,7 +24,7 @@ module.exports =
             
             if (target.bot) return msg.send("No other bots (except me, cus im cool)")
             
-            const inventory = await this.eco.inventories.findAll({
+            const inventory = await this.eco.items.findAll({
                 where: { user_id: target.id },
                 include: "item"
             })
