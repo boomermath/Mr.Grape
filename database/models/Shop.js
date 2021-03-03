@@ -8,6 +8,7 @@ Shop.init({
         type: DataTypes.STRING,
         unique: true
     },
+    description: DataTypes.TEXT,
     price: DataTypes.INTEGER
 })
 
