@@ -34,7 +34,7 @@ module.exports =
                 if (!message.guild.me.hasPermission(command.requiredPermissions)) return message.send("I don't have permission to execute that command!");
             }
             
-            else if (command.type === "music" && command.name !== lyrics) {
+            else if (command.type === "music" && command.name !== "lyrics") {
                 const { channel } = message.member.voice;
                 const { channel: myChannel } = message.guild.me.voice;
                 if (!command.musicQueues.has(message.guild.id) && command.name !== "play") return message.send("There is nothing playing!");

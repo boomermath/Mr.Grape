@@ -16,14 +16,17 @@ module.exports =
 
         main(msg, args) {
             const target = msg.mentions.users.first();
+            const balance = this.eco.users.getBalance(msg.author.id);
+
+            if (!balance) return msg.send("~~You're too broke.~~");
 
             if (!target) return msg.send("Who's gettin the :star:s?")
             else if (target.bot) return msg.send("No other bots (except me, cus im cool)")
             else if (target.id === msg.author.id) return msg.send("bruh you cant give golden stars to yourself smh");
 
-            const number = +args.find(n => +n);
+            const number = args.find(e => e === "all") ? balance : args.find(n => +n);
 
-            if (!number || number < 0 || number > this.eco.users.getBalance(msg.author.id)) return msg.send("that's not a valid amount smh");
+            if (!number || number < 0 || number > balance) return msg.send("that's not a valid amount smh");
 
             this.eco.users.add(target.id, number);
             this.eco.users.add(msg.author.id, -number);
