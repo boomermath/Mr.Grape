@@ -3,7 +3,6 @@ save
 *.json
 *.db
 *.env
-Basic.js
 node_modules
 Dockerfile
 Procfile

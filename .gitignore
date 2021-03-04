@@ -1,6 +1,4 @@
 *.db
-reminders.txt
 node_modules
 save
-Basic.js
 *.env
