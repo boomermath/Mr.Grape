@@ -24,7 +24,7 @@ module.exports =
             else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to ban.")
             
             try {
-                target.ban();
+                await target.ban();
                 msg.send(`:hammer: ${target.displayName} has been banned with an iron fist.`)
             } catch {
                 msg.send("Something went wrong. I probably don't have a high enough role to ban that person. Try again.")

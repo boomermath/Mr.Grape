@@ -24,7 +24,7 @@ module.exports =
             else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to get the boot.")
             
             try {
-                target.kick();
+                await target.kick();
                 msg.send(`:wave: ${target.displayName} has been kicked. What a noob lol`)
             } catch {
                 msg.send("Something went wrong. I probably don't have a high enough role to kick that person, try again later.")

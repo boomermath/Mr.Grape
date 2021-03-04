@@ -22,7 +22,7 @@ module.exports =
             else if (this.client.user.id === args[0]) return msg.send("Bruh I'm not banned.")
             
             try {
-                msg.guild.members.unban(args[0]);
+                await msg.guild.members.unban(args[0]);
                 msg.send("User unbanned!.")
             } catch {
                 msg.send("Something went wrong. I probably don't have a high enough role to unban that person, or they aren't banned.")
