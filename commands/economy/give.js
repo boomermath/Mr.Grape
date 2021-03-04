@@ -23,7 +23,7 @@ module.exports =
 
             const number = +args.find(n => +n);
 
-            if (!number || number < 0 || number > this.getBalance(msg.author.id)) return msg.send("that's not a valid amount smh");
+            if (!number || number < 0 || number > this.eco.users.getBalance(msg.author.id)) return msg.send("that's not a valid amount smh");
 
             this.eco.users.add(target.id, number);
             this.eco.users.add(msg.author.id, -number);
