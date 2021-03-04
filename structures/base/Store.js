@@ -13,9 +13,10 @@ module.exports =
         }
 
         _register(component, dir) {
-            if (!(component instanceof this.holds)) throw new Error(`${component.name} isn't a valid component to store in ${this.name}!`);
+            if (!(component instanceof this.holds)) throw new Error(`${component.name} doesn't belong in ${this.name}!`);
             if (super.has(component.name)) throw new Error(`${component.name} already exists!`);
-            return component.filepath = dir;
+            component.filepath = dir;
+            component.init ? component.init() : false;
         }
 
         load(dir) {
@@ -23,7 +24,6 @@ module.exports =
             const component = new Component(this.client);
             this._register(component, dir);
             super.set(component.name, component);
-            component.init ? component.init() : null;
             delete require.cache[require.resolve(dir)];
             return component;
         }
@@ -36,10 +36,10 @@ module.exports =
                     this.init(filePath, arr);
                 }
                 else {
-                    this.load(filePath)
+                    this.load(filePath);
                 }
             }
 
             return this;
         }
-    }
+    };

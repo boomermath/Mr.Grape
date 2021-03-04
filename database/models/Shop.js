@@ -10,6 +10,6 @@ Shop.init({
     },
     description: DataTypes.TEXT,
     price: DataTypes.INTEGER
-})
+});
 
 module.exports = Shop;

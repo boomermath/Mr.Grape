@@ -11,13 +11,13 @@ module.exports =
                 usage: "No arguments required",
                 cooldown: 5,
                 saying: "One flip is more than enough.",
-            })
+            });
         }
 
         main(msg, args) {
             const coinFlip = new msg.embed()
                 .setTitle(`${msg.author.username}'s coinflip`)
-                .addField('It landed on', `${Math.round(Math.random()) ? 'Heads!' : 'Tails!'}`)
-            msg.send(coinFlip)
+                .addField("It landed on", `${Math.round(Math.random()) ? "Heads!" : "Tails!"}`);
+            msg.send(coinFlip);
         }
-    }
+    };

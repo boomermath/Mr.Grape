@@ -19,7 +19,7 @@ module.exports =
             if (musicPlayer.playing === true) return msg.send("The music is already playing!");
             musicPlayer.resume();
             const resumeEmbed = new msg.embed()
-                .setTitle(":white_check_mark: Resumed Music!")
+                .setTitle(":white_check_mark: Resumed Music!");
             return msg.send(resumeEmbed);
         }
     };

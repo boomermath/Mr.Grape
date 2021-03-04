@@ -5,4 +5,4 @@ module.exports =
         constructor(name, client) {
             super(name, client);
         }
-    }
+    };

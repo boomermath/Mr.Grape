@@ -5,4 +5,4 @@ module.exports = {
     OreStore: require("./Ores"),
     UserOres: require("./UserOres"),
     Guilds: require("./Guilds"),
-}
+};

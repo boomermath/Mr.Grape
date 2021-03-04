@@ -12,7 +12,7 @@ class Users extends Model {
         const user = this.cache.get(id);
         if (user) {
             user.balance += amount;
-            return user.save()
+            return user.save();
         }
         const newPerson = await this.create({ id: id, balance: amount });
         this.cache.set(id, newPerson);
@@ -29,6 +29,6 @@ Users.init({
         type: DataTypes.INTEGER,
         defaultValue: 0,
     }
-})
+});
 
 module.exports = Users;

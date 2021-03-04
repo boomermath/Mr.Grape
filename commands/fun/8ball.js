@@ -36,7 +36,7 @@ module.exports =
                 description: "Fortune-telling is cool.",
                 cooldown: 5,
                 saying: "Even a fortune-teller could tell you to chill.",
-            })
+            });
         }
 
         getResponse(failure) {
@@ -51,7 +51,7 @@ module.exports =
 
             const embed = new msg.embed()
                 .setTitle(`${msg.author.username}'s crystal ball`)
-                .setDescription(this.getResponse(invalid))
-            msg.send(embed)
+                .setDescription(this.getResponse(invalid));
+            msg.send(embed);
         }
-    }
+    };

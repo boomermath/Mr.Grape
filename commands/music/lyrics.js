@@ -26,7 +26,7 @@ module.exports =
             ).query({
                 q: query,
                 limit: 1
-            }).send()
+            }).send();
 
             const { artist, name, lyrics, album_art, url } = (await lyricsRequest.json()).data[0];
 
@@ -37,12 +37,12 @@ module.exports =
                 .addFields(
                     { name: "Title", value: name, inline: true },
                     { name: "Artist", value: artist, inline: true },
-                )
+                );
 
             if (name.length + lyrics.length > 6000) lyrEmbed.addField("Lyrics", `[Click here!](${url})`);
 
             else for (const lyric of lyrics.split("\n\n")) lyrEmbed.addField("\u200b", lyric);
 
-            msg.send(lyrEmbed)
+            msg.send(lyrEmbed);
         }
     };

@@ -15,9 +15,9 @@ module.exports =
         }
 		
         main(msg, args) {
-            if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!")
+            if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!");
             const command = this.client.commands.delete(args[0].toLowerCase());
             if (!command) return msg.send("Invalid command!");
-            return msg.send("Command unloaded!")
+            return msg.send("Command unloaded!");
         }
     };

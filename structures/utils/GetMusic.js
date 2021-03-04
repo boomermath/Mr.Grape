@@ -1,6 +1,6 @@
 const { Util: { escapeMarkdown } } = require("discord.js");
 const ytsr = require("ytsr");
-const ytpl = require("ytpl")
+const ytpl = require("ytpl");
 const [ytRegex, plRegex] = [/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi, /^.*(list=)([^#\&\?]*).*/gi];
 
 class Song {
@@ -38,7 +38,7 @@ async function getSongs(input, author) {
             `**[${escapeMarkdown(response.items[0].title)}](${response.items[0].url})**`,
         songs: response.items.map(song => new Song(song.title, song.url, song.duration, song.bestThumbnail.url, author)),
         thumbnail: isPlaylist ? response.bestThumbnail.url : response.items[0].bestThumbnail.url,
-    })
+    });
 }
 
 module.exports = getSongs;

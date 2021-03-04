@@ -35,13 +35,13 @@ module.exports =
                     const collected = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, {
                         max: 1,
                         time: 8000,
-                        errors: ['time']
+                        errors: ["time"]
                     });
 
                     const message = collected.first().content.toLowerCase();
 
                     if (message === "y" || message === "yes") null;
-                    else if (message === "n" || message === "no") return msg.send("ok then")
+                    else if (message === "n" || message === "no") return msg.send("ok then");
                     else return msg.send("bruh its yes/no");
                 } catch {
                     return msg.send("ok ig not");
@@ -51,14 +51,14 @@ module.exports =
             const dice = this.randomize(6);
             const gambleEmbed = new msg.embed()
                 .setTitle(`${msg.author.username}'s gambling table`)
-                .addField("Ok, if you roll an even number you win, if you roll an odd number, you lose.", "\u200b")
+                .addField("Ok, if you roll an even number you win, if you roll an odd number, you lose.", "\u200b");
 
             const gambleMsg = await msg.send(gambleEmbed);
-            await this.wait(1.7)
-            gambleMsg.edit(gambleEmbed.addField("You rolled a . . .", "\u200b"))
-            await this.wait(3.5)
-            gambleMsg.edit(gambleEmbed.addField(dice, "\u200b"))
-            await this.wait(1.7)
+            await this.wait(1.7);
+            gambleMsg.edit(gambleEmbed.addField("You rolled a . . .", "\u200b"));
+            await this.wait(3.5);
+            gambleMsg.edit(gambleEmbed.addField(dice, "\u200b"));
+            await this.wait(1.7);
 
             if (dice % 2 === 0) {
                 gambleMsg.edit(gambleEmbed.addField(`Congrats, you get ${number} :star:s!`, "\u200b"));
@@ -66,7 +66,7 @@ module.exports =
             }
             else {
                 gambleMsg.edit(gambleEmbed.addField(`Rip, you lost your ${number} :star:s.`, "\u200b"));
-                this.eco.users.add(msg.author.id, -number)
+                this.eco.users.add(msg.author.id, -number);
             }
         }
     };

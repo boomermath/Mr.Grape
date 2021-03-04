@@ -17,11 +17,11 @@ module.exports =
         main(msg, args) {
             const target = msg.mentions.users.first() || msg.author;
 
-            if (target.bot) return msg.send("No other bots (except me, cus im cool)")
+            if (target.bot) return msg.send("No other bots (except me, cus im cool)");
 
             const balEmbed = new msg.embed()
                 .setTitle("Balance")
-                .addField(target.username, `${this.eco.users.getBalance(target.id)} :star:s`)
+                .addField(target.username, `${this.eco.users.getBalance(target.id)} :star:s`);
             msg.send(balEmbed);
         }
     };

@@ -20,7 +20,7 @@ module.exports =
 
             const prefixEmbed = new msg.embed()
                 .setTitle("Prefix")
-                .addField("Set to", args[0])
+                .addField("Set to", args[0]);
             msg.send(prefixEmbed);
         }
     };

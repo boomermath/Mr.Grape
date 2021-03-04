@@ -6,7 +6,7 @@ require("./extensions");
 module.exports = class extends Client {
     constructor(...opts) {
 
-        super(...opts)
+        super(...opts);
 
         this.config = require("../config/main");
 
@@ -24,4 +24,4 @@ module.exports = class extends Client {
         this.commands.init();
         super.login();
     }
-}
+};

@@ -9,6 +9,6 @@ Guilds.init({
         primaryKey: true
     },
     prefix: DataTypes.STRING
-})
+});
 
 module.exports = Guilds;

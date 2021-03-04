@@ -1,4 +1,3 @@
-const { Message } = require("discord.js");
 const { Command } = require("../../structures");
 
 module.exports =
@@ -16,15 +15,15 @@ module.exports =
         }
 
         async main(msg, args) {
-            const ping = await msg.send("Ping?")
+            const ping = await msg.send("Ping?");
             const pingNum = ping.createdTimestamp - msg.createdTimestamp;
             const pingEmbed = new msg.embed()
                 .setTitle("Pong!")
                 .addFields(
                     { name: "Bot ping", value: pingNum, inline: true },
                     { name: "API latency", value: this.client.ws.ping, inline: true },
-                )
-            ping.delete()
+                );
+            ping.delete();
             msg.send(pingEmbed);
         }
     };

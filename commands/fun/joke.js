@@ -16,15 +16,15 @@ module.exports =
                     blacklistFlags: "nsfw,religious,political,racist,sexist",
                     format: "json",
                 }
-            })
+            });
         }
 
         async main(msg, args) {
-            const { setup, delivery } = await this.request()
+            const { setup, delivery } = await this.request();
 
             const jokeEmbed = new msg.embed()
                 .setTitle("Meow!")
-                .addField(setup, delivery)
-            msg.send(jokeEmbed)
+                .addField(setup, delivery);
+            msg.send(jokeEmbed);
         }
-    }
+    };

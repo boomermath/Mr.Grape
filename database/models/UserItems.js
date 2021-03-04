@@ -12,10 +12,10 @@ class UserItems extends Model {
         if (userItem) {
             userItem.amount += amt;
             if (!userItem.amount) return userItem.destroy();
-            return userItem.save()
+            return userItem.save();
         }
 
-        return await this.create({ user_id: id, item_id: item.id, amount: amt });
+        return await this.create({ user_id: id, item_id: itemObj.id, amount: amt });
     }
 
     static async getItem(id, itemName) {
@@ -25,7 +25,7 @@ class UserItems extends Model {
 
         const userItems = await this.findOne({
             where: { user_id: id, item_id: item.id }
-        })
+        });
 
         return userItems ? userItems.amount : 0;
     }
@@ -38,6 +38,6 @@ UserItems.init({
         type: DataTypes.INTEGER,
         defaultValue: 0
     }
-})
+});
 
 module.exports = UserItems;

@@ -11,17 +11,17 @@ const {
 } = require("../../database");
 
 UserItems.belongsTo(Shop, { foreignKey: "item_id", as: "item" });
-UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" })
+UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" });
 
 module.exports =
     class {
 
         async loadShops() {
             await Promise.all(Items.map(item => Shop.upsert(item)));
-            await Promise.all(Ores.map(ore => OreStore.upsert(ore)))
+            await Promise.all(Ores.map(ore => OreStore.upsert(ore)));
         }
 
-        async init(opts) {
+        async init() {
             try {
                 await sequelize.authenticate();
                 await sequelize.sync();
@@ -30,4 +30,4 @@ module.exports =
                 await Guilds.load();
             } catch (err) { console.error(err); }
         }
-    }
+    };

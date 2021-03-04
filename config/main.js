@@ -8,4 +8,4 @@ module.exports = {
             "Prestiging!",
             "Random events for more stars"
         ]
-}
+};

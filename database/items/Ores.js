@@ -24,10 +24,10 @@ const Ores = [
     { name: "shakerium", tier: 3 },
     { name: "kelite", tier: 3 },
     { name: "limeinite", tier: 3 },
-]
+];
 
 const OrePrices = [
     9, 19, 25
-]
+];
 
-module.exports = { Ores, OrePrices }
+module.exports = { Ores, OrePrices };

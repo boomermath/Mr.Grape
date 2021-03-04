@@ -28,7 +28,7 @@ module.exports =
                 musicPlayer.volume = number;
             }
             const volEmbed = new msg.embed()
-                .setTitle(`${title}: **${info}**`)
+                .setTitle(`${title}: **${info}**`);
             return msg.send(volEmbed);
         }
     };

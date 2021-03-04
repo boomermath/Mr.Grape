@@ -11,7 +11,7 @@ module.exports =
                 aliases: ["p", "add"],
                 saying: "Your musical taste is equivalent to that of a hairball.",
                 cooldown: 2
-            })
+            });
         }
 
         createPlayer(msg) {
@@ -28,10 +28,10 @@ module.exports =
                 return msg.send("Resumed music!");
             }
 
-            if (!args) return msg.send("What should I play?")
+            if (!args) return msg.send("What should I play?");
             
             await musicPlayer.play(msg, args.join(" "));
 
             musicPlayer._connection.on("disconnect", () => this.musicQueues.delete(msg.guild.id));
         }
-    }
+    };

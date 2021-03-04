@@ -1,13 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const left = "⬅️";
 const right = "➡️";
-const color = "PURPLE"
+const color = "PURPLE";
 
 class Embed extends MessageEmbed {
     constructor() {
         super();
         this.setColor(color);
-        this.setDescription("Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)")
+        this.setDescription("Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)");
         this.setFooter("Grape Enterprises");
         this.setTimestamp();
     }
@@ -23,18 +23,18 @@ class PaginatedEmbed {
             color: color,
             description: description,
             fields: [],
-        }
+        };
         this.pageLength = pageLength;
-        this.main(msg, entries)
+        this.main(msg, entries);
     }
 
     async main(msg, entries) {
         while (entries.length > 0) this.pages.push(entries.splice(0, this.pageLength));
         const embedMsg = await msg.send(this.renderPage());
         if (this.pages.length === 1) return;
-        await embedMsg.react(left)
-        await embedMsg.react(right)
-        this.collector(embedMsg)
+        await embedMsg.react(left);
+        await embedMsg.react(right);
+        this.collector(embedMsg);
     }
 
     renderPage() {
@@ -58,12 +58,12 @@ class PaginatedEmbed {
 
         const collector = message.createReactionCollector(filter, { time: 60000 });
 
-        collector.on('collect', (reaction, user) => {
+        collector.on("collect", (reaction, user) => {
             reaction.users.remove(user.id);
             if (this.pages.length === 1) return;
-            else if (reaction.emoji.name === left) this.flipPage(-1)
-            else if (reaction.emoji.name === right) this.flipPage(1)
-            message.edit(this.renderPage())
+            else if (reaction.emoji.name === left) this.flipPage(-1);
+            else if (reaction.emoji.name === right) this.flipPage(1);
+            message.edit(this.renderPage());
         });
     }
 }

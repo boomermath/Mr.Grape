@@ -15,12 +15,13 @@ module.exports =
         }
 
         main(msg, args) {
-            const { queue: { songs, position } } = this.musicQueues.get(msg.guild.id);
+            const musicPlayer = this.musicQueues.get(msg.guild.id);
+            const { queue: { songs, position } } = musicPlayer
             const index = (+args[0] || songs.length) - 1;
             const removedSong = songs[index];
             songs.splice(index, 1);
             const removeEmbed = new msg.embed()
-                .setTitle(`Removed **[${removedSong.title}]** from the queue!`)
+                .setTitle(`Removed **[${removedSong.title}]** from the queue!`);
             msg.send(removeEmbed);
             if (index === position) musicPlayer.shiftQueue();
         }

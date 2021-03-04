@@ -18,7 +18,7 @@ module.exports =
             if (args.length === 1) return [args[0], 1];
             const number = args.find(e => +e);
             if (!number) return [false];
-            args.splice(args.indexOf(number), 1)
+            args.splice(args.indexOf(number), 1);
             return [args[0], +number];
         }
 
@@ -39,6 +39,6 @@ module.exports =
             const receipt = new msg.embed()
                 .setTitle("Purchase")
                 .addField("Receipt", `You purchased ${number} ${item.name}${number > 1 ? "s" : ""}!`);
-            msg.send(receipt)
+            msg.send(receipt);
         }
     };

@@ -13,7 +13,7 @@ module.exports =
             if (message.content === `<@!${this.client.user.id}>`) {
                 const helloEmbed = new message.embed()
                     .setTitle("Hello!")
-                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`)
+                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`);
                 message.send(helloEmbed);
             }
 
@@ -48,4 +48,4 @@ module.exports =
                 message.send("Made an oopsie! If this persists, please let us know!");
             }
         }
-    }
+    };

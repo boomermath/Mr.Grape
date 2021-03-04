@@ -1,5 +1,5 @@
 const { Users, UserItems, Shop, OreStore, UserOres } = require("../../database");
-const Command = require("./Command")
+const Command = require("./Command");
 
 module.exports =
     class extends Command {
@@ -14,6 +14,6 @@ module.exports =
                 shop: Shop,
                 oreStore: OreStore,
                 ores: UserOres
-            }
+            };
         }
-    }
+    };

@@ -22,7 +22,7 @@ module.exports =
 
             const shopEmbed = new msg.embed()
                 .setTitle("Shop")
-                .setDescription(`Buy an item by using ${msg.prefix}buy <itemname>!`)
+                .setDescription(`Buy an item by using ${msg.prefix}buy <itemname>!`);
 
             for (const [name, description, price] of shopEntry) {
                 shopEmbed.addField(`${name.charAt(0).toUpperCase()}${name.slice(1)}`,

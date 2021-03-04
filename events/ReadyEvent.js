@@ -7,8 +7,8 @@ module.exports =
         }
 
         main() {
-            console.log("Ready!")
-            this.updatePresence()
+            console.log("Ready!");
+            this.updatePresence();
         }
 
         updatePresence() {
@@ -20,5 +20,5 @@ module.exports =
                 },
             });
         }
-    }
+    };
 

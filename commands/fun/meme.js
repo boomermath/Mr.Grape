@@ -47,9 +47,9 @@ module.exports =
 
             const memeEmbed = new msg.embed()
                 .setTitle(title)
-                .setImage(url)
-            msg.send(memeEmbed)
+                .setImage(url);
+            msg.send(memeEmbed);
 
             if (new Date().getHours() === 12) this.init();
         }
-    }
+    };

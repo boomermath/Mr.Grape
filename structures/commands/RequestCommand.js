@@ -10,7 +10,7 @@ module.exports =
         }
 
         async request(opts) {
-            const res = await centra(this.url).query({ ...this.params, ...opts }).send()
+            const res = await centra(this.url).query({ ...this.params, ...opts }).send();
             return await res.json();
         }
-    }
+    };

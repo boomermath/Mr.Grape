@@ -1,5 +1,5 @@
 const { Command } = require("../../structures");
-const checkmark = "✅"
+const checkmark = "✅";
 
 module.exports =
     class extends Command {
@@ -29,7 +29,7 @@ module.exports =
 
         async main(msg, args) {
 
-            await msg.react(checkmark)
+            await msg.react(checkmark);
 
             const aliases = {
                 "mod": "moderation",
@@ -37,8 +37,8 @@ module.exports =
                 "utils": "utility",
                 "util": "utility",
                 "eco": "economy"
-            }
-            const helpArg = args[0]?.toLowerCase()
+            };
+            const helpArg = args[0]?.toLowerCase();
             const categories = ["economy", "fun", "moderation", "music", "utility"];
 
             if (!helpArg) {
@@ -47,16 +47,16 @@ module.exports =
                     .addFields(
                         { name: "Categories", value: categories.map(e => this.toProper(e)).join("\n") },
                         { name: "Additional Info", value: "For help on a command or category, [command|category]." }
-                    )
-                return msg.send(helpEmbed)
+                    );
+                return msg.send(helpEmbed);
             }
             else if (Object.keys(aliases).includes(helpArg) || categories.includes(helpArg)) {
                 const category = aliases[helpArg] || helpArg;
                 const commands = this.getCommands(category).map(c => `\`${c}\``).join(", ");
                 const helpEmbed = new msg.embed()
                     .setTitle("Help")
-                    .addField(`Commands in the ${this.toProper(category)} Category!`, commands)
-                return msg.send(helpEmbed)
+                    .addField(`Commands in the ${this.toProper(category)} Category!`, commands);
+                return msg.send(helpEmbed);
             }
             else if (this.client.commands.has(helpArg)) {
                 const command = this.client.commands.get(helpArg);
@@ -67,8 +67,8 @@ module.exports =
                         { name: "Type", value: this.toProper(command.type) },
                         { name: "Usage", value: command.usage },
                         { name: "Aliases", value: command.aliases.join(", ") }
-                    )
-                return msg.send(commandEmbed)
+                    );
+                return msg.send(commandEmbed);
             }
             else msg.send("That's not a valid command or category!");
         }

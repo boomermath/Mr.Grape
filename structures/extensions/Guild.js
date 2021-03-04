@@ -6,20 +6,20 @@ Structures.extend("Guild", Guild => {
     return class extends Guild {
 
         get settings() {
-           return guilds.cache.get(this.id);
+            return guilds.cache.get(this.id);
         }
 
         async setPrefix(newPrefix) {
             if (newPrefix === prefix) {
                 if (this.settings) {
                     this.settings.destroy();
-                    guilds.cache.delete(this.id)
+                    guilds.cache.delete(this.id);
                 }
                 else return;
             }
 
             else if (!this.settings) {
-                const guildEntry = await guilds.create({ id: this.id, prefix: newPrefix })
+                const guildEntry = await guilds.create({ id: this.id, prefix: newPrefix });
                 guilds.cache.set(guildEntry.id, guildEntry);
             }
 
@@ -28,5 +28,5 @@ Structures.extend("Guild", Guild => {
                 this.settings.save();
             }
         }
-    }
-})
+    };
+});

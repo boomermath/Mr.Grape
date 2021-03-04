@@ -1,5 +1,4 @@
 const { Command } = require("../../structures");
-const checkmark = "✅"
 
 module.exports =
     class extends Command {
@@ -22,7 +21,7 @@ module.exports =
             const avatarEmbed = new msg.embed()
                 .setTitle(`${avatar.username}'s avatar`)
                 .setDescription(`[jpg](${url}.jpg) | [png](${url}.png) | [webp](${url}.webp)`)
-                .setImage(avatar.displayAvatarURL())
+                .setImage(avatar.displayAvatarURL());
             msg.send(avatarEmbed);
         }
     };

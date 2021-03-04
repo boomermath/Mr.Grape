@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        toSeconds(isoTime) { return isoTime.split(':').reduce((acc, time) => (60 * acc) + +time) }
+        toSeconds(isoTime) { return isoTime.split(":").reduce((acc, time) => (60 * acc) + +time); }
 
         toISOTime(seconds) { return new Date(seconds * 1000).toISOString().substr(11, 8); }
 
@@ -28,7 +28,7 @@ module.exports =
                     { name: "Time elapsed", value: this.toISOTime(playTime + 1), inline: true },
                     { name: "Time remaining", value: this.toISOTime(this.toSeconds(song.duration) - playTime), inline: true },
                     { name: "Total Duration", value: song.duration.length === 4 ? `00:0${song.duration}` : song.duration, inline: true }
-                )
+                );
             msg.send(np);
         }
     };

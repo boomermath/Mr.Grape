@@ -17,11 +17,11 @@ module.exports =
                     output: "JSON",
                     format: "plaintext"
                 }
-            })
+            });
         }
 
         async main(msg, args) {
-            if (!args.length) return msg.send("Give me a question to answer!")
+            if (!args.length) return msg.send("Give me a question to answer!");
 
             const queryMsg = await msg.send("Gimme a sec . . .");
             const { queryresult } = await this.request({ input: args.join(" ") });
@@ -36,8 +36,8 @@ module.exports =
             const wolframEmbed = new msg.embed()
                 .setTitle("Answer")
                 .setDescription(answer.endsWith(".") ? answer : `${answer}.`)
-                .setFooter("Powered by Wolfram|Alpha")
+                .setFooter("Powered by Wolfram|Alpha");
             queryMsg.delete();
-            msg.send(wolframEmbed)
+            msg.send(wolframEmbed);
         }
-    }
+    };

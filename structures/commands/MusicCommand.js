@@ -8,4 +8,4 @@ module.exports =
             super(...args);
             this.musicQueues = Queues;
         }
-    }
+    };

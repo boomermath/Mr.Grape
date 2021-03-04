@@ -1,5 +1,5 @@
-const { Collection } = require("discord.js")
-const Model = require("./Model")
+const { Collection } = require("discord.js");
+const Model = require("./Model");
 
 module.exports =
     class extends Model {
@@ -9,4 +9,4 @@ module.exports =
             const entries = await this.findAll();
             entries.forEach(entry => this.cache.set(entry.id, entry));
         }
-    }
+    };

@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-const Ores = require("./Ores");
 const Model = require("../Model");
 
 class UserOres extends Model { }
@@ -15,6 +14,6 @@ UserOres.init({
         type: DataTypes.BOOLEAN,
         defaultValue: false
     }
-})
+});
 
 module.exports = UserOres;

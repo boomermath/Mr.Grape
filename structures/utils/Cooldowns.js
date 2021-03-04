@@ -18,10 +18,10 @@ module.exports =
             const cooldowns = this.cooldowns.get(command.name);
             const cooldown = cooldowns.get(id);
 
-            if (!cooldown) cooldowns.set(id, command.fan ? this.calculateCooldown(now, fans, command) : now + command.cooldown)
+            if (!cooldown) cooldowns.set(id, command.fan ? this.calculateCooldown(now, fans, command) : now + command.cooldown);
 
             else if (cooldown > now) return true;
 
             else cooldowns.delete(id);
         }
-    }
+    };

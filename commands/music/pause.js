@@ -19,7 +19,7 @@ module.exports =
             if (musicPlayer.playing === false) return msg.send("The music is already paused!");
             musicPlayer.pause();
             const pauseEmbed = new msg.embed()
-                .setTitle(":pause_button: Paused Music!")
+                .setTitle(":pause_button: Paused Music!");
             msg.send(pauseEmbed);
         }
     };

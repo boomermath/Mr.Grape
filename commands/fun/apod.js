@@ -15,7 +15,7 @@ module.exports =
                 params: {
                     api_key: process.env.NASA
                 }
-            })
+            });
         }
 
         async main(msg, args) {
@@ -23,7 +23,7 @@ module.exports =
 
             const pictureEmbed = new msg.embed()
                 .setTitle("NASA Picture of the day!")
-                .setImage(picture)
-            msg.send(pictureEmbed)
+                .setImage(picture);
+            msg.send(pictureEmbed);
         }
-    }
+    };

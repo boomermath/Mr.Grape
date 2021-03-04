@@ -12,11 +12,11 @@ module.exports =
                 repeatMode: 0,
                 playing: true
             };
-            this.msg = message
+            this.msg = message;
             this.queue = {
                 songs: [],
                 position: 0
-            }
+            };
         }
 
         async _connect() {
@@ -34,12 +34,13 @@ module.exports =
                 filter: "audioonly",
                 quality: "highestaudio"
             });
+            
             const player = this._connection.play(play)
                 .on("start", () => {
                     const embed = new this.msg.embed()
                         .setTitle("Now Playing")
                         .setDescription(`**[${escapeMarkdown(song.title)}](${song.url})**`)
-                        .setThumbnail(song.thumbnail)
+                        .setThumbnail(song.thumbnail);
                     this.msg.send(embed);
                 })
                 .on("finish", () => { this.shiftQueue(); })
@@ -49,17 +50,17 @@ module.exports =
 
         async _updateQueue(msg, input) {
             try {
-                const songRes = await getSongs(input, msg.author)
+                const songRes = await getSongs(input, msg.author);
                 const embed = new msg.embed()
                     .setTitle("Queued")
                     .setDescription(songRes.title)
-                    .setThumbnail(songRes.thumbnail)
+                    .setThumbnail(songRes.thumbnail);
                 msg.send(embed);
                 this.queue.songs.push(...songRes.songs);
             } catch (e) {
                 console.error(e);
                 this.disconnect();
-                return msg.send("No songs found!")
+                return msg.send("No songs found!");
             }
         }
 

@@ -18,6 +18,6 @@ module.exports =
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             musicPlayer.disconnect();
             this.musicQueues.delete(msg.guild.id);
-            msg.send("Cya!")
+            msg.send("Cya!");
         }
     };

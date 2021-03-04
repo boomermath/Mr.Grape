@@ -6,4 +6,4 @@ module.exports =
             super(client, args);
             this.requiredPermissions = requiredPermissions;
         }
-    }
+    };

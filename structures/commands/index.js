@@ -4,4 +4,4 @@ module.exports = {
     ModerationCommand: require("./ModerationCommand"),
     MusicCommand: require("./MusicCommand"),
     EconomyCommand: require("./EconomyCommand")
-}
+};

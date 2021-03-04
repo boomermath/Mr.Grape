@@ -29,8 +29,8 @@ module.exports =
         }
 
         main(msg, args) {
-            if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!")
-            if (args[0] === "all") this.reloadAll()
+            if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!");
+            if (args[0] === "all") this.reloadAll();
             else {
                 const commands = this.getCommands(args);
                 if (!commands) return msg.send("Invalid command!");

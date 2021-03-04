@@ -3,7 +3,7 @@ const { Store } = require("../base");
 
 module.exports = class extends Store {
     constructor(client, { directory }) {
-        super("events", client, directory, Event)
+        super("events", client, directory, Event);
     }
 
     load(dir) {
@@ -12,4 +12,4 @@ module.exports = class extends Store {
         this.client.on(event.name, func);
         return event;
     }
-}
+};

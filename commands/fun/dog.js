@@ -17,15 +17,15 @@ module.exports =
                     limit: 1,
                     size: "small"
                 }
-            })
+            });
         }
 
         async main(msg, args) {
             const picture = await this.request();
 
             const dogEmbed = new msg.embed()
-                .setTitle(`Woof!`)
-                .setImage(picture[0].url)
-            msg.send(dogEmbed)
+                .setTitle("Woof!")
+                .setImage(picture[0].url);
+            msg.send(dogEmbed);
         }
-    }
+    };

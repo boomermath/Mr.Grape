@@ -5,4 +5,4 @@ module.exports = class {
     }
 
     main() { throw new Error(`Module ${this.name} does not have a main method!`); }
-}
+};

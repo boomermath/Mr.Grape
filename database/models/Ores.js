@@ -15,10 +15,10 @@ Ores.init({
             return OrePrices[this.tier - 1];
         },
         set() {
-            throw new Error("If you want to set the price, go to ./database/items/ores!")
+            throw new Error("If you want to set the price, go to ./database/items/ores!");
         }
     },
     tier: DataTypes.INTEGER
-})
+});
 
 module.exports = Ores;

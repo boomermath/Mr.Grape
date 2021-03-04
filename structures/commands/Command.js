@@ -12,4 +12,4 @@ module.exports =
             this.saying = saying;
             this.fan = fan;
         }
-    }
+    };

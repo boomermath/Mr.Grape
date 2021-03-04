@@ -24,7 +24,7 @@ module.exports =
 
         async main(msg, args) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
-            const { songs, position } = musicPlayer.queue;
+            let { songs, position } = musicPlayer.queue;
             if (songs.length <= 2) return msg.send("Queue's kinda too small to shuffle.");
             const pos = position + 1;
             songs = [...songs.slice(0, pos), ...this.shuffle(songs.slice(-(songs.length - pos)))];

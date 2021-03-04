@@ -20,8 +20,8 @@ module.exports =
 
             if (!balance) return msg.send("~~You're too broke.~~");
 
-            if (!target) return msg.send("Who's gettin the :star:s?")
-            else if (target.bot) return msg.send("No other bots (except me, cus im cool)")
+            if (!target) return msg.send("Who's gettin the :star:s?");
+            else if (target.bot) return msg.send("No other bots (except me, cus im cool)");
             else if (target.id === msg.author.id) return msg.send("bruh you cant give golden stars to yourself smh");
 
             const number = args.find(e => e === "all") ? balance : +args.find(n => +n);
@@ -34,6 +34,6 @@ module.exports =
             const giveEmbed = new msg.embed()
                 .setTitle("Donation")
                 .addField(`${msg.author.username}`, `gave ${number} :star:s to ${target.username}`);
-            msg.send(giveEmbed)
+            msg.send(giveEmbed);
         }
     };

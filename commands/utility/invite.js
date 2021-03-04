@@ -27,7 +27,7 @@ module.exports =
                         [Mr.Grape Community](https://invite.com)`,
                         inline: true
                     }
-                )
+                );
             msg.send(invite);
         }
     };           

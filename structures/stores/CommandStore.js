@@ -29,7 +29,7 @@ module.exports = class extends Store {
 
     clear() {
         super.clear();
-        this._aliases.clear()
+        this._aliases.clear();
         return this;
     }
 
@@ -39,4 +39,4 @@ module.exports = class extends Store {
         if (command.aliases) for (const alias of command.aliases) this._aliases.delete(alias);
         return super.delete(name);
     }
-}
+};

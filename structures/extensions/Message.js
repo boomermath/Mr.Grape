@@ -5,7 +5,7 @@ const emojis = require("../../config/emojis");
 Structures.extend("Message", Message => {
     return class extends Message {
         constructor(...args) {
-            super(...args)
+            super(...args);
             this.emojis = emojis;
             this.embed = Embed;
             
@@ -25,5 +25,5 @@ Structures.extend("Message", Message => {
         paginate(opts, entries, pageLength) {
             return new PaginatedEmbed(this, opts, entries, pageLength);
         }
-    }
-})
+    };
+});

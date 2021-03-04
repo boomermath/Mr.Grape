@@ -41,7 +41,7 @@ module.exports =
                     { name: "Credits", value: "Kinglalu, DAONE, and LinuxTerm | Goobermeister: graphics/emojis | MikeLime and CompactCow: Bugfixes/minor improvements | Originally by Horsey4 and Airplane Bong." },
                     { name: "Number of servers", value: this.client.guilds.cache.size },
                     { name: "Number of Users", value: this.client.users.cache.size }
-                )
+                );
             msg.send(info);
         }
     };
