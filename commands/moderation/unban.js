@@ -15,7 +15,7 @@ module.exports =
             })
         }
 
-        main(msg, args) {
+        async main(msg, args) {
             if (!args[0] || msg.mentions.members.first()) return msg.send("Who should I unban? (give me an id)");
             
             if (msg.author.id === args[0]) return msg.send("I don't think you are banned.");
