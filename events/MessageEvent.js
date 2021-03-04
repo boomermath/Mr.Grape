@@ -29,17 +29,16 @@ module.exports =
                 return message.send("Please wait!");
             }
 
-            switch (command.type) {
-                case "moderation":
-                    if (!message.member.hasPermission(command.requiredPermissions)) return message.send("You don't have permission to run this command!");
-                    else if (!message.guild.me.hasPermission(command.requiredPermissions)) return message.send("I don't have permission to execute that command!");
-                    break;
-                case "music":
-                    if (command.name === "lyrics") break;
-                    const { channel } = message.member.voice;
-                    const { channel: myChannel } = message.guild.me.voice;
-                    if (!command.musicQueues.has(message.guild.id) && command.name !== "play") return message.send("There is nothing playing!");
-                    else if (!channel && myChannel && myChannel !== channel && command.name !== "queue") return message.send("You have to be in my voice channel!");
+            if (command.type === "moderation") {
+                if (!message.member.hasPermission(command.requiredPermissions)) return message.send("You don't have permission to run this command!");
+                if (!message.guild.me.hasPermission(command.requiredPermissions)) return message.send("I don't have permission to execute that command!");
+            }
+            
+            else if (command.type === "music" && command.name !== lyrics) {
+                const { channel } = message.member.voice;
+                const { channel: myChannel } = message.guild.me.voice;
+                if (!command.musicQueues.has(message.guild.id) && command.name !== "play") return message.send("There is nothing playing!");
+                else if (!channel && myChannel && myChannel !== channel && command.name !== "queue") return message.send("You have to be in my voice channel!");
             }
 
             try {

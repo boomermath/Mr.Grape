@@ -17,8 +17,10 @@ module.exports =
 
         main(msg, args) {
             if (!args[0] || msg.mentions.members.first()) return msg.send("Who should I unban? (give me an id)");
+            
             if (msg.author.id === args[0]) return msg.send("I don't think you are banned.");
             else if (this.client.user.id === args[0]) return msg.send("Bruh I'm not banned.")
+            
             try {
                 msg.guild.members.unban(args[0]);
                 msg.send("User unbanned!.")

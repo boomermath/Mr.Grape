@@ -18,8 +18,11 @@ module.exports =
         async main(msg, args) {
             if (!args[0]) return msg.send("Who should I kick?");
             const target = msg.mentions.members.first() || await msg.guild.members.fetch(args[0]);
-            if (msg.author.id === target.id) return msg.send("Bruh imagine kicking yourself.");
+            
+            if (!target) return msg.send("That's not a valid user!");
+            else if (msg.author.id === target.id) return msg.send("Bruh imagine kicking yourself.");
             else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to get the boot.")
+            
             try {
                 target.kick();
                 msg.send(`:wave: ${target.displayName} has been kicked. What a noob lol`)
