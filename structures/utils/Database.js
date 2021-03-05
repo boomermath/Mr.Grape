@@ -1,13 +1,10 @@
 const {
     Users,
     UserItems,
-    UserOres,
-    Shop,
     Items,
     Sequelize: sequelize,
     Ores: { Ores },
-    OreStore,
-    Guilds
+    Guilds,
 } = require("../../database");
 
 UserItems.belongsTo(Shop, { foreignKey: "item_id", as: "item" });
@@ -16,16 +13,16 @@ UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" });
 module.exports =
     class {
 
-        async loadShops() {
-            await Promise.all(Items.map(item => Shop.upsert(item)));
-            await Promise.all(Ores.map(ore => OreStore.upsert(ore)));
+        async loadItems() {
+            const items = [Ores, Craftable, Items]
+            await Promise.all(items.forEach(store => store.forEach(item => Shop.upsert(item))));
         }
 
         async init() {
             try {
                 await sequelize.authenticate();
-                await sequelize.sync();
-                await this.loadShops();
+                await sequelize.sync({ force: true });
+                await this.loadItems();
                 await Users.load();
                 await Guilds.load();
             } catch (err) { console.error(err); }

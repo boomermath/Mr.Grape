@@ -5,11 +5,14 @@ const color = "PURPLE";
 
 class Embed extends MessageEmbed {
     constructor() {
-        super();
-        this.setColor(color);
-        this.setDescription("Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)");
-        this.setFooter("Grape Enterprises");
-        this.setTimestamp();
+        super({
+            description: "Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)",
+            color: color,
+            footer: {
+                text: "Grape Enterprises"
+            },
+            timestamp: new Date()
+        });
     }
 }
 

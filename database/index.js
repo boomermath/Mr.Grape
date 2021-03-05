@@ -1,4 +1,4 @@
 module.exports = {
-    ...require("./models"), ...require("./items"),
+    ...require("./models"), ...require("./assets"),
     Sequelize: require("./Sequelize")
 };

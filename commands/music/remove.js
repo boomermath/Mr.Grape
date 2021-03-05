@@ -15,7 +15,8 @@ module.exports =
         }
 
         main(msg, args) {
-            const musicPlayer, { queue: { songs, position } } = this.musicQueues.get(msg.guild.id);
+            const musicPlayer = this.musicQueues.get(msg.guild.id);
+            const { queue: { songs, position } } = musicPlayer
             const index = (+args[0] || songs.length) - 1;
             const removedSong = songs[index];
             songs.splice(index, 1);
