@@ -1,6 +1,8 @@
+const { Ores, OrePrices } = require("./Ores");
+
 module.exports = {
-    Items: require("./Items"),
-    Ores: require("./Ores"),
+    ShopItems: require("./ShopItems"),
+    Ores: Ores,
+    OrePrices: OrePrices,
     Craftable: require("./Craftable"),
-    Recipes: require("./Recipes")
 };
