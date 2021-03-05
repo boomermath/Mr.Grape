@@ -11,16 +11,21 @@ const {
     Ores
 } = require("../../database");
 
-UserItems.belongsTo(Shop, { foreignKey: "item_id", as: "item" });
+UserItems.belongsTo(Items, { foreignKey: "item_id", as: "item" });
 UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" });
 
 module.exports =
     class {
 
+        _addToItems(type, item) {
+            item.type = type
+            return Items.upsert(item);
+        }
+
         async _loadItems() {
             const promises = [
-                ...ShopItems.map(item => Items.upsert(item)),
-                ...Craftable.map(craft => Items.upsert(craft)),
+                ...ShopItems.map(item => this._addToItems("shop", item)),
+                ...Craftable.map(craft => this._addToItems("craft", craft)),
                 ...Ores.map(ore => OreStore.upsert(ore))
             ]
 

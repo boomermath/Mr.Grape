@@ -1,10 +1,10 @@
 const { DataTypes } = require("sequelize");
-const { Ores: { Ores, OrePrices } } = require("../assets")
+const { OrePrices } = require("../assets")
 const Model = require("../Model");
 
-class Ores extends Model {}
+class OreStore extends Model { }
 
-Ores.init({
+OreStore.init({
     name: {
         type: DataTypes.STRING,
         unique: true
@@ -18,4 +18,4 @@ Ores.init({
     }
 })
 
-module.exports = Ores;
+module.exports = OreStore;
