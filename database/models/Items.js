@@ -19,7 +19,7 @@ Items.init({
         type: DataTypes.VIRTUAL,
         get() {
             return Recipes[this.name] || null;
-        },
+        }
     }
 });
 
