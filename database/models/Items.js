@@ -18,12 +18,7 @@ Items.init({
     data: {
         type: DataTypes.VIRTUAL,
         get() {
-            if (this.type === "craft") {
-                const recipe = Recipes[this.name];
-                if (!recipe) throw new Error(`${this.name} doesn't have a recipe!`)
-                return recipe;
-            }
-            else return null;
+            return Recipes[this.name] || null;
         },
     }
 });
