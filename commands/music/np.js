@@ -20,6 +20,8 @@ module.exports =
 
         main(msg, args) {
             const { currentSong: song, playTime } = this.musicQueues.get(msg.guild.id);
+            const formattedDuration = song.duration.length === 4 ? `00:0${song.duration}` :
+                song.duration.length === 5 ? `00:${song.duration}` : song.duration;
             const np = new msg.embed()
                 .setDescription(`**Now playing\n[${song.title}](${song.url})**`)
                 .setAuthor(`Requested by ${song.author.username}`, song.author.displayAvatarURL())
@@ -27,7 +29,7 @@ module.exports =
                 .addFields(
                     { name: "Time elapsed", value: this.toISOTime(playTime + 1), inline: true },
                     { name: "Time remaining", value: this.toISOTime(this.toSeconds(song.duration) - playTime), inline: true },
-                    { name: "Total Duration", value: song.duration.length === 4 ? `00:0${song.duration}` : song.duration, inline: true }
+                    { name: "Total Duration", value: formattedDuration, inline: true }
                 );
             msg.send(np);
         }
