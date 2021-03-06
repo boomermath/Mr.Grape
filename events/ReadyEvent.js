@@ -3,7 +3,9 @@ const { Event } = require("../structures");
 module.exports =
     class extends Event {
         constructor(client, name = "ready") {
-            super(name, client);
+            super(client, {
+                name: name
+            });
         }
 
         main() {

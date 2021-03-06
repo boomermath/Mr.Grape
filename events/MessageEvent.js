@@ -4,7 +4,10 @@ const blacklistedUsers = require("../config/blacklisted");
 module.exports =
     class extends Event {
         constructor(client) {
-            super("message", client);
+            super(client, {
+                name: "message",
+            });
+
             this.cooldownManager = new Cooldowns();
         }
 
@@ -33,7 +36,7 @@ module.exports =
                 if (!message.member.hasPermission(command.requiredPermissions)) return message.send("You don't have permission to run this command!");
                 if (!message.guild.me.hasPermission(command.requiredPermissions)) return message.send("I don't have permission to execute that command!");
             }
-            
+
             else if (command.type === "music" && command.name !== "lyrics") {
                 const { channel } = message.member.voice;
                 const { channel: myChannel } = message.guild.me.voice;
