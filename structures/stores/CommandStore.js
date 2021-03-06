@@ -36,7 +36,7 @@ module.exports = class extends Store {
     delete(name) {
         const command = super.get(name);
         if (!command) return false;
-        if (command.aliases) for (const alias of command.aliases) this._aliases.delete(alias);
+        if (command.aliases) command.aliases.forEach(alias => this._aliases.delete(alias));
         return super.delete(name);
     }
 };
