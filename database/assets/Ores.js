@@ -28,6 +28,6 @@ const Ores = [
 
 const OrePrices = [
     9, 19, 25
-]
+];
 
 module.exports = { Ores, OrePrices };

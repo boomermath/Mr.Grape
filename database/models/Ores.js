@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const { OrePrices } = require("../assets")
+const { OrePrices } = require("../assets");
 const Model = require("../Model");
 
 class OreStore extends Model { }
@@ -16,6 +16,6 @@ OreStore.init({
             return OrePrices[this.tier - 1];
         }
     }
-})
+});
 
 module.exports = OreStore;

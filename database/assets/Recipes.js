@@ -25,4 +25,4 @@ module.exports = {
         kelite: 3,
         rainbonite: 10
     }
-}
+};

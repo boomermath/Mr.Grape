@@ -3,5 +3,5 @@ module.exports = [
     { name: "lockpick", description: "Bypasses number-lock, and increases chances of a successful robbery.\nOne use only.", price: 70 },
     { name: "rainbonite pick", description: "Increases ore output.", price: 400 },
     { name: "personal refinery", description: "Refine your ores for free!", price: 1000 },
-]
+];
 

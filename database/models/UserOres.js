@@ -11,6 +11,6 @@ UserOres.init({
         defaultValue: 0
     },
     refined: DataTypes.BOOLEAN
-})
+});
 
 module.exports = UserOres;

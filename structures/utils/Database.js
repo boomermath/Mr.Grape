@@ -18,7 +18,7 @@ module.exports =
     class {
 
         _addToItems(type, item) {
-            item.type = type
+            item.type = type;
             return Items.upsert(item);
         }
 
@@ -27,7 +27,7 @@ module.exports =
                 ...ShopItems.map(item => this._addToItems("shop", item)),
                 ...Craftable.map(craft => this._addToItems("craft", craft)),
                 ...Ores.map(ore => OreStore.upsert(ore))
-            ]
+            ];
 
             await Promise.all(promises);
         }
