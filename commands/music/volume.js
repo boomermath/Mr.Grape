@@ -16,10 +16,10 @@ module.exports =
 
         main(msg, args) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
-            const number = +args[0];
+            const number = +msg.params[0];
             let title, info;
 
-            if (!args[0]) [title, info] = ["**Volume**", musicPlayer.volume];
+            if (!number) [title, info] = ["**Volume**", musicPlayer.volume];
 
             else if (isNaN(number) || number < 0 || number > 100) return msg.send(`Setting volume to ${args[0]}, not.`);
 

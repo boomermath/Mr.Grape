@@ -50,6 +50,7 @@ module.exports =
                 .setImage(url);
             msg.send(memeEmbed);
 
-            if (new Date().getHours() === 12) this.init();
+            const date = new Date();
+            if (date.getHours() === 12 && date.getMinutes === 0) this.init();
         }
     };

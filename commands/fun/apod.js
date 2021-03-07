@@ -18,7 +18,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const { hdurl: picture } = await this.request();
 
             const pictureEmbed = new msg.embed()

@@ -27,7 +27,7 @@ module.exports =
             return arr;
         }
 
-        async main(msg, args) {
+        async main(msg) {
 
             await msg.react(checkmark);
 
@@ -38,7 +38,7 @@ module.exports =
                 "util": "utility",
                 "eco": "economy"
             };
-            const helpArg = args[0]?.toLowerCase();
+            const helpArg = msg.params[0]?.toLowerCase();
             const categories = ["economy", "fun", "moderation", "music", "utility"];
 
             if (!helpArg) {

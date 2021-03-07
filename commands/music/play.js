@@ -20,17 +20,17 @@ module.exports =
             return player;
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id) || this.createPlayer(msg);
 
-            if (!args && musicPlayer.playing === false) {
+            if (!msg.params && musicPlayer.playing === false) {
                 musicPlayer.resume();
                 return msg.send("Resumed music!");
             }
 
-            if (!args) return msg.send("What should I play?");
+            if (!msg.params) return msg.send("What should I play?");
             
-            await musicPlayer.play(msg, args.join(" "));
+            await musicPlayer.play(msg, msg.params.join(" "));
 
             musicPlayer._connection.on("disconnect", () => this.musicQueues.delete(msg.guild.id));
         }

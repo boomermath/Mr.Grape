@@ -28,11 +28,11 @@ module.exports =
             return args.map(c => this.client.commands.get(c.toLowerCase())).filter(c => c !== undefined);
         }
 
-        main(msg, args) {
+        main(msg) {
             if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!");
-            if (args[0] === "all") this.reloadAll();
+            if (msg.params[0] === "all") this.reloadAll();
             else {
-                const commands = this.getCommands(args);
+                const commands = this.getCommands(msg.params);
                 if (!commands) return msg.send("Invalid command!");
                 commands.map(c => this.reloadCommand(c));
             }

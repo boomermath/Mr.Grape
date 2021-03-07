@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const ping = await msg.send("Ping?");
             const pingNum = ping.createdTimestamp - msg.createdTimestamp;
             const pingEmbed = new msg.embed()

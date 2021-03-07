@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
 
             const guildEmbed = new msg.embed()
                 .setAuthor(msg.guild.name, msg.guild.iconURL())

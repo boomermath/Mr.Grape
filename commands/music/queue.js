@@ -1,3 +1,4 @@
+const { Util: { escapeMarkdown } } = require('discord.js');
 const { MusicCommand } = require("../../structures");
 
 module.exports =
@@ -15,12 +16,12 @@ module.exports =
         }
 
         createEntry(pos, { title, url, duration, author }) {
-            return ["\u200b", `**${pos}) [${title}](${url})\n\`${duration}\`| ${author}**`];
+            return ["\u200b", `**${pos}) [${escapeMarkdown(title)}](${url})\n\`${duration}\`| ${author}**`];
         }
 
         main(msg, args) {
             const { currentSong: { title, url }, queue: { songs } } = this.musicQueues.get(msg.guild.id);
             const entries = songs.map(s => this.createEntry(songs.indexOf(s) + 1, s));
-            msg.paginate({ title: "Queue", description: `**__Now playing:__** **[${title}](${url})**` }, entries, 10);
+            msg.paginate({ title: "Queue", description: `**__Now playing:__** **[${escapeMarkdown(title)}](${url})**` }, entries, 10);
         }
     };

@@ -8,7 +8,7 @@ module.exports = class extends Client {
 
         super(...opts);
 
-        this.config = require("../config/main");
+        this.config = require("../config");
 
         this.commands = new CommandStore(this, {
             directory: "./commands"

@@ -44,10 +44,10 @@ module.exports =
             return array[Math.floor(Math.random() * array.length)];
         }
 
-        main(msg, args) {
+        main(msg) {
             let invalid;
 
-            if (!args.length || !args.pop().endsWith("?")) invalid = true;
+            if (!msg.params.length || !msg.pop().endsWith("?")) invalid = true;
 
             const embed = new msg.embed()
                 .setTitle(`${msg.author.username}'s crystal ball`)

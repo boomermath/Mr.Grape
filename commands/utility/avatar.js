@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const avatar = msg.mentions.users.first() || msg.author;
             const url = avatar.displayAvatarURL().replace(/.jpg$|.png$|.webp$/, "");
 

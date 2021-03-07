@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const coinFlip = new msg.embed()
                 .setTitle(`${msg.author.username}'s coinflip`)
                 .addField("It landed on", `${Math.round(Math.random()) ? "Heads!" : "Tails!"}`);

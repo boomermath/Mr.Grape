@@ -16,8 +16,8 @@ module.exports =
         }
 
         async main(msg, args) {
-            if (!args[0]) return msg.send("Who should I kick?");
-            const target = msg.mentions.members.first() || await msg.guild.members.fetch(args[0]);
+            if (!msg.params[0]) return msg.send("Who should I kick?");
+            const target = msg.mentions.members.first() || await msg.guild.members.fetch(msg.params[0]);
             
             if (!target) return msg.send("That's not a valid user!");
             else if (msg.author.id === target.id) return msg.send("Bruh imagine kicking yourself.");

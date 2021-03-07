@@ -19,7 +19,7 @@ module.exports =
             return `${string}${amt > 1 ? "s" : ""}`;
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const target = msg.mentions.users.first() || msg.author;
             
             if (target.bot) return msg.send("No other bots (except me, cus im cool)");

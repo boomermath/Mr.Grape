@@ -13,14 +13,16 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
-            if (!args[0]) return msg.send("Give me a prefix."); 
+        async main(msg) {
+            const prefix = msg.params[0];
 
-            msg.guild.setPrefix(args[0]);
+            if (!prefix) return msg.send("Give me a prefix."); 
+
+            msg.guild.setPrefix(prefix);
 
             const prefixEmbed = new msg.embed()
                 .setTitle("Prefix")
-                .addField("Set to", args[0]);
+                .addField("Set to", prefix);
             msg.send(prefixEmbed);
         }
     };

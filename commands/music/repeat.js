@@ -17,7 +17,7 @@ module.exports =
         main(msg, args) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             const mode = ["Off", "Song", "Queue"];
-            switch (args[0]) {
+            switch (msg.params[0]) {
             case undefined:
                 const loopEmbed = new msg.embed()
                     .setTitle(`**Current loop mode: ${mode[musicPlayer.repeatMode]}**`);

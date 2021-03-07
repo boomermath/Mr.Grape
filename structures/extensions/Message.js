@@ -8,10 +8,13 @@ Structures.extend("Message", Message => {
             super(...args);
             this.emojis = emojis;
             this.embed = Embed;
-            
-            if (this.content.startsWith(this.prefix)) {
-                [this.command, ...this.args] = this.content.slice(this.prefix.length).trim().split(/ +/);
-            }
+        }
+
+        get command() {
+            if (!this.content.startsWith(this.prefix)) return;
+            [this._parsedCommand, ...this.params] = this.content.slice(this.prefix.length).trim().split(/ +/);
+            const command = this.client.commands.get(this._parsedCommand.toLowerCase());
+            return command;
         }
 
         get prefix() {

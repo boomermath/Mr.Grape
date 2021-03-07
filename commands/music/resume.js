@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             if (musicPlayer.playing === true) return msg.send("The music is already playing!");
             musicPlayer.resume();

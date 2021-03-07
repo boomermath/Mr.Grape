@@ -20,7 +20,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const picture = await this.request();
 
             const dogEmbed = new msg.embed()

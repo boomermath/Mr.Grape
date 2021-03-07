@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const diceRoll = new msg.embed()
                 .setTitle(`${msg.author.username}'s die`)
                 .addField("You rolled", Math.floor(Math.random() * 6) + 1);

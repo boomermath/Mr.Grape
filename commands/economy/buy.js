@@ -14,15 +14,15 @@ module.exports =
             });
         }
 
-        parseArgs(args) {
-            if (args.length === 1) return [args[0], 1];
-            const number = args.find(e => +e);
+        parseArgs({ params }) {
+            if (params.length === 1) return [args[0], 1];
+            const number = params.find(e => +e);
             if (!number) return [false];
-            args.splice(args.indexOf(number), 1);
-            return [args[0], +number];
+            params.splice(params.indexOf(number), 1);
+            return [params[0], +number];
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const [itemName, number] = this.parseArgs(args);
 
             if (!itemName) return msg.send("ok karen");

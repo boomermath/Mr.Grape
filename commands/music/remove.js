@@ -14,15 +14,22 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             const { queue: { songs, position } } = musicPlayer;
-            const index = (+args[0] || songs.length) - 1;
+
+            const index = (+msg.params[0] || songs.length) - 1;
+
+            if (index > songs.length) return msg.send("That's not a valid song to remove!")
+
             const removedSong = songs[index];
+
             songs.splice(index, 1);
+
             const removeEmbed = new msg.embed()
-                .setTitle(`Removed [${removedSong.title}] from the queue!`);
+                .setDescription(`Removed [${removedSong.title}] from the queue!`);
             msg.send(removeEmbed);
+
             if (index === position) musicPlayer.shiftQueue();
         }
     };

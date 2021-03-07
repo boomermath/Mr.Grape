@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const target = msg.mentions.users.first();
             const balance = this.eco.users.getBalance(msg.author.id);
 
@@ -24,7 +24,7 @@ module.exports =
             else if (target.bot) return msg.send("No other bots (except me, cus im cool)");
             else if (target.id === msg.author.id) return msg.send("bruh you cant give golden stars to yourself smh");
 
-            const number = args.find(e => e === "all") ? balance : +args.find(n => +n);
+            const number = msg.params.find(e => e === "all") ? balance : +args.find(n => +n);
 
             if (!number || number < 0 || number > balance) return msg.send("that's not a valid amount smh");
 

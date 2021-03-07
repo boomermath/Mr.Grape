@@ -22,7 +22,7 @@ module.exports =
             return array;
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             let { songs, position } = musicPlayer.queue;
             if (songs.length <= 2) return msg.send("Queue's kinda too small to shuffle.");

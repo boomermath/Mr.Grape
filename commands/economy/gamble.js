@@ -29,23 +29,21 @@ module.exports =
             if (!number || number < 0 || number > balance) return msg.send("That's not a valid number of stars to bet.");
 
             if (number === balance) {
-                try {
-                    msg.send("Are you sure you wanna do that?");
+                msg.send("Are you sure you wanna do that?");
 
-                    const collected = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, {
-                        max: 1,
-                        time: 8000,
-                        errors: ["time"]
-                    });
+                const collected = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, {
+                    max: 1,
+                    time: 8000,
+                });
 
-                    const message = collected.first().content.toLowerCase();
+                if (!collected.size) return msg.send("ok ig not");
 
-                    if (message === "y" || message === "yes") null;
-                    else if (message === "n" || message === "no") return msg.send("ok then");
-                    else return msg.send("bruh its yes/no");
-                } catch {
-                    return msg.send("ok ig not");
-                }
+                const message = collected.first().content.toLowerCase();
+
+                if (message === "y" || message === "yes") null;
+                else if (message === "n" || message === "no") return msg.send("ok then");
+                else return msg.send("bruh its yes/no");
+
             }
 
             const dice = this.randomize(6);

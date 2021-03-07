@@ -13,7 +13,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const invite = new msg.embed()
                 .setTitle("Invites")
                 .addFields(

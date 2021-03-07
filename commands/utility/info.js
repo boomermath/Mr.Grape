@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
 
             let uptime = this.client.uptime / 1000;
             let unit = "second(s)";

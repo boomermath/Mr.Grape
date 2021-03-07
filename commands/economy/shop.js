@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const shop = await this.eco.shop.findAll();
             const shopEntry = shop
                 .sort((a, b) => a.name.localeCompare(b.name))

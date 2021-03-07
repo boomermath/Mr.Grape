@@ -15,9 +15,9 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const music = this.musicQueues.get(msg.guild.id);
-            const query = music?.currentSong.title || args.join(" ");
+            const query = music?.currentSong.title || msg.params.join(" ");
 
             if (!query) return msg.send("Give me a valid song to search up!");
 
@@ -29,6 +29,8 @@ module.exports =
             }).send();
 
             const { artist, name, lyrics, album_art, url } = (await lyricsRequest.json()).data[0];
+
+            if (!lyrics) return msg.send("Lyrics could not be found for that song!");
 
             const lyrEmbed = new msg.embed()
                 .setTitle("Lyrics")

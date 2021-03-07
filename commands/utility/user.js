@@ -19,7 +19,7 @@ module.exports =
             return new Date(date).toLocaleString("en-US", dateOptions).split(" at").join("\n");
         }
 
-        main(msg, args) {
+        main(msg) {
             const person = msg.mentions.users.first() || msg.author;
             const personAsGuild = msg.guild.member(person);
             const personEmbed = new msg.embed()

@@ -13,7 +13,9 @@ module.exports =
         }
 
         _register(component, dir) {
-            if (!(component instanceof this.holds)) throw new Error(`${component.name} doesn't belong in ${this.name}!`);
+            if (!(component instanceof this.holds)) {
+                throw new Error(`${component.name} doesn't belong in ${this.name}!`);
+            }
             if (super.has(component.name)) throw new Error(`${component.name} already exists!`);
             component.filepath = dir;
             component.init ? component.init() : false;
@@ -36,6 +38,7 @@ module.exports =
                     this.init(filePath, arr);
                 }
                 else {
+                    if (!filePath.endsWith(".js")) continue;
                     this.load(filePath);
                 }
             }

@@ -20,11 +20,11 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
-            if (!args.length) return msg.send("Give me a question to answer!");
+        async main(msg) {
+            if (!msg.params.length) return msg.send("Give me a question to answer!");
 
             const queryMsg = await msg.send("Gimme a sec . . .");
-            const { queryresult } = await this.request({ input: args.join(" ") });
+            const { queryresult } = await this.request({ input: msg.params.join(" ") });
 
             if (!queryresult.success) {
                 queryMsg.delete();

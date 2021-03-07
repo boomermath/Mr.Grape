@@ -19,7 +19,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const { setup, delivery } = await this.request();
 
             const jokeEmbed = new msg.embed()

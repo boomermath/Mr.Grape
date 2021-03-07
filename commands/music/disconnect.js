@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             musicPlayer.disconnect();
             this.musicQueues.delete(msg.guild.id);
