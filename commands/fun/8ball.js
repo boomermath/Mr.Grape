@@ -47,7 +47,7 @@ module.exports =
         main(msg) {
             let invalid;
 
-            if (!msg.params.length || !msg.pop().endsWith("?")) invalid = true;
+            if (!msg.params.length || !msg.params.pop().endsWith("?")) invalid = true;
 
             const embed = new msg.embed()
                 .setTitle(`${msg.author.username}'s crystal ball`)
