@@ -34,7 +34,7 @@ module.exports =
                 filter: "audioonly",
                 quality: "highestaudio"
             });
-            
+
             const player = this._connection.play(play)
                 .on("start", () => {
                     const embed = new this.msg.embed()
@@ -43,7 +43,7 @@ module.exports =
                         .setThumbnail(song.thumbnail);
                     this.msg.send(embed);
                 })
-                .on("finish", () => { this.shiftQueue(); })
+                .on("finish", this.shiftQueue)
                 .on("error", (error) => console.error(error));
             player.setVolumeLogarithmic(this._settings.volume / 100);
         }
