@@ -9,6 +9,6 @@ module.exports =
         }
 
         main({ name }, { username, id }) {
-            this.client.console.log(`aas "${name}" used by ${username} | ID: ${id}`);
+            this.client.console.log(`Command "${name}" used by ${username} | ID: ${id}`);
         }
     };
