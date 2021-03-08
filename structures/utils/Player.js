@@ -44,7 +44,7 @@ module.exports =
                         .setThumbnail(song.thumbnail);
                     this.msg.send(embed);
                 })
-                .on("finish", this.shiftQueue)
+                .on("finish", () => { this.shiftQueue(); })
                 .on("error", (error) => this.console.error(error));
             player.setVolumeLogarithmic(this.settings.volume / 100);
         }
@@ -77,6 +77,7 @@ module.exports =
         }
 
         async play(msg, input) {
+            console.log(this.settings.repeatMode)
             await this._updateQueue(msg, input);
             if (this._evoked) {
                 this._evoked = false;
