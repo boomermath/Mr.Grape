@@ -8,7 +8,7 @@ module.exports =
             this._evoked = true;
             this._connection = null;
             this.msg = message;
-            this.this.console = message.client.this.console;
+            this.console = message.client.console;
             this.settings = {
                 volume: 42,
                 repeatMode: 0,
@@ -46,7 +46,7 @@ module.exports =
                 })
                 .on("finish", this.shiftQueue)
                 .on("error", (error) => this.console.error(error));
-            player.setVolumeLogarithmic(this._settings.volume / 100);
+            player.setVolumeLogarithmic(this.settings.volume / 100);
         }
 
         async _updateQueue(msg, input) {
