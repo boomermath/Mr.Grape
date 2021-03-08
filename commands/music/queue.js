@@ -22,6 +22,6 @@ module.exports =
         main(msg) {
             const { currentSong: { title, url }, queue: { songs } } = this.musicQueues.get(msg.guild.id);
             const entries = songs.map(s => this.createEntry(songs.indexOf(s) + 1, s));
-            msg.paginate({ title: "Queue", description: `**__Now playing:__** **[${escapeMarkdown(title)}](${url})**` }, entries, 10);
+            msg.paginate({ title: "Queue", description: `**__Now playing:__** **[${escapeMarkdown(title)}](${url})**` }, entries, 5);
         }
     };
