@@ -52,8 +52,8 @@ module.exports =
                 command.main(message);
                 this.client.emit("commandRun", command, message.author);
             } catch (err) {
-                console.error(err);
                 message.send("Made an oopsie! If this persists, please let us know!");
+                this.client.emit("commandError", command, err);
             }
         }
     };

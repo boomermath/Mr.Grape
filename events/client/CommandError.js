@@ -4,11 +4,11 @@ module.exports =
     class extends Event {
         constructor(client) {
             super(client, {
-                name: "commandRun"
+                name: "commandError"
             });
         }
 
-        main({ name }, { username, id }) {
-            this.client.console.log(`aas "${name}" used by ${username} | ID: ${id}`);
+        main({ name }, err) {
+            this.client.console.error(`Command "${name}" failed.\nError: ${err}`);
         }
     };
