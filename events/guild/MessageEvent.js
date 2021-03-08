@@ -1,4 +1,4 @@
-const { Cooldowns, Event } = require("../structures");
+const { Cooldowns, Event } = require("../../structures")
 
 module.exports =
     class extends Event {
@@ -50,6 +50,7 @@ module.exports =
 
             try {
                 command.main(message);
+                this.client.emit("commandRun", command, message.author)
             } catch (err) {
                 console.error(err);
                 message.send("Made an oopsie! If this persists, please let us know!");

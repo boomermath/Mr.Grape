@@ -1,5 +1,6 @@
 const { join } = require("path");
 const { readdirSync, statSync } = require("fs");
+const { EventEmitter } = require("events");
 const { Collection } = require("discord.js");
 
 module.exports =
@@ -8,6 +9,7 @@ module.exports =
             super();
             this.name = name;
             this.client = client;
+            this.emitter = new EventEmitter();
             this.directory = join(process.cwd(), directory);
             this.holds = holds;
         }
@@ -50,5 +52,9 @@ module.exports =
             }
 
             return this;
+        }
+
+        emit(...args) {
+            return this.emitter.emit(...args);
         }
     };

@@ -1,3 +1,4 @@
+const { Collection } = require("discord.js");
 const { Event } = require("../events");
 const { Store } = require("../base");
 
@@ -9,7 +10,7 @@ module.exports = class extends Store {
     load(dir) {
         const event = super.load(dir);
         const func = event.main.bind(event);
-        this.client.on(event.name, func);
+        this.client[event.once ? "once" : "on"](event.name, func);
         return event;
     }
 };

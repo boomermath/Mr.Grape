@@ -1,10 +1,11 @@
-const { Event } = require("../structures");
+const { Event } = require("../../structures")
 
 module.exports =
     class extends Event {
         constructor(client, name = "ready") {
             super(client, {
-                name: name
+                name: name,
+                once: true
             });
         }
 
