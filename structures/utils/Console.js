@@ -3,15 +3,20 @@ const { Console } = require("console")
 
 const opts = {
     warn: "bgYellow",
-    log: ["bgWhite"]["black"],
+    log: "inverse",
     success: "bgGreen",
-    error: "bgRed"
+    error: "bgRed",
+    debug: "bgMagenta"
 }
 
 module.exports =
     class extends Console {
         constructor() {
-            super(process.stdout, process.stderr)
+            super(process.stdout, process.stderr);
+
+            for (const method of Object.keys(opts)) {
+                this[method] = function (args) { this.write(args, method); }
+            }
         }
 
         get timestamp() {
@@ -22,22 +27,6 @@ module.exports =
             content = this._flatten(content);
             const colors = opts[type];
             super[type === "error" ? "error" : "log"](chalk[colors](`${content} | ${this.timestamp}`))
-        }
-
-        warn(args) {
-            return this.write(args, "warn")
-        }
-
-        log(args) {
-            return this.write(args, "log")
-        }
-
-        success(args) {
-            return this.write(args, "success")
-        }
-
-        error(args) {
-            return this.write(args, "error")
         }
 
         _flatten(data) {

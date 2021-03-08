@@ -9,7 +9,7 @@ module.exports =
         }
 
         main() {
-            console.log("Ready!");
+            this.client.console.log("Ready!");
             this.updatePresence();
         }
 
