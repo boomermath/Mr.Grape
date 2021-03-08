@@ -11,7 +11,7 @@ Structures.extend("Message", Message => {
         }
 
         get command() {
-            if (!this.content.startsWith(this.prefix)) return;
+            if (!this.content.startsWith(this.prefix)) return false;
             [this._parsedCommand, ...this.params] = this.content.slice(this.prefix.length).trim().split(/ +/);
             const command = this.client.commands.get(this._parsedCommand.toLowerCase());
             return command;

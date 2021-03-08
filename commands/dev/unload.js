@@ -14,7 +14,7 @@ module.exports =
             });
         }
 		
-        main(msg, args) {
+        main(msg) {
             if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!");
             const command = this.client.commands.delete(msg.params[0].toLowerCase());
             if (!command) return msg.send("Invalid command!");

@@ -35,9 +35,10 @@ module.exports =
         async init() {
             try {
                 await sequelize.authenticate();
-                await sequelize.sync({ force: true });
+                await sequelize.sync();
                 await this._loadItems();
                 await Users.load();
+                console.log(Users.cache);
                 await Guilds.load();
             } catch (err) { console.error(err); }
         }

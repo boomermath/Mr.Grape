@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             let number = +msg.params[0] - 1 || 1;
             if (musicPlayer.playing === false) musicPlayer.resume();

@@ -20,7 +20,7 @@ module.exports =
 
             const index = (+msg.params[0] || songs.length) - 1;
 
-            if (index > songs.length) return msg.send("That's not a valid song to remove!")
+            if (index > songs.length) return msg.send("That's not a valid song to remove!");
 
             const removedSong = songs[index];
 

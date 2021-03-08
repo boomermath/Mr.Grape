@@ -42,7 +42,7 @@ module.exports =
             return meme;
         }
 
-        main(msg, args) {
+        main(msg) {
             const [title, url] = this.getMeme(msg.author.id);
 
             const memeEmbed = new msg.embed()

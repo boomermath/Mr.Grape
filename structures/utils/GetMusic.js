@@ -1,6 +1,7 @@
 const { Util: { escapeMarkdown } } = require("discord.js");
 const ytsr = require("ytsr");
 const ytpl = require("ytpl");
+/* eslint-disable no-useless-escape */
 const [ytRegex, plRegex] = [/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi, /^.*(list=)([^#\&\?]*).*/gi];
 
 class Song {

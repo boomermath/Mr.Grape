@@ -14,9 +14,10 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             const mode = ["Off", "Song", "Queue"];
+            /* eslint-disable no-case-declarations */
             switch (msg.params[0]) {
             case undefined:
                 const loopEmbed = new msg.embed()

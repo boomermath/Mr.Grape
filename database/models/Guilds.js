@@ -13,7 +13,7 @@ class Guilds extends Model {
         }
 
         else if (!this.settings) {
-            const guildEntry = await guilds.create({ id: this.id, prefix: newPrefix });
+            const guildEntry = await this.create({ id: this.id, prefix: newPrefix });
             this.cache.set(guildEntry.id, guildEntry);
         }
 

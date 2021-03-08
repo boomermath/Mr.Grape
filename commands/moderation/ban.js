@@ -15,7 +15,7 @@ module.exports =
             });
         }
 
-        async main(msg, args) {
+        async main(msg) {
             if (!msg.params[0]) return msg.send("Who should I ban?");
             const target = msg.mentions.members.first() || await msg.guild.members.fetch(msg.params[0]);
             

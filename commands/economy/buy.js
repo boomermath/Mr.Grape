@@ -15,7 +15,7 @@ module.exports =
         }
 
         parseArgs({ params }) {
-            if (params.length === 1) return [args[0], 1];
+            if (params.length === 1) return [params[0], 1];
             const number = params.find(e => +e);
             if (!number) return [false];
             params.splice(params.indexOf(number), 1);
@@ -23,7 +23,7 @@ module.exports =
         }
 
         async main(msg) {
-            const [itemName, number] = this.parseArgs(args);
+            const [itemName, number] = this.parseArgs(msg);
 
             if (!itemName) return msg.send("ok karen");
 
