@@ -23,13 +23,13 @@ module.exports =
         }
 
         async _loadItems() {
-            const promises = [
+            const TableUpserts = [
                 ...ShopItems.map(item => this._addToItems("shop", item)),
                 ...Craftable.map(craft => this._addToItems("craft", craft)),
                 ...Ores.map(ore => OreStore.upsert(ore))
             ];
 
-            await Promise.all(promises);
+            await Promise.all(TableUpserts);
         }
 
         async init() {

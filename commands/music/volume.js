@@ -19,7 +19,7 @@ module.exports =
             const number = +msg.params[0];
             let title, info;
 
-            if (!number) [title, info] = ["**Volume**", musicPlayer.volume];
+            if (!number) [title, info] = ["**Volume**", musicPlayer.settings.volume];
 
             else if (isNaN(number) || number < 0 || number > 100) return msg.send(`Setting volume to ${args[0]}, not.`);
 

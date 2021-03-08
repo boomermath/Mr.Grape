@@ -7,7 +7,7 @@ module.exports =
         constructor(message) {
             this._evoked = true;
             this._connection = null;
-            this._settings = {
+            this.settings = {
                 volume: 42,
                 repeatMode: 0,
                 playing: true
@@ -92,19 +92,11 @@ module.exports =
             this.queue.position = 0;
         }
 
-        get repeatMode() { return this._settings.repeatMode; }
-
-        get volume() { return this._settings.volume; }
-
-        get playing() { return this._settings.playing; }
+        get playing() { return this.settings.playing; }
 
         get playTime() { return (this._connection.dispatcher.streamTime - this._connection.dispatcher.pausedTime) / 1000; }
 
         get currentSong() { return this.queue.songs[this.queue.position]; }
-
-        set repeatMode(mode) {
-            this._settings.repeatMode = mode;
-        }
 
         set volume(volume) {
             this._connection.dispatcher.setVolumeLogarithmic(volume / 100);

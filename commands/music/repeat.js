@@ -21,19 +21,19 @@ module.exports =
             switch (msg.params[0]) {
             case undefined:
                 const loopEmbed = new msg.embed()
-                    .setTitle(`**Current loop mode: ${mode[musicPlayer.repeatMode]}**`);
+                    .setTitle(`**Current loop mode: ${mode[musicPlayer.settings.repeatMode]}**`);
                 return msg.send(loopEmbed);
             case "o":
             case "off":
-                musicPlayer.repeatMode = 0;
+                musicPlayer.settings.repeatMode = 0;
                 break;
             case "s":
             case "song":
-                musicPlayer.repeatMode = 1;
+                musicPlayer.settings.repeatMode = 1;
                 break;
             case "q":
             case "queue":
-                musicPlayer.repeatMode = 2;
+                musicPlayer.settings.repeatMode = 2;
                 break;
             default:
                 const settingsEmbed = new msg.embed()
@@ -41,7 +41,7 @@ module.exports =
                 return msg.send(settingsEmbed);
             }
             const settingsEmbed = new msg.embed()
-                .setTitle(`**Looping set to: ${mode[musicPlayer.repeatMode]}**`);
+                .setTitle(`**Looping set to: ${mode[musicPlayer.settings.repeatMode]}**`);
             return msg.send(settingsEmbed);
         }
     };
