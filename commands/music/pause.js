@@ -16,7 +16,7 @@ module.exports =
 
         main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
-            if (musicPlayer.playing === false) return msg.send("The music is already paused!");
+            if (!musicPlayer.settings.playing) return msg.send("The music is already paused!");
             musicPlayer.pause();
             const pauseEmbed = new msg.embed()
                 .setTitle(":pause_button: Paused Music!");

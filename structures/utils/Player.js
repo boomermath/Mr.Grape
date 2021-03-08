@@ -59,7 +59,7 @@ module.exports =
                 this.queue.songs.push(...songRes.songs);
             } catch (e) {
                 console.error(e);
-                this.disconnect();
+                if (this._evoked) this.disconnect();
                 return msg.send("No songs found!");
             }
         }
@@ -91,8 +91,6 @@ module.exports =
             this.queue.songs = [];
             this.queue.position = 0;
         }
-
-        get playing() { return this.settings.playing; }
 
         get playTime() { return (this._connection.dispatcher.streamTime - this._connection.dispatcher.pausedTime) / 1000; }
 
