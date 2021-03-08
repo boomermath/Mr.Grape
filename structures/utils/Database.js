@@ -38,7 +38,6 @@ module.exports =
                 await sequelize.sync();
                 await this._loadItems();
                 await Users.load();
-                console.log(Users.cache);
                 await Guilds.load();
             } catch (err) { console.error(err); }
         }
