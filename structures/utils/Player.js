@@ -68,8 +68,8 @@ module.exports =
         async shiftQueue(ops) {
             if (ops) { this.queue.position += ops; }
             else {
-                if (this._settings.repeatMode !== 1) this.queue.position += 1;
-                if (this._settings.repeatMode === 2 && this.queue.songs.length === this.queue.position) this.queue.position = 0;
+                if (this.settings.repeatMode !== 1) this.queue.position += 1;
+                if (this.settings.repeatMode === 2 && this.queue.songs.length === this.queue.position) this.queue.position = 0;
             }
             const song = this.queue.songs[this.queue.position];
             if (!song) return this.disconnect();
@@ -99,17 +99,17 @@ module.exports =
 
         set volume(volume) {
             this._connection.dispatcher.setVolumeLogarithmic(volume / 100);
-            this._settings.volume = volume;
+            this.settings.volume = volume;
         }
 
         pause() {
             this._connection.dispatcher.pause(true);
-            this._settings.playing = false;
+            this.settings.playing = false;
         }
 
         resume() {
             this._connection.dispatcher.resume();
-            this._settings.playing = true;
+            this.settings.playing = true;
         }
 
     };
