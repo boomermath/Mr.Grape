@@ -14,9 +14,13 @@ module.exports =
 
         _register(component, dir) {
             if (!(component instanceof this.holds)) {
-                throw new Error(`${component.name} doesn't belong in ${this.name}!`);
+                throw this.client.console.error(new Error(`${component.name} doesn't belong in ${this.name}!`));
             }
-            if (super.has(component.name)) throw new Error(`${component.name} already exists!`);
+
+            else if (super.has(component.name)) {
+                throw this.client.console.error(new Error(`${component.name} already exists!`));
+            }
+
             component.filepath = dir;
             component.init ? component.init() : false;
         }
@@ -24,22 +28,24 @@ module.exports =
         load(dir) {
             const Component = require(dir);
             const component = new Component(this.client);
+
             this._register(component, dir);
             super.set(component.name, component);
+
             delete require.cache[require.resolve(dir)];
             return component;
         }
 
         init(path = this.directory, arr = []) {
             const files = readdirSync(path);
+
             for (const file of files) {
                 const filePath = join(path, file);
                 if (statSync(filePath).isDirectory()) {
                     this.init(filePath, arr);
                 }
                 else {
-                    if (!filePath.endsWith(".js")) continue;
-                    this.load(filePath);
+                    if (filePath.endsWith(".js")) this.load(filePath);
                 }
             }
 

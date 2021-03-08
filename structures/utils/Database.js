@@ -33,12 +33,10 @@ module.exports =
         }
 
         async init() {
-            try {
-                await sequelize.authenticate();
-                await sequelize.sync();
-                await this._loadItems();
-                await Users.load();
-                await Guilds.load();
-            } catch (err) { console.error(err); }
+            await sequelize.authenticate();
+            await sequelize.sync();
+            await this._loadItems();
+            await Users.load();
+            await Guilds.load();
         }
     };

@@ -44,7 +44,9 @@ class PaginatedEmbed {
         const embed = new MessageEmbed({
             ...this.embed, footer: { text: `${this.page + 1} of ${this.pages.length}` }
         });
+
         for (const [title, value] of this.pages[this.page]) embed.addField(title, value);
+        
         return embed;
     }
 

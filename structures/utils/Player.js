@@ -7,12 +7,13 @@ module.exports =
         constructor(message) {
             this._evoked = true;
             this._connection = null;
+            this.msg = message;
+            this.this.console = message.client.this.console;
             this.settings = {
                 volume: 42,
                 repeatMode: 0,
                 playing: true
             };
-            this.msg = message;
             this.queue = {
                 songs: [],
                 position: 0
@@ -24,7 +25,7 @@ module.exports =
                 this._connection = await this.msg.member.voice.channel.join();
             } catch (error) {
                 this.disconnect();
-                console.error(error);
+                this.console.error(error);
                 this.msg.send("Made an oopsie while trying to connect!");
             }
         }
@@ -44,7 +45,7 @@ module.exports =
                     this.msg.send(embed);
                 })
                 .on("finish", this.shiftQueue)
-                .on("error", (error) => console.error(error));
+                .on("error", (error) => this.console.error(error));
             player.setVolumeLogarithmic(this._settings.volume / 100);
         }
 
@@ -57,8 +58,8 @@ module.exports =
                     .setThumbnail(songRes.thumbnail);
                 msg.send(embed);
                 this.queue.songs.push(...songRes.songs);
-            } catch (e) {
-                console.error(e);
+            } catch (err) {
+                this.console.error(err);
                 if (this._evoked) this.disconnect();
                 return msg.send("No songs found!");
             }
