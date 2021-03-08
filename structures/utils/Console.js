@@ -1,5 +1,5 @@
-const chalk = require("chalk")
-const { Console } = require("console")
+const chalk = require("chalk");
+const { Console } = require("console");
 
 const opts = {
     warn: "bgYellow",
@@ -7,7 +7,7 @@ const opts = {
     success: "bgGreen",
     error: "bgRed",
     debug: "bgMagenta"
-}
+};
 
 module.exports =
     class extends Console {
@@ -15,7 +15,7 @@ module.exports =
             super(process.stdout, process.stderr);
 
             for (const method of Object.keys(opts)) {
-                this[method] = function (args) { this.write(args, method); }
+                this[method] = function (args) { this.write(args, method); };
             }
         }
 
@@ -26,7 +26,7 @@ module.exports =
         write(content, type = "log") {
             content = this._flatten(content);
             const colors = opts[type];
-            super[type === "error" ? "error" : "log"](chalk[colors](`${content} | ${this.timestamp}`))
+            super[type === "error" ? "error" : "log"](chalk[colors](`${content} | ${this.timestamp}`));
         }
 
         _flatten(data) {
@@ -35,6 +35,6 @@ module.exports =
                 if (isArray && data.every(e => typeof e === "string")) return data.join("\n");
                 return data.stack || data.message;
             }
-            return String(data)
+            return String(data);
         }
-    }
+    };

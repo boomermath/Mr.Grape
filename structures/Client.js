@@ -23,8 +23,8 @@ module.exports = class extends Client {
             directory: "./events"
         });
 
-        this.register("commands")
-        this.register("events")
+        this.register("commands");
+        this.register("events");
     }
 
     register(store) {
@@ -35,9 +35,9 @@ module.exports = class extends Client {
         try {
             this._registry.forEach(store => {
                 this.console.success(`Loaded ${this[store].init().size} modules from ${store}!`);
-            })
+            });
         } catch (err) {
-            this.console.error(err)
+            this.console.error(err);
         }
 
         super.login();

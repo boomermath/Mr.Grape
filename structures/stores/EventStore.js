@@ -1,4 +1,3 @@
-const { Collection } = require("discord.js");
 const { Event } = require("../events");
 const { Store } = require("../base");
 
