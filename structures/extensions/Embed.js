@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const left = "⬅️";
-const right = "➡️";
+const { Timer } = require("../utils");
+const [left, right] = ["⬅️", "➡️"];
 const color = "PURPLE";
 
 class Embed extends MessageEmbed {
@@ -46,7 +46,7 @@ class PaginatedEmbed {
         });
 
         for (const [title, value] of this.pages[this.page]) embed.addField(title, value);
-        
+
         return embed;
     }
 
@@ -60,8 +60,8 @@ class PaginatedEmbed {
         const filter = (reaction) => {
             return reaction.emoji.name === left || reaction.emoji.name === right;
         };
-
-        const collector = message.createReactionCollector(filter, { time: 60000 });
+        const timer = new Timer(30000);
+        const collector = message.createReactionCollector(filter);
 
         collector.on("collect", (reaction, user) => {
             reaction.users.remove(user.id);
@@ -69,6 +69,13 @@ class PaginatedEmbed {
             else if (reaction.emoji.name === left) this.flipPage(-1);
             else if (reaction.emoji.name === right) this.flipPage(1);
             message.edit(this.renderPage());
+            timer.restart();
+        });
+
+
+        timer.on("finish", () => {
+            collector.stop();
+            message.reactions.removeAll();
         });
     }
 }
