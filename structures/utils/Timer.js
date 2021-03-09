@@ -8,11 +8,15 @@ module.exports =
             if (!time) throw new Error("Timer must have a set time!");
 
             this.time = time;
+            this.timer = this._setTimer();
+        }
+
+        _setTimer() {
             this.timer = setTimeout(() => { this.emit("finish") }, this.time);
         }
 
         restart() {
             clearTimeout(this.timer);
-            this.timer = setTimeout(() => { this.emit("finish") }, this.time);
+            this._setTimer();
         }
     }
