@@ -72,7 +72,6 @@ class PaginatedEmbed {
             timer.restart();
         });
 
-
         timer.on("finish", () => {
             collector.stop();
             message.reactions.removeAll();
