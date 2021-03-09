@@ -8,7 +8,7 @@ module.exports =
                 type: "moderation",
                 aliases: ["hammer"],
                 description: "Ban people.",
-                usage: "<mention|userID>",
+                usage: "<mention|userID> <reason>",
                 cooldown: 1,
                 saying: "Don't spam this command.",
                 requiredPermissions: ["BAN_MEMBERS"]
@@ -17,17 +17,18 @@ module.exports =
 
         async main(msg) {
             if (!msg.params[0]) return msg.send("Who should I ban?");
-            const target = msg.mentions.members.first() || await msg.guild.members.fetch(msg.params[0]);
-            
-            if (!target) return msg.send("That's not a valid user to ban!");
-            else if (msg.author.id === target.id) return msg.send("Imagine banning yourself.");
-            else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to ban.");
-            
-            try {
-                await target.ban();
-                msg.send(`:hammer: ${target.displayName} has been banned with an iron fist.`);
-            } catch {
-                msg.send("Something went wrong. I probably don't have a high enough role to ban that person. Try again.");
-            }
+
+            const target = msg.mentions.members.first() ||
+                await msg.guild.members.fetch(msg.params[0]).catch(() => { null; });
+
+            if (!target) return msg.send("Give me a valid user that I can ban!");
+            else if (target.id === msg.author.id) return msg.send("Imagine banning urself");
+            else if (target.id === this.client.user.id) return msg.send("Woah there, I'm too cool for the hammer")
+            else if (!target.bannable) return msg.send("That isn't a bannable user!");
+
+            target.ban({ reason: msg.params.slice(1).join(" ") || "No reason given" });
+
+            msg.send(`:hammer: ${target.user.username} has been banned with an iron fist.`)
+
         }
     };

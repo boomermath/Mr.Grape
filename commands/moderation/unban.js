@@ -8,7 +8,7 @@ module.exports =
                 type: "moderation",
                 aliases: ["unhammer"],
                 description: "Unban people.",
-                usage: "<mention|userID>",
+                usage: "<userID|username>",
                 cooldown: 1,
                 saying: "Don't spam this command.",
                 requiredPermissions: ["BAN_MEMBERS"]
@@ -16,16 +16,18 @@ module.exports =
         }
 
         async main(msg) {
-            if (!msg.params[0] || msg.mentions.members.first()) return msg.send("Who should I unban? (give me an id)");
+            if (!msg.params[0]) return msg.send("Who should I ban?");
+
+            const bans = await msg.guild.fetchBans();
             
-            if (msg.author.id === msg.params[0]) return msg.send("I don't think you are banned.");
-            else if (this.client.user.id === msg.params[0]) return msg.send("Bruh I'm not banned.");
-            
-            try {
-                await msg.guild.members.unban(msg.params[0]);
-                msg.send("User unbanned!.");
-            } catch {
-                msg.send("Something went wrong. I probably don't have a high enough role to unban that person, or they aren't banned.");
-            }
+            const ban = bans.find(e => e.user.id === msg.params[0] || e.user.username === msg.params.join(" ")).user;
+
+            if (!ban) return msg.send("That user is not banned!");
+            else if (ban.id === msg.author.id) return msg.send("I don't think you're banned?");
+            else if (ban.id === this.client.user.id) return msg.send("I'm not banned.")
+
+            await msg.guild.members.unban(ban.id);
+
+            msg.send(`${ban.username} was unbanned!`)
         }
     };

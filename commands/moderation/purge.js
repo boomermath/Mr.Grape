@@ -17,10 +17,14 @@ module.exports =
 
         async main(msg) {
             const number = +msg.params[0];
-            if (!number) return msg.send("Bruh give me a valid number of message to purge.");
+
+            if (!number) return msg.send("Bruh give me a valid number of messages to purge.");
+
             const [iterations, leftover] = [~~(number / 100), number % 100];
+
             for (let i = 0; i < iterations; i++) await msg.channel.bulkDelete(100);
             if (leftover > 0) await msg.channel.bulkDelete(leftover);
+            
             const confirm = await msg.send("Purged messages!");
             setTimeout(() => { confirm.delete(); }, 2000);
         }

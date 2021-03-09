@@ -22,12 +22,9 @@ module.exports =
             if (!target) return msg.send("That's not a valid user!");
             else if (msg.author.id === target.id) return msg.send("Bruh imagine kicking yourself.");
             else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to get the boot.");
-            
-            try {
-                await target.kick();
-                msg.send(`:wave: ${target.displayName} has been kicked. What a noob lol`);
-            } catch {
-                msg.send("Something went wrong. I probably don't have a high enough role to kick that person, try again later.");
-            }
+            else if (!target.kickable) return msg.send("That isn't a kickable user!");
+
+            target.kick();
+            msg.send(`:wave: ${target.user.username} has been kicked. What a noob lol`);
         }
     };
