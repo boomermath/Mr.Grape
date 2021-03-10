@@ -19,7 +19,7 @@ module.exports =
         toISOTime(seconds) { return new Date(seconds * 1000).toISOString().substr(11, 8); }
 
         main(msg) {
-            const { currentSong: song, playTime } = this.musicQueues.get(msg.guild.id);
+            const { queue: { currentSong: song }, playTime } = this.musicQueues.get(msg.guild.id);
             const formattedDuration = song.duration.length === 4 ? `00:0${song.duration}` :
                 song.duration.length === 5 ? `00:${song.duration}` : song.duration;
             const np = new msg.embed()

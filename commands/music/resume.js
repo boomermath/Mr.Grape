@@ -16,7 +16,7 @@ module.exports =
 
         main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
-            if (musicPlayer.settings.playing) return msg.send("The music is already playing!");
+            if (musicPlayer.playing) return msg.send("The music is already playing!");
             musicPlayer.resume();
             const resumeEmbed = new msg.embed()
                 .setTitle(":white_check_mark: Resumed Music!");

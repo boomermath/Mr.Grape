@@ -23,11 +23,12 @@ module.exports =
         }
 
         async main(msg) {
-            const musicPlayer = this.musicQueues.get(msg.guild.id);
-            let { songs, position } = musicPlayer.queue;
-            if (songs.length <= 2) return msg.send("Queue's kinda too small to shuffle.");
-            const pos = position + 1;
-            songs = [...songs.slice(0, pos), ...this.shuffle(songs.slice(-(songs.length - pos)))];
+            const { queue } = this.musicQueues.get(msg.guild.id);
+            if (queue.songs.length <= 2) return msg.send("Queue's kinda too small to shuffle.");
+            
+            const pos = queue.position + 1;
+            queue.songs = [...queue.songs.slice(0, pos), ...this.shuffle(queue.songs.slice(-(queue.songs.length - pos)))];
+            
             const shuffleMsg = await msg.send("Shuffled!");
             shuffleMsg.react("🔀");
         }

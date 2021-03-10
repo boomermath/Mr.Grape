@@ -60,7 +60,7 @@ class PaginatedEmbed {
         const filter = (reaction) => {
             return reaction.emoji.name === left || reaction.emoji.name === right;
         };
-        const timer = new Timer(30000);
+        const timer = new Timer(10000);
         const collector = message.createReactionCollector(filter);
 
         collector.on("collect", (reaction, user) => {

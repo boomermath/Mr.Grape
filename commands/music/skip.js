@@ -16,9 +16,13 @@ module.exports =
 
         main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
-            let number = +msg.params[0] - 1 || 1;
-            if (musicPlayer.playing === false) musicPlayer.resume();
-            if (musicPlayer.repeatMode === 1) musicPlayer.setRepeatMode(0);
-            musicPlayer.shiftQueue(number);
+            const number = +msg.params[0] - 1 || musicPlayer.queue.position + 1;
+            console.log(number)
+            if (number < 0 || number < musicPlayer.queue.position || number > musicPlayer.queue.songs.length) {
+                return msg.send("That's not a valid number to skip to!");
+            }
+            if (!musicPlayer.playing) musicPlayer.resume();
+            if (musicPlayer.settings.repeatMode === 1) musicPlayer.settings.repeatMode = 0;
+            musicPlayer.queue.skip(number);
         }
     };

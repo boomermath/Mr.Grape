@@ -4,11 +4,11 @@ module.exports =
     class extends EventEmitter {
         constructor(time) {
             super();
-            
+
             if (!time) throw new Error("Timer must have a set time!");
 
             this.time = time;
-            this.timer = this._setTimer();
+            this._setTimer()
         }
 
         _setTimer() {

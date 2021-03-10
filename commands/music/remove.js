@@ -15,21 +15,17 @@ module.exports =
         }
 
         main(msg) {
-            const musicPlayer = this.musicQueues.get(msg.guild.id);
-            const { queue: { songs, position } } = musicPlayer;
+            const { queue } = this.musicQueues.get(msg.guild.id);
+            const { songs } = musicPlayer;
 
             const index = (+msg.params[0] || songs.length) - 1;
 
             if (index > songs.length) return msg.send("That's not a valid song to remove!");
 
-            const removedSong = songs[index];
-
-            songs.splice(index, 1);
+            const removedSong = queue.remove(index);
 
             const removeEmbed = new msg.embed()
                 .setDescription(`Removed [${removedSong.title}] from the queue!`);
             msg.send(removeEmbed);
-
-            if (index === position) musicPlayer.shiftQueue();
         }
     };

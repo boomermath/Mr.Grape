@@ -17,7 +17,7 @@ module.exports =
 
         async main(msg) {
             const music = this.musicQueues.get(msg.guild.id);
-            const query = music?.currentSong.title || msg.params.join(" ");
+            const query = music.queue.currentSong.title || msg.params.join(" ");
 
             if (!query) return msg.send("Give me a valid song to search up!");
 
