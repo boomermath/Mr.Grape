@@ -85,4 +85,12 @@ module.exports =
             this.queue.reset();
             this._connection = null;
         }
+
+        pause() {
+            this._connection.dispatcher.pause();
+        }
+
+        resume() {
+            this._connection.dispatcher.resume();
+        }
     };
