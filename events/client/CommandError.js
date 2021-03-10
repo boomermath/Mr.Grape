@@ -9,6 +9,6 @@ module.exports =
         }
 
         main({ name }, err) {
-            this.client.console.error(`Command "${name}" failed.\nError: ${err}`);
+            this.client.console.error(`Command "${name}" failed.\n${err}`);
         }
     };
