@@ -15,7 +15,6 @@ module.exports =
         }
 
         main(msg) {
-
             const guildEmbed = new msg.embed()
                 .setAuthor(msg.guild.name, msg.guild.iconURL())
                 .setThumbnail(msg.guild.iconURL())

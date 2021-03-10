@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const { inspect } = require("util");
 const { Console } = require("console");
 
 const opts = {
@@ -33,7 +34,7 @@ module.exports =
             if (typeof data === "object") {
                 const isArray = data instanceof Array;
                 if (isArray && data.every(e => typeof e === "string")) return data.join("\n");
-                return data.stack || data.message;
+                return data.stack || data.message || inspect(data);
             }
             return String(data);
         }
