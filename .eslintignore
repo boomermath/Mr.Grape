@@ -1,5 +1,6 @@
 save
 *.txt
+*.sqlite
 *.json
 *.db
 *.env
