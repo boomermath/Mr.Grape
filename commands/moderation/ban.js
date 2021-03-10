@@ -23,12 +23,12 @@ module.exports =
 
             if (!target) return msg.send("Give me a valid user that I can ban!");
             else if (target.id === msg.author.id) return msg.send("Imagine banning urself");
-            else if (target.id === this.client.user.id) return msg.send("Woah there, I'm too cool for the hammer")
+            else if (target.id === this.client.user.id) return msg.send("Woah there, I'm too cool for the hammer");
             else if (!target.bannable) return msg.send("That isn't a bannable user!");
 
             target.ban({ reason: msg.params.slice(1).join(" ") || "No reason given" });
 
-            msg.send(`:hammer: ${target.user.username} has been banned with an iron fist.`)
+            msg.send(`:hammer: ${target.user.username} has been banned with an iron fist.`);
 
         }
     };

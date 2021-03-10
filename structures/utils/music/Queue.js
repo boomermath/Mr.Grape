@@ -2,7 +2,7 @@ module.exports =
     class {
         constructor(player) {
             this._player = player;
-            this._songs = []
+            this._songs = [];
             this._position = 0;
         }
 
@@ -38,7 +38,7 @@ module.exports =
         shift() {
             if (this._repeatMode !== 1) this._position += 1;
             if (this._repeatMode === 2 && this._songs.length === this._position) this._position = 1;
-            this._updateStream()
+            this._updateStream();
         }
 
         skip(toTrack) {
@@ -48,11 +48,11 @@ module.exports =
 
         remove(pos) {
             if (pos === this._position) this.shift();
-            return this._songs.splice(pos, 1)[0];;
+            return this._songs.splice(pos, 1)[0];
         }
 
         reset() {
             this._songs = [];
             this._position = 0;
         }
-    }
+    };

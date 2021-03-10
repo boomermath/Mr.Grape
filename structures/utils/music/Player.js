@@ -1,7 +1,7 @@
 const { Util: { escapeMarkdown } } = require("discord.js");
 const ytdl = require("ytdl-core");
 const getSongs = require("./GetMusic");
-const Queue = require("./Queue")
+const Queue = require("./Queue");
 
 module.exports =
     class {
@@ -13,8 +13,8 @@ module.exports =
             this.settings = {
                 volume: 42,
                 repeatMode: 0
-            }
-            this.queue = new Queue(this)
+            };
+            this.queue = new Queue(this);
         }
                 
         get playing() {
@@ -27,7 +27,7 @@ module.exports =
 
         set volume(vol) {
             this.settings.volume = vol;
-            this._connection.dispatcher.setVolumeLogarithmic(volume / 100);
+            this._connection.dispatcher.setVolumeLogarithmic(vol / 100);
         }
 
         async _connect() {
@@ -68,11 +68,11 @@ module.exports =
                 .setDescription(res.title)
                 .setThumbnail(res.thumbnail);
             msg.send(embed);
-            this.queue.add(...res.songs)
+            this.queue.add(...res.songs);
         }
 
         async play(msg) {
-            await this._loadQueue(msg)
+            await this._loadQueue(msg);
             if (this._evoked) { 
                 this._evoked = false;
                 await this._connect();
@@ -85,4 +85,4 @@ module.exports =
             this.queue.reset();
             this._connection = null;
         }
-    }
+    };

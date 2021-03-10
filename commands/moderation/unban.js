@@ -24,10 +24,10 @@ module.exports =
 
             if (!ban) return msg.send("That user is not banned!");
             else if (ban.id === msg.author.id) return msg.send("I don't think you're banned?");
-            else if (ban.id === this.client.user.id) return msg.send("I'm not banned.")
+            else if (ban.id === this.client.user.id) return msg.send("I'm not banned.");
 
             await msg.guild.members.unban(ban.id);
 
-            msg.send(`${ban.username} was unbanned!`)
+            msg.send(`${ban.username} was unbanned!`);
         }
     };
