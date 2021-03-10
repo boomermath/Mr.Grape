@@ -25,14 +25,14 @@ module.exports =
         }
 
         write(content, type = "log") {
-            content = this._flatten(content);
+            content = this._format(content);
             const colors = opts[type];
             super[type === "error" ? "error" : "log"](chalk[colors](`${content} | ${this.timestamp}`));
         }
 
-        _flatten(data) {
+        _format(data) {
             if (typeof data === "object") {
-                const isArray = data instanceof Array;
+                const isArray = Array.isArray(data);
                 if (isArray && data.every(e => typeof e === "string")) return data.join("\n");
                 return data.stack || data.message || inspect(data);
             }
