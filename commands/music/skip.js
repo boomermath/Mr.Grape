@@ -17,7 +17,6 @@ module.exports =
         main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             const number = +msg.params[0] - 1 || musicPlayer.queue.position + 1;
-            console.log(number)
             if (number < 0 || number < musicPlayer.queue.position || number > musicPlayer.queue.songs.length) {
                 return msg.send("That's not a valid number to skip to!");
             }
