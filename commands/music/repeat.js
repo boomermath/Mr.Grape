@@ -8,7 +8,7 @@ module.exports =
                 type: "music",
                 description: "Loop music.",
                 usage: "<song, queue, or off>\nIf you want to view settings, leave this field",
-                aliases: ["loop", "rp"],
+                aliases: ["loop", "rp", "lp", "rpt"],
                 saying: "Don't go loopy.",
                 cooldown: 2
             });
