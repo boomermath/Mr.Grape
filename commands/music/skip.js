@@ -17,11 +17,13 @@ module.exports =
         main(msg) {
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             const number = +msg.params[0] - 1 || musicPlayer.queue.position + 1;
+
             if (number < 0 || number < musicPlayer.queue.position || number > musicPlayer.queue.songs.length) {
-                return msg.send("That's not a valid number to skip to!");
+                return msg.send("You can't skip to that song!");
             }
             if (!musicPlayer.playing) musicPlayer.resume();
             if (musicPlayer.settings.repeatMode === 1) musicPlayer.settings.repeatMode = 0;
+            
             musicPlayer.queue.skip(number);
         }
     };
