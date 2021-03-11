@@ -4,11 +4,11 @@ module.exports =
     class extends MusicCommand {
         constructor(...args) {
             super(...args, {
-                name: "disconnect",
+                name: "leave",
                 type: "music",
                 description: "Tell the bot to disconnect from the voice channel.",
                 usage: "No arguments required.",
-                aliases: ["dc", "leave", "stop", "begone", "noonelikesyou"],
+                aliases: ["dc", "disconnect", "stop", "begone", "noonelikesyou"],
                 saying: "Stop disconnecting me, its annoying.",
                 cooldown: 2
             });

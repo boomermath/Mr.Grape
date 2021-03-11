@@ -1,7 +1,7 @@
-const { Command } = require("../../structures");
+const { ModerationCommand } = require("../../structures");
 
 module.exports =
-    class extends Command {
+    class extends ModerationCommand {
         constructor(...args) {
             super(...args, {
                 name: "prefix",
@@ -9,7 +9,8 @@ module.exports =
                 description: "Set the bot's prefix.",
                 usage: "<prefix>",
                 saying: "Don't prefix.",
-                cooldown: 2
+                cooldown: 2,
+                requiredPermissions: ["MANAGE_SERVER"]
             });
         }
 

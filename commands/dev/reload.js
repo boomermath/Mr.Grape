@@ -33,7 +33,7 @@ module.exports =
             if (msg.params[0] === "all") this.reloadAll();
             else {
                 const commands = this.getCommands(msg.params);
-                if (!commands) return msg.send("Invalid command!");
+                if (!commands.length) return msg.send("Invalid command!");
                 commands.map(c => this.reloadCommand(c));
             }
             msg.send("Successfully reloaded!");

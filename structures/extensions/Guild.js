@@ -14,7 +14,7 @@ Structures.extend("Guild", Guild => {
             if (this.settings) {
                 if (isSamePrefix) {
                     this.settings.destroy();
-                    guilds.cache.delete(this.id);
+                    return guilds.cache.delete(this.id);
                 }
 
                 this.settings.prefix = newPrefix;

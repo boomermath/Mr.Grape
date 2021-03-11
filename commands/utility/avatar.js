@@ -14,14 +14,22 @@ module.exports =
             });
         }
 
+        getPic(avatar, format) {
+            const opts = { size: 1024 };
+            return avatar.displayAvatarURL(format ? { format: format, ...opts } : { dynamic: true, ...opts });
+        }
+
         async main(msg) {
             const avatar = msg.mentions.users.first() || msg.author;
-            const url = avatar.displayAvatarURL().replace(/.jpg$|.png$|.webp$/, "");
 
             const avatarEmbed = new msg.embed()
                 .setTitle(`${avatar.username}'s avatar`)
-                .setDescription(`[jpg](${url}.jpg) | [png](${url}.png) | [webp](${url}.webp)`)
-                .setImage(avatar.displayAvatarURL());
+                .addFields(
+                    { name: "\u200b", value: `**[jpg](${this.getPic(avatar, "jpg")})**`, inline: true },
+                    { name: "\u200b", value: `**[png](${this.getPic(avatar, "png")})**`, inline: true },
+                    { name: "\u200b", value: `**[webp](${this.getPic(avatar, "webp")})**`, inline: true }
+                )
+                .setImage(this.getPic(avatar))
             msg.send(avatarEmbed);
         }
     };
