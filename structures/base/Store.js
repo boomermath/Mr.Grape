@@ -24,7 +24,7 @@ module.exports =
             }
 
             component.filepath = dir;
-            component.init ? component.init() : false;
+            return component.init ? component.init() : false;
         }
 
         load(dir) {
