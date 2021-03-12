@@ -26,7 +26,7 @@ module.exports =
 
         write(content, type = "log") {
             content = this._format(content);
-            const colors = opts[type];
+            const colors = logging[type];
             super[type === "error" ? "error" : "log"](chalk[colors](`${content} | ${this.timestamp}`));
         }
 
