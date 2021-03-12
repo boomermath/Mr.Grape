@@ -19,15 +19,15 @@ module.exports =
                 .addFields(
                     {
                         name: "Bot", value: `
-                        [Add it to your server!](https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=0)`,
+                        [Add it to your server!](${this.client.invite})`,
                         inline: true
                     },
                     {
                         name: "Server", value: `
-                        [Mr.Grape Community](https://invite.com)`,
+                        [Mr.Grape Community](${this.client.config.serverInvite})`,
                         inline: true
                     }
                 );
             msg.send(invite);
         }
-    };           
+    };

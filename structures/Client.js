@@ -27,6 +27,10 @@ module.exports = class extends Client {
         this.register("events");
     }
 
+    get invite() {
+        return `https://discord.com/oauth2/authorize?client_id=${this.user.id}&scope=bot&permissions=0`
+    }
+
     register(store) {
         return this._registry.push(store);
     }
