@@ -32,7 +32,7 @@ module.exports =
                 if (!message.member.hasPermission(command.requiredPermissions)) {
                     return message.send("You don't have permission to run this command!");
                 }
-                if (!message.guild.me.hasPermission(command.requiredPermissions)) {
+                else if (!message.guild.me.hasPermission(command.botPermissions)) {
                     return message.send("I don't have permission to execute that command!");
                 }
             }
