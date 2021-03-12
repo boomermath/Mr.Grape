@@ -2,7 +2,7 @@ const chalk = require("chalk");
 const { inspect } = require("util");
 const { Console } = require("console");
 
-const opts = {
+const logging = {
     warn: "bgYellow",
     log: "inverse",
     success: "bgGreen",
@@ -15,7 +15,7 @@ module.exports =
         constructor() {
             super(process.stdout, process.stderr);
 
-            for (const method of Object.keys(opts)) {
+            for (const method of Object.keys(logging)) {
                 this[method] = function (args) { this.write(args, method); };
             }
         }
