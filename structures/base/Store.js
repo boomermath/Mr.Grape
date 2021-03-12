@@ -51,8 +51,4 @@ module.exports =
 
             return this;
         }
-
-        emit(...args) {
-            return this.emitter.emit(...args);
-        }
     };
