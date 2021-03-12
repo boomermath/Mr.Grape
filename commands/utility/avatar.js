@@ -29,7 +29,7 @@ module.exports =
                     { name: "\u200b", value: `**[png](${this.getPic(avatar, "png")})**`, inline: true },
                     { name: "\u200b", value: `**[webp](${this.getPic(avatar, "webp")})**`, inline: true }
                 )
-                .setImage(this.getPic(avatar))
+                .setImage(this.getPic(avatar));
             msg.send(avatarEmbed);
         }
     };
