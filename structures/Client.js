@@ -28,7 +28,7 @@ module.exports = class extends Client {
     }
 
     get invite() {
-        return `https://discord.com/oauth2/authorize?client_id=${this.user.id}&scope=bot&permissions=0`
+        return `https://discord.com/oauth2/authorize?client_id=${this.user.id}&scope=bot&permissions=0`;
     }
 
     register(store) {

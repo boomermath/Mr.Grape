@@ -21,7 +21,7 @@ module.exports =
                     { name: "To be put on here, join the discord!", value: `**[Invite](${this.client.config.serverInvite})**` },
                     { name: "Donators", value: "Neon#3333, Zyphex✨#7464", inline: true},
                     { name: "Boosters", value: "Karlee Rae#7317", inline: true }
-                )
+                );
             msg.send(supporterEmbed);
         }
     };

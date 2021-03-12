@@ -5,6 +5,6 @@ module.exports =
         constructor(client, { requiredPermissions, botPermissions = requiredPermissions, ...args }) {
             super(client, args);
             this.requiredPermissions = requiredPermissions;
-            this.botPermissions = botPermissions
+            this.botPermissions = botPermissions;
         }
     };
