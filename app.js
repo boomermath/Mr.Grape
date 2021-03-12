@@ -7,7 +7,7 @@ const database = new Database();
 
 try {
     database.init();
-    client.console.success("Succesfully loaded database!");
+    client.console.success("Successfully loaded database!");
 } catch (err) { client.console.error(err); }
 
 client.login();
