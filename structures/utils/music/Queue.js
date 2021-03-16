@@ -37,7 +37,7 @@ module.exports =
 
         shift() {
             if (this._repeatMode !== 1) this._position += 1;
-            if (this._repeatMode === 2 && this._songs.length === this._position) this._position = 1;
+            if (this._repeatMode === 2 && this._songs.length === this._position) this._position = 0;
             this._updateStream();
         }
 
