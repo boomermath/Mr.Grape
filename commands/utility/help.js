@@ -55,7 +55,7 @@ module.exports =
                 const commands = this.getCommands(category).map(c => `\`${c}\``).join(", ");
                 const helpEmbed = new msg.embed()
                     .setTitle("Help")
-                    .addField(`Commands in the ${this.toProper(category)} Category!`, commands);
+                    .addField(`Commands in the ${this.toProper(category)} Category!`, `> ${commands}`);
                 return msg.send(helpEmbed);
             }
             else if (this.client.commands.has(helpArg)) {
