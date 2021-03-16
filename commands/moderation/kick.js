@@ -18,13 +18,18 @@ module.exports =
         async main(msg) {
             if (!msg.params[0]) return msg.send("Who should I kick?");
             const target = msg.mentions.members.first() || await msg.guild.members.fetch(msg.params[0]);
-            
+
             if (!target) return msg.send("That's not a valid user!");
             else if (msg.author.id === target.id) return msg.send("Bruh imagine kicking yourself.");
             else if (this.client.user.id === target.id) return msg.send("Woah there, I'm too cool to get the boot.");
             else if (!target.kickable) return msg.send("That isn't a kickable user!");
 
-            target.kick();
+            const reason = msg.params.slice(1).join(" ");
+
+            target.kick({ reason: reason });
+
             msg.send(`:wave: ${target.user.username} has been kicked. What a noob lol`);
+
+            target.send(`You were kicked from \`${msg.guild.name}\` for \`${reason}\``).catch(err => this.client.console.error(err));
         }
     };

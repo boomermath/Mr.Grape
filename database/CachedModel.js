@@ -1,6 +1,6 @@
 const { Collection } = require("discord.js");
 const Model = require("./Model");
-
+const chalk = require("chalk")
 module.exports =
     class extends Model {
         static async load() {

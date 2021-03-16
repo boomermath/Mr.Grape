@@ -1,21 +1,18 @@
 const {
     Sequelize: sequelize,
-    Users,
-    UserItems,
-    UserOres,
-    Items,
-    OreStore,
-    Guilds,
-    Craftable,
-    ShopItems,
-    Ores
+    Users, UserItems, Items,
+    UserOres, OreStore,
+    ShopItems, Craftable, Ores, Guilds
 } = require("../../database");
 
-UserItems.belongsTo(Items, { foreignKey: "item_id", as: "item" });
-UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" });
+UserItems.belongsTo(Items, { foreignKey: "item_id", as: "item" })
+UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" })
 
 module.exports =
     class {
+        constructor(alter = false) {
+            this.alter = alter;
+        }
 
         _addToItems(type, item) {
             item.type = type;
@@ -34,7 +31,7 @@ module.exports =
 
         async init() {
             await sequelize.authenticate();
-            await sequelize.sync();
+            await sequelize.sync({ alter: this.true });
             await this._loadItems();
             await Users.load();
             await Guilds.load();

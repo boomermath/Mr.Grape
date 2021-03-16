@@ -26,9 +26,12 @@ module.exports =
             else if (target.id === this.client.user.id) return msg.send("Woah there, I'm too cool for the hammer");
             else if (!target.bannable) return msg.send("That isn't a bannable user!");
 
-            target.ban({ reason: msg.params.slice(1).join(" ") || "No reason given" });
+            const reason = msg.params.slice(1).join(" ") || "No reason given";
+
+            target.ban({ reason: reason });
 
             msg.send(`:hammer: ${target.user.username} has been banned with an iron fist.`);
 
+            target.send(`You were banned from \`${msg.guild.name}\` for \`${reason}\`.`).catch(err => this.client.console.error(err))
         }
     };
