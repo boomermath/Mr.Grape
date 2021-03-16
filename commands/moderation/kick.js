@@ -26,7 +26,7 @@ module.exports =
 
             const reason = msg.params.slice(1).join(" ");
 
-            target.kick({ reason: reason });
+            target.kick(reason);
 
             msg.send(`:wave: ${target.user.username} has been kicked. What a noob lol`);
 
