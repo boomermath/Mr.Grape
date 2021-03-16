@@ -30,6 +30,6 @@ module.exports =
 
             msg.send(`:wave: ${target.user.username} has been kicked. What a noob lol`);
 
-            target.send(`You were kicked from \`${msg.guild.name}\` for \`${reason}\``).catch(err => this.client.console.error(err));
+            target.send(`You were kicked from \`${msg.guild.name}\` for \`${reason}\``).catch(err => null);
         }
     };

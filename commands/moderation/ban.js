@@ -32,6 +32,6 @@ module.exports =
 
             msg.send(`:hammer: ${target.user.username} has been banned with an iron fist.`);
 
-            target.send(`You were banned from \`${msg.guild.name}\` for \`${reason}\`.`).catch(err => this.client.console.error(err))
+            target.send(`You were banned from \`${msg.guild.name}\` for \`${reason}\`.`).catch(err => null);
         }
     };
