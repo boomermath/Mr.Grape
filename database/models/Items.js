@@ -15,6 +15,7 @@ Items.init({
     },
     description: DataTypes.TEXT,
     price: DataTypes.INTEGER,
+    alias: DataTypes.STRING,
     data: {
         type: DataTypes.VIRTUAL,
         get() {

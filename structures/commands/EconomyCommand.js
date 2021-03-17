@@ -1,4 +1,4 @@
-const { Users, UserItems, Shop, OreStore, UserOres } = require("../../database");
+const { Users, UserItems, Items, OreStore, UserOres } = require("../../database");
 const Command = require("./Command");
 
 module.exports =
@@ -11,7 +11,7 @@ module.exports =
             return {
                 users: Users,
                 items: UserItems,
-                shop: Shop,
+                shop: Items,
                 oreStore: OreStore,
                 ores: UserOres
             };

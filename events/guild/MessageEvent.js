@@ -22,10 +22,13 @@ module.exports =
             if (message.author.bot || !message.command || !message.guild || this.client.config.blacklisted.has(message.author.id)) return;
 
             const command = message.command;
-            const cooldownExists = this.cooldownManager.main(command, { id: message.author.id, fans: 0 });
+            const cooldown = this.cooldownManager.main(command, { id: message.author.id, fans: 0 });
 
-            if (cooldownExists) {
-                return message.send("Please wait!");
+            if (typeof cooldown === "number") {
+                const cooldownEmbed = new message.embed()
+                    .setTitle("Chill out!")
+                    .addField(command.saying, `Wait ${this.cooldownManager.format(cooldown)}`)
+                return message.send(cooldownEmbed)
             }
 
             if (command.type === "moderation") {

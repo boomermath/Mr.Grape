@@ -31,7 +31,7 @@ module.exports =
 
         async init() {
             await sequelize.authenticate();
-            await sequelize.sync({ alter: this.true });
+            await sequelize.sync({ alter: this.alter });
             await this._loadItems();
             await Users.load();
             await Guilds.load();

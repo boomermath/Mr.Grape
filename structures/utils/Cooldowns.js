@@ -8,7 +8,21 @@ module.exports =
 
         calculateCooldown(now, fans, { cooldown }) {
             const multiplier = Math.pow(0.03, fans) * cooldown;
-            return multiplier < 1.5 ? now + 1500 : now + ( multiplier * 1000 );
+            console.log(multiplier)
+            return multiplier < 1.5 ? now + 1500 : now + (multiplier * 1000);
+        }
+
+        format(time) {
+            let string = "";
+            const units = ["hour", "minute", "second"]
+            const times = new Date(time).toISOString().substr(11, 8).split(":");
+
+            for (const unit of times) {
+                if (!(unit > 0)) continue;
+                string += `\n**${+unit} ${units[times.indexOf(unit)]}${unit > 1 ? "s" : ""}**`;
+            }
+
+            return string;
         }
 
         main(command, { id, fans }) {
@@ -18,9 +32,11 @@ module.exports =
             const cooldowns = this.cooldowns.get(command.name);
             const cooldown = cooldowns.get(id);
 
-            if (!cooldown) cooldowns.set(id, command.fan ? this.calculateCooldown(now, fans, command) : now + command.cooldown);
+            const setCooldown = command.fan ? this.calculateCooldown(now, fans, command) : now + command.cooldown * 1000;
 
-            else if (cooldown > now) return true;
+            if (!cooldown) cooldowns.set(id, setCooldown);
+
+            else if (cooldown > now) return cooldown - now;
 
             else cooldowns.delete(id);
         }

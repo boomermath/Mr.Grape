@@ -1,3 +1,4 @@
+const { Op } = require("sequelize")
 const { EconomyCommand } = require("../../structures");
 
 module.exports =
@@ -27,10 +28,19 @@ module.exports =
 
             if (!itemName) return msg.send("ok karen");
 
-            const item = await this.eco.shop.findOne({ where: { name: itemName } });
-            const cost = item.price * number;
+            const item = await this.eco.shop.findOne({ 
+                where: { 
+                    [Op.or]: {
+                        name: itemName,
+                        alias: itemName
+                    }
+                } 
+            });
 
             if (!item) return msg.send("That's not a valid item bruh");
+
+            const cost = item.price * number;
+
             if (cost > this.eco.users.getBalance(msg.author.id)) return msg.send("Ur too broke to buy that");
 
             await this.eco.items.addItem(msg.author.id, item, number);

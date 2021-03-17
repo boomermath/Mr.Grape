@@ -14,18 +14,18 @@ module.exports =
             });
         }
 
-        main(msg, args) {
+        main(msg) {
             if (!this.client.config.owners.has(msg.author.id)) return msg.send("Back off! Devs only!");
 
-            if (args[0] === "reset") {
+            if (msg.params[0] === "reset") {
                 this.add(msg.author.id, -this.getBalance(msg.author.id));
                 return msg.send("Reset Balance!");
             }
-            if (!+args[0]) return msg.send("That's not a valid number!");
+            if (!+msg.params[0]) return msg.send("That's not a valid number!");
 
-            if (+args[0] > 100000) return msg.send("That's more than enough");
+            if (+msg.params[0] > 100000) return msg.send("That's more than enough");
 
-            this.eco.users.add(msg.author.id, +args[0]);
+            this.eco.users.add(msg.author.id, +msg.params[0]);
 
             msg.send("Done!");
         }
