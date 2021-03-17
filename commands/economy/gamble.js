@@ -22,9 +22,9 @@ module.exports =
             return new Promise(resolve => setTimeout(resolve, seconds * 1000));
         }
 
-        async main(msg, args) {
+        async main(msg) {
             const balance = this.eco.users.getBalance(msg.author.id);
-            const number = args[0] === "all" ? balance : +args[0];
+            const number = msg.params[0] === "all" ? balance : +msg.params[0];
 
             if (!number || number < 0 || number > balance) return msg.send("That's not a valid number of stars to bet.");
 
