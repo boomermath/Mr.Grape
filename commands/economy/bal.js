@@ -22,6 +22,7 @@ module.exports =
             const balEmbed = new msg.embed()
                 .setTitle("Balance")
                 .addField(target.username, `${this.eco.users.getBalance(target.id)} :star:s`);
+                .setFooter("Grape Bank Inc.")
             msg.send(balEmbed);
         }
     };
