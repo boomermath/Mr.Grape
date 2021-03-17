@@ -49,6 +49,7 @@ module.exports =
             const receipt = new msg.embed()
                 .setTitle("Purchase")
                 .addField("Receipt", `You purchased ${number} ${item.name}${number > 1 ? "s" : ""}!`);
+                .setFooter('Grape Marketplaces')
             msg.send(receipt);
         }
     };
