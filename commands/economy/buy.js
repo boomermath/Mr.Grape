@@ -11,30 +11,23 @@ module.exports =
                 usage: "<item> <number>",
                 aliases: ["purchase"],
                 saying: "You have enough junk.",
-                cooldown: 10
+                cooldown: 5
             });
         }
 
-        parseArgs({ params }) {
-            if (params.length === 1) return [params[0], 1];
-            const number = params.find(e => Number.isInteger(e));
-            if (!number) return [false];
-            params.splice(params.indexOf(number), 1);
-            return [params[0], +number];
-        }
-
         async main(msg) {
-            const [itemName, number] = this.parseArgs(msg);
+            const [itemName, number] = this.getNameAmt(msg);
 
             if (!itemName) return msg.send("ok karen");
 
-            const item = await this.eco.shop.findOne({ 
-                where: { 
+            const item = await this.eco.shop.findOne({
+                where: {
+                    type: "shop",
                     [Op.or]: {
                         name: itemName,
                         alias: itemName
                     }
-                } 
+                }
             });
 
             if (!item) return msg.send("That's not a valid item bruh");
@@ -48,7 +41,7 @@ module.exports =
 
             const receipt = new msg.embed()
                 .setTitle("Purchase")
-                .addField("Receipt", `You purchased ${number} ${item.name}${number > 1 ? "s" : ""}!`)
+                .addField("Receipt", `You purchased ${this.format(item.name, number)}!`)
                 .setFooter('Grape Marketplaces')
             msg.send(receipt);
         }

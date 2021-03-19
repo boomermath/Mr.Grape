@@ -21,16 +21,18 @@ module.exports =
 
         async main(msg) {
             const target = msg.mentions.users.first() || msg.author;
-            
+
             if (target.bot) return msg.send("No other bots (except me, cus im cool)");
-            
+
             const inventory = await this.eco.items.findAll({
                 where: { user_id: target.id },
                 include: "item"
             });
 
             const items = inventory.map(item => [this.format(item.item.name, item.amount), item.amount]);
-            
-            msg.paginate({ title: `${target.username}'s inventory` }, items, 5);
+
+            const entries = items.length ? items : [["nothing but cobwebs and dust m8", "\u200b"]];
+
+            msg.paginate({ title: `${target.username}'s inventory` }, entries, 5);
         }
     };

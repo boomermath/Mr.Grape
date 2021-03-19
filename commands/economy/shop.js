@@ -15,9 +15,10 @@ module.exports =
         }
 
         async main(msg) {
-            const shop = await this.eco.shop.findAll();
+            const shop = await this.eco.shop.findAll({ where: { type: "shop" } });
+
             const shopEntry = shop
-                .sort((a, b) => a.name.localeCompare(b.name))
+                .sort((a, b) => a.price - b.price)
                 .map(item => [item.name, item.description, item.price]);
 
             const shopEmbed = new msg.embed()

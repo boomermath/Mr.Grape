@@ -5,4 +5,6 @@ module.exports = {
     Ores: Ores,
     OrePrices: OrePrices,
     Craftable: require("./Craftable"),
+    Recipes: require("./Recipes"),
+    Fruits: require("./Fruits")
 };

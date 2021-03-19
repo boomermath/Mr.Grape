@@ -16,10 +16,13 @@ Items.init({
     description: DataTypes.TEXT,
     price: DataTypes.INTEGER,
     alias: DataTypes.STRING,
-    data: {
+    recipe: {
         type: DataTypes.VIRTUAL,
         get() {
             return Recipes[this.name] || null;
+        },
+        set() {
+            throw new Error("You can set recipes in the assets folder!");
         }
     }
 });
