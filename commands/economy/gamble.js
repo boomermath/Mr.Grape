@@ -68,11 +68,10 @@ module.exports =
             if (dice % 2 === 0) {
                 gambleMsg.edit(gambleEmbed.addField(`Congrats, you get ${number} :star:s!`, "\u200b"));
                 if (rigged) {
-                    const caught = this.randomize(50);
+                    const caught = this.randomize(25);
                     if (caught === 1) {
-                        const lost = number * 2;
-                        gambleMsg.edit(gambleEmbed.addField(`Uh oh! You were looking sus, so you got busted and lost ${lost} :star:s!`), "\u200b");
-                        return this.eco.users.add(msg.author.id, -lost);
+                        gambleMsg.edit(gambleEmbed.addField(`Uh oh! You were looking sus, so you got busted and lost your ${number} :star:s!`), "\u200b");
+                        return this.eco.users.add(msg.author.id, -number);
                     }
                     this.eco.users.add(msg.author.id, number);
                 }
