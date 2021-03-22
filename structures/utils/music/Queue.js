@@ -22,8 +22,8 @@ module.exports =
             return this._songs[this._position];
         }
 
-        set songs(value) {
-            this._songs = value;
+        set songs(songs) {
+            this._songs.push(...songs)
         }
 
         _updateStream() {
@@ -31,8 +31,16 @@ module.exports =
             this._player._stream(this.currentSong);
         }
 
-        add(...songs) {
-            songs.forEach(song => this._songs.push(song));
+        shuffle() {
+            const pos = this._position + 1;
+            const array = this._songs.slice(-(this._songs.length - pos));
+
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+
+            this._songs = [...this._songs.slice(0, pos), ...array];
         }
 
         shift() {

@@ -68,7 +68,8 @@ module.exports =
                 .setDescription(res.title)
                 .setThumbnail(res.thumbnail);
             msg.send(embed);
-            this.queue.add(...res.songs);
+
+            this.queue.songs = res.songs;
         }
 
         async play(msg) {
