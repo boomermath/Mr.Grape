@@ -32,12 +32,12 @@ You will need to get API keys from:
 * https://products.wolframalpha.com/api | For wolfram command
 * https://api.nasa.gov | For NASA picture of the day
 
-## Hosting
+# Hosting
 
-# VPS
+## VPS
 
 VPS hosting is made easy with [docker](https://docker.com).
 
-# Heroku
+## Heroku
 
 Click the button above to deploy to heroku!
