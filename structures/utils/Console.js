@@ -3,11 +3,11 @@ const { inspect } = require("util");
 const { Console } = require("console");
 
 const logging = {
-    warn: "bgYellow",
-    log: "inverse",
-    success: "bgGreen",
-    error: "bgRed",
-    debug: "bgMagenta"
+    warn: ["bgYellow", "underline"],
+    log: ["inverse", "bold"],
+    success: ["bgGreen", "dim"],
+    error: ["bgRed", "bold", "underline"],
+    debug: ["bgMagenta", "italic"]
 };
 
 module.exports =
@@ -25,16 +25,15 @@ module.exports =
         }
 
         write(content, type = "log") {
-            content = this._format(content);
-            const colors = logging[type];
-            super[type === "error" ? "error" : "log"](chalk[colors](`${content} | ${this.timestamp}`));
+            super[type === "error" ? "error" : "log"](chalk`{${logging[type].join(".")} ${this._format(content)} | ${this.timestamp}}`)
         }
 
         _format(data) {
             if (typeof data === "object") {
                 const isArray = Array.isArray(data);
                 if (isArray && data.every(e => typeof e === "string")) return data.join("\n");
-                return data.stack || data.message || inspect(data);
+                if (data instanceof Error) return data.stack || data.message;
+                else return inspect(data);
             }
             return String(data);
         }

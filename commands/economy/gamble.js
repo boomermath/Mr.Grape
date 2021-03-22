@@ -23,7 +23,7 @@ module.exports =
             return new Promise(resolve => setTimeout(resolve, seconds * 1000));
         }
 
-        verify(msg) {
+        async verify(msg) {
             const collector = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 7000 });
             const message = collector.first().content.toLowerCase();
 
@@ -41,7 +41,7 @@ module.exports =
             if (this.eco.items.getItem(msg.author.id, "rigged die")) {
                 msg.send("Do you want to use your rigged die?");
 
-                const rig = this.verify(msg);
+                const rig = await this.verify(msg);
                 if (rig) rigged = true;
                 else return msg.send("No rigging today then.");
             }
@@ -49,7 +49,7 @@ module.exports =
             if (number === balance) {
                 msg.send("Are you sure you wanna do that?");
 
-                const gamble = this.verify(msg);
+                const gamble = await this.verify(msg);
                 if (!gamble) return msg.send("I thought so.");
             }
 
