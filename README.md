@@ -4,8 +4,10 @@
 	<p>By kinglalu#2780 and DAONE#7538<p>
 	<p>Mr. Grape is an Open Source Discord Bot made using Discord.js that includes Music features, an Economy and more!</p>
 	<p> Help support Mr Grape by voting for it here on top.gg; https://top.gg/bot/743833062265323651/vote </p>
-	<p><a href="https://discord.com/oauth2/authorize?client_id=743833062265323651&scope=bot&permissions=0"><img src="/images/invite.png"width="147" height="32" alt="Invite to your server!"></a><p>
-	<p><a href="https://upgrade.chat/checkout/743208211460653177"><img src="/images/support.png"width="147" height="32" alt="Support us!"></a><p>
+	<p><a href="https://discord.com/oauth2/authorize?client_id=743833062265323651&scope=bot&permissions=0">
+    <img src="https://raw.githubusercontent.com/kinglalu/Mr.Grape/master/images/invite.png" width="147" height="32" alt="Invite to your server!"></a><p>
+	<p><a href="https://upgrade.chat/checkout/743208211460653177">
+    <img src="https://raw.githubusercontent.com/kinglalu/Mr.Grape/master/images/support.png" width="147" height="32" alt="Support us!"></a><p>
 	<p> <a href="https://heroku.com/deploy?template=https://github.com/kinglalu/Mr.Grape"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku"></a><p>
 	<a href="https://discord.gg/2RKPmDg2A6" align="center">
 <img src="https://img.shields.io/discord/743208211460653177?style=for-the-badge?" />
@@ -32,12 +34,10 @@ You will need to get API keys from:
 
 ## Hosting
 
-So you wanna host Mr. Grape. Great. Let's get started.
-
 # VPS
 
-VPS hosting is made easy with [docker](https://docker.com),
+VPS hosting is made easy with [docker](https://docker.com).
 
 # Heroku
 
-Set the config vars of the environment, as seen in the [.env](.env) file.
+Click the button above to deploy to heroku!
