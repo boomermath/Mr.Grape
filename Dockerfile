@@ -1,9 +1,11 @@
-FROM node:alpine
+FROM node:latest
 
-WORKDIR /Mr-Grape
+RUN mkdir Mr-Grape
+WORKDIR Mr-Grape
 
-COPY package*.json ./
-
+COPY package.json .
 RUN npm i --save
+
+COPY . .
 
 CMD ["npm", "start"]
