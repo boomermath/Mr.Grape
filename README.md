@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="images/mrgrape.png" title="Mr. Grape" alt="Mr. Grape" />
+	<img src="https://raw.githubusercontent.com/kinglalu/Mr.Grape/master/images/mrgrape.png" title="Mr. Grape" alt="Mr. Grape" />
 	<h1>Mr. Grape</h1>
 	<p>By kinglalu#2780 and DAONE#7538<p>
 	<p>Mr. Grape is an Open Source Discord Bot made using Discord.js that includes Music features, an Economy and more!</p>
