@@ -1,4 +1,4 @@
-const { Op } = require("sequelize")
+const { Op } = require("sequelize");
 const { EconomyCommand } = require("../../structures");
 
 module.exports =
@@ -42,7 +42,7 @@ module.exports =
             const receipt = new msg.embed()
                 .setTitle("Purchase")
                 .addField("Receipt", `You purchased ${this.format(item.name, number)}!`)
-                .setFooter('Grape Marketplaces')
+                .setFooter("Grape Marketplaces");
             msg.send(receipt);
         }
     };

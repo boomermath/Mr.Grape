@@ -15,14 +15,16 @@ module.exports =
         }
 
         main(msg) {
+                
+            let raw;
 
             try {
-                var raw = eval(msg.params.join(" ").replace("process.env"))
+                raw = eval(msg.params.join(" ").replace("process.env"));
             } catch (err) {
-                this.client.console.error(err);
+                raw = err;
             }
 
-            const output = require("util").inspect(raw);
+            const output = require("util").inspect(raw).replace(this.client.token, "[redacted]");
 
             msg.send(output, { code: true, split: true });
         }

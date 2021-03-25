@@ -8,13 +8,13 @@ module.exports =
 
         calculateCooldown(now, fans, { cooldown }) {
             const multiplier = Math.pow(0.03, fans) * cooldown;
-            console.log(multiplier)
+            console.log(multiplier);
             return multiplier < 1.5 ? now + 1500 : now + (multiplier * 1000);
         }
 
         format(time) {
             let string = "";
-            const units = ["hour", "minute", "second"]
+            const units = ["hour", "minute", "second"];
             const times = new Date(time).toISOString().substr(11, 8).split(":");
 
             for (const unit of times) {

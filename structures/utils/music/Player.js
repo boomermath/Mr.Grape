@@ -88,7 +88,7 @@ module.exports =
         }
 
         pause() {
-            this._connection.dispatcher.pause();
+            this._connection.dispatcher.pause(true);
         }
 
         resume() {

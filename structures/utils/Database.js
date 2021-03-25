@@ -5,8 +5,8 @@ const {
     ShopItems, Craftable, Ores, Guilds
 } = require("../../database");
 
-UserItems.belongsTo(Items, { foreignKey: "item_id", as: "item" })
-UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" })
+UserItems.belongsTo(Items, { foreignKey: "item_id", as: "item" });
+UserOres.belongsTo(OreStore, { foreignKey: "ore_id", as: "ore" });
 
 module.exports =
     class {

@@ -14,7 +14,15 @@ module.exports =
             });
         }
 
+        chance(num) {
+            return Math.floor(Math.random() * num) + 1;
+        }
+
         async main(msg) {
-            
+            const earn = Math.round(Math.random() * this.eco.items.getItem(msg.author.id, "shovel") ? 15 : 6) + 1;
+
+            const mineEmbed = new msg.embed()
+                .setTitle(`${msg.author.username}'s mine`)
+                .addField(`You dug up ${earn} :star:s!`, "\u200b");
         }
     };

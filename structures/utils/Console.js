@@ -25,7 +25,7 @@ module.exports =
         }
 
         write(content, type = "log") {
-            super[type === "error" ? "error" : "log"](chalk`{${logging[type].join(".")} ${this._format(content)} | ${this.timestamp}}`)
+            super[type === "error" ? "error" : "log"](chalk`{${logging[type].join(".")} ${this._format(content)} | ${this.timestamp}}`);
         }
 
         _format(data) {

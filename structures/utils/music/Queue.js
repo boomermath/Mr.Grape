@@ -23,7 +23,7 @@ module.exports =
         }
 
         set songs(songs) {
-            this._songs.push(...songs)
+            this._songs.push(...songs);
         }
 
         _updateStream() {

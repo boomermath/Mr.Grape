@@ -5,4 +5,4 @@ module.exports = {
     UserItems: require("./UserItems"),
     UserOres: require("./UserOres"),
     Users: require("./Users")
-}
+};

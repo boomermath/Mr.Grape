@@ -27,8 +27,8 @@ module.exports =
             if (typeof cooldown === "number") {
                 const cooldownEmbed = new message.embed()
                     .setTitle("Chill out!")
-                    .addField(command.saying, `Wait ${this.cooldownManager.format(cooldown)}`)
-                return message.send(cooldownEmbed)
+                    .addField(command.saying, `Wait ${this.cooldownManager.format(cooldown)}`);
+                return message.send(cooldownEmbed);
             }
 
             if (command.type === "moderation") {

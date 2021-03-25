@@ -21,7 +21,7 @@ module.exports =
                 let j = Math.floor(Math.random() * (i + 1));
                 [arr[i], arr[j]] = [arr[j], arr[i]];
             }
-            if (original.join("") === arr.join("")) { return shuffle(array); }
+            if (original.join("") === arr.join("")) { return this.scramble(arr); }
             else { return arr.join(""); }
         }
 
@@ -31,17 +31,17 @@ module.exports =
 
             const scrambledWord = new msg.embed()
                 .setTitle("Unscramble!")
-                .addField("Unscramble the word!", `${scrambled}`)
+                .addField("Unscramble the word!", `${scrambled}`);
 
-            msg.send(scrambledWord)
+            msg.send(scrambledWord);
 
             const collector = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 7000 });
 
             if (!collector.size) {
                 const timeoutEmbed = new msg.embed()
                     .setTitle(`${msg.author.username}'s unscrambling`)
-                    .addField("C'mon slowpoke", `The word was ${fruit}`)
-                return msg.send(timeoutEmbed)
+                    .addField("C'mon slowpoke", `The word was ${fruit}`);
+                return msg.send(timeoutEmbed);
             }
 
             const message = collector.first().content;
@@ -54,15 +54,15 @@ module.exports =
 
                 const unscEmbed = new msg.embed()
                     .setTitle(`${msg.author.username}'s unscrambling`)
-                    .addField("Good job!", `You got ${reward} :star:s!`)
-                return msg.send(unscEmbed)
+                    .addField("Good job!", `You got ${reward} :star:s!`);
+                return msg.send(unscEmbed);
             }
 
             else {
                 const unscEmbed = new msg.embed()
                     .setTitle(`${msg.author.username}'s unscrambling`)
-                    .addField("You're bad.", `It's ${fruit} not ${message}`)
-                return msg.send(unscEmbed)
+                    .addField("You're bad.", `It's ${fruit} not ${message}`);
+                return msg.send(unscEmbed);
             }
         }
     };

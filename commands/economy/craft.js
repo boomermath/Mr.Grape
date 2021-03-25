@@ -1,4 +1,4 @@
-const { Op } = require("sequelize")
+const { Op } = require("sequelize");
 const { EconomyCommand } = require("../../structures");
 
 module.exports =
@@ -26,7 +26,7 @@ module.exports =
                         alias: item
                     }
                 }
-            })
+            });
 
             if (!craft) return msg.send("That item doesn't exist!");
 
@@ -40,7 +40,7 @@ module.exports =
 
             const craftEmbed = new msg.embed()
                 .setTitle("Crafting")
-                .addField("Success!", `You crafted ${this.format(item, quantity)}!`)
+                .addField("Success!", `You crafted ${this.format(item, quantity)}!`);
             msg.send(craftEmbed);
         }
     };

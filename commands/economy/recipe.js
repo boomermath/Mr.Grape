@@ -1,4 +1,4 @@
-const { Op } = require("sequelize")
+const { Op } = require("sequelize");
 const { EconomyCommand } = require("../../structures");
 
 module.exports =
@@ -17,17 +17,17 @@ module.exports =
         format(string) {
             return string.split(" ")
                 .map(w => `${w.charAt(0).toUpperCase()}${w.slice(1)}`)
-                .join(" ")
+                .join(" ");
         }
 
         async main(msg) {
             if (!msg.params.length) {
-                const getRecipes = await this.eco.shop.findAll({ where: { type: "craft" } })
+                const getRecipes = await this.eco.shop.findAll({ where: { type: "craft" } });
 
                 const recipes = getRecipes.sort((a, b) => a.name.localeCompare(b.name))
                     .map(item =>
                         [`${this.format(item.name)}`, `${item.description}\nWorth: **${item.price}:star:s**`]
-                    )
+                    );
 
                 msg.paginate({ title: "Recipes" }, recipes, 5);
             }
@@ -46,7 +46,7 @@ module.exports =
 
                 const ingredients = Object.entries(recipe.recipe).map(r => [this.format(r[0]), r[1]]);
 
-                msg.paginate({ title: this.format(recipe.name) }, ingredients, 5)
+                msg.paginate({ title: this.format(recipe.name) }, ingredients, 5);
             }
         }
     };

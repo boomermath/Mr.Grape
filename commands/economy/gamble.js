@@ -15,7 +15,7 @@ module.exports =
         }
 
         randomize(num, rigged) {
-            const riggedArr = [1, 2, 3, 4, 4, 6]
+            const riggedArr = [1, 2, 3, 4, 4, 6];
             return rigged ? riggedArr[Math.floor(Math.random() * riggedArr.length)] : Math.floor(Math.random() * num) + 1;
         }
 
