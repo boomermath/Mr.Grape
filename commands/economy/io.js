@@ -25,7 +25,7 @@ module.exports =
                 include: "ore"
             });
 
-            const items = inventory.map(ore => [this.format(ore.ore.name, ore.amount), ore.amount]);
+            const items = inventory.map(ore => [`${ore.ore.name.charAt(0).toUpperCase()}${ore.ore.name.slice(1)}`, ore.amount]);
 
             const entries = items.length ? items : [["nothing but cobwebs and pebbles m8", "\u200b"]];
 

@@ -29,6 +29,14 @@ class UserItems extends Model {
 
         return userItems ? userItems.amount : 0;
     }
+
+    static async deleteItem(id, itemName, amt = 1) {
+        const item = await Shop.findOne({ where: { name: itemName } });
+
+        if (!item) throw new Error("That's not a valid item to delete!");
+
+        this.addItem(id, item, -amt);
+    }
 }
 
 UserItems.init({
