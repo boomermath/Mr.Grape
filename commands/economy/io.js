@@ -25,7 +25,9 @@ module.exports =
                 include: "ore"
             });
 
-            const items = inventory.map(ore => [`${ore.ore.name.charAt(0).toUpperCase()}${ore.ore.name.slice(1)}`, ore.amount]);
+            const items = inventory
+            .sort((a, b) => a.ore.name.localeCompare(b.ore.name))
+            .map(ore => [`${msg.emojis[ore.ore.name]} - ${ore.ore.name.charAt(0).toUpperCase()}${ore.ore.name.slice(1)}`, ore.amount]);
 
             const entries = items.length ? items : [["nothing but cobwebs and pebbles m8", "\u200b"]];
 

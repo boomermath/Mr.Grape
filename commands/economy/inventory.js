@@ -29,7 +29,9 @@ module.exports =
                 include: "item"
             });
 
-            const items = inventory.map(item => [this.format(item.item.name, item.amount), item.amount]);
+            const items = inventory
+                .sort((a, b) => a.item.name.localeCompare(b.item.name))
+                .map(item => [this.format(item.item.name, item.amount), item.amount]);
 
             const entries = items.length ? items : [["nothing but cobwebs and dust m8", "\u200b"]];
 
