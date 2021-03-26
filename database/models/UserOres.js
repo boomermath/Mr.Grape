@@ -21,7 +21,7 @@ class UserOres extends Model {
         return await this.create({ user_id: id, ore_id: ore.id, amount: amt, refined: rf });
     }
 
-    static async getOre(id, oreName, rf) {
+    static async getOre(id, oreName, rf = false) {
         const ore = await Ores.findOne({ where: { name: oreName } });
 
         if (!ore) throw new Error("Invalid ore!");
@@ -35,6 +35,14 @@ class UserOres extends Model {
         });
 
         return userOre ? userOre.amount : 0;
+    }
+
+    static async deleteOre(id, oreName, amt = 1, rf = false) {
+        const ore = await Ores.findOne({ where: { name: oreName } });
+
+        if (!ore) throw new Error("Invalid ore to delete!");
+
+        this.addOre(id, ore, -amt, rf)
     }
 }
 

@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg) {
+        async main(msg) {
                 
             let raw;
 

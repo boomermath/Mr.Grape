@@ -18,7 +18,7 @@ module.exports =
         async main(msg) {
             const [item, quantity] = this.getNameAmt(msg);
 
-            const craft = await this.eco.items.findOne({
+            const craft = await this.eco.shop.findOne({
                 where: {
                     type: "craft",
                     [Op.or]: {
@@ -30,17 +30,21 @@ module.exports =
 
             if (!craft) return msg.send("That item doesn't exist!");
 
-            for (const [ingredient, amount] of Object.entries(craft)) {
+            const itemDescription = this.format(craft.name, quantity)
+
+            for (const [ingredient, amount] of Object.entries(craft.recipe)) {
                 const hasPart = await this.eco.ores.getOre(msg.author.id, ingredient, true);
+                this.client.console.log(hasPart)
+                if (hasPart < amount * quantity) return msg.send(`You don't have enough ${ingredient}s to make ${itemDescription}!`);
 
-                if (hasPart < amount * quantity) return msg.send(`You don't have enough ${ingredient}s to make ${item}!`);
-
-                await this.eco.ores.addOre(msg.author.id, ingredient, -amount * quantity, true);
+                await this.eco.ores.deleteOre(msg.author.id, ingredient, amount * quantity, true);
             }
+
+            await this.eco.items.addItem(msg.author.id, craft, quantity);
 
             const craftEmbed = new msg.embed()
                 .setTitle("Crafting")
-                .addField("Success!", `You crafted ${this.format(item, quantity)}!`);
+                .addField("Success!", `You crafted ${itemDescription}!`);
             msg.send(craftEmbed);
         }
     };
