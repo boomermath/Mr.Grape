@@ -23,7 +23,7 @@ class UserOres extends Model {
 
     static async getOre(id, oreName, rf = false) {
         const ore = await Ores.findOne({ where: { name: oreName } });
-
+        console.log(oreName, ore)
         if (!ore) throw new Error("Invalid ore!");
 
         const userOre = await this.findOne({

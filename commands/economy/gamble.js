@@ -43,7 +43,6 @@ module.exports =
 
                 const rig = await this.verify(msg);
                 if (rig) rigged = true;
-                else return msg.send("No rigging today then.");
             }
 
             if (number === balance) {
@@ -70,7 +69,8 @@ module.exports =
                 if (rigged) {
                     const caught = this.randomize(25);
                     if (caught === 1) {
-                        gambleMsg.edit(gambleEmbed.addField(`Uh oh! You were looking sus, so you got busted and lost your ${number} :star:s!`), "\u200b");
+                        await this.wait(1.7);
+                        gambleMsg.edit(gambleEmbed.addField(`Uh oh! You were looking sus, so you got busted and lost your ${number} :star:s!`, "\u200b"));
                         return this.eco.users.add(msg.author.id, -number);
                     }
                     this.eco.users.add(msg.author.id, number);
