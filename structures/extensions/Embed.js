@@ -1,12 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const { Timer } = require("../utils");
 const [left, right] = ["⬅️", "➡️"];
+const sponsor = "Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)"
 const color = "PURPLE";
 
 class Embed extends MessageEmbed {
     constructor() {
         super({
-            description: "Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)",
+            description: sponsor,
             color: color,
             footer: {
                 text: "Grape Enterprises"
@@ -24,7 +25,7 @@ class PaginatedEmbed {
         this.embed = {
             title: title,
             color: color,
-            description: description,
+            description: description ? description : sponsor,
             fields: [],
         };
         this.pageLength = pageLength;

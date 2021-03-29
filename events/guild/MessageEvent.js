@@ -40,7 +40,7 @@ module.exports =
                 }
             }
 
-            else if (command.type === "music" && command.name !== "lyrics") {
+            else if (command.type === "music" && !["lyrics", "np"].includes(command.name)) {
                 const { channel } = message.member.voice;
                 const { channel: myChannel } = message.guild.me.voice;
                 if (!command.musicQueues.has(message.guild.id) && command.name !== "play") {

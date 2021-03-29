@@ -19,7 +19,7 @@ module.exports =
             let raw;
 
             try {
-                raw = eval(msg.params.join(" ").replace("process.env"));
+                raw = eval(msg.params.join(" ").replace(/process\.env|this\.client/g, ""));
             } catch (err) {
                 raw = err;
             }

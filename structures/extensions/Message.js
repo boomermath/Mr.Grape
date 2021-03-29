@@ -10,11 +10,19 @@ Structures.extend("Message", Message => {
             this.embed = Embed;
         }
 
+        get _parsed() {
+            if (!this.content.startsWith(this.prefix)) return;
+            return this.content.slice(this.prefix.length).trim().split(/ +/);
+        }
+
         get command() {
-            if (!this.content.startsWith(this.prefix)) return false;
-            [this._parsedCommand, ...this.params] = this.content.slice(this.prefix.length).trim().split(/ +/);
-            const command = this.client.commands.get(this._parsedCommand.toLowerCase());
-            return command;
+            if (!this._parsed) return;
+            const command = this.client.commands.get(this._parsed[0].toLowerCase());
+            return command ? command : null;
+        }
+
+        get params() {
+            return this._parsed ? this._parsed.slice(1) : null;
         }
 
         get prefix() {

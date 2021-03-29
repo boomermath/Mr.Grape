@@ -4,11 +4,11 @@ module.exports =
     class extends EconomyCommand {
         constructor(...args) {
             super(...args, {
-                name: "leaderboard",
+                name: "global",
                 type: "economy",
                 description: "Check out the global leaderboard!.",
                 usage: "No arguments",
-                aliases: ["lb", "top"],
+                aliases: ["gb", "bigmikes"],
                 saying: "What a scrub.",
                 cooldown: 2
             });
@@ -16,13 +16,16 @@ module.exports =
 
         async main(msg) {
             const collection = [...this.eco.users.cache.sort((a, b) => b.balance - a.balance).first(10).values()];
-            const leaderboard = new msg.embed().setTitle("Global Leaderboard");
+            const leaderboard = new msg.embed()
+                .setTitle("Global Leaderboard")
+
+            const entries = [];
 
             for (const person of collection) {
-                const user = await this.client.users.fetch(person.id);
-                leaderboard.addField(`${collection.indexOf(person) + 1}. ${user.tag}: ${person.balance}`, "\u200b");
-            }   
+                const { tag } = await this.client.users.fetch(person.id);
+                entries.push([`${collection.indexOf(person) + 1}) \`${tag}\` | \`${person.balance}\` :star:s`, "\u200b"])
+            }
 
-            msg.send(leaderboard);
+            msg.paginate({ title: "Global Leaderboard" }, entries, 5);
         }
     };
