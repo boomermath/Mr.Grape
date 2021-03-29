@@ -22,8 +22,8 @@ module.exports =
                     .filter(o => o.tier === tier)
                     .sort((o, p) => o.name.localeCompare(p.name))
                     .map(o => `${o.name.charAt(0).toUpperCase()}${o.name.slice(1)} ${msg.emojis[o.name]}`)
-                    .join(", ")
-            }
+                    .join(", ");
+            };
 
             const oreEmbed = new msg.embed()
                 .setTitle("Ores")
@@ -33,8 +33,8 @@ module.exports =
                     { name: "Tier 2", value: getOres(2) },
                     { name: "Tier 3", value: getOres(3) },
                     { name: "Pickaxes", value: "Check out the shop for a list of pickaxes!" }
-                )
+                );
 
-            msg.send(oreEmbed)
+            msg.send(oreEmbed);
         }
     };

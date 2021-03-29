@@ -19,7 +19,7 @@ module.exports =
                 cost: 0,
                 amount: 0,
                 data: ""
-            }
+            };
 
             if (msg.params[0] === "all" && msg.params.length === 1) {
                 const ores = await this.eco.ores.findAll({ where: { user_id: msg.author.id, refined: false } });
@@ -66,10 +66,10 @@ module.exports =
             const refinedEmbed = new msg.embed()
                 .setTitle("Refinement")
                 .addField(msg.author.username,
-                    `Refined their ${details.amount} ${details.data === "all" ? "" : details.data}${details.amount > 1 ? "s" : ""} for\ 
+                    `Refined their ${details.amount} ${details.data === "all" ? "" : details.data}${details.amount > 1 ? "s" : ""} for 
                     ${details.cost} :star:s ${!details.cost ? "because they have a personal refiner (flexx)" : ""}
                     `
-                )
+                );
             msg.send(refinedEmbed);
         }
     };

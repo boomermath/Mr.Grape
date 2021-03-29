@@ -66,12 +66,12 @@ module.exports =
             }
 
             if (pickaxe) {
-                const prob = chances[pickaxe]
+                const prob = chances[pickaxe];
                 const amts = amt[pickaxe];
 
                 for (const entry in chances[pickaxe]) {
                     if (entry == 3) break;
-                    if (this.rand(prob[entry]) === 1) await choose(+entry + 1, amts[entry])
+                    if (this.rand(prob[entry]) === 1) await choose(+entry + 1, amts[entry]);
                 }
 
                 if (this.rand(prob[3]) === 1) {

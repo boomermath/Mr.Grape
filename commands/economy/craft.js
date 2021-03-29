@@ -30,7 +30,7 @@ module.exports =
 
             if (!craft) return msg.send("That item doesn't exist!");
 
-            const itemDescription = this.format(craft.name, quantity)
+            const itemDescription = this.format(craft.name, quantity);
 
             for (const [ingredient, amount] of Object.entries(craft.recipe)) {
                 const part = await this.eco.ores.getOre(msg.author.id, ingredient, true);

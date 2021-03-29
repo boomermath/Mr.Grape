@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-const { OrePrices } = require("../assets");
 const Ores = require("./Ores");
 const Model = require("../Model");
 
@@ -51,7 +50,7 @@ class UserOres extends Model {
 
         if (refined) {
             refined.amount += amount;
-            refined.save()
+            refined.save();
         }
         else await UserOres.create({ user_id: this.user_id, ore_id: this.ore_id, amount: amount, refined: true });
 
