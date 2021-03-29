@@ -38,7 +38,7 @@ module.exports =
 
             if (!number || number < 0 || number > balance) return msg.send("That's not a valid number of stars to bet.");
 
-            if (this.eco.items.getItem(msg.author.id, "rigged die")) {
+            if (await this.eco.items.getItem(msg.author.id, "rigged die")) {
                 msg.send("Do you want to use your rigged die?");
 
                 const rig = await this.verify(msg);

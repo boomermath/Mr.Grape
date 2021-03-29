@@ -33,9 +33,9 @@ module.exports =
             const itemDescription = this.format(craft.name, quantity)
 
             for (const [ingredient, amount] of Object.entries(craft.recipe)) {
-                const hasPart = await this.eco.ores.getOre(msg.author.id, ingredient, true);
+                const part = await this.eco.ores.getOre(msg.author.id, ingredient, true);
 
-                if (hasPart < amount * quantity) return msg.send(`You don't have enough ${ingredient}s to make ${itemDescription}!`);
+                if (part.amount < amount * quantity) return msg.send(`You don't have enough ${ingredient}s to make ${itemDescription}!`);
 
                 await this.eco.ores.deleteOre(msg.author.id, ingredient, amount * quantity, true);
             }

@@ -22,12 +22,12 @@ module.exports =
 
             const inventory = await this.eco.ores.findAll({
                 where: { user_id: target.id },
-                include: "ore"
+                include: "data"
             });
 
             const items = inventory
-            .sort((a, b) => a.ore.name.localeCompare(b.ore.name))
-            .map(ore => [`${msg.emojis[ore.ore.name]} - ${ore.ore.name.charAt(0).toUpperCase()}${ore.ore.name.slice(1)}`, ore.amount]);
+                .sort((a, b) => a.data.name.localeCompare(b.data.name))
+                .map(ore => [`${msg.emojis[ore.data.name]} - ${ore.refined ? "Refined" : ""} ${ore.data.name.charAt(0).toUpperCase()}${ore.data.name.slice(1)}`, ore.amount]);
 
             const entries = items.length ? items : [["nothing but cobwebs and pebbles m8", "\u200b"]];
 

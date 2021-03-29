@@ -26,12 +26,12 @@ module.exports =
 
             const inventory = await this.eco.items.findAll({
                 where: { user_id: target.id },
-                include: "item"
+                include: "data"
             });
 
             const items = inventory
-                .sort((a, b) => a.item.name.localeCompare(b.item.name))
-                .map(item => [this.format(item.item.name, item.amount), item.amount]);
+                .sort((a, b) => a.data.name.localeCompare(b.data.name))
+                .map(item => [this.format(item.data.name, item.amount), item.amount]);
 
             const entries = items.length ? items : [["nothing but cobwebs and dust m8", "\u200b"]];
 

@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const { OrePrices } = require("../assets");
 const Ores = require("./Ores");
 const Model = require("../Model");
 
@@ -23,26 +24,39 @@ class UserOres extends Model {
 
     static async getOre(id, oreName, rf = false) {
         const ore = await Ores.findOne({ where: { name: oreName } });
-        console.log(oreName, ore)
-        if (!ore) throw new Error("Invalid ore!");
+
+        if (!ore) return false;
 
         const userOre = await this.findOne({
             where: {
                 user_id: id,
                 ore_id: ore.id,
                 refined: rf
-            }
+            },
+            include: "data"
         });
 
-        return userOre ? userOre.amount : 0;
+        return userOre;
     }
 
-    static async deleteOre(id, oreName, amt = 1, rf = false) {
-        const ore = await Ores.findOne({ where: { name: oreName } });
+    async refine(amount = this.amount) {
+        const refined = await UserOres.findOne({ where: { user_id: this.user_id, ore_id: this.ore_id, refined: true } });
 
-        if (!ore) throw new Error("Invalid ore to delete!");
+        if (!refined && amount === this.amount) {
+            this.refined = true;
+            return this.save();
+        }
 
-        this.addOre(id, ore, -amt, rf)
+        this.amount -= amount;
+
+        if (refined) {
+            refined.amount += amount;
+            refined.save()
+        }
+        else await UserOres.create({ user_id: this.user_id, ore_id: this.ore_id, amount: amount, refined: true });
+
+        if (!this.amount) return this.destroy();
+        return this.save();
     }
 }
 
