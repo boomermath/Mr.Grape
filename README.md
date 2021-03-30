@@ -8,7 +8,7 @@
     <img src="https://raw.githubusercontent.com/kinglalu/Mr.Grape/master/images/invite.png" width="147" height="32" alt="Invite to your server!"></a><p>
 	<p><a href="https://upgrade.chat/checkout/743208211460653177">
     <img src="https://raw.githubusercontent.com/kinglalu/Mr.Grape/master/images/support.png" width="147" height="32" alt="Support us!"></a><p>
-	<p> <a href="https://heroku.com/deploy?template=https://github.com/kinglalu/Mr.Grape"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku"></a><p>
+	<p> <a href="https://heroku.com/deploy?template=https://github.com/kinglalu/Mr.Grape-Beta"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku"></a><p>
 	<a href="https://discord.gg/2RKPmDg2A6" align="center">
 <img src="https://img.shields.io/discord/743208211460653177?style=for-the-badge?" />
 </a>
