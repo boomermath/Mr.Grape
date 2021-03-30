@@ -1,49 +1,31 @@
 {
   "name": "Mr.Grape",
-  "description": "A super cool discord bot.",
-  "repository": "https://github.com/kinglalu/Mr.Grape",
-  "logo": "https://app.chatwoot.com/brand-assets/logo_thumbnail.svg",
+  "description": "A cool discord bot.",
   "keywords": [
-    "live chat",
-    "customer support",
-    "ruby",
-    "rails",
-    "vue"
+    "discord",
+    "bot",
+    "grape"
   ],
+  "repository": "https://github.com/kinglalu/Mr.Grape-Beta",
   "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
-      "description": "Discord bot token."
+      "description": "The token for your discord bot"
     },
-    "DATABASE": {
-      "description": "Database to store economy and guild information.",
-      "value": "sqlite://bot.sqlite"
+    "DATABASE_URL": {
+      "description": "URL to connect to database"
     },
     "NASA": {
-      "description": "For NASA picture of the day.",
-      "value": "DEMO"
+      "description": "For NASA Picture of the Day"
     },
     "WOLFRAM": {
-      "description": "For the wolfram command.",
-      "value": "DEMO"
+      "description": "For Wolfram command"
     },
     "KSOFT": {
-      "description": "For lyrics.",
-      "value": "DEMO"
-    }
-  },
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "FREE"
+      "description": "For Lyrics command"
     }
   },
   "addons": [
     "heroku-postgresql"
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
   ]
 }

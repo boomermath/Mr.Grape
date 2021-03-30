@@ -12,7 +12,7 @@ module.exports =
                 aliases: ["m"],
                 description: "Get a reddit meme!",
                 usage: "No arguments required",
-                cooldown: 3,
+                cooldown: 2,
                 saying: "You're not dank.",
                 url: "https://www.reddit.com/r/meme/hot/.json",
                 params: {
