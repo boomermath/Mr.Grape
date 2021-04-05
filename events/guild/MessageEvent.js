@@ -2,8 +2,8 @@ const { Cooldowns, Event } = require("../../structures");
 
 module.exports =
     class extends Event {
-        constructor(client) {
-            super(client, {
+        constructor(...args) {
+            super(...args, {
                 name: "message",
             });
 

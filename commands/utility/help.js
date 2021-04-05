@@ -19,14 +19,6 @@ module.exports =
             return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
         }
 
-        getCommands(type) {
-            const arr = [];
-            for (const command of this.client.commands.values()) {
-                if (command.type === type) arr.push(command.name);
-            }
-            return arr;
-        }
-
         async main(msg) {
 
             await msg.react(checkmark);
@@ -52,7 +44,11 @@ module.exports =
             }
             else if (Object.keys(aliases).includes(helpArg) || categories.includes(helpArg)) {
                 const category = aliases[helpArg] || helpArg;
-                const commands = this.getCommands(category).map(c => `\`${c}\``).join(", ");
+
+                const commands = [...this.client.commands.values()]
+                    .filter(c => c.type === category)
+                    .map(c => `\`${c.name}\``).join(", ");
+
                 const helpEmbed = new msg.embed()
                     .setTitle("Help")
                     .addField(`Commands in the ${this.toProper(category)} Category!`, `> ${commands}`);

@@ -16,14 +16,11 @@ module.exports =
 
         async main(msg) {
             const collection = [...this.eco.users.cache.sort((a, b) => b.balance - a.balance).first(10).values()];
-            const leaderboard = new msg.embed()
-                .setTitle("Global Leaderboard")
-
             const entries = [];
 
             for (const person of collection) {
                 const { tag } = await this.client.users.fetch(person.id);
-                entries.push([`${collection.indexOf(person) + 1}) \`${tag}\` | \`${person.balance}\` :star:s`, "\u200b"])
+                entries.push([`${collection.indexOf(person) + 1}) \`${tag}\` | \`${person.balance}\` :star:s`, "\u200b"]);
             }
 
             msg.paginate({ title: "Global Leaderboard" }, entries, 5);

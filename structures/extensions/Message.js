@@ -11,12 +11,12 @@ Structures.extend("Message", Message => {
         }
 
         get _parsed() {
-            if (!this.content.startsWith(this.prefix)) return;
+            if (!this.content.startsWith(this.prefix)) return false;
             return this.content.slice(this.prefix.length).trim().split(/ +/);
         }
 
         get command() {
-            if (!this._parsed) return;
+            if (!this._parsed) return false;
             const command = this.client.commands.get(this._parsed[0].toLowerCase());
             return command ? command : null;
         }
