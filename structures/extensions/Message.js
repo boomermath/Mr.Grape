@@ -25,9 +25,12 @@ Structures.extend("Message", Message => {
             return this._parsed ? this._parsed.slice(1) : null;
         }
 
+        get defaultPrefix() {
+            return this.guild.settings?.prefix || this.client.config.prefix;
+        }
+
         get prefix() {
-            return this.content.startsWith(this.client.mention) ? this.client.mention : null ||
-                this.guild.settings?.prefix || this.client.config.prefix;
+            return this.content.startsWith(this.client.mention) ? this.client.mention : this.defaultPrefix;
         }
 
         send(...opts) {
