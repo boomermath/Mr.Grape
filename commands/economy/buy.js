@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op: { or } } = require("sequelize");
 const { EconomyCommand } = require("../../structures");
 
 module.exports =
@@ -23,7 +23,7 @@ module.exports =
             const item = await this.eco.shop.findOne({
                 where: {
                     type: "shop",
-                    [Op.or]: {
+                    [or]: {
                         name: itemName,
                         alias: itemName
                     }

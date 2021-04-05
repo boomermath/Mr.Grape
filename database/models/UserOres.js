@@ -31,9 +31,10 @@ class UserOres extends Model {
                 user_id: id,
                 ore_id: ore.id,
                 refined: rf
-            },
-            include: "data"
+            }
         });
+
+        userOre.data = ore;
 
         return userOre;
     }

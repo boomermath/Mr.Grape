@@ -21,7 +21,7 @@ module.exports =
             if (params.length === 1) return [params[0], 1];
             const number = params.find(e => Number.isInteger(+e));
             if (!number) return [false];
-            return [params.filter(i => i !== number).join(""), +number];
+            return [params.filter(i => i !== number).join(" "), +number];
         }
 
         format(name, amount) {

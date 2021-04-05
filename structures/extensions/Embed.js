@@ -66,11 +66,12 @@ class PaginatedEmbed {
 
         collector.on("collect", (reaction, user) => {
             reaction.users.remove(user.id);
-            if (this.pages.length === 1) return;
-            else if (reaction.emoji.name === left) this.flipPage(-1);
-            else if (reaction.emoji.name === right) this.flipPage(1);
-            message.edit(this.renderPage());
             timer.restart();
+
+            if (reaction.emoji.name === left) this.flipPage(-1);
+            else if (reaction.emoji.name === right) this.flipPage(1);
+
+            message.edit(this.renderPage());
         });
 
         timer.on("finish", () => {

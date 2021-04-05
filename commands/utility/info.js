@@ -38,9 +38,10 @@ module.exports =
                     { name: "Uptime", value: `${Math.floor(uptime)} ${unit}` },
                     { name: "Todo List", value: this.client.config.todo.join("\n") },
                     { name: "Recent Update", value: "Database corruption lead to data wipe, actively working on solution to fix data, +meme command added." },
-                    { name: "Credits", value: "Kinglalu, DAONE, and LinuxTerm | Goobermeister: graphics/emojis | MikeLime and CompactCow: Bugfixes/minor improvements | Originally by Horsey4 and Airplane Bong." },
+                    { name: "Credits", value: "Kinglalu\nMade by DAONE and LinuxTerm\nGraphics/Emojis by Goobermeister\nBug hunters: Mikelime & CompactCow\n;Originally by Horsey4 and Airplane Bong." },
+                    { name: "Supporters", value: `${msg.prefix}support for more info!` },
                     { name: "Number of servers", value: this.client.guilds.cache.size },
-                    { name: "Number of Users", value: this.client.users.cache.size }
+                    { name: "Number of Users", value: this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString() }
                 );
             msg.send(info);
         }

@@ -7,7 +7,7 @@ module.exports =
                 name: "refine",
                 type: "economy",
                 description: "Get a user's balance.",
-                usage: "<optional user>",
+                usage: "<ore> <amount>",
                 aliases: ["rf"],
                 saying: "Chill on the refining.",
                 cooldown: 2

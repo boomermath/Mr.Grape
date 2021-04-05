@@ -30,8 +30,7 @@ module.exports =
 
         _format(data) {
             if (typeof data === "object") {
-                const isArray = Array.isArray(data);
-                if (isArray && data.every(e => typeof e === "string")) return data.join("\n");
+                if (Array.isArray(data) && data.every(e => typeof e === "string")) return data.join("\n");
                 if (data instanceof Error) return data.stack || data.message;
                 else return inspect(data);
             }

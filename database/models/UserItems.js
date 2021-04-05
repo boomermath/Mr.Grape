@@ -21,7 +21,7 @@ class UserItems extends Model {
     static async getItem(id, itemName) {
         const item = await Shop.findOne({ where: { name: itemName } });
 
-        if (!item) throw new Error("Invalid item!");
+        if (!item) return false;
 
         const userItems = await this.findOne({
             where: { user_id: id, item_id: item.id }
