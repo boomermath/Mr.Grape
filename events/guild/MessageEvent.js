@@ -12,7 +12,7 @@ module.exports =
 
         async main(message) {
 
-            if (message.content === `<@!${this.client.user.id}>`) {
+            if (message.content === this.client.mention) {
                 const helloEmbed = new message.embed()
                     .setTitle("Hello!")
                     .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`);
@@ -53,10 +53,10 @@ module.exports =
 
             try {
                 command.main(message);
-                this.client.emit("commandRun", command, message.author);
+                this.client.emit("commandRun", command.name, message.author);
             } catch (err) {
                 message.send("Made an oopsie! If this persists, please let us know!");
-                this.client.emit("commandError", command, err);
+                this.client.emit("commandError", command.name, err);
             }
         }
     };

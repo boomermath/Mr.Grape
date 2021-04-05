@@ -8,7 +8,7 @@ module.exports =
             });
         }
 
-        main({ name }, { username, id }) {
-            this.client.console.log(`Command "${name}" used by ${username} | ID: ${id}`);
+        main(name, person) {
+            this.client.console.log(`Command "${name}" used by ${person.username} | ID: ${person.id}`);
         }
     };

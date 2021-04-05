@@ -29,6 +29,10 @@ module.exports =
             return `https://discord.com/oauth2/authorize?client_id=${this.user.id}&scope=bot&permissions=0`;
         }
 
+        get mention() {
+            return `<@!${this.user.id}>`;
+        }
+
         async login() {
             try {
                 this._registry.forEach(store => {

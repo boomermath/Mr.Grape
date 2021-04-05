@@ -26,7 +26,8 @@ Structures.extend("Message", Message => {
         }
 
         get prefix() {
-            return this.guild.settings?.prefix || this.client.config.prefix;
+            return this.content.startsWith(this.client.mention) ? this.client.mention : null ||
+                this.guild.settings?.prefix || this.client.config.prefix;
         }
 
         send(...opts) {
