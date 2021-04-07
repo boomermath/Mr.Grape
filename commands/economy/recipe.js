@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {

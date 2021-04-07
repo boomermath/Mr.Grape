@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -21,7 +21,7 @@ module.exports =
                 .sort((a, b) => a.price - b.price)
                 .map(item => [item.name, item.description, item.price]);
 
-            const shopEmbed = new msg.embed()
+            const shopEmbed = new Embed()
                 .setTitle("Shop")
                 .setDescription(`Buy an item by using ${msg.prefix}buy <itemname>!`);
 

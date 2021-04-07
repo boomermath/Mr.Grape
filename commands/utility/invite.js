@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -14,7 +14,7 @@ module.exports =
         }
 
         main(msg) {
-            const invite = new msg.embed()
+            const invite = new Embed()
                 .setTitle("Invites")
                 .addFields(
                     {

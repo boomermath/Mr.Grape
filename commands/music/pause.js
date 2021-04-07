@@ -1,4 +1,4 @@
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -18,7 +18,7 @@ module.exports =
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             if (!musicPlayer.playing) return msg.send("The music is already paused!");
             musicPlayer.pause();
-            const pauseEmbed = new msg.embed()
+            const pauseEmbed = new Embed()
                 .setTitle(":pause_button: Paused Music!");
             msg.send(pauseEmbed);
         }

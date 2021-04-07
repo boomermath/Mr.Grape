@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -22,7 +22,7 @@ module.exports =
         main(msg) {
             const person = msg.mentions.users.first() || msg.author;
             const personAsGuild = msg.guild.member(person);
-            const personEmbed = new msg.embed()
+            const personEmbed = new Embed()
                 .setAuthor(person.tag, person.displayAvatarURL())
                 .setThumbnail(person.displayAvatarURL())
                 .addFields(

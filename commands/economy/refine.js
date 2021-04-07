@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -63,7 +63,7 @@ module.exports =
 
             this.eco.users.add(msg.author.id, -details.cost);
 
-            const refinedEmbed = new msg.embed()
+            const refinedEmbed = new Embed()
                 .setTitle("Refinement")
                 .addField(msg.author.username,
                     `Refined their ${details.amount} ${details.data === "all" ? "" : details.data}${details.amount > 1 ? "s" : ""} for 

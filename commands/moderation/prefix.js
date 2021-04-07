@@ -1,4 +1,4 @@
-const { ModerationCommand } = require("../../structures");
+const { ModerationCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends ModerationCommand {
@@ -22,7 +22,7 @@ module.exports =
 
             msg.guild.setPrefix(prefix);
 
-            const prefixEmbed = new msg.embed()
+            const prefixEmbed = new Embed()
                 .setTitle("Prefix")
                 .addField("Set to", prefix);
             msg.send(prefixEmbed);

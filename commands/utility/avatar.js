@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -22,7 +22,7 @@ module.exports =
         async main(msg) {
             const avatar = msg.mentions.users.first() || msg.author;
 
-            const avatarEmbed = new msg.embed()
+            const avatarEmbed = new Embed()
                 .setTitle(`${avatar.username}'s avatar`)
                 .addFields(
                     { name: "\u200b", value: `**[jpg](${this.getPic(avatar, "jpg")})**`, inline: true },

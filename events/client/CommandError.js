@@ -8,7 +8,7 @@ module.exports =
             });
         }
 
-        main({ name }, err) {
+        main(name, err) {
             this.client.console.error(`Command "${name}" failed.\n${err.stack}`);
         }
     };

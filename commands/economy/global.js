@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -16,7 +16,7 @@ module.exports =
 
         async main(msg) {
             const collection = [...this.eco.users.cache.sort((a, b) => b.balance - a.balance).first(10).values()];
-            const leaderboard = new msg.embed()
+            const leaderboard = new Embed()
                 .setTitle("Global Leaderboard")
 
             const entries = [];

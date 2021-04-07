@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 const responses = [
     "Better not tell you now.",
@@ -49,7 +49,7 @@ module.exports =
 
             if (!msg.params.length || !msg.params.pop().endsWith("?")) invalid = true;
 
-            const embed = new msg.embed()
+            const embed = new Embed()
                 .setTitle(`${msg.author.username}'s crystal ball`)
                 .setDescription(this.getResponse(invalid));
             msg.send(embed);

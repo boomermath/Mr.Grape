@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -19,7 +19,7 @@ module.exports =
 
             this.eco.users.add(msg.author.id, randStars);
 
-            const dailyEmbed = new msg.embed()
+            const dailyEmbed = new Embed()
                 .setTitle("Daily stars!")
                 .addField(`${msg.author.username} got`, `**${randStars} :star:s!**`);
             msg.send(dailyEmbed);

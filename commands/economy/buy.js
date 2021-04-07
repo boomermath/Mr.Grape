@@ -1,5 +1,5 @@
 const { Op: { or } } = require("sequelize");
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -39,7 +39,7 @@ module.exports =
             await this.eco.items.addItem(msg.author.id, item, number);
             this.eco.users.add(msg.author.id, -cost);
 
-            const receipt = new msg.embed()
+            const receipt = new Embed()
                 .setTitle("Purchase")
                 .addField("Receipt", `You purchased ${this.format(item.name, number)}!`)
                 .setFooter("Grape Marketplaces");

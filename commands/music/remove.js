@@ -1,4 +1,4 @@
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -23,7 +23,7 @@ module.exports =
 
             const removedSong = queue.remove(index);
 
-            const removeEmbed = new msg.embed()
+            const removeEmbed = new Embed()
                 .setDescription(`Removed [${removedSong.title}] from the queue!`);
             msg.send(removeEmbed);
         }

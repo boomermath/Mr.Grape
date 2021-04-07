@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -53,7 +53,7 @@ module.exports =
             }
 
             const dice = this.randomize(6, rigged);
-            const gambleEmbed = new msg.embed()
+            const gambleEmbed = new Embed()
                 .setTitle(`${msg.author.username}'s gambling table`)
                 .addField("Ok, if you roll an even number you win, if you roll an odd number, you lose.", "\u200b");
 

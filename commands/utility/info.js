@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -31,7 +31,7 @@ module.exports =
                 unit = "day(s)";
             }
 
-            const info = new msg.embed()
+            const info = new Embed()
                 .setTitle("Info")
                 .addFields(
                     { name: "Version", value: this.client.config.version },

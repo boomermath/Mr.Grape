@@ -1,5 +1,5 @@
 const { Collection } = require("discord.js");
-const { Command } = require("../commands");
+const { Command, Embed } = require("../commands");
 const { Store } = require("../base");
 
 module.exports = class extends Store {

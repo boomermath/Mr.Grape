@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 const checkmark = "✅";
 
 module.exports =
@@ -42,7 +42,7 @@ module.exports =
             const categories = ["economy", "fun", "moderation", "music", "utility"];
 
             if (!helpArg) {
-                const helpEmbed = new msg.embed()
+                const helpEmbed = new Embed()
                     .setTitle("Help")
                     .addFields(
                         { name: "Categories", value: categories.map(e => this.toProper(e)).join("\n") },
@@ -53,14 +53,14 @@ module.exports =
             else if (Object.keys(aliases).includes(helpArg) || categories.includes(helpArg)) {
                 const category = aliases[helpArg] || helpArg;
                 const commands = this.getCommands(category).map(c => `\`${c}\``).join(", ");
-                const helpEmbed = new msg.embed()
+                const helpEmbed = new Embed()
                     .setTitle("Help")
                     .addField(`Commands in the ${this.toProper(category)} Category!`, `> ${commands}`);
                 return msg.send(helpEmbed);
             }
             else if (this.client.commands.has(helpArg)) {
                 const command = this.client.commands.get(helpArg);
-                const commandEmbed = new msg.embed()
+                const commandEmbed = new Embed()
                     .setTitle(this.toProper(command.name))
                     .setDescription(command.description)
                     .addFields(

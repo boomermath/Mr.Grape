@@ -1,5 +1,5 @@
 const { Fruits } = require("../../database");
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -29,7 +29,7 @@ module.exports =
             const fruit = Fruits[Math.floor(Math.random() * Fruits.length)];
             const scrambled = this.scramble(fruit.split(""));
 
-            const scrambledWord = new msg.embed()
+            const scrambledWord = new Embed()
                 .setTitle("Unscramble!")
                 .addField("Unscramble the word!", `${scrambled}`);
 
@@ -38,7 +38,7 @@ module.exports =
             const collector = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 7000 });
 
             if (!collector.size) {
-                const timeoutEmbed = new msg.embed()
+                const timeoutEmbed = new Embed()
                     .setTitle(`${msg.author.username}'s unscrambling`)
                     .addField("C'mon slowpoke", `The word was ${fruit}`);
                 return msg.send(timeoutEmbed);
@@ -52,14 +52,14 @@ module.exports =
 
                 this.eco.users.add(msg.author.id, reward);
 
-                const unscEmbed = new msg.embed()
+                const unscEmbed = new Embed()
                     .setTitle(`${msg.author.username}'s unscrambling`)
                     .addField("Good job!", `You got ${reward} :star:s!`);
                 return msg.send(unscEmbed);
             }
 
             else {
-                const unscEmbed = new msg.embed()
+                const unscEmbed = new Embed()
                     .setTitle(`${msg.author.username}'s unscrambling`)
                     .addField("You're bad.", `It's ${fruit} not ${message}`);
                 return msg.send(unscEmbed);

@@ -4,29 +4,33 @@ const emojis = require("../../config/emojis");
 
 Structures.extend("Message", Message => {
     return class extends Message {
-        constructor(...args) {
-            super(...args);
-            this.emojis = emojis;
-            this.embed = Embed;
-        }
-
-        get _parsed() {
-            if (!this.content.startsWith(this.prefix)) return;
-            return this.content.slice(this.prefix.length).trim().split(/ +/);
-        }
-
-        get command() {
-            if (!this._parsed) return;
-            const command = this.client.commands.get(this._parsed[0].toLowerCase());
-            return command ? command : null;
-        }
-
-        get params() {
-            return this._parsed ? this._parsed.slice(1) : null;
-        }
 
         get prefix() {
             return this.guild.settings?.prefix || this.client.config.prefix;
+        }
+
+        get emojis() {
+            return emojis;
+        }
+
+        _patch(data) {
+            super._patch(data);
+
+            this._parseCommand();
+        }
+
+        _parseCommand() {
+            const prefix = this.content.startsWith(this.client.mention) ? this.client.mention : this.prefix;
+
+            if (!this.content.startsWith(prefix)) return;
+
+            const [cmd, ...params] = this.content.slice(prefix.length).trim().split(/ +/);
+            const command = this.client.commands.get(cmd.toLowerCase());
+
+            if (!command) return;
+
+            this.command = command;
+            this.params = params;
         }
 
         send(...opts) {

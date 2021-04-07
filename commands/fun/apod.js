@@ -1,4 +1,4 @@
-const { RequestCommand } = require("../../structures");
+const { RequestCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends RequestCommand {
@@ -21,7 +21,7 @@ module.exports =
         async main(msg) {
             const { hdurl: picture } = await this.request();
 
-            const pictureEmbed = new msg.embed()
+            const pictureEmbed = new Embed()
                 .setTitle("NASA Picture of the day!")
                 .setImage(picture);
             msg.send(pictureEmbed);

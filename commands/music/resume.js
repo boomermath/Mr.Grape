@@ -1,4 +1,4 @@
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -18,7 +18,7 @@ module.exports =
             const musicPlayer = this.musicQueues.get(msg.guild.id);
             if (musicPlayer.playing) return msg.send("The music is already playing!");
             musicPlayer.resume();
-            const resumeEmbed = new msg.embed()
+            const resumeEmbed = new Embed()
                 .setTitle(":white_check_mark: Resumed Music!");
             return msg.send(resumeEmbed);
         }

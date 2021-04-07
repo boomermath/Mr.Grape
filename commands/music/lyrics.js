@@ -1,5 +1,5 @@
 const centra = require("centra");
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -32,7 +32,7 @@ module.exports =
 
             if (!lyrics) return msg.send("Lyrics could not be found for that song!");
 
-            const lyrEmbed = new msg.embed()
+            const lyrEmbed = new Embed()
                 .setTitle("Lyrics")
                 .setDescription("Powered by [KSoft](https://ksoft.si)")
                 .setThumbnail(album_art)

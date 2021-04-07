@@ -1,4 +1,4 @@
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -20,7 +20,7 @@ module.exports =
             /* eslint-disable no-case-declarations */
             switch (msg.params[0]) {
             case undefined:
-                const loopEmbed = new msg.embed()
+                const loopEmbed = new Embed()
                     .setTitle(`**Current loop mode: ${mode[musicPlayer.settings.repeatMode]}**`);
                 return msg.send(loopEmbed);
             case "o":
@@ -36,11 +36,11 @@ module.exports =
                 musicPlayer.settings.repeatMode = 2;
                 break;
             default:
-                const settingsEmbed = new msg.embed()
+                const settingsEmbed = new Embed()
                     .setTitle(`**Valid settings are: ${mode.join(", ")}**`);
                 return msg.send(settingsEmbed);
             }
-            const settingsEmbed = new msg.embed()
+            const settingsEmbed = new Embed()
                 .setTitle(`**Looping set to: ${mode[musicPlayer.settings.repeatMode]}**`);
             return msg.send(settingsEmbed);
         }

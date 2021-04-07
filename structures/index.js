@@ -1,4 +1,5 @@
 module.exports = {
     ...require("./commands"), ...require("./events"), ...require("./utils"),
-    Client: require("./Client")
+    Client: require("./Client"),
+    Embed: require("./extensions/Embed").Embed
 };

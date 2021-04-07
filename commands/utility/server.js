@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 //Something kinglalu can copy and paste to make a command
 module.exports =
     class extends Command {
@@ -15,7 +15,7 @@ module.exports =
         }
 
         main(msg) {
-            const guildEmbed = new msg.embed()
+            const guildEmbed = new Embed()
                 .setAuthor(msg.guild.name, msg.guild.iconURL())
                 .setThumbnail(msg.guild.iconURL())
                 .addFields(

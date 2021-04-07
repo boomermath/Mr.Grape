@@ -1,5 +1,5 @@
 const { Util: { escapeMarkdown } } = require("discord.js");
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {

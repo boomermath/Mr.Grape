@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -42,7 +42,7 @@ module.exports =
 
             await this.eco.items.addItem(msg.author.id, craft, quantity);
 
-            const craftEmbed = new msg.embed()
+            const craftEmbed = new Embed()
                 .setTitle("Crafting")
                 .addField("Success!", `You crafted ${itemDescription}!`);
             msg.send(craftEmbed);

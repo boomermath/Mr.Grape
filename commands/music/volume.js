@@ -1,4 +1,4 @@
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -28,7 +28,7 @@ module.exports =
                 [title, info] = ["**Set Volume**", number];
                 musicPlayer.volume = number;
             }
-            const volEmbed = new msg.embed()
+            const volEmbed = new Embed()
                 .setTitle(`${title}: **${info}**`);
             return msg.send(volEmbed);
         }

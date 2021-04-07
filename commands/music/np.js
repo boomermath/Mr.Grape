@@ -1,4 +1,4 @@
-const { MusicCommand } = require("../../structures");
+const { MusicCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {
@@ -22,7 +22,7 @@ module.exports =
             const { queue: { currentSong: song }, playTime } = this.musicQueues.get(msg.guild.id);
             const formattedDuration = song.duration.length === 4 ? `00:0${song.duration}` :
                 song.duration.length === 5 ? `00:${song.duration}` : song.duration;
-            const np = new msg.embed()
+            const np = new Embed()
                 .setDescription(`**Now playing\n[${song.title}](${song.url})**`)
                 .setAuthor(`Requested by ${song.author.username}`, song.author.displayAvatarURL())
                 .setThumbnail(song.thumbnail)

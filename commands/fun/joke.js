@@ -1,4 +1,4 @@
-const { RequestCommand } = require("../../structures");
+const { RequestCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends RequestCommand {
@@ -22,7 +22,7 @@ module.exports =
         async main(msg) {
             const { setup, delivery } = await this.request();
 
-            const jokeEmbed = new msg.embed()
+            const jokeEmbed = new Embed()
                 .setTitle("Meow!")
                 .addField(setup, delivery);
             msg.send(jokeEmbed);

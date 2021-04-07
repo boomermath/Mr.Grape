@@ -1,4 +1,4 @@
-const { RequestCommand } = require("../../structures");
+const { RequestCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends RequestCommand {
@@ -33,7 +33,7 @@ module.exports =
 
             const answer = queryresult.pods[1].subpods[0].plaintext;
 
-            const wolframEmbed = new msg.embed()
+            const wolframEmbed = new Embed()
                 .setTitle("Answer")
                 .setDescription(answer.endsWith(".") ? answer : `${answer}.`)
                 .setFooter("Powered by Wolfram|Alpha");

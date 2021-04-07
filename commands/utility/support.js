@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -15,7 +15,7 @@ module.exports =
         }
 
         main(msg) {
-            const supporterEmbed = new msg.embed()
+            const supporterEmbed = new Embed()
                 .setTitle("Supporters")
                 .addFields(
                     { name: "To be put on here, join the discord!", value: `**[Invite](${this.client.config.serverInvite})**` },

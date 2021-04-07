@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -36,7 +36,7 @@ module.exports =
         async main(msg) {
             const earn = Math.round(Math.random() * await this.eco.items.getItem(msg.author.id, "shovel") ? 15 : 6) + 1;
 
-            const mineEmbed = new msg.embed()
+            const mineEmbed = new Embed()
                 .setTitle(`${msg.author.username}'s mine`)
                 .addField(`You dug up ${earn} :star:s!`, "\u200b");
 

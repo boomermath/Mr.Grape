@@ -1,4 +1,4 @@
-const { Cooldowns, Event } = require("../../structures");
+const { Cooldowns, Embed, Event } = require("../../structures");
 
 module.exports =
     class extends Event {
@@ -12,8 +12,8 @@ module.exports =
 
         async main(message) {
 
-            if (message.content === `<@!${this.client.user.id}>`) {
-                const helloEmbed = new message.embed()
+            if (message.content === this.client.mention) {
+                const helloEmbed = new Embed()
                     .setTitle("Hello!")
                     .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`);
                 message.send(helloEmbed);
@@ -25,7 +25,7 @@ module.exports =
             const cooldown = this.cooldownManager.main(command, { id: message.author.id, fans: 0 });
 
             if (typeof cooldown === "number") {
-                const cooldownEmbed = new message.embed()
+                const cooldownEmbed = new Embed()
                     .setTitle("Chill out!")
                     .addField(command.saying, `Wait ${this.cooldownManager.format(cooldown)}`);
                 return message.send(cooldownEmbed);
@@ -56,7 +56,7 @@ module.exports =
                 this.client.emit("commandRun", command, message.author);
             } catch (err) {
                 message.send("Made an oopsie! If this persists, please let us know!");
-                this.client.emit("commandError", command, err);
+                this.client.emit("commandError", command.name, err);
             }
         }
     };

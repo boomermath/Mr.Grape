@@ -49,7 +49,7 @@ module.exports =
 
             const player = this._connection.play(stream)
                 .on("start", () => {
-                    const embed = new this._msg.embed()
+                    const embed = new this._Embed()
                         .setTitle("Now Playing")
                         .setDescription(`**[${escapeMarkdown(song.title)}](${song.url})**`)
                         .setThumbnail(song.thumbnail);
@@ -63,7 +63,7 @@ module.exports =
 
         async _loadQueue(msg) {
             const res = await getSongs(msg.params.join(" "), msg.author);
-            const embed = new msg.embed()
+            const embed = new Embed()
                 .setTitle("Queued")
                 .setDescription(res.title)
                 .setThumbnail(res.thumbnail);

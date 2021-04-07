@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -15,7 +15,7 @@ module.exports =
         }
 
         main(msg) {
-            const coinFlip = new msg.embed()
+            const coinFlip = new Embed()
                 .setTitle(`${msg.author.username}'s coinflip`)
                 .addField("It landed on", `${Math.round(Math.random()) ? "Heads!" : "Tails!"}`);
             msg.send(coinFlip);

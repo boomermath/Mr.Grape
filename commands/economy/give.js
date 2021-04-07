@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -31,7 +31,7 @@ module.exports =
             this.eco.users.add(target.id, number);
             this.eco.users.add(msg.author.id, -number);
 
-            const giveEmbed = new msg.embed()
+            const giveEmbed = new Embed()
                 .setTitle("Donation")
                 .addField(`${msg.author.username}`, `gave ${number} :star:s to ${target.username}`);
             msg.send(giveEmbed);

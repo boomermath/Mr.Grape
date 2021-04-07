@@ -1,4 +1,4 @@
-const { Command } = require("../../structures");
+const { Command, Embed } = require("../../structures");
 
 module.exports =
     class extends Command {
@@ -17,7 +17,7 @@ module.exports =
         async main(msg) {
             const ping = await msg.send("Ping?");
             const pingNum = ping.createdTimestamp - msg.createdTimestamp;
-            const pingEmbed = new msg.embed()
+            const pingEmbed = new Embed()
                 .setTitle("Pong!")
                 .addFields(
                     { name: "Bot ping", value: pingNum, inline: true },

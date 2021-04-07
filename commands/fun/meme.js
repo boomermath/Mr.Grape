@@ -1,5 +1,5 @@
 const { Collection } = require("discord.js");
-const { RequestCommand } = require("../../structures");
+const { RequestCommand, Embed } = require("../../structures");
 const memes = [];
 const MemeProgress = new Collection();
 
@@ -45,7 +45,7 @@ module.exports =
         main(msg) {
             const [title, url] = this.getMeme(msg.author.id);
 
-            const memeEmbed = new msg.embed()
+            const memeEmbed = new Embed()
                 .setTitle(title)
                 .setImage(url);
             msg.send(memeEmbed);

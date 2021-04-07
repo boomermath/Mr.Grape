@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -25,7 +25,7 @@ module.exports =
                     .join(", ");
             };
 
-            const oreEmbed = new msg.embed()
+            const oreEmbed = new Embed()
                 .setTitle("Ores")
                 .setDescription("A list of ores you can obtain by mining.")
                 .addFields(
