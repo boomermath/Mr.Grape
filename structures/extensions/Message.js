@@ -33,6 +33,10 @@ Structures.extend("Message", Message => {
             this.params = params;
         }
 
+        get prefix() {
+            return this.content.startsWith(this.client.mention) ? this.client.mention : this.defaultPrefix;
+        }
+
         send(...opts) {
             return this.channel.send(...opts);
         }

@@ -1,14 +1,15 @@
-const Event = require("./ReadyEvent");
+const { Event } = require("../../structures");
 
 module.exports =
     class extends Event {
-        constructor(client) {
-            super(client, {
+        constructor(...args) {
+            super(...args, {
                 name: "guildDelete",
             });
         }
 
-        main() {
+        main(guild) {
+            this.client.console.log(`I left ${guild.name}.`);
             this.updatePresence();
         }
     };

@@ -27,7 +27,7 @@ module.exports =
 
         load(dir) {
             const Component = require(dir);
-            const component = new Component(this.client);
+            const component = new Component(this.client, this);
 
             this._register(component, dir);
             super.set(component.name, component);
@@ -41,12 +41,8 @@ module.exports =
 
             for (const file of files) {
                 const filePath = join(path, file);
-                if (statSync(filePath).isDirectory()) {
-                    this.init(filePath, arr);
-                }
-                else {
-                    if (filePath.endsWith(".js")) this.load(filePath);
-                }
+                if (statSync(filePath).isDirectory()) this.init(filePath, arr);
+                else if (filePath.endsWith(".js")) this.load(filePath);
             }
 
             return this;

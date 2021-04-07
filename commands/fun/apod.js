@@ -11,19 +11,20 @@ module.exports =
                 usage: "No arguments required",
                 cooldown: 5,
                 saying: "There's only one NASA pic.",
+            });
+        }
+
+        async main(msg) {
+            const response = await this.request({
                 url: "https://api.nasa.gov/planetary/apod",
                 params: {
                     api_key: process.env.NASA
                 }
             });
-        }
-
-        async main(msg) {
-            const { hdurl: picture } = await this.request();
 
             const pictureEmbed = new Embed()
                 .setTitle("NASA Picture of the day!")
-                .setImage(picture);
+                .setImage(response.picture);
             msg.send(pictureEmbed);
         }
     };

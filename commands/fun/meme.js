@@ -13,20 +13,20 @@ module.exports =
                 description: "Get a reddit meme!",
                 usage: "No arguments required",
                 cooldown: 2,
-                saying: "You're not dank.",
+                saying: "You're not dank."
+            });
+        }
+
+        async init() {
+            const res = await this.request({
                 url: "https://www.reddit.com/r/meme/hot/.json",
                 params: {
                     limit: 100
                 }
             });
-        }
 
-        async init() {
-            const res = (await this.request()).data.children;
-            for (const { data } of res) {
-                if (!data.url.substr(8).startsWith("i")) {
-                    continue;
-                }
+            for (const { data } of res.data.children) {
+                if (!data.url.substr(8).startsWith("i")) continue;
                 memes.push([data.title, data.url]);
             }
         }

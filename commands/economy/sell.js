@@ -1,5 +1,5 @@
 const { Op: { or } } = require("sequelize");
-const { EconomyCommand, Embed } = require("../../structures");
+const { EconomyCommand } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -25,7 +25,7 @@ module.exports =
             const parse = all ? msg.params.filter(p => p !== "all") : this.getNameAmt(msg);
             const parsedItem = all ? parse : parse[0];
 
-            this.client.console.debug(parsedItem)
+            this.client.console.debug(parsedItem);
 
             const refined = parsedItem.startsWith("refined");
 
@@ -40,7 +40,7 @@ module.exports =
                         alias: parsedItem
                     }
                 }
-            })
+            });
 
             const ore = await this.eco.ores.getOre(msg.author.id, oreName, refined);
 
@@ -57,7 +57,7 @@ module.exports =
 
             if (quantity > itemEntry.amount) return msg.send(`You don't have that many ${sale.item.name}'s!`);
 
-            itemEntry.amount -= quantity
+            itemEntry.amount -= quantity;
             itemEntry.amount ? itemEntry.save() : itemEntry.destroy();
 
             let profit = quantity * sale.item.price;
@@ -66,9 +66,9 @@ module.exports =
 
             this.eco.users.add(msg.author.id, profit);
 
-            const sellEmbed = new Embed()
+            const sellEmbed = new msg.embed()
                 .setTitle("Sale")
-                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : "!"}`)
-            msg.send(sellEmbed)
+                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : "!"}`);
+            msg.send(sellEmbed);
         }
     };

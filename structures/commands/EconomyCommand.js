@@ -3,10 +3,6 @@ const Command = require("./Command");
 
 module.exports =
     class extends Command {
-        constructor(...args) {
-            super(...args);
-        }
-
         get eco() {
             return {
                 users: Users,

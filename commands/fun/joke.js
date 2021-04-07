@@ -10,17 +10,18 @@ module.exports =
                 description: "Get a joke!",
                 usage: "No arguments required",
                 cooldown: 3,
-                saying: "Haha, big funny, finish laughing first.",
+                saying: "Haha, big funny, finish laughing first."
+            });
+        }
+
+        async main(msg) {
+            const { setup, delivery } = await this.request({
                 url: "https://sv443.net/jokeapi/v2/joke/Pun",
                 params: {
                     blacklistFlags: "nsfw,religious,political,racist,sexist",
                     format: "json",
                 }
             });
-        }
-
-        async main(msg) {
-            const { setup, delivery } = await this.request();
 
             const jokeEmbed = new Embed()
                 .setTitle("Meow!")

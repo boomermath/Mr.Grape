@@ -11,6 +11,11 @@ module.exports =
                 usage: "No arguments required",
                 cooldown: 2,
                 saying: "Dogs = epic, but chill.",
+            });
+        }
+
+        async main(msg) {
+            const picture = await this.request({
                 url: "https://api.thedogapi.com/v1/images/search",
                 params: {
                     mime_types: "jpg,png",
@@ -18,10 +23,6 @@ module.exports =
                     size: "small"
                 }
             });
-        }
-
-        async main(msg) {
-            const picture = await this.request();
 
             const dogEmbed = new Embed()
                 .setTitle("Woof!")

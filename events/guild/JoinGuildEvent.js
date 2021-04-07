@@ -1,14 +1,15 @@
-const Event = require("./ReadyEvent");
+const { Event } = require("../../structures");
 
 module.exports =
     class extends Event {
-        constructor(client) {
-            super(client, {
+        constructor(...args) {
+            super(...args, {
                 name: "guildCreate",
             });
         }
 
-        main() {
+        main(guild) {
+            this.client.console.log(`I joined ${guild.name}!`);
             this.updatePresence();
         }
     };

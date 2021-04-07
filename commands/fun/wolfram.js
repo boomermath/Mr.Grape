@@ -7,16 +7,10 @@ module.exports =
                 name: "wolfram",
                 type: "fun",
                 aliases: ["wa", "wolf", "ask", "question", "givethquestion"],
-                description: "See pictures of space!",
-                usage: "No arguments required",
+                description: "Ask a question!",
+                usage: "<question>",
                 cooldown: 5,
-                saying: "There's only one NASA pic.",
-                url: "https://api.wolframalpha.com/v2/query",
-                params: {
-                    appid: process.env.WOLFRAM,
-                    output: "JSON",
-                    format: "plaintext"
-                }
+                saying: "Use google nerd."
             });
         }
 
@@ -24,7 +18,15 @@ module.exports =
             if (!msg.params.length) return msg.send("Give me a question to answer!");
 
             const queryMsg = await msg.send("Gimme a sec . . .");
-            const { queryresult } = await this.request({ input: msg.params.join(" ") });
+            const { queryresult } = await this.request({
+                url: "https://api.wolframalpha.com/v2/query",
+                params: {
+                    appid: process.env.WOLFRAM,
+                    input: msg.params.join(" "),
+                    output: "JSON",
+                    format: "plaintext"
+                }
+            });
 
             if (!queryresult.success) {
                 queryMsg.delete();

@@ -2,8 +2,8 @@ const { Cooldowns, Embed, Event } = require("../../structures");
 
 module.exports =
     class extends Event {
-        constructor(client) {
-            super(client, {
+        constructor(...args) {
+            super(...args, {
                 name: "message",
             });
 
@@ -15,7 +15,7 @@ module.exports =
             if (message.content === this.client.mention) {
                 const helloEmbed = new Embed()
                     .setTitle("Hello!")
-                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help.**`);
+                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.defaultPrefix}help, or you can ping me!**`);
                 message.send(helloEmbed);
             }
 
@@ -53,7 +53,7 @@ module.exports =
 
             try {
                 command.main(message);
-                this.client.emit("commandRun", command, message.author);
+                this.client.emit("commandRun", command.name, message.author);
             } catch (err) {
                 message.send("Made an oopsie! If this persists, please let us know!");
                 this.client.emit("commandError", command.name, err);
