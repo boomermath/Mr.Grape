@@ -1,5 +1,5 @@
 const { Op: { or } } = require("sequelize");
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -66,7 +66,7 @@ module.exports =
 
             this.eco.users.add(msg.author.id, profit);
 
-            const sellEmbed = new msg.embed()
+            const sellEmbed = new Embed()
                 .setTitle("Sale")
                 .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : "!"}`);
             msg.send(sellEmbed);

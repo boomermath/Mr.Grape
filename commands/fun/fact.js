@@ -1,4 +1,4 @@
-const { RequestCommand } = require("../../structures");
+const { RequestCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends RequestCommand {
@@ -19,7 +19,7 @@ module.exports =
                 url: "https://uselessfacts.jsph.pl/random.json?language=en",
             });
 
-            const factEmbed = new msg.embed()
+            const factEmbed = new Embed()
                 .setTitle("Fact")
                 .setDescription(`**${text}**`);
             msg.send(factEmbed);

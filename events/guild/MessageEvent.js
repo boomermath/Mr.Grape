@@ -15,7 +15,7 @@ module.exports =
             if (message.content === this.client.mention) {
                 const helloEmbed = new Embed()
                     .setTitle("Hello!")
-                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.defaultPrefix}help, or you can ping me!**`);
+                    .addField("Sup. I'm Mr. Grape", `**To get started, type ${message.prefix}help, or you can ping me!**`);
                 message.send(helloEmbed);
             }
 

@@ -44,17 +44,12 @@ module.exports =
             }
             else if (Object.keys(aliases).includes(helpArg) || categories.includes(helpArg)) {
                 const category = aliases[helpArg] || helpArg;
-<<<<<<< HEAD
-                const commands = this.getCommands(category).map(c => `\`${c}\``).join(", ");
-                const helpEmbed = new Embed()
-=======
 
                 const commands = [...this.client.commands.values()]
                     .filter(c => c.type === category)
                     .map(c => `\`${c.name}\``).join(", ");
 
-                const helpEmbed = new msg.embed()
->>>>>>> a040b03dc409e794e9dfa175fa4dae757e06a5c9
+                const helpEmbed = new Embed()
                     .setTitle("Help")
                     .addField(`Commands in the ${this.toProper(category)} Category!`, `> ${commands}`);
                 return msg.send(helpEmbed);
