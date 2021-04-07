@@ -33,10 +33,6 @@ Structures.extend("Message", Message => {
             this.params = params;
         }
 
-        get prefix() {
-            return this.guild.settings?.prefix || this.client.config.prefix;
-        }
-
         send(...opts) {
             return this.channel.send(...opts);
         }
