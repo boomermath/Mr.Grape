@@ -14,10 +14,8 @@ module.exports =
         }
 
         getNameAmt({ params }) {
-            if (params.length === 1) return [params[0], 1];
-            const number = params.find(e => Number.isInteger(+e));
-            if (!number) return [false];
-            return [params.filter(i => i !== number).join(" "), +number];
+            const number = params.find(e => +e);
+            return [params.filter(i => i !== number).join(" "), number ? +number : 1];
         }
 
         format(name, amount) {

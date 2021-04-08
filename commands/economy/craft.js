@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op: { or } } = require("sequelize");
 const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
@@ -21,21 +21,21 @@ module.exports =
             const craft = await this.eco.shop.findOne({
                 where: {
                     type: "craft",
-                    [Op.or]: {
+                    [or]: {
                         name: item,
                         alias: item
                     }
                 }
             });
 
-            if (!craft) return msg.send("That item doesn't exist!");
+            if (!craft) return msg.send("Can't craft what you can't spell");
 
             const itemDescription = this.format(craft.name, quantity);
 
             for (const [ingredient, amount] of Object.entries(craft.recipe)) {
                 const part = await this.eco.ores.getOre(msg.author.id, ingredient, true);
 
-                if (part.amount < amount * quantity) return msg.send(`You don't have enough ${ingredient}s to make ${itemDescription}!`);
+                if (!part || part.amount < amount * quantity) return msg.send(`You don't have enough ${ingredient}s to make ${itemDescription}!`);
 
                 await this.eco.ores.deleteOre(msg.author.id, ingredient, amount * quantity, true);
             }

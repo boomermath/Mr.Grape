@@ -21,7 +21,7 @@ module.exports =
         }
 
         async main(msg) {
-            const all = msg.params.find(p => p === "all");
+            const all = msg.params.some(p => p === "all");
             const parse = all ? msg.params.filter(p => p !== "all") : this.getNameAmt(msg);
             const parsedItem = all ? parse : parse[0];
 
@@ -45,7 +45,7 @@ module.exports =
             const ore = await this.eco.ores.getOre(msg.author.id, oreName, refined);
 
             ore ? sale.type = "ore" : null;
-            ore ? sale.item = ore.data : sale.item = item;
+            ore ? sale.item = await ore.getData() : sale.item = item;
 
             if (!sale.item) return msg.send("That's not a valid item!");
 
@@ -62,13 +62,13 @@ module.exports =
 
             let profit = quantity * sale.item.price;
 
-            refined ? profit = profit * 2 : null;
+            refined ? profit *= 2 : sale.type === "shop" ? profit /= 2 : null;
 
             this.eco.users.add(msg.author.id, profit);
 
             const sellEmbed = new Embed()
                 .setTitle("Sale")
-                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : "!"}`);
+                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)}${sale.type === "ore" ? msg.emojis[oreName] : "!"}`);
             msg.send(sellEmbed);
         }
     };

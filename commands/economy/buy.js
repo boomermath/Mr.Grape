@@ -18,8 +18,6 @@ module.exports =
         async main(msg) {
             const [itemName, number] = this.getNameAmt(msg);
 
-            if (!itemName) return msg.send("ok karen");
-
             const item = await this.eco.shop.findOne({
                 where: {
                     type: "shop",

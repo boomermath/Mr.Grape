@@ -33,9 +33,7 @@ class UserOres extends Model {
                 refined: rf
             }
         });
-
-        userOre.data = ore;
-
+        
         return userOre;
     }
 

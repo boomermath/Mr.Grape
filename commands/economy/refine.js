@@ -38,7 +38,7 @@ module.exports =
                 details.data += "all";
             }
             else {
-                const all = msg.params.find(p => p === "all");
+                const all = msg.params.some(p => p === "all");
 
                 const parsedText = all ? msg.params.filter(p => p !== "all").join("") : this.getNameAmt(msg);
                 const ore = await this.eco.ores.getOre(msg.author.id, all ? parsedText : parsedText[0]);
@@ -46,15 +46,15 @@ module.exports =
                 if (!ore) return msg.send("That's not a valid item to refine!");
 
                 const amount = all ? ore.amount : parsedText[1];
+                const oreData = await ore.getData();
 
-
-                details.cost += amount * ore.data.price;
+                details.cost += amount * oreData.price;
 
                 if (amount > ore.amount) return msg.send("That's more ores than you have!");
                 if (details.cost > this.eco.users.getBalance(msg.author.id)) return msg.send(`You can't refine your ${amount} ${ore.name} ores!`);
 
                 details.amount += ore.amount;
-                details.data += ore.data.name;
+                details.data += oreData.name;
 
                 ore.refine(amount);
             }

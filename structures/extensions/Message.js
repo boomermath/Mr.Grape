@@ -1,5 +1,5 @@
 const { Structures } = require("discord.js");
-const { Embed, PaginatedEmbed } = require("./Embed");
+const { PaginatedEmbed } = require("./Embed");
 const emojis = require("../../config/emojis");
 
 Structures.extend("Message", Message => {
