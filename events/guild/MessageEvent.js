@@ -24,7 +24,7 @@ module.exports =
             const command = message.command;
             const cooldown = this.cooldownManager.main(command, { id: message.author.id, fans: 0 });
 
-            if (typeof cooldown === "number") {
+            if (cooldown) {
                 const cooldownEmbed = new Embed()
                     .setTitle("Chill out!")
                     .addField(command.saying, `Wait ${this.cooldownManager.format(cooldown)}`);
@@ -40,13 +40,13 @@ module.exports =
                 }
             }
 
-            else if (command.type === "music" && !["lyrics", "np"].includes(command.name)) {
+            else if (command.type === "music" && command.name !== "lyrics") {
                 const { channel } = message.member.voice;
                 const { channel: myChannel } = message.guild.me.voice;
                 if (!command.musicQueues.has(message.guild.id) && command.name !== "play") {
                     return message.send("There is nothing playing!");
                 }
-                else if (!channel && myChannel && myChannel !== channel && command.name !== "queue") {
+                else if (!channel && myChannel && myChannel !== channel && !["np", "queue"].includes(command.name)) {
                     return message.send("You have to be in my voice channel!");
                 }
             }
