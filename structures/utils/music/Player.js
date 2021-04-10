@@ -1,4 +1,5 @@
 const { Util: { escapeMarkdown } } = require("discord.js");
+const { Embed } = require("../../extensions/Embed");
 const ytdl = require("ytdl-core");
 const getSongs = require("./GetMusic");
 const Queue = require("./Queue");
@@ -16,7 +17,7 @@ module.exports =
             };
             this.queue = new Queue(this);
         }
-                
+
         get playing() {
             return !this._connection.dispatcher.paused;
         }
@@ -49,7 +50,7 @@ module.exports =
 
             const player = this._connection.play(stream)
                 .on("start", () => {
-                    const embed = new this._Embed()
+                    const embed = new Embed()
                         .setTitle("Now Playing")
                         .setDescription(`**[${escapeMarkdown(song.title)}](${song.url})**`)
                         .setThumbnail(song.thumbnail);
@@ -74,7 +75,7 @@ module.exports =
 
         async play(msg) {
             await this._loadQueue(msg);
-            if (this._evoked) { 
+            if (this._evoked) {
                 this._evoked = false;
                 await this._connect();
                 this._stream(this.queue.currentSong);

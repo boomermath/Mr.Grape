@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Timer } = require("../utils");
+const Timer = require("../utils/Timer");
 const [left, right] = ["⬅️", "➡️"];
 const sponsor = "Powered by [NodeClusters](https://nodeclusters.com/billing/link.php?id=8)";
 const color = "PURPLE";

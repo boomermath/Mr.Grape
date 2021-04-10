@@ -19,13 +19,13 @@ module.exports =
             let raw;
 
             try {
-                raw = eval(msg.params.join(" ").replace(/process\.env|this\.client/g, ""));
+                raw = eval(msg.params.join(" ").replace(/process\.env/g, ""));
             } catch (err) {
                 raw = err;
             }
 
             const output = require("util").inspect(raw).replace(this.client.token, "[redacted]");
 
-            msg.send(output, { code: true, split: true });
+            msg.send(output, { code: "bash", split: true });
         }
     };

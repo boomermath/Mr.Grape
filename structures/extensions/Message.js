@@ -29,8 +29,7 @@ Structures.extend("Message", Message => {
 
             if (!command) return;
 
-            this.command = command;
-            this.params = params;
+            [this.command, this.params] = [command, params];
         }
 
         send(...opts) {
