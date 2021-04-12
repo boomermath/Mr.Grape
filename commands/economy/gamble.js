@@ -14,9 +14,9 @@ module.exports =
             });
         }
 
-        randomize(num, rigged) {
+        randomize(rigged) {
             const riggedArr = [1, 2, 3, 4, 4, 6];
-            return rigged ? riggedArr[Math.floor(Math.random() * riggedArr.length)] : Math.floor(Math.random() * num) + 1;
+            return rigged ? riggedArr[this.randomize(riggedArr.length)] : super.randomize(7);
         }
 
         wait(seconds) {
@@ -52,7 +52,7 @@ module.exports =
                 if (!gamble) return msg.send("I thought so.");
             }
 
-            const dice = this.randomize(6, rigged);
+            const dice = this.randomize(rigged);
             const gambleEmbed = new Embed()
                 .setTitle(`${msg.author.username}'s gambling table`)
                 .addField("Ok, if you roll an even number you win, if you roll an odd number, you lose.", "\u200b");
@@ -73,8 +73,8 @@ module.exports =
                         gambleMsg.edit(gambleEmbed.addField(`Uh oh! You were looking sus, so you got busted and lost your ${number} :star:s!`, "\u200b"));
                         return this.eco.users.add(msg.author.id, -number);
                     }
-                    this.eco.users.add(msg.author.id, number);
                 }
+                this.eco.users.add(msg.author.id, number);
             }
             else {
                 gambleMsg.edit(gambleEmbed.addField(`Rip, you lost your ${number} :star:s.`, "\u200b"));

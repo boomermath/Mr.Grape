@@ -15,7 +15,7 @@ module.exports =
         }
 
         main(msg) {
-            const randStars = Math.floor(Math.random() * 25) + 25;
+            const randStars = this.randomize(25) + 25;
 
             this.eco.users.add(msg.author.id, randStars);
 

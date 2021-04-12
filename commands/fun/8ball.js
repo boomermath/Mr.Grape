@@ -41,7 +41,7 @@ module.exports =
 
         getResponse(failure) {
             const array = failure ? rejections : responses;
-            return array[Math.floor(Math.random() * array.length)];
+            return array[this.randomize(array.length)];
         }
 
         main(msg) {

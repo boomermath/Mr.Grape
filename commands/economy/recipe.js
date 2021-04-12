@@ -24,7 +24,7 @@ module.exports =
             if (!msg.params.length) {
                 const getRecipes = await this.eco.shop.findAll({ where: { type: "craft" } });
 
-                const recipes = getRecipes.sort((a, b) => a.name.localeCompare(b.name))
+                const recipes = getRecipes.sort((a, b) => a.price - b.price)
                     .map(item =>
                         [`${this.format(item.name)}`, `${item.description}\nWorth: **${item.price}:star:s**`]
                     );

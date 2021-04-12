@@ -14,18 +14,10 @@ module.exports =
             });
         }
 
-        getNameAmt(msg) {
-            if (msg.params.length < 3) return super.getNameAmt(msg);
-            const number = msg.params.find(p => Number.isInteger(p));
-            return [msg.params.filter(p => p !== number).join(" "), number ? +number : 1];
-        }
-
         async main(msg) {
             const all = msg.params.some(p => p === "all");
             const parse = all ? msg.params.filter(p => p !== "all") : this.getNameAmt(msg);
             const parsedItem = all ? parse : parse[0];
-
-            this.client.console.debug(parsedItem);
 
             const refined = parsedItem.startsWith("refined");
 
@@ -68,7 +60,7 @@ module.exports =
 
             const sellEmbed = new Embed()
                 .setTitle("Sale")
-                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)}${sale.type === "ore" ? msg.emojis[oreName] : "!"}`);
+                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : " "} for ${profit} :star:s!`);
             msg.send(sellEmbed);
         }
     };

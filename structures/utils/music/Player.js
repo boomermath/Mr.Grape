@@ -9,7 +9,6 @@ module.exports =
         constructor(message) {
             this._connection = null;
             this._console = message.client.console;
-            this._evoked = true;
             this._msg = message;
             this.settings = {
                 volume: 42,
@@ -75,8 +74,7 @@ module.exports =
 
         async play(msg) {
             await this._loadQueue(msg);
-            if (this._evoked) {
-                this._evoked = false;
+            if (!this._connection) {
                 await this._connect();
                 this._stream(this.queue.currentSong);
             }

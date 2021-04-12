@@ -19,6 +19,6 @@ module.exports =
         }
 
         main(msg) {
-            msg.send(greetings[Math.floor(Math.random() * greetings.length)]);
+            msg.send(greetings[this.randomize(greetings.length)]);
         }
     };

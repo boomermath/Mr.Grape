@@ -12,6 +12,10 @@ module.exports =
                 ores: UserOres
             };
         }
+        
+        randomize(num) {
+            return Math.floor(Math.random() * num);
+        }
 
         getNameAmt({ params }) {
             const number = params.find(e => +e);

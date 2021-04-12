@@ -14,10 +14,6 @@ module.exports =
             });
         }
 
-        rand(num) {
-            return Math.floor(Math.random() * num) + 1;
-        }
-
         async randOre(id, tier, max) {
             const query = await this.eco.oreStore.findAll({
                 where: {
@@ -25,8 +21,8 @@ module.exports =
                 }
             });
 
-            const ore = query[Math.floor(Math.random() * query.length)];
-            const randNum = this.rand(max);
+            const ore = query[this.randomize(query.length)];
+            const randNum = this.randomize(max) + 1;
 
             await this.eco.ores.addOre(id, ore, randNum);
 
@@ -71,10 +67,10 @@ module.exports =
 
                 for (const entry in chances[pickaxe]) {
                     if (entry == 3) break;
-                    if (this.rand(prob[entry]) === 1) await choose(+entry + 1, amts[entry]);
+                    if (this.randomize(prob[entry]) + 1 === 1) await choose(+entry + 1, amts[entry]);
                 }
 
-                if (this.rand(prob[3]) === 1) {
+                if (this.randomize(prob[3]) + 1 === 1) {
                     mineEmbed.addField("Uh oh!", "Your pickaxe broke, buy a new one from the shop!");
                     await this.eco.items.deleteItem(msg.author.id, pickaxe);
                 }
