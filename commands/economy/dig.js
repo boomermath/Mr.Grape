@@ -21,8 +21,8 @@ module.exports =
                 }
             });
 
-            const ore = query[this.randomize(query.length)];
-            const randNum = this.randomize(max) + 1;
+            const ore = query[super.randomize(query.length)];
+            const randNum = super.randomize(max) + 1;
 
             await this.eco.ores.addOre(id, ore, randNum);
 
@@ -38,7 +38,7 @@ module.exports =
 
             const choose = async (tier, amt) => {
                 const [name, amount] = await this.randOre(msg.author.id, tier, amt);
-                mineEmbed.addField(`You got ${this.format(name, amount)}! ${msg.emojis[name]}`, "\u200b");
+                mineEmbed.addField(`You got ${super.format(name, amount)}! ${msg.emojis[name]}`, "\u200b");
             };
 
             const chances = {
@@ -67,10 +67,10 @@ module.exports =
 
                 for (const entry in chances[pickaxe]) {
                     if (entry == 3) break;
-                    if (this.randomize(prob[entry]) + 1 === 1) await choose(+entry + 1, amts[entry]);
+                    if (super.randomize(prob[entry]) + 1 === 1) await choose(+entry + 1, amts[entry]);
                 }
 
-                if (this.randomize(prob[3]) + 1 === 1) {
+                if (super.randomize(prob[3]) + 1 === 1) {
                     mineEmbed.addField("Uh oh!", "Your pickaxe broke, buy a new one from the shop!");
                     await this.eco.items.deleteItem(msg.author.id, pickaxe);
                 }

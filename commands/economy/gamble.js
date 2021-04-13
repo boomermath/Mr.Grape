@@ -16,7 +16,7 @@ module.exports =
 
         randomize(rigged) {
             const riggedArr = [1, 2, 3, 4, 4, 6];
-            return rigged ? riggedArr[this.randomize(riggedArr.length)] : super.randomize(7);
+            return rigged ? riggedArr[super.randomize(riggedArr.length)] : super.randomize(7);
         }
 
         wait(seconds) {
@@ -67,7 +67,7 @@ module.exports =
             if (dice % 2 === 0) {
                 gambleMsg.edit(gambleEmbed.addField(`Congrats, you get ${number} :star:s!`, "\u200b"));
                 if (rigged) {
-                    const caught = this.randomize(25);
+                    const caught = super.randomize(25);
                     if (caught === 1) {
                         await this.wait(1.7);
                         gambleMsg.edit(gambleEmbed.addField(`Uh oh! You were looking sus, so you got busted and lost your ${number} :star:s!`, "\u200b"));

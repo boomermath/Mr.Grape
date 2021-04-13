@@ -16,7 +16,7 @@ module.exports =
         }
 
         async main(msg) {
-            const [itemName, number] = this.getNameAmt(msg);
+            const [itemName, number] = super.getNameAmt(msg);
 
             const item = await this.eco.shop.findOne({
                 where: {
@@ -39,7 +39,7 @@ module.exports =
 
             const receipt = new Embed()
                 .setTitle("Purchase")
-                .addField("Receipt", `You purchased ${this.format(item.name, number)}!`)
+                .addField("Receipt", `You purchased ${super.format(item.name, number)}!`)
                 .setFooter("Grape Marketplaces");
             msg.send(receipt);
         }

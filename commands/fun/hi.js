@@ -19,6 +19,6 @@ module.exports =
         }
 
         main(msg) {
-            msg.send(greetings[this.randomize(greetings.length)]);
+            msg.send(greetings[super.randomize(greetings.length)]);
         }
     };

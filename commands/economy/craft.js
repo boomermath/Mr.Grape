@@ -16,7 +16,7 @@ module.exports =
         }
 
         async main(msg) {
-            const [item, quantity] = this.getNameAmt(msg);
+            const [item, quantity] = super.getNameAmt(msg);
 
             const craft = await this.eco.shop.findOne({
                 where: {
@@ -30,7 +30,7 @@ module.exports =
 
             if (!craft) return msg.send("Can't craft what you can't spell");
 
-            const itemDescription = this.format(craft.name, quantity);
+            const itemDescription = super.format(craft.name, quantity);
 
             for (const [ingredient, amount] of Object.entries(craft.recipe)) {
                 const part = await this.eco.ores.getOre(msg.author.id, ingredient, true);

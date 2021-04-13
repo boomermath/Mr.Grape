@@ -31,7 +31,7 @@ module.exports =
 
             const items = inventory
                 .sort((a, b) => a.data.name.localeCompare(b.data.name))
-                .map(item => [this.format(item.data.name, item.amount), item.amount]);
+                .map(item => [super.format(item.data.name, item.amount), item.amount]);
 
             const entries = items.length ? items : [["nothing but cobwebs and dust m8", "\u200b"]];
 

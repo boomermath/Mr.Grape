@@ -16,7 +16,7 @@ module.exports =
 
         async main(msg) {
             const all = msg.params.some(p => p === "all");
-            const parse = all ? msg.params.filter(p => p !== "all") : this.getNameAmt(msg);
+            const parse = all ? msg.params.filter(p => p !== "all") : super.getNameAmt(msg);
             const parsedItem = all ? parse : parse[0];
 
             const refined = parsedItem.startsWith("refined");
@@ -60,7 +60,7 @@ module.exports =
 
             const sellEmbed = new Embed()
                 .setTitle("Sale")
-                .addField(`${msg.author.username} sold`, `${this.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : " "} for ${profit} :star:s!`);
+                .addField(`${msg.author.username} sold`, `${super.format(parsedItem, quantity)} ${sale.type === "ore" ? msg.emojis[oreName] : " "} for ${profit} :star:s!`);
             msg.send(sellEmbed);
         }
     };

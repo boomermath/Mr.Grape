@@ -26,7 +26,7 @@ module.exports =
 
                 const recipes = getRecipes.sort((a, b) => a.price - b.price)
                     .map(item =>
-                        [`${this.format(item.name)}`, `${item.description}\nWorth: **${item.price}:star:s**`]
+                        [`${super.format(item.name)}`, `${item.description}\nWorth: **${item.price}:star:s**`]
                     );
 
                 msg.paginate({ title: "Recipes" }, recipes, 5);
@@ -44,9 +44,9 @@ module.exports =
 
                 if (!recipe) return msg.send("That's not a valid recipe.");
 
-                const ingredients = Object.entries(recipe.recipe).map(r => [this.format(r[0]), r[1]]);
+                const ingredients = Object.entries(recipe.recipe).map(r => [super.format(r[0]), r[1]]);
 
-                msg.paginate({ title: this.format(recipe.name) }, ingredients, 5);
+                msg.paginate({ title: super.format(recipe.name) }, ingredients, 5);
             }
         }
     };

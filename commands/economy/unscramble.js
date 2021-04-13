@@ -18,7 +18,7 @@ module.exports =
         scramble(arr) {
             const original = [...arr];
             for (let i = arr.length - 1; i > 0; i--) {
-                let j = this.randomize(i + 1);
+                let j = super.randomize(i + 1);
                 [arr[i], arr[j]] = [arr[j], arr[i]];
             }
             if (original.join("") === arr.join("")) { return this.scramble(arr); }
@@ -26,7 +26,7 @@ module.exports =
         }
 
         async main(msg) {
-            const fruit = Fruits[this.randomize(Fruits.length)];
+            const fruit = Fruits[super.randomize(Fruits.length)];
             const scrambled = this.scramble(fruit.split(""));
 
             const scrambledWord = new Embed()
@@ -48,7 +48,7 @@ module.exports =
 
             if (message === fruit) {
                 const starmagnet = await this.eco.items.getItem(msg.author.id, "starmagnet");
-                const reward = this.randomize(3 * starmagnet ? 1 : starmagnet + 1) + 1;
+                const reward = super.randomize(3 * starmagnet ? 1 : starmagnet + 1) + 1;
 
                 this.eco.users.add(msg.author.id, reward);
 

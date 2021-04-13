@@ -40,7 +40,7 @@ module.exports =
             else {
                 const all = msg.params.some(p => p === "all");
 
-                const parsedText = all ? msg.params.filter(p => p !== "all").join("") : this.getNameAmt(msg);
+                const parsedText = all ? msg.params.filter(p => p !== "all").join("") : super.getNameAmt(msg);
                 const ore = await this.eco.ores.getOre(msg.author.id, all ? parsedText : parsedText[0]);
 
                 if (!ore) return msg.send("That's not a valid item to refine!");
