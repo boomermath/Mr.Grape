@@ -1,4 +1,4 @@
-const { Command, Embed } = require("../../structures");
+const { Command } = require("../../structures");
 
 const greetings = [
     "hi", "hello", "yo", "whats poppin", "was upp", "greetings", "hey"

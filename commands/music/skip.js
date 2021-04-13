@@ -1,4 +1,4 @@
-const { MusicCommand, Embed } = require("../../structures");
+const { MusicCommand } = require("../../structures");
 
 module.exports =
     class extends MusicCommand {

@@ -1,4 +1,4 @@
-const { EconomyCommand, Embed } = require("../../structures");
+const { EconomyCommand } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {

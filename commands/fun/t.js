@@ -1,4 +1,4 @@
-const { Command, Embed } = require("../../structures");
+const { Command } = require("../../structures");
 
 module.exports =
     class extends Command {

@@ -1,4 +1,4 @@
-const { ModerationCommand, Embed } = require("../../structures");
+const { ModerationCommand } = require("../../structures");
 
 module.exports =
     class extends ModerationCommand {

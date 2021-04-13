@@ -28,7 +28,7 @@ module.exports =
                 const number = super.randomize(3) + 1;
                 const lockEmbed = new Embed()
                     .setTitle(`${msg.author.username}'s heist against ${target.username}`)
-                    .addField("Crack the safe!", "Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip\nYou have 7 seconds, go!")
+                    .addField("Crack the safe!", "Pick a number from 1 - 3, if you pick the right number the safe will be cracked, if not then rip\nYou have 7 seconds, go!");
                 msg.send(lockEmbed);
 
                 const collector = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 7100 });
@@ -40,7 +40,7 @@ module.exports =
 
                     const lockEmbed = new Embed()
                         .setTitle("Lock Failed!")
-                        .addField("Fail", `You couldn't crack it correctly, and you lost ${loss} :star:s!`)
+                        .addField("Fail", `You couldn't crack it correctly, and you lost ${loss} :star:s!`);
                     msg.send(lockEmbed);
 
                     return this.eco.users.add(msg.author.id, -loss);
@@ -55,7 +55,7 @@ module.exports =
 
                 const successEmbed = new Embed()
                     .setTitle(`${msg.author.username}'s heist against ${target.username}`)
-                    .addField("Success", `You got through and got ${earnings} :star:s!`)
+                    .addField("Success", `You got through and got ${earnings} :star:s!`);
                 msg.send(successEmbed);
 
                 return this.eco.users.add(msg.author.id, earnings);
@@ -66,7 +66,7 @@ module.exports =
 
                 const successEmbed = new Embed()
                     .setTitle(`${msg.author.username}'s heist against ${target.username}`)
-                    .addField("Fail", `RIP, despite ur effort, you got caught and lost ${losses} :star:s.`)
+                    .addField("Fail", `RIP, despite ur effort, you got caught and lost ${losses} :star:s.`);
                 msg.send(successEmbed);
 
                 return this.eco.users.add(msg.author.id, -losses);
