@@ -26,7 +26,7 @@ module.exports =
 
                 const recipes = getRecipes.sort((a, b) => a.price - b.price)
                     .map(item =>
-                        [`${super.format(item.name)}`, `${item.description}\nWorth: **${item.price}:star:s**`]
+                        [`${this.format(item.name)}`, `${item.description}\nWorth: **${item.price}:star:s**`]
                     );
 
                 msg.paginate({ title: "Recipes" }, recipes, 5);

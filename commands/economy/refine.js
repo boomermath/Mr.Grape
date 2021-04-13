@@ -22,12 +22,15 @@ module.exports =
             };
 
             if (msg.params[0] === "all" && msg.params.length === 1) {
-                const ores = await this.eco.ores.findAll({ where: { user_id: msg.author.id, refined: false } });
+                const ores = await this.eco.ores.findAll({ 
+                    where: { user_id: msg.author.id, refined: false },
+                    include: "data"
+                });
 
                 if (!ores.length) return msg.send("There's nothing to refine!");
 
-                details.cost = ores.reduce((cur, rem) => cur + rem.amount * rem.price, 0);
-
+                details.cost = ores.reduce((a, r) => a + r.amount * r.data.price, 0);
+            
                 if (details.cost > this.eco.users.getBalance(msg.author.id)) return msg.send("~~ur too broke to do that~~");
 
                 for (const ore of ores) {
@@ -66,7 +69,7 @@ module.exports =
             const refinedEmbed = new Embed()
                 .setTitle("Refinement")
                 .addField(msg.author.username,
-                    `Refined their ${details.amount} ${details.data === "all" ? "" : details.data}${details.amount > 1 ? "s" : ""} for 
+                    `Refined their ${details.amount} ${details.data === "all" ? "ore" : details.data}${details.amount > 1 ? "s" : ""} for 
                     ${details.cost} :star:s ${!details.cost ? "because they have a personal refiner (flexx)" : ""}
                     `
                 );

@@ -18,7 +18,7 @@ module.exports =
             const times = new Date(time).toISOString().substr(11, 8).split(":");
 
             for (const unit in times) {
-                if (unit < 0) continue;
+                if (unit === 0) continue;
                 const time = +times[unit];
                 string += `\n**${unit === 2 ? unit.toFixed(1) : unit} ${units[unit]}${time > 1 ? "s" : ""}**`;
             }

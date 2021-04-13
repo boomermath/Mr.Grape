@@ -17,7 +17,7 @@ module.exports =
         main(msg) {
             const diceRoll = new Embed()
                 .setTitle(`${msg.author.username}'s die`)
-                .addField("You rolled", super.randomize(6) + 1);
+                .addField("You rolled a", Math.floor(Math.random() * 6) + 1);
             msg.send(diceRoll);
         }
     };

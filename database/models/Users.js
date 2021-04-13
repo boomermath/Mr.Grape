@@ -9,6 +9,7 @@ class Users extends Model {
     }
 
     static async add(id, amount) {
+        if (!amount) return;
         const user = this.cache.get(id);
         if (user) {
             user.balance += amount;
