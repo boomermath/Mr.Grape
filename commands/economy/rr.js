@@ -14,7 +14,7 @@ module.exports =
             });
         }
 
-        main(msg) {
+        async main(msg) {
             const verification = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 3500 });
 
             if (!collected.size) return msg.reply("you're being a chicken");
