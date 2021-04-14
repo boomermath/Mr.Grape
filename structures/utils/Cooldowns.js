@@ -13,17 +13,18 @@ module.exports =
         }
 
         format(time) {
-            let string = "";
-            const units = ["hour", "minute", "second"];
-            const times = new Date(time).toISOString().substr(11, 8).split(":");
+            const timeMap = ["hour", "minute", "second"]
+            const timeArr = new Date(time).toISOString().substr(11, 8).split(":")
 
-            for (const unit in times) {
-                if (unit === 0) continue;
-                const time = +times[unit];
-                string += `\n**${unit === 2 ? unit.toFixed(1) : unit} ${units[unit]}${time > 1 ? "s" : ""}**`;
+            let string = "";
+
+            for (const unit in timeArr) {
+                const value = +timeArr[unit];
+                if (value === 0 && unit !== 2) continue;
+                string += `${unit === 2 ? value.toFixed(10) : value} ${timeMap[unit]}${value > 1 ? "s" : ""} `
             }
 
-            return string;
+            return string.length ? string : "1 second";
         }
 
         main(command, { id, fans }) {
