@@ -62,14 +62,14 @@ module.exports =
         }
 
         async _loadQueue(msg) {
-            const res = await getSongs(msg.params.join(" "), msg.author);
+            const { title, thumbnail, songs } = await getSongs(msg.params.join(" "), msg.author);
             const embed = new Embed()
                 .setTitle("Queued")
-                .setDescription(res.title)
-                .setThumbnail(res.thumbnail);
+                .setDescription(title)
+                .setThumbnail(thumbnail);
             msg.send(embed);
 
-            this.queue.songs = res.songs;
+            this.queue.songs = songs;
         }
 
         async play(msg) {

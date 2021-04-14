@@ -24,8 +24,7 @@ class SongResponse {
 
 async function getSongs(input, author) {
     if (plRegex.test(input)) {
-        const id = input.match(plRegex)[0].slice(6);
-        const res = await ytpl(id);
+        const res = await ytpl(input.match(plRegex)[0].slice(6));
         return new SongResponse({
             title: `**${res.items.length}** tracks from **[${escapeMarkdown(res.title)}](${res.url})**`,
             thumbnail: res.bestThumbnail.url,
