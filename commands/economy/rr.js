@@ -1,4 +1,4 @@
-const { EconomyCommand } = require("../../structures");
+const { EconomyCommand, Embed } = require("../../structures");
 
 module.exports =
     class extends EconomyCommand {
@@ -15,6 +15,34 @@ module.exports =
         }
 
         main(msg) {
-                
+            const verification = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 3500 });
+
+            if (!collected.size) return msg.reply("you're being a chicken");
+
+            const message = verification.first().content.toLowerCase();
+
+            if (message === "yes" || message === "y") {
+                const balance = this.eco.users.getBalance(msg.author.id);
+
+                if (super.randomize(6) + 1 === 1) {
+                    const survivedEmbed = new Embed()
+                        .setTitle(`${msg.author.username}'s revolver`)
+                        .addField(`yay! You didn't die... this time... enjoy your ${balance} :star:s!`, "\u200b")
+
+                    this.eco.users.add(msg.author.id, balance);
+                    msg.send(survivedEmbed);
+                }
+                else {
+                    const lostEmbed = new Embed()
+                        .setTitle(`${msg.author.username}'s revolver`)
+                        .addField("You died and lost all your money. RIP.", "\u200b")
+
+                    this.eco.users.add(msg.author.id, -balance);
+                    msg.send(lostEmbed)
+                }
+            }
+            else {
+                msg.send("Welp ok ig");
+            }
         }
     };
