@@ -1,4 +1,3 @@
-const { Message } = require("discord.js");
 const { MusicCommand, Player } = require("../../structures");
 
 module.exports =
@@ -29,7 +28,7 @@ module.exports =
 
             const { channel } = msg.member.voice;
 
-            if (!channel.permissionsFor(msg.guild.me).has(["CONNECT", "SPEAK"])) return msg.send("I can't play music in your VC, fix your perms.")
+            if (!channel.permissionsFor(msg.guild.me).has(["CONNECT", "SPEAK"])) return msg.send("I can't play music in your VC, fix your perms.");
 
             await musicPlayer.play(msg, msg.params.join(" "));
 

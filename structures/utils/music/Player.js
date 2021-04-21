@@ -35,7 +35,7 @@ module.exports =
                 this._connection = await this._msg.member.voice.channel.join();
             } catch (error) {
                 this._console.error(error);
-                this._msg.send(`Made an oopsie while trying to connect: ${err.message}`);
+                this._msg.send(`Made an oopsie while trying to connect: ${error.message}`);
                 if (this._connection) this.disconnect();
             }
         }

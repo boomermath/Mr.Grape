@@ -13,15 +13,15 @@ module.exports =
         }
 
         format(time) {
-            const timeMap = ["hour", "minute", "second"]
-            const timeArr = new Date(time).toISOString().substr(11, 8).split(":")
+            const timeMap = ["hour", "minute", "second"];
+            const timeArr = new Date(time).toISOString().substr(11, 8).split(":");
 
             let string = "";
 
             for (const unit in timeArr) {
                 const value = +timeArr[unit];
                 if (value === 0 && unit !== 2) continue;
-                string += `${unit === 2 ? value.toFixed(10) : value} ${timeMap[unit]}${value > 1 ? "s" : ""} `
+                string += `${unit === 2 ? value.toFixed(10) : value} ${timeMap[unit]}${value > 1 ? "s" : ""} `;
             }
 
             return string.length ? string : "1 second";

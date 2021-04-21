@@ -7,7 +7,7 @@ module.exports =
                 name: "ping",
                 type: "utility",
                 description: "Get the bot's ping.",
-                usage: "<args> <go> <here>",
+                usage: "No arguments required.",
                 aliases: ["pong"],
                 saying: "Pong. There, I work.",
                 cooldown: 2

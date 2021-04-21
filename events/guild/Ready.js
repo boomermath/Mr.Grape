@@ -4,12 +4,14 @@ module.exports =
     class extends Event {
         constructor(...args) {
             super(...args, {
-                name: "guildCreate",
+                name: "ready",
+                once: true
             });
         }
 
-        main(guild) {
-            this.client.console.log(`I joined ${guild.name}!`);
-            this.updatePresence();
+        main() {
+            this.client.console.log("Ready!");
+            super.updatePresence();
         }
     };
+

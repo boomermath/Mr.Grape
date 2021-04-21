@@ -16,7 +16,7 @@ module.exports =
             super(process.stdout, process.stderr);
 
             for (const method of Object.keys(logging)) {
-                this[method] = function (args) { this.write(args, method); };
+                this[method] = (args) => { this.write(args, method); };
             }
         }
 
