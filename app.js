@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { Client, Database } = require("./structures");
+const { Client, Database } = require("./lib");
 
 const client = new Client();
 const database = new Database();
