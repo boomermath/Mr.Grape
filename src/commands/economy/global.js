@@ -15,7 +15,7 @@ module.exports =
         }
 
         async main(msg) {
-            const collection = [...this.eco.users.cache.sort((a, b) => b.balance - a.balance).first(10).values()]
+            const collection = [...this.eco.users.cache.sort((a, b) => b.balance - a.balance).first(10).values()];
             const entries = [];
 
             if (!collection.length) return msg.send("No people are rich.");
