@@ -15,6 +15,8 @@ module.exports =
         }
 
         async main(msg) {
+            msg.send("Are you sure you want to do this?");
+            
             const verification = await msg.channel.awaitMessages(m => m.author.id === msg.author.id, { max: 1, time: 3500 });
 
             if (!verification.size) return msg.reply("you're being a chicken");

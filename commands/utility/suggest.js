@@ -20,7 +20,7 @@ module.exports =
             if (suggestion.length < 15) return msg.send("Your suggestion is too short.");
             else if (suggestion.length > 1800) return msg.send("Your suggestion is wayyy too long. Tone it down.");
 
-            const channel = await this.client.channels.fetch("758005843127173221");
+            const channel = await this.client.channels.fetch(this.client.config.defaultChannels.suggestions);
 
             const suggestionEmbed = new Embed()
                 .setTitle("Suggestion")
